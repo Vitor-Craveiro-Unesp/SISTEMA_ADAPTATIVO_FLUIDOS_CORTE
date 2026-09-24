@@ -1,0 +1,20 @@
+---
+title: "06 BENJAMIN ada bivariada"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Objetivo
+
+## Dados de entrada
+
+## Metodologia
+
+## Resultados
+
+## Validações
+
+## Pendências

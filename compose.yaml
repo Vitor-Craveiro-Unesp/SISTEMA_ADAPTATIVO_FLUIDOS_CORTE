@@ -1,0 +1,11 @@
+services:
+  r:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /project
+    volumes:
+      - .:/project
+    environment:
+      - RENV_PATHS_CACHE=/renv-cache
+    command: ["R"]

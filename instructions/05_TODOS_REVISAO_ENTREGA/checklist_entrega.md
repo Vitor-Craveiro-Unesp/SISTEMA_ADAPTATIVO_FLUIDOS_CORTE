@@ -1,0 +1,5 @@
+- [ ] PDF final
+- [ ] Apresentação final
+- [ ] Código reproduzível
+- [ ] Repositório limpo
+- [ ] Submissão realizada

@@ -1,0 +1,16 @@
+---
+title: "Relatório de Ranking, Cenários e Robustez"
+format: pdf
+---
+
+## Objetivo
+
+## Metodologia
+
+## Resultados
+
+## Validações
+
+## Problemas/pendências
+
+## Entregáveis

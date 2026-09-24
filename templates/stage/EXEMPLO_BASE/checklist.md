@@ -1,0 +1,5 @@
+- [ ] Entrada validada
+- [ ] Análise executada
+- [ ] Resultados salvos
+- [ ] Relatório atualizado
+- [ ] Handoff pronto

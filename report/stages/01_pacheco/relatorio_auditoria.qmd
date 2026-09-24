@@ -1,0 +1,16 @@
+---
+title: "Relatório de Auditoria e Preparação dos Dados"
+format: pdf
+---
+
+## Objetivo
+
+## Metodologia
+
+## Resultados
+
+## Validações
+
+## Problemas/pendências
+
+## Entregáveis

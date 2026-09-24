@@ -1,0 +1,26 @@
+---
+title: "Relatório da etapa"
+format: pdf
+---
+
+## 1. Objetivo
+
+## 2. Dados de entrada
+
+## 3. Metodologia
+
+## 4. Validações realizadas
+
+## 5. Resultados
+
+## 6. Figuras e tabelas principais
+
+## 7. Problemas encontrados
+
+## 8. Decisões metodológicas
+
+## 9. Limitações
+
+## 10. Entregáveis gerados
+
+## 11. O que a próxima etapa precisa saber

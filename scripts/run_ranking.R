@@ -1,0 +1,5 @@
+source("R/benjamin/critic.R")
+source("R/vitor/topsis.R")
+source("R/vitor/cenarios.R")
+source("R/vitor/pareto.R")
+source("R/vitor/sensibilidade.R")

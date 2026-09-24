@@ -1,0 +1,6 @@
+- [ ] Pipeline executa
+- [ ] Testes passam
+- [ ] Relatório confere
+- [ ] Apresentação confere
+- [ ] Handoffs completos
+- [ ] Decisões registradas

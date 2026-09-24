@@ -1,0 +1,419 @@
+validation:
+
+  general:
+
+    raw_data:
+      immutable: true
+      allow_manual_edit: false
+      allow_overwrite: false
+
+    corrections:
+      allow_silent_correction: false
+      require_decision_record: true
+      require_original_value_preservation: true
+      require_justification: true
+
+    missing_data:
+      allow_unclassified_missing: false
+      allow_unjustified_imputation: false
+
+    outliers:
+      allow_automatic_removal: false
+      require_investigation: true
+      require_documentation: true
+
+    ranking:
+      allow_before_canonical_data_approval: false
+      allow_before_criteria_approval: false
+      allow_silent_weight_change: false
+
+---
+
+severity_levels:
+
+  critical:
+    description: >
+      Problema que impede a continuidade da análise ou pode invalidar
+      diretamente o resultado final.
+    blocks_pipeline: true
+
+  high:
+    description: >
+      Problema com potencial de alterar significativamente análises,
+      critérios, pesos ou ranking.
+    blocks_handoff: true
+
+  medium:
+    description: >
+      Problema que deve ser investigado e documentado, mas não
+      necessariamente impede a continuidade.
+    blocks_handoff: false
+
+  low:
+    description: >
+      Problema de menor impacto, normalmente relacionado a formatação,
+      arredondamento ou documentação.
+    blocks_handoff: false
+
+  info:
+    description: >
+      Informação diagnóstica sem caráter de erro.
+    blocks_handoff: false
+
+---
+
+audit_rules:
+
+  file_integrity:
+
+    raw_file_exists:
+      severity: critical
+      description: "O arquivo bruto esperado deve existir em data/raw/."
+
+    raw_file_unchanged:
+      severity: critical
+      description: >
+        O arquivo bruto deve permanecer inalterado durante todo o projeto.
+
+    raw_file_hash_required:
+      severity: high
+      description: >
+        Registrar hash SHA-256 do arquivo bruto para garantir integridade.
+
+---
+
+  sheets:
+
+    expected_sheets_present:
+      severity: high
+      description: >
+        Todas as abas esperadas devem ser identificadas e registradas.
+
+    unexpected_sheet:
+      severity: info
+      description: >
+        Abas não previstas devem ser registradas para inspeção.
+
+    empty_sheet:
+      severity: medium
+      description: >
+        Abas vazias ou praticamente vazias devem ser documentadas.
+
+---
+
+  keys:
+
+    duplicate_record:
+      severity: high
+      description: >
+        Registros duplicados para a mesma combinação de fluido,
+        variável e condição devem ser investigados.
+
+    missing_fluid:
+      severity: high
+      description: >
+        Fluido ausente em uma aba relevante deve ser registrado.
+
+    unexpected_fluid:
+      severity: medium
+      description: >
+        Fluido inesperado deve ser investigado.
+
+---
+
+  data_types:
+
+    mixed_numeric_text:
+      severity: high
+      description: >
+        Coluna que deveria ser numérica contendo texto deve ser
+        sinalizada.
+
+    unexpected_type:
+      severity: medium
+      description: >
+        Tipo incompatível com o dicionário de dados deve ser registrado.
+
+---
+
+  units:
+
+    missing_unit:
+      severity: medium
+      description: >
+        Variáveis quantitativas sem unidade conhecida devem ser
+        identificadas.
+
+    mixed_units:
+      severity: high
+      description: >
+        A mesma variável não deve misturar unidades sem conversão
+        documentada.
+
+    suspicious_unit:
+      severity: medium
+      description: >
+        Unidade textual ou formato inesperado deve ser investigado.
+
+---
+
+  missing:
+
+    unknown_missing:
+      severity: high
+      description: >
+        Missing sem classificação deve ser investigado.
+
+    pending_measurement:
+      severity: medium
+      description: >
+        Medição pendente deve ser registrada como pendente e não como zero.
+
+    formula_error:
+      severity: critical
+      description: >
+        Erros de fórmula como #DIV/0!, #VALUE! ou equivalentes
+        devem ser tratados antes do uso da variável.
+
+    not_measured:
+      severity: medium
+      description: >
+        Valor não medido deve permanecer explicitamente identificado.
+
+    not_applicable:
+      severity: info
+      description: >
+        Valor não aplicável deve ser diferenciado de ausência real.
+
+---
+
+  numeric_consistency:
+
+    impossible_negative:
+      severity: high
+      description: >
+        Valores negativos em variáveis que não admitem valores
+        negativos devem ser investigados.
+
+    percentage_below_zero:
+      severity: high
+      description: "Percentual não pode ser menor que zero."
+
+    percentage_above_100:
+      severity: high
+      description: "Percentual não pode ultrapassar 100 sem justificativa."
+
+    zero_when_not_allowed:
+      severity: high
+      description: >
+        Zero em variável que teoricamente deve ser positiva deve ser
+        investigado.
+
+---
+
+  calculations:
+
+    sum_mismatch:
+      severity: high
+      description: >
+        Soma informada deve ser comparada com soma recalculada em R.
+
+    mean_mismatch:
+      severity: high
+      description: >
+        Média informada deve ser comparada com média recalculada em R.
+
+    percentage_mismatch:
+      severity: high
+      description: >
+        Percentuais derivados devem ser recalculados e comparados.
+
+    total_cost_mismatch:
+      severity: high
+      description: >
+        Custos totais devem ser recalculados independentemente.
+
+    derived_indicator_mismatch:
+      severity: high
+      description: >
+        Indicadores derivados devem ser recalculados em R.
+
+---
+
+  cross_sheet_consistency:
+
+    exact_match:
+      severity: info
+      description: "Valores coincidem entre abas."
+
+    rounding_difference:
+      severity: low
+      description: >
+        Diferença compatível com arredondamento.
+
+    small_difference:
+      severity: medium
+      description: >
+        Pequena diferença que necessita registro e interpretação.
+
+    relevant_difference:
+      severity: high
+      description: >
+        Diferença numericamente relevante entre abas.
+
+    critical_difference:
+      severity: critical
+      description: >
+        Divergência entre abas capaz de alterar diretamente
+        conclusões ou ranking.
+
+---
+
+  repeated_values:
+
+    exact_repetition_across_conditions:
+      severity: low
+      description: >
+        Valor exatamente repetido em condições distintas deve ser
+        sinalizado para inspeção, sem ser tratado automaticamente como erro.
+
+---
+
+  variability:
+
+    zero_variance:
+      severity: info
+      description: >
+        Variável sem variabilidade não possui poder discriminante.
+
+    near_zero_variance:
+      severity: medium
+      description: >
+        Variável quase constante deve ser avaliada antes de entrar
+        no ranking.
+
+---
+
+  domain_rules:
+
+    specification_violation:
+      severity: medium
+      description: >
+        Violação de especificação técnica deve ser registrada como
+        não conformidade, não automaticamente como erro de dado.
+
+    impossible_domain_value:
+      severity: high
+      description: >
+        Valor incompatível com o domínio físico ou técnico deve ser
+        investigado.
+
+---
+
+canonical_data:
+
+  requirements:
+
+    critical_errors_open:
+      allowed: 0
+
+    unresolved_high_severity:
+      allowed: 0
+
+    unclassified_missing:
+      allowed: 0
+
+    undocumented_corrections:
+      allowed: 0
+
+    cross_sheet_divergences_without_decision:
+      allowed: 0
+
+    required_tests_pass:
+      required: true
+
+    decision_log_updated:
+      required: true
+
+    audit_report_updated:
+      required: true
+
+  approval:
+    require_collective_checkpoint: true
+
+---
+
+handoff_rules:
+
+  pacheco_to_benjamin:
+
+    requirements:
+      - "Base canônica v1 criada"
+      - "Inventário concluído"
+      - "Dicionário de dados concluído"
+      - "Missing classificados"
+      - "Unidades auditadas"
+      - "Somas e médias auditadas"
+      - "Diferenças entre abas reconciliadas"
+      - "Inconsistências registradas"
+      - "Testes relacionados aprovados"
+      - "Relatório de auditoria atualizado"
+
+  benjamin_to_vitor:
+
+    requirements:
+      - "ADA bivariada concluída"
+      - "ADA multivariada concluída ou justificada"
+      - "Conformidade analisada"
+      - "Critérios classificados"
+      - "Redundância avaliada"
+      - "Matriz de decisão aprovada"
+      - "Normalização validada"
+      - "Pesos CRITIC calculados"
+      - "Relatório metodológico atualizado"
+
+  vitor_to_marco:
+
+    requirements:
+      - "TOPSIS validado"
+      - "Ranking principal calculado"
+      - "Cenários calculados"
+      - "Pareto analisado"
+      - "Sensibilidade executada"
+      - "Robustez avaliada"
+      - "Resultados congelados"
+      - "Relatório da etapa atualizado"
+
+  marco_to_todos:
+
+    requirements:
+      - "Relatório final completo"
+      - "Apresentação completa"
+      - "Tabelas conferidas"
+      - "Figuras conferidas"
+      - "Números reconciliados com results/"
+      - "Limitações documentadas"
+
+---
+
+pipeline_gates:
+
+  before_ada:
+    require_canonical_data: true
+
+  before_critic:
+    require_criteria_approval: true
+    require_conformity_analysis: true
+
+  before_topsis:
+    require_decision_matrix_approval: true
+    require_weights_approval: true
+
+  before_final_report:
+    require_ranking_frozen: true
+    require_robustness_analysis: true
+
+  before_delivery:
+    require_full_pipeline_rerun: true
+    require_all_tests_pass: true
+    require_collective_review: true

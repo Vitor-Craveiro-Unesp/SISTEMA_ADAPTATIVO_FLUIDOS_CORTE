@@ -1,0 +1,1 @@
+# Implementar testes do CRITIC.

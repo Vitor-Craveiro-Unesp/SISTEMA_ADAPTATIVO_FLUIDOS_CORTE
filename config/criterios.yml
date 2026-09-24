@@ -1,0 +1,608 @@
+criteria_config:
+
+  status: "PRELIMINARY"
+
+  description: >
+    Este arquivo contém os critérios candidatos ao Sistema Adaptativo
+    de Classificação Multicritério de Fluidos de Corte.
+
+    A inclusão definitiva de cada critério depende da conclusão da
+    auditoria dos dados, ADA, análise de conformidade, correlação,
+    redundância e avaliação metodológica.
+
+  rules:
+
+    allow_final_selection_before_audit: false
+    allow_final_selection_before_ada: false
+    allow_automatic_exclusion: false
+    allow_automatic_weight_assignment: false
+
+    require_documented_decision_for_exclusion: true
+    require_documented_decision_for_transformation: true
+
+---
+
+criterion_types:
+
+  benefit:
+    description: >
+      Quanto maior o valor, melhor a alternativa.
+
+  cost:
+    description: >
+      Quanto menor o valor, melhor a alternativa.
+
+  target:
+    description: >
+      Existe um valor ou intervalo desejável.
+
+  restriction:
+    description: >
+      Critério utilizado para avaliar conformidade ou elegibilidade.
+
+  diagnostic:
+    description: >
+      Variável importante para descrição e interpretação, mas que pode
+      não possuir poder discriminante suficiente para entrar no ranking.
+
+---
+
+groups:
+
+  machining_performance:
+    name: "Desempenho de usinagem"
+
+  dimensional_quality:
+    name: "Qualidade dimensional"
+
+  fluid_behavior:
+    name: "Comportamento operacional e da emulsão"
+
+  economic:
+    name: "Aspectos econômicos"
+
+  composition:
+    name: "Composição e restrições"
+
+---
+
+candidate_criteria:
+
+  tool_life:
+
+    name: "Vida da ferramenta"
+
+    group: "machining_performance"
+
+    source:
+      primary_sheet: "ANÁLISE USINABILIDADE"
+
+    data_type: "numeric"
+
+    unit:
+      status: "TO_CONFIRM"
+
+    expected_direction: "benefit"
+
+    expected_use:
+      ranking: true
+      conformity: false
+
+    experimental_conditions:
+      multiple_conditions: true
+
+    status: "PENDING_VALIDATION"
+
+    observations:
+      - >
+        Deve ser analisada por condição experimental antes da definição
+        da forma de agregação.
+      - >
+        Valores repetidos em outras abas devem ser reconciliados com a
+        fonte primária.
+
+---
+
+  power:
+
+    name: "Potência"
+
+    group: "machining_performance"
+
+    source:
+      primary_sheet: "ANÁLISE USINABILIDADE"
+
+    data_type: "numeric"
+
+    unit: "kW"
+
+    expected_direction: "cost"
+
+    expected_use:
+      ranking: true
+      conformity: false
+
+    experimental_conditions:
+      multiple_conditions: true
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  roughness:
+
+    name: "Rugosidade Ra"
+
+    group: "machining_performance"
+
+    source:
+      primary_sheet: "ANÁLISE USINABILIDADE"
+
+    data_type: "numeric"
+
+    unit: "µm"
+
+    expected_direction: "cost"
+
+    expected_use:
+      ranking: true
+      conformity: true
+
+    specification:
+      type: "upper_limit"
+      value: 3.20
+      status: "TO_CONFIRM"
+
+    experimental_conditions:
+      multiple_conditions: true
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  concentricity:
+
+    name: "Concentricidade"
+
+    group: "dimensional_quality"
+
+    source:
+      primary_sheet: "ANÁLISE USINABILIDADE"
+
+    data_type: "numeric"
+
+    expected_direction: "target"
+
+    expected_use:
+      ranking: true
+      conformity: true
+
+    transformation_candidate:
+      method: "absolute_value"
+
+    specification:
+      type: "absolute_upper_limit"
+      value: 0.10
+      status: "TO_CONFIRM"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  circularity:
+
+    name: "Circularidade"
+
+    group: "dimensional_quality"
+
+    source:
+      primary_sheet: "ANÁLISE USINABILIDADE"
+
+    data_type: "numeric"
+
+    expected_direction: "target"
+
+    expected_use:
+      ranking: true
+      conformity: true
+
+    transformation_candidate:
+      method: "absolute_value"
+
+    specification:
+      type: "absolute_upper_limit"
+      value: 0.10
+      status: "TO_CONFIRM"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  burr:
+
+    name: "Rebarba"
+
+    group: "dimensional_quality"
+
+    data_type: "categorical_binary"
+
+    expected_direction: "absence_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+      conformity: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  mist:
+
+    name: "Névoa"
+
+    group: "fluid_behavior"
+
+    data_type: "categorical_binary"
+
+    expected_direction: "absence_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  oxidation:
+
+    name: "Oxidação"
+
+    group: "fluid_behavior"
+
+    data_type: "categorical_binary"
+
+    expected_direction: "absence_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  degradation:
+
+    name: "Degradação"
+
+    group: "fluid_behavior"
+
+    data_type: "ordinal"
+
+    expected_direction: "resistance_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  fungi:
+
+    name: "Fungos"
+
+    group: "fluid_behavior"
+
+    data_type: "categorical_binary"
+
+    expected_direction: "absence_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+      conformity: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  bacteria:
+
+    name: "Bactérias"
+
+    group: "fluid_behavior"
+
+    data_type: "categorical_binary"
+
+    expected_direction: "absence_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+    observations:
+      - >
+        Caso não apresente variabilidade entre fluidos, deve permanecer
+        apenas como variável diagnóstica.
+
+---
+
+  corrosion:
+
+    name: "Corrosão"
+
+    group: "fluid_behavior"
+
+    data_type: "ordinal"
+
+    expected_direction: "cost"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+    observations:
+      - >
+        Caso seja constante para todos os fluidos, não deverá contribuir
+        para a classificação.
+
+---
+
+  foam:
+
+    name: "Espuma"
+
+    group: "fluid_behavior"
+
+    data_type: "categorical"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_VALIDATION"
+
+    observations:
+      - >
+        Avaliar poder discriminante durante a ADA.
+
+---
+
+  concentration:
+
+    name: "Concentração"
+
+    group: "fluid_behavior"
+
+    data_type: "numeric"
+
+    unit: "%"
+
+    expected_direction: "target_or_restriction"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+      conformity: true
+
+    specification:
+      status: "TO_CONFIRM"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  acidity:
+
+    name: "Acidez"
+
+    group: "fluid_behavior"
+
+    data_type: "numeric"
+
+    expected_direction: "target"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+      conformity: true
+
+    specification:
+      target_candidate: 34
+      tolerance_candidate: 2
+      status: "TO_CONFIRM"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  alkalinity:
+
+    name: "Alcalinidade"
+
+    group: "fluid_behavior"
+
+    data_type: "numeric"
+
+    expected_direction: "restriction_or_target"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+      conformity: true
+
+    specification:
+      status: "TO_CONFIRM"
+
+    status: "PENDING_VALIDATION"
+
+---
+
+  suspended_solids:
+
+    name: "Sólidos suspensos"
+
+    group: "fluid_behavior"
+
+    data_type: "numeric"
+
+    unit:
+      status: "TO_CONFIRM"
+
+    expected_direction: "TO_DEFINE"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+
+    status: "PENDING_AUDIT"
+
+    observations:
+      - >
+        Não utilizar no ranking antes da confirmação das unidades e
+        padronização dos valores.
+
+---
+
+  restrictive_components:
+
+    name: "Componentes restritivos"
+
+    group: "composition"
+
+    data_type: "categorical"
+
+    expected_direction: "absence_preferred"
+
+    expected_use:
+      ranking: "TO_EVALUATE"
+      conformity: "TO_EVALUATE"
+
+    status: "PENDING_AUDIT"
+
+    observations:
+      - >
+        Composição deve ser reconciliada entre fontes antes do uso.
+
+---
+
+  annual_cost:
+
+    name: "Custo total anual"
+
+    group: "economic"
+
+    source:
+      primary_sheet: "AVALIAÇÃO ECONÔMICA"
+
+    data_type: "numeric"
+
+    unit: "BRL"
+
+    expected_direction: "cost"
+
+    expected_use:
+      ranking: true
+
+    status: "PENDING_AUDIT"
+
+    observations:
+      - >
+        Somente poderá ser utilizado após a auditoria completa das
+        fórmulas econômicas e dos dados faltantes.
+
+---
+
+exclusion_candidates:
+
+  rules:
+
+    zero_variance:
+      action: "FLAG_FOR_EXCLUSION"
+      automatic_exclusion: false
+
+    near_zero_variance:
+      action: "REVIEW"
+
+    excessive_missing:
+      action: "REVIEW"
+
+    unresolved_unit:
+      action: "BLOCK_USE"
+
+    unresolved_cross_sheet_conflict:
+      action: "BLOCK_USE"
+
+    formula_error:
+      action: "BLOCK_USE"
+
+    strong_redundancy:
+      action: "REVIEW"
+
+---
+
+redundancy:
+
+  correlation:
+
+    high_threshold: 0.80
+
+    very_high_threshold: 0.90
+
+    action: >
+      Investigar critérios altamente correlacionados antes de mantê-los
+      simultaneamente na matriz de decisão.
+
+---
+
+decision_matrix:
+
+  status: "NOT_CREATED"
+
+  allowed_sources:
+    - "data/processed/"
+
+  requirements_before_creation:
+
+    - "Base canônica aprovada"
+    - "ADA concluída"
+    - "Conformidade analisada"
+    - "Unidades conhecidas"
+    - "Critérios classificados"
+    - "Variáveis sem poder discriminante avaliadas"
+    - "Redundância avaliada"
+    - "Decisões metodológicas registradas"
+
+---
+
+weighting:
+
+  main_method: "CRITIC"
+
+  status: "NOT_EXECUTED"
+
+  allow_manual_override: false
+
+  manual_scenario_weights:
+    allowed_only_for_sensitivity_analysis: true
+
+---
+
+ranking:
+
+  main_method: "TOPSIS"
+
+  status: "NOT_EXECUTED"
+
+  requirements:
+
+    - "Matriz de decisão aprovada"
+    - "Normalização aprovada"
+    - "Pesos aprovados"
+    - "Restrições definidas"
+
+---
+
+final_rule:
+
+  description: >
+    Nenhum critério presente neste arquivo deve ser considerado
+    definitivamente incluído, excluído ou ponderado antes da conclusão
+    da auditoria, ADA, análise de conformidade e checkpoint coletivo
+    correspondente.

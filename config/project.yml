@@ -1,0 +1,255 @@
+project:
+  name: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+  short_name: "FLUIDOS_CORTE"
+  version: "0.1.0"
+
+  description: >
+    Projeto estatístico para auditoria, análise exploratória,
+    validação e classificação multicritério de fluidos de corte,
+    utilizando R, CRITIC, TOPSIS, análise de cenários,
+    Pareto e análise de sensibilidade/robustez.
+
+  deadline:
+    official: "2026-10-20"
+    internal_target: "2026-10-20 20:00"
+
+  language:
+    primary: "R"
+
+  report_language: "pt-BR"
+
+team:
+
+  pacheco:
+    role: "Auditoria, preparação dos dados e ADA inicial"
+
+    responsibilities:
+      - "Importação dos dados"
+      - "Inventário da planilha"
+      - "Auditoria estrutural"
+      - "Dados faltantes"
+      - "Duplicidades"
+      - "Unidades"
+      - "Erros de soma"
+      - "Erros de média"
+      - "Validação de fórmulas"
+      - "Reconciliação entre abas"
+      - "Registro de inconsistências"
+      - "Construção da base canônica"
+      - "ADA inicial"
+
+    main_output:
+      - "data/processed/base_canonica_v1.rds"
+      - "report/stages/01_pacheco/"
+
+  benjamin:
+    role: "ADA aprofundada, critérios e ponderação"
+
+    responsibilities:
+      - "ADA bivariada"
+      - "ADA multivariada"
+      - "Correlação"
+      - "Redundância"
+      - "Análise de conformidade"
+      - "Classificação dos critérios"
+      - "Matriz de decisão"
+      - "Normalização"
+      - "CRITIC"
+
+    main_output:
+      - "results/critic/"
+      - "report/stages/02_benjamin/"
+
+  vitor:
+    role: "Ranking multicritério e robustez"
+
+    responsibilities:
+      - "TOPSIS"
+      - "Ranking principal"
+      - "Cenários"
+      - "Pareto"
+      - "Sensibilidade"
+      - "Robustez"
+
+    main_output:
+      - "results/topsis/"
+      - "results/scenarios/"
+      - "results/robustness/"
+      - "report/stages/03_vitor/"
+
+  marco:
+    role: "Integração científica, relatório e apresentação"
+
+    responsibilities:
+      - "Integração dos resultados"
+      - "Relatório técnico"
+      - "LaTeX"
+      - "Tabelas"
+      - "Figuras"
+      - "Apresentação"
+      - "Conclusão"
+      - "Limitações"
+
+    main_output:
+      - "report/final/"
+      - "presentation/"
+      - "report/stages/04_marco/"
+
+workflow:
+
+  order:
+    - "infraestrutura"
+    - "auditoria"
+    - "reconciliacao"
+    - "base_canonica"
+    - "ada_univariada"
+    - "ada_bivariada"
+    - "ada_multivariada"
+    - "conformidade"
+    - "criterios"
+    - "matriz_decisao"
+    - "normalizacao"
+    - "critic"
+    - "topsis"
+    - "cenarios"
+    - "pareto"
+    - "sensibilidade"
+    - "robustez"
+    - "relatorio"
+    - "apresentacao"
+    - "revisao"
+
+  handoffs:
+    - from: "Pacheco"
+      to: "Benjamin"
+
+    - from: "Benjamin"
+      to: "Vitor"
+
+    - from: "Vitor"
+      to: "Marco"
+
+    - from: "Marco"
+      to: "Todos"
+
+methodology:
+
+  main_weighting_method: "CRITIC"
+  main_ranking_method: "TOPSIS"
+
+  complementary_methods:
+    - "Análise de conformidade"
+    - "Correlação"
+    - "Análise de redundância"
+    - "PCA quando justificável"
+    - "Clusterização exploratória quando justificável"
+    - "Fronteira de Pareto"
+    - "Análise de cenários"
+    - "Análise de sensibilidade"
+    - "Análise de robustez"
+
+paths:
+
+  data:
+    raw: "data/raw"
+    interim: "data/interim"
+    processed: "data/processed"
+
+  code:
+    r: "R"
+    analysis: "analysis"
+    scripts: "scripts"
+
+  tests:
+    root: "tests/testthat"
+
+  results:
+    root: "results"
+    audit: "results/audit"
+    ada: "results/ada"
+    tables: "results/tables"
+    figures: "results/figures"
+    critic: "results/critic"
+    topsis: "results/topsis"
+    scenarios: "results/scenarios"
+    robustness: "results/robustness"
+
+  documentation:
+    instructions: "instructions"
+    decisions: "decisions"
+    handoffs: "handoffs"
+
+  reports:
+    stages: "report/stages"
+    final: "report/final"
+
+  presentation:
+    root: "presentation"
+    templates: "templates/presentation"
+    reference_pdf: "templates/presentation/reference_pdf"
+    latex_template: "templates/presentation/latex"
+
+files:
+
+  raw_dataset:
+    expected_name: "ensaio_bancada_alunos.xlsx"
+    expected_path: "data/raw/ensaio_bancada_alunos.xlsx"
+
+  canonical_dataset:
+    expected_name: "base_canonica_v1.rds"
+    expected_path: "data/processed/base_canonica_v1.rds"
+
+  decision_matrix:
+    expected_name: "matriz_decisao.rds"
+    expected_path: "data/processed/matriz_decisao.rds"
+
+reproducibility:
+
+  docker: true
+  renv: true
+  targets: true
+  testthat: true
+  git: true
+  github: true
+
+data_policy:
+
+  raw_is_immutable: true
+
+  allow_manual_edit_raw: false
+
+  allow_silent_correction: false
+
+  allow_automatic_outlier_removal: false
+
+  allow_unjustified_imputation: false
+
+  require_decision_record: true
+
+  require_handoff_between_stages: true
+
+results_policy:
+
+  source_of_truth: "results/"
+
+  manual_entry_in_report: false
+
+  manual_entry_in_presentation: false
+
+  require_reproducible_results: true
+
+quality_control:
+
+  require_tests_before_handoff: true
+
+  require_status_update_before_handoff: true
+
+  require_stage_report: true
+
+  require_decision_log_for_methodological_changes: true
+
+  require_collective_checkpoint:
+    - "Pacheco_to_Benjamin"
+    - "Benjamin_to_Vitor"
+    - "Vitor_to_Marco"
+    - "Marco_to_Todos"

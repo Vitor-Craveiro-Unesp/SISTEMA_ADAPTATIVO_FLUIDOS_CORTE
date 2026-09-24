@@ -1,0 +1,302 @@
+tolerances:
+
+  general:
+
+    absolute_default:
+      value: 1.0e-6
+      description: >
+        Tolerância absoluta padrão para comparações numéricas de ponto
+        flutuante quando não existir regra específica para a variável.
+
+    relative_default:
+      value: 1.0e-6
+      description: >
+        Tolerância relativa padrão para comparações numéricas.
+
+---
+
+  floating_point:
+
+    absolute:
+      value: 1.0e-9
+      description: >
+        Diferenças abaixo desse valor podem ser tratadas como efeito
+        computacional de ponto flutuante.
+
+---
+
+  rounding:
+
+    absolute:
+      value: 0.01
+      description: >
+        Diferença absoluta máxima inicialmente considerada compatível
+        com arredondamento para grandezas sem tolerância própria.
+
+    relative:
+      value: 0.0001
+      description: >
+        Diferença relativa de 0,01% inicialmente considerada compatível
+        com arredondamento.
+
+---
+
+  cross_sheet:
+
+    exact:
+      absolute_max: 1.0e-9
+      label: "EXATO"
+
+    rounding:
+      relative_max: 0.0001
+      label: "ARREDONDAMENTO"
+
+    small:
+      relative_max: 0.001
+      label: "PEQUENA_DIVERGENCIA"
+
+    relevant:
+      relative_max: 0.01
+      label: "DIVERGENCIA_RELEVANTE"
+
+    critical:
+      relative_min: 0.01
+      label: "DIVERGENCIA_CRITICA"
+
+    description: >
+      Classificação preliminar das diferenças relativas entre valores
+      equivalentes encontrados em diferentes abas. Esses limites podem
+      ser revisados se a escala das variáveis justificar.
+
+---
+
+  tool_life:
+
+    absolute:
+      value: 0.01
+      description: >
+        Tolerância absoluta inicial para comparações relacionadas à vida
+        da ferramenta.
+
+    relative:
+      value: 0.0001
+      description: >
+        Tolerância relativa inicial para reconciliação entre abas.
+
+---
+
+  power:
+
+    absolute:
+      value: 0.001
+      description: >
+        Tolerância absoluta inicial para potência em kW.
+
+    relative:
+      value: 0.0001
+
+---
+
+  roughness:
+
+    absolute:
+      value: 0.001
+      description: >
+        Tolerância absoluta inicial para rugosidade.
+
+    relative:
+      value: 0.0001
+
+---
+
+  concentricity:
+
+    absolute:
+      value: 0.0001
+      description: >
+        Tolerância numérica para comparações de concentricidade.
+
+    specification:
+      value: 0.1
+      description: >
+        Valor de referência preliminar de tolerância técnica absoluta.
+        Confirmar com a documentação da base antes do uso definitivo.
+
+---
+
+  circularity:
+
+    absolute:
+      value: 0.0001
+      description: >
+        Tolerância numérica para comparações de circularidade.
+
+    specification:
+      value: 0.1
+      description: >
+        Valor de referência preliminar de tolerância técnica absoluta.
+        Confirmar com a documentação da base antes do uso definitivo.
+
+---
+
+  cost:
+
+    absolute:
+      value: 0.01
+      description: >
+        Tolerância monetária padrão de um centavo para comparação de
+        valores em reais.
+
+    relative:
+      value: 0.0001
+
+---
+
+  percentage:
+
+    absolute:
+      value: 0.01
+      description: >
+        Tolerância absoluta para porcentagens quando representadas em
+        pontos percentuais.
+
+    relative:
+      value: 0.0001
+
+---
+
+  sums:
+
+    absolute_default:
+      value: 0.01
+      description: >
+        Diferença máxima aceitável entre soma informada e soma
+        recalculada quando não houver regra específica.
+
+    relative_default:
+      value: 0.0001
+
+---
+
+  means:
+
+    absolute_default:
+      value: 0.001
+      description: >
+        Diferença máxima aceitável entre média informada e média
+        recalculada quando não houver regra específica.
+
+    relative_default:
+      value: 0.0001
+
+---
+
+  derived_indicators:
+
+    absolute_default:
+      value: 0.001
+
+    relative_default:
+      value: 0.0001
+
+    description: >
+      Limites iniciais para indicadores derivados. Devem ser ajustados
+      individualmente quando necessário.
+
+---
+
+  missing:
+
+    strings_to_flag:
+      - ""
+      - "NA"
+      - "N/A"
+      - "NULL"
+      - "-"
+      - "--"
+      - "repetir"
+      - "pendente"
+      - "#DIV/0!"
+      - "#VALUE!"
+      - "#REF!"
+      - "#N/A"
+
+    description: >
+      Strings que devem ser investigadas durante a auditoria. A presença
+      de uma dessas strings não implica que todas tenham o mesmo
+      significado de missing.
+
+---
+
+  near_zero_variance:
+
+    frequency_ratio:
+      value: 19
+
+    unique_percentage:
+      value: 10
+
+    description: >
+      Parâmetros preliminares para sinalizar variáveis com variância
+      próxima de zero. Não usar para exclusão automática.
+
+---
+
+  correlation:
+
+    high:
+      absolute_value: 0.8
+      description: >
+        Correlação absoluta igual ou superior a 0,80 deve ser investigada
+        como possível redundância.
+
+    very_high:
+      absolute_value: 0.9
+      description: >
+        Correlação absoluta igual ou superior a 0,90 representa forte
+        indício de redundância, sem implicar exclusão automática.
+
+---
+
+  sensitivity:
+
+    weight_perturbation:
+
+      mild:
+        percentage: 5
+
+      moderate:
+        percentage: 10
+
+      strong:
+        percentage: 20
+
+    description: >
+      Cenários preliminares para testar estabilidade dos rankings frente
+      a perturbações dos pesos.
+
+---
+
+  ranking:
+
+    tie:
+      absolute_score_difference:
+        value: 1.0e-6
+        description: >
+          Diferença abaixo desse valor pode ser considerada empate
+          numérico no score do método multicritério.
+
+---
+
+  review_policy:
+
+    require_domain_review_if:
+      - "difference classified as critical"
+      - "unit conversion required"
+      - "specification threshold uncertain"
+      - "derived formula undocumented"
+      - "cross-sheet conflict affects ranking candidate"
+
+    description: >
+      Tolerâncias numéricas não substituem julgamento técnico ou
+      estatístico. Casos sensíveis devem ser revisados pela equipe.

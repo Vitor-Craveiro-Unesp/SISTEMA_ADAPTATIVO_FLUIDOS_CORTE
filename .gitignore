@@ -1,0 +1,16 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+renv/library/
+renv/staging/
+.quarto/
+_freeze/
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+report/final/output/*
+presentation/output/*
+results/**/.DS_Store

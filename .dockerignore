@@ -1,0 +1,5 @@
+.git
+.Rproj.user
+renv/library
+report/final/output
+presentation/output

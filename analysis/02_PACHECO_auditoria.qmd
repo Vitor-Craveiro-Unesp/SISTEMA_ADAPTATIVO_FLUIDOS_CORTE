@@ -1,0 +1,20 @@
+---
+title: "02 PACHECO auditoria"
+format: html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Objetivo
+
+## Dados de entrada
+
+## Metodologia
+
+## Resultados
+
+## Validações
+
+## Pendências
