@@ -1,3 +1,15 @@
-# Ensaio
+# ensaio_apresentacao.md — Ensaio, Cronometragem e Preparação para Arguição
 
-Meta: 22–23 minutos, preservando margem antes do limite de 25 minutos.
+## 1. Responsáveis
+
+**Todos**
+
+- Pacheco
+- Benjamin
+- Vitor
+- Marco
+
+O ensaio deve ser realizado somente depois da aprovação do:
+
+```text
+checklist_final.md

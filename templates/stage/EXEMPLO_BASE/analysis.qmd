@@ -1,18 +1,910 @@
 ---
-title: "Análise da etapa"
-format: html
+title: "Análise da Etapa — Modelo"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "TO_BE_FILLED"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
+execute:
+  echo: true
+  warning: true
+  message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+ANALYSIS.QMD
+============================================================
 
-## Entradas
+FINALIDADE
 
-## Metodologia
+Este arquivo é um MODELO de caderno analítico para uma etapa
+do projeto.
 
-## Resultados
+Ele deve ser adaptado pelo integrante responsável durante
+a implementação.
 
-## Validações
+Este arquivo NÃO contém a análise pronta.
 
-## Pendências
+Nesta fase:
 
-## Handoff
+ANALYSIS_STATUS = NOT_EXECUTED
+CODE_STATUS = NOT_IMPLEMENTED
+RESULTS_STATUS = NOT_GENERATED
+
+Os blocos de código abaixo são apenas estruturais.
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** `TO_BE_FILLED`
+
+**Responsável:** `TO_BE_FILLED`
+
+**Revisor:** `TO_BE_FILLED`
+
+**Status:** `DRAFT`
+
+**Versão da entrada:** `TO_BE_FILLED`
+
+**Versão da saída:** `TO_BE_FILLED`
+
+
+# 2. Objetivo
+
+Descrever de forma objetiva o que esta etapa pretende resolver.
+
+Responder:
+
+```text
+qual é a pergunta?
+↓
+qual entrada será utilizada?
+↓
+qual método será aplicado?
+↓
+qual saída será produzida?
+```
+
+
+# 3. Escopo
+
+## 3.1 Incluído
+
+```text
+TO_BE_FILLED
+```
+
+## 3.2 Fora do escopo
+
+```text
+TO_BE_FILLED
+```
+
+
+# 4. Dependências
+
+Registrar:
+
+```text
+INPUT = TO_BE_FILLED
+INPUT_VERSION = TO_BE_FILLED
+INPUT_STATUS = TO_BE_FILLED
+RELATED_HANDOFF = TO_BE_FILLED
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+
+# 5. Ambiente de execução
+
+A linguagem principal do projeto é:
+
+```text
+R
+```
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+```
+
+Pacotes utilizados:
+
+```text
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 6. Configuração inicial
+
+O integrante poderá utilizar este bloco para configurações necessárias à etapa.
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar durante a execução.
+#
+# Exemplos de responsabilidades:
+#
+# - carregar pacotes;
+# - definir opções;
+# - carregar funções;
+# - definir parâmetros da etapa;
+#
+# Não implementar antecipadamente neste template.
+# ============================================================
+```
+
+
+# 7. Caminhos
+
+Todos os caminhos devem ser relativos ao repositório.
+
+Evitar:
+
+```text
+C:/Users/Nome/Desktop/...
+```
+
+Estrutura conceitual:
+
+```text
+input_path  = TO_BE_FILLED
+output_path = TO_BE_FILLED
+```
+
+
+# 8. Entrada da análise
+
+Descrever qual objeto, arquivo ou resultado será utilizado como entrada.
+
+```text
+INPUT_OBJECT = TO_BE_FILLED
+```
+
+Antes da análise, verificar:
+
+```text
+[ ] versão correta
+[ ] estrutura correta
+[ ] identificadores válidos
+[ ] unidades conhecidas
+[ ] missing conhecidos
+```
+
+
+# 9. Leitura dos dados
+
+Bloco reservado para a implementação real.
+
+```{r}
+# ============================================================
+# LEITURA DA ENTRADA
+# ============================================================
+#
+# Exemplo conceitual:
+#
+# dados <- ...
+#
+# O integrante deverá escolher a função adequada conforme
+# o formato real da entrada.
+#
+# ============================================================
+```
+
+
+# 10. Verificação inicial da estrutura
+
+Depois da leitura, verificar:
+
+```text
+dimensões
+nomes
+tipos
+identificadores
+duplicatas
+missing
+```
+
+```{r}
+# ============================================================
+# VALIDAÇÃO ESTRUTURAL
+# ============================================================
+#
+# Implementar verificações pertinentes à etapa.
+#
+# Não assumir que a entrada está correta apenas porque foi
+# carregada sem erro.
+#
+# ============================================================
+```
+
+
+# 11. Resumo da entrada
+
+Registrar futuramente:
+
+```text
+N_ROWS = TO_BE_FILLED
+N_COLUMNS = TO_BE_FILLED
+N_ALTERNATIVES = TO_BE_FILLED
+N_VARIABLES = TO_BE_FILLED
+```
+
+
+# 12. Qualidade dos dados
+
+Quando aplicável, investigar:
+
+```text
+missing
+duplicatas
+valores extremos
+tipos incorretos
+unidades
+valores impossíveis
+```
+
+```{r}
+# ============================================================
+# QUALIDADE DOS DADOS
+# ============================================================
+#
+# Implementar somente as verificações pertinentes à etapa.
+#
+# ============================================================
+```
+
+
+# 13. Missing
+
+Registrar:
+
+```text
+MISSING_STATUS = TO_BE_FILLED
+```
+
+Não converter automaticamente:
+
+```text
+NA → 0
+```
+
+
+# 14. Duplicatas
+
+Registrar:
+
+```text
+DUPLICATE_STATUS = TO_BE_FILLED
+```
+
+
+# 15. Valores extremos
+
+Registrar:
+
+```text
+OUTLIER_STATUS = TO_BE_FILLED
+```
+
+Valores extremos devem ser investigados antes de qualquer exclusão.
+
+
+# 16. Transformações
+
+Descrever as transformações necessárias.
+
+Estrutura:
+
+```text
+entrada
+↓
+transformação
+↓
+saída
+```
+
+```{r}
+# ============================================================
+# TRANSFORMAÇÕES
+# ============================================================
+#
+# Implementar durante a execução.
+#
+# Toda transformação relevante deve possuir justificativa.
+#
+# ============================================================
+```
+
+
+# 17. Unidades
+
+Registrar futuramente:
+
+```text
+UNIT_CHECK_STATUS = TO_BE_FILLED
+```
+
+Qualquer conversão deverá ser documentada.
+
+
+# 18. Variáveis derivadas
+
+Se houver:
+
+```text
+DERIVED_VARIABLES = TO_BE_FILLED
+```
+
+A fórmula deve ser explícita.
+
+
+# 19. Método estatístico ou analítico
+
+Descrever:
+
+```text
+método
+motivação
+hipóteses
+entrada
+saída
+limitações
+```
+
+Não utilizar apenas a definição genérica do método.
+
+
+# 20. Implementação principal
+
+Bloco reservado para a análise real.
+
+```{r}
+# ============================================================
+# ANÁLISE PRINCIPAL
+# ============================================================
+#
+# Implementar pelo integrante responsável.
+#
+# Exemplos possíveis, dependendo da etapa:
+#
+# - auditoria;
+# - ADA;
+# - correlação;
+# - PCA;
+# - conformidade;
+# - normalização;
+# - CRITIC;
+# - TOPSIS;
+# - Pareto;
+# - sensibilidade;
+# - robustez.
+#
+# Este template NÃO implementa nenhum deles.
+#
+# ============================================================
+```
+
+
+# 21. Validações do método
+
+Registrar quais propriedades devem ser verificadas.
+
+Exemplos conceituais:
+
+```text
+intervalos
+somas
+dimensões
+simetria
+não negatividade
+reprodutibilidade
+```
+
+
+# 22. Bloco de validação
+
+```{r}
+# ============================================================
+# VALIDAÇÃO
+# ============================================================
+#
+# Implementar verificações específicas da etapa.
+#
+# Exemplos:
+#
+# stopifnot(...)
+# testes de consistência
+# comparação independente
+#
+# ============================================================
+```
+
+
+# 23. Casos extremos
+
+Verificar, quando aplicável:
+
+```text
+missing total
+critério constante
+denominador zero
+peso zero
+alternativas idênticas
+vetor vazio
+matriz degenerada
+```
+
+
+# 24. Warnings
+
+Registrar:
+
+```text
+WARNINGS = TO_BE_FILLED
+```
+
+Warnings relevantes devem ser interpretados.
+
+
+# 25. Erros
+
+Registrar:
+
+```text
+ERRORS = TO_BE_FILLED
+```
+
+Erros que comprometam a validade devem bloquear a etapa.
+
+
+# 26. Resultados
+
+Somente preencher após execução.
+
+```text
+RESULTS_STATUS = NOT_GENERATED
+```
+
+```{r}
+# ============================================================
+# RESULTADOS
+# ============================================================
+#
+# Este bloco poderá futuramente:
+#
+# - imprimir resultados;
+# - produzir objetos;
+# - preparar tabelas;
+# - preparar figuras.
+#
+# Não preencher com valores hipotéticos.
+#
+# ============================================================
+```
+
+
+# 27. Tabelas
+
+Registrar futuramente:
+
+```text
+TABLES = TO_BE_FILLED
+```
+
+```{r}
+# ============================================================
+# TABELAS
+# ============================================================
+#
+# Gerar a partir dos resultados reais.
+#
+# Evitar digitação manual de valores científicos.
+#
+# ============================================================
+```
+
+
+# 28. Figuras
+
+Registrar:
+
+```text
+FIGURES = TO_BE_FILLED
+```
+
+```{r}
+# ============================================================
+# FIGURAS
+# ============================================================
+#
+# Gerar a partir dos dados/resultados reais.
+#
+# ============================================================
+```
+
+
+# 29. Interpretação
+
+Responder:
+
+```text
+o que foi observado?
+↓
+o que isso significa?
+↓
+qual impacto existe na próxima etapa?
+```
+
+
+# 30. Resultados exploratórios
+
+Se houver:
+
+```text
+EXPLORATORY_RESULTS = TO_BE_FILLED
+```
+
+Manter separados dos resultados aprovados.
+
+
+# 31. Resultados confirmados
+
+Registrar:
+
+```text
+CONFIRMED_RESULTS = TO_BE_FILLED
+```
+
+
+# 32. Limitações
+
+Registrar somente limitações realmente observadas.
+
+```text
+LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 33. Impacto das limitações
+
+Para cada limitação:
+
+```text
+qual análise afeta?
+qual interpretação exige cautela?
+```
+
+
+# 34. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+Se uma decisão for relevante para a rastreabilidade, utilizar `decisions/`.
+
+
+# 35. Problemas encontrados
+
+Estrutura:
+
+```text
+issue_id
+description
+severity
+status
+impact
+```
+
+
+# 36. Problemas bloqueantes
+
+```text
+BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 37. Problemas não bloqueantes
+
+```text
+NON_BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 38. Reprodutibilidade
+
+Verificar:
+
+```text
+[ ] caminhos relativos
+[ ] entrada identificada
+[ ] parâmetros identificados
+[ ] seed definida quando necessária
+[ ] nenhuma edição manual oculta
+[ ] mesma entrada reproduz resultado
+```
+
+
+# 39. Seed
+
+Se existir aleatoriedade:
+
+```text
+SEED = TO_BE_FILLED
+```
+
+```{r}
+# ============================================================
+# SEED
+# ============================================================
+#
+# Exemplo futuro:
+#
+# set.seed(...)
+#
+# Utilizar somente se a análise realmente possuir componente
+# aleatório.
+#
+# ============================================================
+```
+
+
+# 40. Outputs
+
+Registrar futuramente:
+
+```text
+OUTPUT_1 = TO_BE_FILLED
+OUTPUT_2 = TO_BE_FILLED
+OUTPUT_3 = TO_BE_FILLED
+```
+
+Não criar outputs apenas para preencher a estrutura.
+
+
+# 41. Salvamento
+
+```{r}
+# ============================================================
+# EXPORTAÇÃO / SALVAMENTO
+# ============================================================
+#
+# Implementar apenas quando houver artefatos reais a salvar.
+#
+# Exemplos conceituais:
+#
+# write.csv(...)
+# saveRDS(...)
+# ggsave(...)
+#
+# Os nomes reais serão definidos durante a implementação.
+#
+# ============================================================
+```
+
+
+# 42. Validação dos outputs
+
+Confirmar futuramente:
+
+```text
+[ ] arquivo existe
+[ ] tamanho plausível
+[ ] estrutura correta
+[ ] versão correta
+[ ] conteúdo validado
+```
+
+
+# 43. Testes
+
+Registrar:
+
+```text
+TEST_STATUS = TO_BE_FILLED
+```
+
+Os testes formais deverão permanecer, quando aplicável, em:
+
+```text
+tests/testthat/
+```
+
+
+# 44. Handoff
+
+Quando a etapa for concluída:
+
+```text
+OUTPUT_HANDOFF = TO_BE_FILLED
+```
+
+O handoff deverá comunicar:
+
+```text
+entrada utilizada
+saída produzida
+versão
+limitações
+pendências
+decisões
+itens congelados
+```
+
+
+# 45. Conclusão da análise
+
+Preencher somente depois da execução:
+
+```text
+STAGE_CONCLUSION = TO_BE_FILLED
+```
+
+
+# 46. Próxima etapa
+
+Registrar:
+
+```text
+NEXT_STAGE = TO_BE_FILLED
+```
+
+
+# 47. O que a próxima etapa pode assumir
+
+```text
+TO_BE_FILLED
+```
+
+
+# 48. O que a próxima etapa não deve alterar
+
+```text
+TO_BE_FILLED
+```
+
+
+# 49. Revisão cruzada
+
+Registrar:
+
+```text
+REVIEWED_BY = TO_BE_FILLED
+REVIEW_DATE = TO_BE_FILLED
+REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 50. Checklist
+
+Antes de encerrar, utilizar:
+
+```text
+templates/stage/EXEMPLO_BASE/checklist.md
+```
+
+ou sua adaptação correspondente à etapa real.
+
+
+# 51. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual do template:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 52. Responsabilidade do integrante
+
+Este template não substitui o trabalho analítico.
+
+O integrante responsável deverá:
+
+```text
+implementar
+↓
+executar
+↓
+validar
+↓
+interpretar
+↓
+documentar
+```
+
+
+# 53. Relação com `script.R`
+
+Este arquivo pode ser utilizado como caderno de análise.
+
+O código reutilizável ou operacional poderá ser colocado em:
+
+```text
+script.R
+```
+
+ou, preferencialmente durante a implementação real, na estrutura:
+
+```text
+R/
+```
+
+definida pelo projeto.
+
+
+# 54. Relação com `report/stages/`
+
+Este arquivo pode conter mais detalhes operacionais.
+
+O relatório formal da etapa permanece em:
+
+```text
+report/stages/
+```
+
+quando aplicável.
+
+
+# 55. Não duplicar conclusões
+
+Evitar manter versões conflitantes entre:
+
+```text
+analysis.qmd
+report/stages/
+handoff
+relatório final
+```
+
+A informação oficial deve ser rastreável até a mesma execução.
+
+
+# 56. Estado atual
+
+```text
+ANALYSIS_TEMPLATE_STATUS = BASE_PREPARED
+
+ANALYSIS_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+```
+
+
+# 57. Princípio final
+
+> O caderno de análise deve mostrar com clareza o caminho entre entrada, método, validação, resultado e interpretação, sem esconder decisões ou antecipar resultados que ainda não foram produzidos.

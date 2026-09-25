@@ -1,20 +1,1293 @@
 ---
-title: "07 BENJAMIN ada multivariada"
-format: html
+title: "07 — Análise Descritiva Multivariada"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Benjamin"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+07_BENJAMIN_ADA_MULTIVARIADA.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Benjamin
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Investigar a estrutura conjunta das variáveis após a ADA
+bivariada.
 
-## Validações
+Esta etapa poderá explorar:
 
-## Pendências
+- estrutura de correlação;
+- grupos de variáveis;
+- redundância multivariada;
+- perfis de fluidos;
+- possíveis dimensões latentes;
+- componentes principais;
+- observações influentes;
+- separações ou proximidades entre alternativas.
+
+IMPORTANTE
+
+Esta etapa NÃO deverá:
+
+- definir automaticamente critérios finais;
+- excluir variável apenas por PCA;
+- transformar componente principal em critério sem justificativa;
+- calcular CRITIC;
+- calcular TOPSIS;
+- produzir ranking oficial.
+
+Nesta fase:
+
+MULTIVARIATE_ADA_STATUS = NOT_EXECUTED
+PCA_STATUS = NOT_EXECUTED
+CRITERIA_STATUS = NOT_FINALIZED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 07 — ADA Multivariada
+
+**Responsável:** Benjamin
+
+**Status:** `DRAFT`
+
+**Entrada principal:** base canônica aprovada
+
+**Entrada auxiliar:** resultados da ADA bivariada
+
+**Versão da base:** `TO_BE_FILLED`
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é avaliar simultaneamente várias variáveis para compreender a estrutura global do problema antes da definição formal dos critérios.
+
+Fluxo:
+
+```text
+base canônica
+↓
+seleção de variáveis analíticas
+↓
+estrutura de correlação
+↓
+padronização exploratória, se necessária
+↓
+análise multivariada
+↓
+PCA, se pertinente
+↓
+grupos e redundâncias
+↓
+perfis das alternativas
+↓
+evidências para critérios
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] base canônica aprovada
+[ ] ADA inicial concluída
+[ ] ADA bivariada concluída
+[ ] pares altamente associados conhecidos
+[ ] variáveis constantes conhecidas
+[ ] missing conhecidos
+[ ] pontos influentes conhecidos
+[ ] limitações documentadas
+```
+
+
+# 4. Entradas
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+BIVARIATE_ADA_VERSION = TO_BE_FILLED
+CORRELATION_METHOD = TO_BE_FILLED
+```
+
+
+# 5. Variáveis candidatas
+
+Registrar:
+
+```text
+MULTIVARIATE_VARIABLES = TO_BE_FILLED
+```
+
+
+# 6. Variáveis fora da análise
+
+Excluir da análise multivariada apenas campos claramente não analíticos, como:
+
+```text
+identificadores
+linhagem
+metadados
+campos administrativos
+```
+
+Registrar:
+
+```text
+NON_ANALYTICAL_COLUMNS = TO_BE_FILLED
+```
+
+
+# 7. Não excluir critérios ainda
+
+Uma variável candidata ao problema multicritério não deve ser removida apenas porque apresenta associação com outra.
+
+A decisão deverá considerar:
+
+```text
+estatística
++
+significado técnico
++
+origem
++
+redundância real
+```
+
+
+# 8. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 9. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Poderá incluir:
+#
+# - carregamento da base;
+# - seleção das variáveis;
+# - tratamento de missing;
+# - padronização exploratória;
+# - funções auxiliares.
+#
+# ============================================================
+```
+
+
+# 10. Carregamento
+
+```{r}
+# ============================================================
+# CARREGAMENTO DA BASE
+# ============================================================
+#
+# Utilizar exclusivamente a versão aprovada da base canônica.
+#
+# ============================================================
+```
+
+
+# 11. Validação inicial
+
+Confirmar:
+
+```text
+[ ] versão correta
+[ ] variáveis presentes
+[ ] tipos corretos
+[ ] unidades conhecidas
+[ ] missing avaliados
+[ ] variáveis constantes identificadas
+```
+
+
+# 12. Matriz analítica
+
+Construir futuramente uma matriz:
+
+\[
+X =
+\begin{bmatrix}
+x_{11} & x_{12} & \cdots & x_{1p}\\
+x_{21} & x_{22} & \cdots & x_{2p}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{n1} & x_{n2} & \cdots & x_{np}
+\end{bmatrix}
+\]
+
+onde:
+
+```text
+linhas = unidades analíticas
+colunas = variáveis
+```
+
+
+# 13. Unidade analítica
+
+Registrar claramente:
+
+```text
+MULTIVARIATE_ANALYTICAL_UNIT = TO_BE_FILLED
+```
+
+Exemplos possíveis dependerão da estrutura real:
+
+```text
+fluido
+fluido × condição
+fluido × repetição
+```
+
+
+# 14. Condições experimentais
+
+Definir se a análise será feita:
+
+```text
+por condição
+```
+
+ou:
+
+```text
+sobre alguma representação agregada previamente justificada
+```
+
+Registrar:
+
+```text
+CONDITION_STRATEGY = TO_BE_FILLED
+```
+
+
+# 15. Missing
+
+Técnicas multivariadas podem exigir matriz completa.
+
+Registrar:
+
+```text
+MULTIVARIATE_MISSING_STRATEGY = TO_BE_FILLED
+```
+
+Não imputar automaticamente.
+
+
+# 16. Observações completas
+
+Registrar futuramente:
+
+```text
+N_COMPLETE_CASES = TO_BE_FILLED
+```
+
+
+# 17. Impacto do missing
+
+Avaliar se a estratégia escolhida altera significativamente:
+
+```text
+n
+representatividade
+conjunto de fluidos
+conjunto de condições
+```
+
+
+# 18. Escalas
+
+Variáveis podem estar em escalas muito diferentes.
+
+Exemplo conceitual:
+
+```text
+X1: dezenas
+X2: milhares
+X3: proporções
+```
+
+Isso afeta técnicas baseadas em distância ou variância.
+
+
+# 19. Padronização exploratória
+
+Quando apropriado:
+
+\[
+z_{ij}
+=
+\frac{x_{ij}-\bar{x}_j}{s_j}
+\]
+
+Registrar:
+
+```text
+MULTIVARIATE_SCALING = TO_BE_FILLED
+```
+
+
+# 20. Padronização não é normalização multicritério
+
+A padronização utilizada em uma técnica exploratória:
+
+```text
+≠
+```
+
+a normalização que será definida posteriormente para o TOPSIS.
+
+
+# 21. Variáveis constantes
+
+Uma variável com:
+
+\[
+s_j = 0
+\]
+
+não pode ser padronizada pelo z-score convencional.
+
+Registrar:
+
+```text
+CONSTANT_VARIABLE_HANDLING = TO_BE_FILLED
+```
+
+
+# 22. Estrutura de correlação
+
+Retomar a matriz de correlação da etapa anterior.
+
+Registrar:
+
+```text
+CORRELATION_MATRIX_VERSION = TO_BE_FILLED
+```
+
+
+# 23. Grupos de variáveis
+
+Investigar se existem blocos de variáveis que apresentam informação semelhante.
+
+Registrar:
+
+```text
+VARIABLE_CLUSTERS = TO_BE_FILLED
+```
+
+
+# 24. Redundância
+
+A redundância deve ser avaliada por múltiplas evidências:
+
+```text
+correlação
++
+estrutura multivariada
++
+definição técnica
++
+origem da variável
+```
+
+
+# 25. Redundância matemática
+
+Se uma variável for construída diretamente a partir de outras, registrar:
+
+```text
+STRUCTURAL_REDUNDANCY = TO_BE_FILLED
+```
+
+
+# 26. PCA
+
+A Análise de Componentes Principais poderá ser utilizada como ferramenta exploratória.
+
+Registrar:
+
+```text
+PCA_STATUS = TO_BE_FILLED
+```
+
+
+# 27. Quando usar PCA
+
+PCA poderá ajudar a investigar:
+
+```text
+redundância
+dimensionalidade
+perfis de alternativas
+grupos de variáveis
+observações influentes
+```
+
+
+# 28. Quando não usar PCA
+
+Não usar PCA apenas porque é uma técnica multivariada conhecida.
+
+Ela deverá responder a uma pergunta concreta da análise.
+
+
+# 29. Matriz utilizada no PCA
+
+Registrar:
+
+```text
+PCA_INPUT_MATRIX = TO_BE_FILLED
+```
+
+e se foi baseada em:
+
+```text
+covariância
+```
+
+ou:
+
+```text
+correlação
+```
+
+
+# 30. Covariância versus correlação
+
+Se as variáveis possuem unidades e escalas muito diferentes, a matriz de correlação pode ser mais apropriada.
+
+A escolha deve ser documentada.
+
+
+# 31. PCA pela matriz padronizada
+
+Se \(Z\) representar a matriz padronizada:
+
+\[
+R
+=
+\frac{1}{n-1}Z^\top Z
+\]
+
+poderá ser utilizada na decomposição.
+
+
+# 32. Autovalores
+
+A decomposição conceitual:
+
+\[
+R v_k
+=
+\lambda_k v_k
+\]
+
+onde:
+
+```text
+λk = autovalor
+vk = autovetor
+```
+
+
+# 33. Variância explicada
+
+Registrar futuramente:
+
+\[
+\text{Proporção}_k
+=
+\frac{\lambda_k}
+{\sum_j \lambda_j}
+\]
+
+
+# 34. Variância acumulada
+
+\[
+\text{Acumulada}_K
+=
+\sum_{k=1}^{K}
+\text{Proporção}_k
+\]
+
+
+# 35. Não usar limiar automático sem justificativa
+
+Não assumir automaticamente regras como:
+
+```text
+80%
+90%
+95%
+```
+
+como critérios universais de retenção.
+
+
+# 36. Scree plot
+
+Se PCA for utilizada:
+
+```{r}
+# ============================================================
+# SCREE PLOT
+# ============================================================
+#
+# Implementar por Benjamin, se PCA for pertinente.
+#
+# ============================================================
+```
+
+
+# 37. Loadings
+
+Os loadings deverão ser interpretados em relação às variáveis originais.
+
+Registrar:
+
+```text
+PCA_LOADINGS_STATUS = TO_BE_FILLED
+```
+
+
+# 38. Interpretação dos loadings
+
+Investigar:
+
+```text
+quais variáveis contribuem para cada componente
+quais aparecem juntas
+quais aparecem em direções opostas
+```
+
+
+# 39. Sinal dos componentes
+
+O sinal de um autovetor pode ser invertido sem alterar a solução matemática.
+
+Não interpretar o sinal isoladamente como algo absoluto.
+
+
+# 40. Scores
+
+Os scores poderão ser usados para visualizar o perfil das alternativas no espaço dos componentes.
+
+
+# 41. Score plot
+
+```{r}
+# ============================================================
+# SCORE PLOT
+# ============================================================
+#
+# Implementar somente se for interpretável para o problema.
+#
+# ============================================================
+```
+
+
+# 42. Biplot
+
+Um biplot poderá ser considerado para representar simultaneamente:
+
+```text
+alternativas
++
+variáveis
+```
+
+desde que permaneça legível.
+
+
+# 43. Biplot não substitui interpretação
+
+Não utilizar apenas o gráfico.
+
+Relacionar:
+
+```text
+posição das alternativas
+orientação das variáveis
+loadings
+estrutura dos dados
+```
+
+
+# 44. Outliers multivariados
+
+Investigar alternativas com perfil muito distinto das demais.
+
+Registrar:
+
+```text
+MULTIVARIATE_OUTLIERS = TO_BE_FILLED
+```
+
+
+# 45. Distância
+
+Se apropriado, Benjamin poderá explorar medidas de distância.
+
+A escolha da distância deve considerar:
+
+```text
+escala
+padronização
+tipo das variáveis
+```
+
+
+# 46. Distância euclidiana
+
+Se utilizada:
+
+\[
+d(i,k)
+=
+\sqrt{
+\sum_{j=1}^{p}
+(x_{ij}-x_{kj})^2
+}
+\]
+
+
+# 47. Distância e escala
+
+Não utilizar distância euclidiana sobre variáveis com magnitudes incomparáveis sem avaliar a escala.
+
+
+# 48. Agrupamento exploratório
+
+Clustering poderá ser utilizado apenas se responder a uma questão real.
+
+Registrar:
+
+```text
+CLUSTERING_STATUS = TO_BE_FILLED
+```
+
+
+# 49. Clustering não é obrigatório
+
+A análise multivariada não precisa incluir agrupamento se PCA e estrutura de correlação já forem suficientes.
+
+
+# 50. Cluster não significa qualidade
+
+Um grupo de fluidos não representa automaticamente:
+
+```text
+bons
+ruins
+```
+
+Agrupamento representa similaridade segundo a representação utilizada.
+
+
+# 51. Perfis das alternativas
+
+Investigar o perfil conjunto de cada fluido.
+
+Registrar:
+
+```text
+ALTERNATIVE_PROFILES = TO_BE_FILLED
+```
+
+
+# 52. Visualização de perfis
+
+Possíveis visualizações:
+
+```text
+heatmap
+profile plot
+parallel coordinates
+```
+
+quando adequadas.
+
+
+# 53. Heatmap
+
+```{r}
+# ============================================================
+# HEATMAP MULTIVARIADO
+# ============================================================
+#
+# Uso opcional.
+#
+# Deve deixar claro:
+#
+# - escala utilizada;
+# - variáveis incluídas;
+# - ordenação;
+# - interpretação.
+#
+# ============================================================
+```
+
+
+# 54. Radar charts
+
+Não utilizar automaticamente.
+
+Com muitas variáveis, podem dificultar comparações quantitativas precisas.
+
+
+# 55. Estrutura por condição
+
+Se houver várias condições experimentais, investigar se a estrutura multivariada muda entre elas.
+
+
+# 56. PCA por condição
+
+Pode ser considerada se houver número suficiente de observações e justificativa.
+
+Registrar:
+
+```text
+PCA_BY_CONDITION = TO_BE_FILLED
+```
+
+
+# 57. Comparação entre condições
+
+Perguntas:
+
+```text
+os grupos de variáveis permanecem?
+as correlações mudam?
+os fluidos mudam de posição?
+a estrutura dominante muda?
+```
+
+
+# 58. Número pequeno de alternativas
+
+Se \(n\) for pequeno em relação a \(p\), interpretar PCA e outras técnicas com cautela.
+
+Registrar:
+
+```text
+N_TO_P_WARNING = TO_BE_FILLED
+```
+
+
+# 59. Rank da matriz
+
+Quando relevante, verificar limitações estruturais decorrentes de:
+
+\[
+\operatorname{rank}(X)
+\leq
+\min(n-1,p)
+\]
+
+após centralização.
+
+
+# 60. Mais variáveis que observações
+
+Se:
+
+\[
+p \ge n
+\]
+
+há implicações importantes para:
+
+```text
+covariância
+PCA
+estabilidade
+interpretação
+```
+
+
+# 61. Componentes não são critérios automaticamente
+
+Mesmo que um componente explique muita variância:
+
+```text
+PC1 != critério automaticamente
+```
+
+
+# 62. Variância não é importância técnica
+
+Uma variável com alta variância não é necessariamente mais importante tecnicamente.
+
+
+# 63. PCA e CRITIC
+
+PCA e CRITIC possuem papéis diferentes.
+
+```text
+PCA
+→ estrutura exploratória
+
+CRITIC
+→ ponderação informacional dos critérios
+```
+
+Não substituir um pelo outro sem decisão metodológica.
+
+
+# 64. Evidência para critérios
+
+Ao final, Benjamin deverá consolidar evidências relacionadas a cada variável candidata.
+
+Estrutura futura:
+
+| Variável | Variabilidade | Redundância | Interpretação técnica | Status preliminar |
+|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 65. Status preliminar
+
+Possíveis categorias:
+
+```text
+RETAIN_CANDIDATE
+REVIEW_REDUNDANCY
+LOW_INFORMATION
+DIAGNOSTIC_ONLY
+REQUIRES_TECHNICAL_REVIEW
+```
+
+
+# 66. Não tornar status final ainda
+
+Esses status são evidências para a etapa posterior de definição da matriz de decisão.
+
+
+# 67. Variáveis de baixa informação
+
+Registrar:
+
+```text
+LOW_INFORMATION_VARIABLES = TO_BE_FILLED
+```
+
+
+# 68. Variáveis redundantes potenciais
+
+Registrar:
+
+```text
+MULTIVARIATE_REDUNDANCIES = TO_BE_FILLED
+```
+
+
+# 69. Variáveis com informação complementar
+
+Registrar:
+
+```text
+COMPLEMENTARY_VARIABLES = TO_BE_FILLED
+```
+
+
+# 70. Trade-offs multivariados
+
+Registrar:
+
+```text
+MULTIVARIATE_TRADE_OFFS = TO_BE_FILLED
+```
+
+
+# 71. Pontos influentes
+
+Registrar:
+
+```text
+INFLUENTIAL_ALTERNATIVES = TO_BE_FILLED
+```
+
+
+# 72. Sensibilidade exploratória
+
+Quando necessário, poderá ser avaliado se a estrutura multivariada muda muito ao retirar uma observação influente.
+
+Isso deve permanecer:
+
+```text
+EXPLORATORY
+```
+
+
+# 73. Não excluir observação por conveniência
+
+Uma alternativa não deve ser removida apenas porque altera a estrutura multivariada.
+
+
+# 74. Tabelas candidatas
+
+Poderão incluir:
+
+```text
+variância explicada
+loadings
+scores
+grupos de variáveis
+redundâncias potenciais
+```
+
+
+# 75. Figuras candidatas
+
+Poderão incluir:
+
+```text
+scree plot
+score plot
+biplot
+heatmap
+profile plot
+```
+
+
+# 76. Código principal
+
+```{r}
+# ============================================================
+# ANÁLISE MULTIVARIADA
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Poderá envolver:
+#
+# - seleção de matriz;
+# - tratamento de escala;
+# - PCA;
+# - análise de perfis;
+# - estruturas de associação;
+# - agrupamento, se justificado.
+#
+# ============================================================
+```
+
+
+# 77. Validações
+
+```{r}
+# ============================================================
+# VALIDAÇÕES
+# ============================================================
+#
+# Verificar:
+#
+# - dimensões da matriz;
+# - variáveis constantes;
+# - missing;
+# - finitude;
+# - padronização;
+# - variância explicada;
+# - consistência das saídas.
+#
+# ============================================================
+```
+
+
+# 78. Validação da padronização
+
+Se z-score for utilizado, verificar aproximadamente:
+
+\[
+\bar{z}_j \approx 0
+\]
+
+e:
+
+\[
+s(z_j) \approx 1
+\]
+
+para variáveis não constantes.
+
+
+# 79. Validação do PCA
+
+Quando executada, confirmar:
+
+```text
+[ ] autovalores não negativos dentro da tolerância numérica
+[ ] proporções de variância entre 0 e 1
+[ ] soma das proporções aproximadamente 1
+[ ] dimensões dos loadings corretas
+[ ] dimensões dos scores corretas
+```
+
+
+# 80. Reprodutibilidade
+
+Se algum método envolver aleatoriedade:
+
+```text
+SEED = TO_BE_FILLED
+```
+
+Caso contrário, não criar seed artificialmente.
+
+
+# 81. Resultados exploratórios
+
+Registrar:
+
+```text
+MULTIVARIATE_FINDING_1 = TO_BE_FILLED
+MULTIVARIATE_FINDING_2 = TO_BE_FILLED
+MULTIVARIATE_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 82. Interpretação
+
+Para cada achado:
+
+```text
+estrutura observada
+↓
+evidência estatística
+↓
+significado técnico
+↓
+impacto na definição de critérios
+```
+
+
+# 83. Limitações
+
+Registrar:
+
+```text
+MULTIVARIATE_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 84. Possíveis limitações
+
+Somente se confirmadas:
+
+```text
+n pequeno
+p elevado
+missing
+pontos influentes
+colinearidade forte
+baixa variabilidade
+condições incompletas
+```
+
+
+# 85. Artefatos
+
+Quando executado:
+
+```text
+PCA_TABLES = TO_BE_FILLED
+PCA_FIGURES = TO_BE_FILLED
+MULTIVARIATE_SUMMARY = TO_BE_FILLED
+```
+
+
+# 86. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+MULTIVARIATE_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 87. Relação com conformidade
+
+A estrutura multivariada não define conformidade técnica.
+
+Conformidade será tratada em:
+
+```text
+analysis/08_BENJAMIN_conformidade.qmd
+```
+
+
+# 88. Relação com critérios
+
+A análise atual fornece evidências para responder posteriormente:
+
+```text
+quais variáveis representam informação distinta?
+quais são redundantes?
+quais possuem variabilidade suficiente?
+quais devem permanecer apenas como diagnóstico?
+```
+
+
+# 89. Relação com CRITIC
+
+O CRITIC será aplicado somente depois de:
+
+```text
+critérios definidos
+↓
+matriz de decisão definida
+↓
+normalização definida
+```
+
+Não calcular pesos nesta etapa.
+
+
+# 90. O que esta etapa entrega
+
+Entrega:
+
+```text
+estrutura conjunta
++
+possíveis dimensões latentes
++
+perfis das alternativas
++
+redundâncias potenciais
++
+evidências para critérios
+```
+
+
+# 91. O que esta etapa não entrega
+
+Não entrega:
+
+```text
+critérios finais
+pesos
+ranking
+conclusão sobre melhor fluido
+```
+
+
+# 92. Próxima etapa
+
+A próxima análise será:
+
+```text
+analysis/08_BENJAMIN_conformidade.qmd
+```
+
+
+# 93. Informação para etapas seguintes
+
+Registrar:
+
+```text
+RETAIN_CANDIDATES = TO_BE_FILLED
+REVIEW_REDUNDANCY = TO_BE_FILLED
+LOW_INFORMATION_VARIABLES = TO_BE_FILLED
+DIAGNOSTIC_ONLY_VARIABLES = TO_BE_FILLED
+MULTIVARIATE_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 94. Validação antes de encerrar
+
+```text
+[ ] base correta utilizada
+[ ] variáveis analíticas documentadas
+[ ] estratégia de escala documentada
+[ ] missing tratados explicitamente
+[ ] variáveis constantes tratadas
+[ ] PCA justificada, se utilizada
+[ ] loadings interpretados
+[ ] scores interpretados
+[ ] redundâncias não decididas automaticamente
+[ ] limitações registradas
+[ ] nenhuma conclusão multicritério antecipada
+```
+
+
+# 95. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 96. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+MULTIVARIATE_ADA_STATUS = NOT_EXECUTED
+
+PCA_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+CRITERIA_STATUS = NOT_FINALIZED
+
+CRITIC_STATUS = NOT_EXECUTED
+```
+
+
+# 97. Princípio final
+
+> A análise multivariada deve ajudar a compreender a estrutura conjunta das variáveis, não substituir o julgamento metodológico. Componentes, grupos e correlações são evidências para a definição dos critérios, e não decisões automáticas sobre o que deve ou não participar do sistema multicritério.

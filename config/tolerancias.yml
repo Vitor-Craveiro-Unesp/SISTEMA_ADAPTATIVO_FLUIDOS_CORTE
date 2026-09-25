@@ -1,302 +1,1221 @@
-tolerances:
+# ============================================================
+# TOLERANCIAS.YML
+# Sistema Adaptativo de Classificação Multicritério
+# de Fluidos de Corte
+#
+# FINALIDADE
+#
+# Centralizar as tolerâncias utilizadas em:
+#
+# - comparações numéricas;
+# - auditoria;
+# - reconciliação;
+# - validação da base canônica;
+# - normalização;
+# - CRITIC;
+# - TOPSIS;
+# - Pareto;
+# - sensibilidade;
+# - rank reversal;
+# - conformidade técnica.
+#
+# IMPORTANTE
+#
+# Este arquivo NÃO deve conter valores inventados.
+#
+# Existem dois tipos principais de tolerância:
+#
+# 1. COMPUTACIONAL
+#
+#    Destinada a diferenças produzidas por representação
+#    numérica e operações em ponto flutuante.
+#
+# 2. TÉCNICA / CIENTÍFICA
+#
+#    Destinada a limites associados ao significado físico,
+#    experimental ou técnico dos dados.
+#
+# Tolerância computacional
+# NÃO substitui
+# tolerância técnica.
+#
+# Nesta fase:
+#
+# TOLERANCE_CONFIG_STATUS = BASE_PREPARED
+# COMPUTATIONAL_TOLERANCES = NOT_DEFINED
+# TECHNICAL_TOLERANCES = NOT_DEFINED
+#
+# ============================================================
 
-  general:
 
-    absolute_default:
-      value: 1.0e-6
-      description: >
-        Tolerância absoluta padrão para comparações numéricas de ponto
-        flutuante quando não existir regra específica para a variável.
+# ------------------------------------------------------------
+# 1. METADADOS
+# ------------------------------------------------------------
 
-    relative_default:
-      value: 1.0e-6
-      description: >
-        Tolerância relativa padrão para comparações numéricas.
+metadata:
 
----
+  project:
+    name: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
 
-  floating_point:
+  config_name: "tolerancias"
 
-    absolute:
-      value: 1.0e-9
-      description: >
-        Diferenças abaixo desse valor podem ser tratadas como efeito
-        computacional de ponto flutuante.
+  config_version: "0.1.0"
 
----
+  status: "BASE_PREPARED"
+
+  values_status: "NOT_DEFINED"
+
+  last_reviewed_by: null
+
+  last_review_date: null
+
+
+# ------------------------------------------------------------
+# 2. PRINCÍPIOS
+# ------------------------------------------------------------
+
+principles:
+
+  invent_tolerance:
+    allowed: false
+
+  use_tolerance_to_hide_discrepancy:
+    allowed: false
+
+  require_justification: true
+
+  require_documented_source_when_technical: true
+
+  require_unit_when_technical: true
+
+  require_context_specific_tolerance: true
+
+  maintain_full_precision_in_calculation: true
+
+  apply_rounding_as_tolerance:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 3. TIPOS DE TOLERÂNCIA
+# ------------------------------------------------------------
+
+tolerance_types:
+
+  computational:
+    description: >
+      Tolerância utilizada exclusivamente para diferenças
+      numéricas decorrentes de representação e cálculos em
+      ponto flutuante.
+
+  technical:
+    description: >
+      Tolerância relacionada ao significado físico, técnico,
+      experimental ou normativo da variável.
+
+  audit:
+    description: >
+      Tolerância utilizada para decidir quando duas
+      representações de um mesmo valor podem ser consideradas
+      numericamente compatíveis durante a auditoria.
+
+  presentation:
+    description: >
+      Regra de arredondamento utilizada apenas para exibição,
+      sem alterar os valores utilizados nos cálculos.
+
+
+# ------------------------------------------------------------
+# 4. TOLERÂNCIA COMPUTACIONAL GLOBAL
+# ------------------------------------------------------------
+#
+# Não definir um valor arbitrário agora.
+#
+# O valor deverá ser escolhido pelos integrantes de acordo com:
+#
+# - escala dos cálculos;
+# - precisão dos dados;
+# - comportamento numérico observado;
+# - testes implementados.
+#
+# ------------------------------------------------------------
+
+computational:
+
+  default_absolute_tolerance: null
+
+  default_relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  require_explicit_definition_before_use: true
+
+
+# ------------------------------------------------------------
+# 5. COMPARAÇÃO NUMÉRICA
+# ------------------------------------------------------------
+
+numeric_comparison:
+
+  absolute_tolerance: null
+
+  relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  comparison_rule: "TO_BE_DEFINED"
+
+  use_exact_equality_for_floating_point:
+    recommended: false
+
+
+# ------------------------------------------------------------
+# 6. DIFERENÇA ABSOLUTA
+# ------------------------------------------------------------
+
+absolute_difference:
+
+  expression: "abs(x - y)"
+
+  tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 7. DIFERENÇA RELATIVA
+# ------------------------------------------------------------
+
+relative_difference:
+
+  expression: "abs(x - y) / abs(reference)"
+
+  tolerance: null
+
+  status: "NOT_DEFINED"
+
+  reference_definition: null
+
+  zero_reference_policy: "REVIEW_REQUIRED"
+
+
+# ------------------------------------------------------------
+# 8. AUDITORIA DE VALORES
+# ------------------------------------------------------------
+
+audit:
+
+  absolute_difference_tolerance: null
+
+  relative_difference_tolerance: null
+
+  rounding_difference_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  classify_as_rounding_only_when_justified: true
+
+  automatically_accept_difference_within_tolerance:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 9. RECÁLCULO DE FÓRMULAS
+# ------------------------------------------------------------
+
+formula_recalculation:
+
+  absolute_tolerance: null
+
+  relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  require_independent_recalculation: true
+
+  discrepancy_above_tolerance:
+    action: "REVIEW"
+
+
+# ------------------------------------------------------------
+# 10. SOMAS
+# ------------------------------------------------------------
+
+sums:
+
+  absolute_tolerance: null
+
+  relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 11. MÉDIAS
+# ------------------------------------------------------------
+
+means:
+
+  absolute_tolerance: null
+
+  relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 12. CONVERSÕES DE UNIDADE
+# ------------------------------------------------------------
+
+unit_conversion:
+
+  absolute_tolerance: null
+
+  relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  require_exact_conversion_rule: true
+
+  require_source_unit: true
+
+  require_target_unit: true
+
+
+# ------------------------------------------------------------
+# 13. BASE CANÔNICA
+# ------------------------------------------------------------
+
+canonical_dataset:
+
+  value_comparison_absolute_tolerance: null
+
+  value_comparison_relative_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  require_full_precision_storage: true
+
+
+# ------------------------------------------------------------
+# 14. CHAVES E IDENTIFICADORES
+# ------------------------------------------------------------
+#
+# Para identificadores textuais não utilizar tolerância
+# numérica.
+#
+# ------------------------------------------------------------
+
+identifiers:
+
+  numeric_tolerance:
+    applicable: false
+
+  textual_match:
+    require_explicit_mapping: true
+
+
+# ------------------------------------------------------------
+# 15. VARIÁVEIS CONSTANTES
+# ------------------------------------------------------------
+#
+# O conceito de "constante" poderá exigir tolerância numérica
+# quando pequenas diferenças forem apenas artefatos de precisão.
+#
+# ------------------------------------------------------------
+
+constant_variable:
+
+  variance_tolerance: null
+
+  range_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  automatic_classification:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 16. VARIÁVEIS QUASE CONSTANTES
+# ------------------------------------------------------------
+
+near_constant_variable:
+
+  variance_threshold: null
+
+  range_threshold: null
+
+  relative_variation_threshold: null
+
+  status: "NOT_DEFINED"
+
+  require_methodological_definition: true
+
+
+# ------------------------------------------------------------
+# 17. CORRELAÇÃO
+# ------------------------------------------------------------
+
+correlation:
+
+  boundary_tolerance: null
+
+  symmetry_tolerance: null
+
+  diagonal_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 18. MATRIZ DE CORRELAÇÃO
+# ------------------------------------------------------------
+
+correlation_matrix:
+
+  symmetry:
+
+    expected: true
+
+    tolerance: null
+
+
+  diagonal:
+
+    expected_value: 1
+
+    tolerance: null
+
+
+  bounds:
+
+    minimum: -1
+
+    maximum: 1
+
+    tolerance: null
+
+
+# ------------------------------------------------------------
+# 19. PCA
+# ------------------------------------------------------------
+
+pca:
+
+  eigenvalue_zero_tolerance: null
+
+  negative_eigenvalue_tolerance: null
+
+  explained_variance_sum_tolerance: null
+
+  standardization_mean_tolerance: null
+
+  standardization_sd_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 20. PADRONIZAÇÃO
+# ------------------------------------------------------------
+
+standardization:
+
+  expected_mean: 0
+
+  expected_standard_deviation: 1
+
+  mean_tolerance: null
+
+  standard_deviation_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 21. NORMALIZAÇÃO
+# ------------------------------------------------------------
+
+normalization:
+
+  zero_denominator_tolerance: null
+
+  lower_bound_tolerance: null
+
+  upper_bound_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  denominator_considered_zero_below: null
+
+
+# ------------------------------------------------------------
+# 22. NORMALIZAÇÃO MIN-MAX
+# ------------------------------------------------------------
+
+min_max:
+
+  range_zero_tolerance: null
+
+  expected_minimum: 0
+
+  expected_maximum: 1
+
+  bounds_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 23. NORMALIZAÇÃO VETORIAL
+# ------------------------------------------------------------
+
+vector_normalization:
+
+  norm_zero_tolerance: null
+
+  expected_column_norm: null
+
+  norm_validation_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 24. CRITIC
+# ------------------------------------------------------------
+
+critic:
+
+  standard_deviation_zero_tolerance: null
+
+  information_zero_tolerance: null
+
+  information_sum_zero_tolerance: null
+
+  weight_nonnegative_tolerance: null
+
+  weight_sum_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 25. SOMA DOS PESOS
+# ------------------------------------------------------------
+
+weights:
+
+  expected_sum: 1
+
+  sum_tolerance: null
+
+  negative_value_tolerance: null
+
+  zero_weight_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 26. PESOS NEGATIVOS
+# ------------------------------------------------------------
+
+negative_weights:
+
+  allow_within_numerical_tolerance: null
+
+  tolerance: null
+
+  status: "NOT_DEFINED"
+
+  materially_negative_weight:
+    action: "BLOCK"
+
+
+# ------------------------------------------------------------
+# 27. CRITIC — CASO DEGENERADO
+# ------------------------------------------------------------
+
+critic_degenerate_case:
+
+  information_sum_considered_zero_below: null
+
+  equal_weight_fallback:
+    allowed: false
+
+  action: "BLOCK_AND_REVIEW"
+
+
+# ------------------------------------------------------------
+# 28. TOPSIS
+# ------------------------------------------------------------
+
+topsis:
+
+  distance_zero_tolerance: null
+
+  closeness_denominator_zero_tolerance: null
+
+  closeness_lower_bound_tolerance: null
+
+  closeness_upper_bound_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 29. COEFICIENTE TOPSIS
+# ------------------------------------------------------------
+
+topsis_closeness:
+
+  expected_minimum: 0
+
+  expected_maximum: 1
+
+  bounds_tolerance: null
+
+  tie_tolerance: null
+
+  near_tie_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 30. EMPATE
+# ------------------------------------------------------------
+
+ties:
+
+  exact_tie_tolerance: null
+
+  near_tie_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  automatic_tie_break:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 31. GAP ENTRE POSIÇÕES
+# ------------------------------------------------------------
+
+ranking_gap:
+
+  small_gap_threshold: null
+
+  status: "NOT_DEFINED"
+
+  automatic_interpretation:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 32. CENÁRIOS
+# ------------------------------------------------------------
+
+scenarios:
+
+  weight_sum_tolerance: null
+
+  zero_weight_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 33. PARETO
+# ------------------------------------------------------------
+#
+# Dominância é conceitualmente baseada em desigualdades.
+#
+# Se valores em ponto flutuante exigirem comparação aproximada,
+# a tolerância deverá ser explicitamente definida.
+#
+# ------------------------------------------------------------
+
+pareto:
+
+  equality_tolerance: null
+
+  strict_improvement_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  approximate_dominance:
+    enabled: false
+
+
+# ------------------------------------------------------------
+# 34. SENSIBILIDADE DOS PESOS
+# ------------------------------------------------------------
+#
+# Os níveis de perturbação NÃO são definidos agora.
+#
+# ------------------------------------------------------------
+
+weight_sensitivity:
+
+  perturbation_levels: []
+
+  status: "NOT_DEFINED"
+
+  include_zero_perturbation: true
+
+  require_predefined_levels: true
+
+
+# ------------------------------------------------------------
+# 35. PERTURBAÇÃO MÍNIMA
+# ------------------------------------------------------------
+
+perturbation:
+
+  minimum: null
+
+  maximum: null
+
+  step: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 36. LOCO
+# ------------------------------------------------------------
+
+loco:
+
+  ranking_comparison_tolerance: null
+
+  closeness_comparison_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 37. NORMALIZAÇÃO ALTERNATIVA
+# ------------------------------------------------------------
+
+alternative_normalization:
+
+  ranking_comparison_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 38. LOAO
+# ------------------------------------------------------------
+
+loao:
+
+  ranking_comparison_tolerance: null
+
+  closeness_comparison_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 39. RANK REVERSAL
+# ------------------------------------------------------------
+#
+# A tolerância deverá impedir que ruído de ponto flutuante seja
+# interpretado como inversão real de ordem.
+#
+# ------------------------------------------------------------
+
+rank_reversal:
+
+  coefficient_difference_tolerance: null
+
+  pairwise_order_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  simple_position_shift_is_reversal: false
+
+
+# ------------------------------------------------------------
+# 40. CONCORDÂNCIA ENTRE RANKINGS
+# ------------------------------------------------------------
+
+ranking_agreement:
+
+  near_perfect_agreement_threshold: null
+
+  moderate_agreement_threshold: null
+
+  status: "NOT_DEFINED"
+
+  automatic_classification:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 41. ROBUSTEZ
+# ------------------------------------------------------------
+
+robustness:
+
+  top1_stability_threshold: null
+
+  top3_stability_threshold: null
+
+  rank_range_threshold: null
+
+  status: "NOT_DEFINED"
+
+  qualitative_classification_requires_explicit_rule: true
+
+
+# ------------------------------------------------------------
+# 42. SIMULAÇÕES
+# ------------------------------------------------------------
+
+simulation:
+
+  weight_sum_tolerance: null
+
+  negative_weight_tolerance: null
+
+  invalid_vector_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 43. CONFORMIDADE TÉCNICA
+# ------------------------------------------------------------
+#
+# ATENÇÃO:
+#
+# Valores desta seção NÃO podem ser inventados.
+#
+# Eles deverão ser preenchidos somente quando houver:
+#
+# - especificação confirmada;
+# - unidade confirmada;
+# - fonte confirmada.
+#
+# ------------------------------------------------------------
+
+technical_conformity:
+
+  status: "NOT_DEFINED"
+
+  specifications: []
+
+
+# ------------------------------------------------------------
+# 44. MODELO DE TOLERÂNCIA TÉCNICA
+# ------------------------------------------------------------
+#
+# REFERÊNCIA APENAS.
+#
+# Não descomentar com valores fictícios.
+#
+# technical_conformity:
+#
+#   specifications:
+#
+#     - id: "SPEC_EXAMPLE"
+#
+#       variable: "nome_variavel"
+#
+#       tolerance_type: "ABSOLUTE"
+#
+#       value: null
+#
+#       unit: null
+#
+#       source: null
+#
+#       justification: null
+#
+#       status: "PENDING_CONFIRMATION"
+#
+# ------------------------------------------------------------
+
+
+# ------------------------------------------------------------
+# 45. LIMITES TÉCNICOS
+# ------------------------------------------------------------
+
+technical_limits:
+
+  automatically_infer:
+    allowed: false
+
+  automatically_search_external_source:
+    allowed: false
+
+  require_confirmed_source: true
+
+  require_unit: true
+
+  require_applicability_definition: true
+
+
+# ------------------------------------------------------------
+# 46. TARGET
+# ------------------------------------------------------------
+
+target:
+
+  target_value_tolerance: null
+
+  status: "NOT_DEFINED"
+
+  require_confirmed_source: true
+
+
+# ------------------------------------------------------------
+# 47. ESPECIFICAÇÃO EM FAIXA
+# ------------------------------------------------------------
+
+specification_interval:
+
+  lower_limit_tolerance: null
+
+  upper_limit_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 48. PRÓXIMO DO LIMITE
+# ------------------------------------------------------------
+#
+# A classificação "próximo ao limite" só poderá existir quando
+# houver regra explícita.
+#
+# ------------------------------------------------------------
+
+near_specification_limit:
+
+  threshold: null
+
+  status: "NOT_DEFINED"
+
+  automatic_flag:
+    enabled: false
+
+
+# ------------------------------------------------------------
+# 49. DADOS ECONÔMICOS
+# ------------------------------------------------------------
+
+economic:
+
+  currency_comparison_tolerance: null
+
+  denominator_zero_tolerance: null
+
+  status: "NOT_DEFINED"
+
+
+# ------------------------------------------------------------
+# 50. ARREDONDAMENTO PARA COMUNICAÇÃO
+# ------------------------------------------------------------
+#
+# Não definir número único de casas decimais para todas as
+# variáveis antes de conhecer suas escalas.
+#
+# ------------------------------------------------------------
+
+presentation_rounding:
+
+  default_decimal_places: null
+
+  percentages_decimal_places: null
+
+  weights_decimal_places: null
+
+  topsis_decimal_places: null
+
+  status: "NOT_DEFINED"
+
+  affect_calculations:
+    value: false
+
+
+# ------------------------------------------------------------
+# 51. TABELAS
+# ------------------------------------------------------------
+
+tables:
 
   rounding:
 
-    absolute:
-      value: 0.01
-      description: >
-        Diferença absoluta máxima inicialmente considerada compatível
-        com arredondamento para grandezas sem tolerância própria.
+    scientific_values:
+      decimal_places: null
 
-    relative:
-      value: 0.0001
-      description: >
-        Diferença relativa de 0,01% inicialmente considerada compatível
-        com arredondamento.
+    weights:
+      decimal_places: null
 
----
+    topsis:
+      decimal_places: null
 
-  cross_sheet:
+    percentages:
+      decimal_places: null
 
-    exact:
-      absolute_max: 1.0e-9
-      label: "EXATO"
+  status: "NOT_DEFINED"
 
-    rounding:
-      relative_max: 0.0001
-      label: "ARREDONDAMENTO"
 
-    small:
-      relative_max: 0.001
-      label: "PEQUENA_DIVERGENCIA"
+# ------------------------------------------------------------
+# 52. FIGURAS
+# ------------------------------------------------------------
 
-    relevant:
-      relative_max: 0.01
-      label: "DIVERGENCIA_RELEVANTE"
+figures:
 
-    critical:
-      relative_min: 0.01
-      label: "DIVERGENCIA_CRITICA"
+  display_precision: null
 
-    description: >
-      Classificação preliminar das diferenças relativas entre valores
-      equivalentes encontrados em diferentes abas. Esses limites podem
-      ser revisados se a escala das variáveis justificar.
+  status: "NOT_DEFINED"
 
----
+  calculations_use_display_precision:
+    value: false
 
-  tool_life:
 
-    absolute:
-      value: 0.01
-      description: >
-        Tolerância absoluta inicial para comparações relacionadas à vida
-        da ferramenta.
+# ------------------------------------------------------------
+# 53. RELATÓRIO
+# ------------------------------------------------------------
 
-    relative:
-      value: 0.0001
-      description: >
-        Tolerância relativa inicial para reconciliação entre abas.
+report:
 
----
+  display_precision: null
 
-  power:
+  status: "NOT_DEFINED"
 
-    absolute:
-      value: 0.001
-      description: >
-        Tolerância absoluta inicial para potência em kW.
+  require_consistency_with_tables: true
 
-    relative:
-      value: 0.0001
 
----
+# ------------------------------------------------------------
+# 54. APRESENTAÇÃO
+# ------------------------------------------------------------
 
-  roughness:
+presentation:
 
-    absolute:
-      value: 0.001
-      description: >
-        Tolerância absoluta inicial para rugosidade.
+  display_precision: null
 
-    relative:
-      value: 0.0001
+  status: "NOT_DEFINED"
 
----
+  require_consistency_with_report: true
 
-  concentricity:
 
-    absolute:
-      value: 0.0001
-      description: >
-        Tolerância numérica para comparações de concentricidade.
+# ------------------------------------------------------------
+# 55. PRIORIDADE DE TOLERÂNCIAS
+# ------------------------------------------------------------
+#
+# Quando existirem múltiplas possíveis regras, deverá ser
+# distinguido:
+#
+# 1. especificação técnica confirmada;
+# 2. tolerância experimental confirmada;
+# 3. tolerância numérica/computacional;
+# 4. arredondamento de apresentação.
+#
+# Nunca substituir uma categoria por outra.
+#
+# ------------------------------------------------------------
 
-    specification:
-      value: 0.1
-      description: >
-        Valor de referência preliminar de tolerância técnica absoluta.
-        Confirmar com a documentação da base antes do uso definitivo.
+priority:
 
----
+  order:
 
-  circularity:
+    - "CONFIRMED_TECHNICAL_SPECIFICATION"
+    - "CONFIRMED_EXPERIMENTAL_TOLERANCE"
+    - "COMPUTATIONAL_TOLERANCE"
+    - "PRESENTATION_ROUNDING"
 
-    absolute:
-      value: 0.0001
-      description: >
-        Tolerância numérica para comparações de circularidade.
 
-    specification:
-      value: 0.1
-      description: >
-        Valor de referência preliminar de tolerância técnica absoluta.
-        Confirmar com a documentação da base antes do uso definitivo.
+# ------------------------------------------------------------
+# 56. FONTE DA TOLERÂNCIA
+# ------------------------------------------------------------
 
----
+source_requirements:
 
-  cost:
+  computational:
+    require_documented_rationale: true
 
-    absolute:
-      value: 0.01
-      description: >
-        Tolerância monetária padrão de um centavo para comparação de
-        valores em reais.
+  technical:
+    require_external_or_project_source: true
 
-    relative:
-      value: 0.0001
+  experimental:
+    require_source: true
 
----
+  presentation:
+    require_consistent_rule: true
 
-  percentage:
 
-    absolute:
-      value: 0.01
-      description: >
-        Tolerância absoluta para porcentagens quando representadas em
-        pontos percentuais.
+# ------------------------------------------------------------
+# 57. REGISTRO
+# ------------------------------------------------------------
 
-    relative:
-      value: 0.0001
+documentation:
 
----
+  require_name: true
 
-  sums:
+  require_value: true
 
-    absolute_default:
-      value: 0.01
-      description: >
-        Diferença máxima aceitável entre soma informada e soma
-        recalculada quando não houver regra específica.
+  require_type: true
 
-    relative_default:
-      value: 0.0001
+  require_unit_when_applicable: true
 
----
+  require_justification: true
 
-  means:
+  require_source_when_applicable: true
 
-    absolute_default:
-      value: 0.001
-      description: >
-        Diferença máxima aceitável entre média informada e média
-        recalculada quando não houver regra específica.
+  require_stage: true
 
-    relative_default:
-      value: 0.0001
 
----
+# ------------------------------------------------------------
+# 58. ALTERAÇÃO DE TOLERÂNCIA
+# ------------------------------------------------------------
 
-  derived_indicators:
+change_control:
 
-    absolute_default:
-      value: 0.001
+  require_documentation: true
 
-    relative_default:
-      value: 0.0001
+  require_version_update: true
 
-    description: >
-      Limites iniciais para indicadores derivados. Devem ser ajustados
-      individualmente quando necessário.
+  evaluate_downstream_impact: true
 
----
+  rerun_affected_validations: true
 
-  missing:
+  silent_change:
+    allowed: false
 
-    strings_to_flag:
-      - ""
-      - "NA"
-      - "N/A"
-      - "NULL"
-      - "-"
-      - "--"
-      - "repetir"
-      - "pendente"
-      - "#DIV/0!"
-      - "#VALUE!"
-      - "#REF!"
-      - "#N/A"
 
-    description: >
-      Strings que devem ser investigadas durante a auditoria. A presença
-      de uma dessas strings não implica que todas tenham o mesmo
-      significado de missing.
+# ------------------------------------------------------------
+# 59. ALTERAÇÃO APÓS VER RESULTADO
+# ------------------------------------------------------------
+#
+# Não alterar tolerância simplesmente para:
+#
+# - transformar FAIL em PASS;
+# - eliminar empate;
+# - eliminar rank reversal;
+# - tornar resultado robusto;
+# - classificar fluido como conforme.
+#
+# ------------------------------------------------------------
 
----
+post_result_changes:
 
-  near_zero_variance:
+  change_to_obtain_desired_result:
+    allowed: false
 
-    frequency_ratio:
-      value: 19
+  require_methodological_justification: true
 
-    unique_percentage:
-      value: 10
+  major_change_requires_decision_record: true
 
-    description: >
-      Parâmetros preliminares para sinalizar variáveis com variância
-      próxima de zero. Não usar para exclusão automática.
 
----
+# ------------------------------------------------------------
+# 60. DECISÕES
+# ------------------------------------------------------------
 
-  correlation:
+decisions:
 
-    high:
-      absolute_value: 0.8
-      description: >
-        Correlação absoluta igual ou superior a 0,80 deve ser investigada
-        como possível redundância.
+  related_decision_ids: []
 
-    very_high:
-      absolute_value: 0.9
-      description: >
-        Correlação absoluta igual ou superior a 0,90 representa forte
-        indício de redundância, sem implicar exclusão automática.
+  major_tolerance_change_requires_record: true
 
----
 
-  sensitivity:
+# ------------------------------------------------------------
+# 61. VALIDAÇÃO DESTA CONFIGURAÇÃO
+# ------------------------------------------------------------
 
-    weight_perturbation:
+configuration_validation:
 
-      mild:
-        percentage: 5
+  null_value_means:
+    value: "NOT_DEFINED"
 
-      moderate:
-        percentage: 10
+  use_required_null_tolerance_in_execution:
+    allowed: false
 
-      strong:
-        percentage: 20
+  require_all_used_tolerances_defined: true
 
-    description: >
-      Cenários preliminares para testar estabilidade dos rankings frente
-      a perturbações dos pesos.
+  require_numeric_tolerance_nonnegative: true
 
----
+  require_unit_for_technical_tolerance: true
 
-  ranking:
+  require_source_for_technical_tolerance: true
 
-    tie:
-      absolute_score_difference:
-        value: 1.0e-6
-        description: >
-          Diferença abaixo desse valor pode ser considerada empate
-          numérico no score do método multicritério.
 
----
+# ------------------------------------------------------------
+# 62. COMPORTAMENTO QUANDO TOLERÂNCIA NÃO ESTIVER DEFINIDA
+# ------------------------------------------------------------
 
-  review_policy:
+undefined_tolerance:
 
-    require_domain_review_if:
-      - "difference classified as critical"
-      - "unit conversion required"
-      - "specification threshold uncertain"
-      - "derived formula undocumented"
-      - "cross-sheet conflict affects ranking candidate"
+  silently_assume_default:
+    allowed: false
 
-    description: >
-      Tolerâncias numéricas não substituem julgamento técnico ou
-      estatístico. Casos sensíveis devem ser revisados pela equipe.
+  action: "BLOCK_OR_REQUIRE_EXPLICIT_DEFINITION"
+
+  log_required: true
+
+
+# ------------------------------------------------------------
+# 63. TESTES
+# ------------------------------------------------------------
+
+tests:
+
+  status: "NOT_IMPLEMENTED"
+
+  future_checks:
+
+    - "tolerances_are_numeric_when_defined"
+    - "tolerances_are_nonnegative"
+    - "technical_tolerances_have_units"
+    - "technical_tolerances_have_sources"
+    - "used_tolerances_are_not_null"
+    - "weight_sum_validation"
+    - "correlation_matrix_validation"
+    - "topsis_bounds_validation"
+    - "rank_reversal_validation"
+
+
+# ------------------------------------------------------------
+# 64. ESTADO ATUAL
+# ------------------------------------------------------------
+
+current_state:
+
+  tolerance_file_status: "BASE_PREPARED"
+
+  computational_tolerances: "NOT_DEFINED"
+
+  audit_tolerances: "NOT_DEFINED"
+
+  technical_tolerances: "NOT_DEFINED"
+
+  critic_tolerances: "NOT_DEFINED"
+
+  topsis_tolerances: "NOT_DEFINED"
+
+  robustness_tolerances: "NOT_DEFINED"
+
+  presentation_rounding: "NOT_DEFINED"
+
+  ready_for_scientific_execution: false
+
+
+# ------------------------------------------------------------
+# 65. PRINCÍPIO FINAL
+# ------------------------------------------------------------
+#
+# Uma tolerância deve existir porque há uma justificativa
+# numérica, experimental ou técnica para ela.
+#
+# Nunca porque determinado valor precisa ser classificado como
+# correto, conforme, empatado ou robusto.
+#
+# ============================================================

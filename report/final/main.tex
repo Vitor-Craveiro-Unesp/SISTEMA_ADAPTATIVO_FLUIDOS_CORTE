@@ -1,27 +1,755 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
+% ============================================================
+% RELATÓRIO TÉCNICO FINAL
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% TEMPLATE OFICIAL FORNECIDO PELA PROFESSORA
+%
+% REGRA:
+% O relatório técnico não deve ultrapassar 4 páginas,
+% incluindo as referências.
+%
+% IMPORTANTE:
+% - Não alterar margens, fonte ou estrutura sem autorização.
+% - Resultados numéricos devem vir do pipeline oficial em R.
+% - Não inserir resultados preliminares.
+% - Não preencher informações não confirmadas.
+% ============================================================
+
+\documentclass[10pt,a4paper]{article}
+
+
+% ============================================================
+% PACOTES — ESTRUTURA DO TEMPLATE DA PROFESSORA
+% ============================================================
+
+\usepackage[
+    a4paper,
+    top=1.5cm,
+    bottom=1.5cm,
+    left=1.5cm,
+    right=1.5cm
+]{geometry}
+
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+
+% Fonte definida no template oficial
+\usepackage{mathptmx}
+
+\usepackage{setspace}
+\usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{multicol}
 
-\title{Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte}
-\author{Pacheco, Benjamin, Vitor e Marco}
-\date{2026}
+
+% ============================================================
+% CONFIGURAÇÃO DO TEXTO
+% ============================================================
+
+% Espaçamento simples
+\setstretch{1.0}
+
+% Recuo do primeiro parágrafo
+\setlength{\parindent}{1.0cm}
+
+% Sem espaço adicional entre parágrafos
+\setlength{\parskip}{0pt}
+
+
+% ============================================================
+% TÍTULOS DE SEÇÃO
+% ============================================================
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont\bfseries\fontsize{11}{13}\selectfont}
+  {\thesection.}
+  {0.5em}
+  {}
+
+\titlespacing*{\section}
+  {0pt}
+  {8pt}
+  {4pt}
+
+
+% ============================================================
+% COMANDOS DO TEMPLATE OFICIAL
+% ============================================================
+
+% ------------------------------------------------------------
+% Título
+% ------------------------------------------------------------
+
+\newcommand{\resumotitulo}[1]{%
+  \begin{center}
+    {\sffamily\bfseries\fontsize{14}{16}\selectfont #1\par}
+  \end{center}
+  \vspace{4pt}
+}
+
+
+% ------------------------------------------------------------
+% Autores
+% ------------------------------------------------------------
+
+\newcommand{\autores}[1]{%
+  \begin{center}
+    {\sffamily\fontsize{11}{13}\selectfont #1\par}
+  \end{center}
+}
+
+
+% ------------------------------------------------------------
+% Afiliações
+% ------------------------------------------------------------
+
+\newcommand{\afiliacoes}[1]{%
+  \begin{center}
+    {\normalfont\fontsize{9}{11}\selectfont #1\par}
+  \end{center}
+  \vspace{6pt}
+}
+
+
+% ------------------------------------------------------------
+% Resumo
+% ------------------------------------------------------------
+
+\newcommand{\resumo}[1]{%
+  \noindent{\bfseries Resumo}\par
+  \noindent #1\par
+}
+
+
+% ------------------------------------------------------------
+% Palavras-chave
+% ------------------------------------------------------------
+
+\newcommand{\palavraschave}[1]{%
+  \noindent\textbf{Palavras-chave:} #1\par
+  \vspace{4pt}
+}
+
+
+% ============================================================
+% LEGENDAS
+% ============================================================
+
+\captionsetup{
+  font={small},
+  labelfont=bf,
+  labelsep=period,
+  justification=centering
+}
+
+
+% ============================================================
+% NOTAS DE TABELA
+% ============================================================
+
+\newcommand{\tabelanota}[1]{%
+  \par
+  \noindent
+  {\fontsize{8}{9}\selectfont #1}
+  \par
+}
+
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
 
 \begin{document}
-\maketitle
-\tableofcontents
 
-\input{chapters/01_introducao}
-\input{chapters/02_dados_auditoria}
-\input{chapters/03_ada}
-\input{chapters/04_metodologia_multicriterio}
-\input{chapters/05_resultados}
-\input{chapters/06_robustez}
-\input{chapters/07_conclusao}
 
-\bibliographystyle{plain}
-\bibliography{references}
+% ============================================================
+% LOGOS
+% ============================================================
+%
+% O template original fornecido pela professora utiliza:
+%
+% logos/unesp.jpg
+% logos/estat.png
+%
+% Quando os arquivos oficiais forem recebidos, inseri-los
+% no local correspondente e ativar o bloco abaixo.
+%
+% NÃO substituir por imagens encontradas na internet sem
+% confirmação.
+%
+% ============================================================
+
+% \begin{center}
+%     \includegraphics[height=1.5cm]{logos/unesp.jpg}
+%     \hspace{11cm}
+%     \includegraphics[height=1.75cm]{logos/estat.png}
+% \end{center}
+
+
+% ============================================================
+% TÍTULO
+% ============================================================
+
+\resumotitulo{
+Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+}
+
+
+% ============================================================
+% AUTORES
+% ============================================================
+%
+% Substituir pelos NOMES COMPLETOS antes da entrega.
+%
+% ============================================================
+
+\autores{
+Pacheco$^{1}$,
+Benjamin$^{1}$,
+Vitor$^{1}$,
+Marco$^{1}$
+}
+
+
+% ============================================================
+% AFILIAÇÃO
+% ============================================================
+%
+% Preencher conforme orientação oficial da professora.
+%
+% O template solicita:
+%
+% curso
+% departamento
+% e-mail
+%
+% Não inventar essas informações.
+%
+% ============================================================
+
+\afiliacoes{
+$^{1}$ TO\_BE\_FILLED --- curso, departamento e e-mail conforme orientação oficial.
+}
+
+
+% ============================================================
+% RESUMO
+% ============================================================
+%
+% LIMITE OFICIAL:
+% até 1200 caracteres COM espaço.
+%
+% Escrever somente depois que os resultados finais existirem.
+%
+% Estrutura recomendada:
+%
+% problema
+% +
+% objetivo
+% +
+% metodologia
+% +
+% principal resultado
+% +
+% conclusão
+%
+% ============================================================
+
+\resumo{%
+TO\_BE\_FILLED.
+}
+
+
+% ============================================================
+% PALAVRAS-CHAVE
+% ============================================================
+%
+% A professora solicita de 3 a 5 palavras-chave.
+%
+% Não definir definitivamente antes da redação final.
+%
+% ============================================================
+
+\palavraschave{
+TO\_BE\_FILLED
+}
+
+
+% ============================================================
+% INÍCIO DAS DUAS COLUNAS
+% ============================================================
+
+\begin{multicols}{2}
+
+
+% ============================================================
+% 1. INTRODUÇÃO
+% ============================================================
+
+\section{Introdução}
+
+% ------------------------------------------------------------
+% ORIENTAÇÃO OFICIAL DA PROFESSORA
+%
+% A introdução deve ser objetiva e concisa.
+%
+% Deve:
+% - apresentar o tema;
+% - explicar sua relevância;
+% - utilizar brevemente referências;
+% - deixar claro o objetivo do trabalho.
+%
+% O template sugere aproximadamente 1 a 3 referências
+% de fundamentação.
+%
+% As citações devem aparecer numericamente:
+%
+% (1)
+% (1--3)
+%
+% ------------------------------------------------------------
+
+TO\_BE\_FILLED.
+
+% Estrutura conceitual futura:
+%
+% Parágrafo 1:
+% contexto dos fluidos de corte e necessidade de avaliação
+% multicritério.
+%
+% Parágrafo 2:
+% dificuldade de comparar alternativas considerando
+% simultaneamente desempenho, qualidade, aspectos econômicos
+% e demais critérios efetivamente aprovados.
+%
+% Parágrafo 3:
+% objetivo do trabalho.
+%
+% Exemplo de fechamento estrutural:
+%
+% "Assim, este trabalho teve como objetivo..."
+%
+% A redação definitiva deverá ser feita somente após
+% confirmação da metodologia e dos resultados.
+
+
+% ============================================================
+% 2. MATERIAL E MÉTODO
+% ============================================================
+
+\section{Material e Método}
+
+% ------------------------------------------------------------
+% ORIENTAÇÃO OFICIAL DA PROFESSORA
+%
+% Deve ser detalhado o suficiente para permitir reprodução.
+%
+% Descrever:
+% - obtenção dos dados;
+% - tratamento dos dados;
+% - método estatístico;
+% - ferramentas computacionais.
+%
+% Neste projeto a linguagem analítica principal será R.
+% ------------------------------------------------------------
+
+
+\textit{Dados e auditoria.}
+
+TO\_BE\_FILLED.
+
+% Sintetizar futuramente:
+%
+% - origem da planilha;
+% - auditoria;
+% - identificação de inconsistências;
+% - reconciliação;
+% - construção da base canônica.
+%
+% Não descrever toda a lista de issues devido ao limite
+% de quatro páginas.
+
+
+\textit{Definição dos critérios.}
+
+TO\_BE\_FILLED.
+
+% Sintetizar:
+%
+% - ADA relevante;
+% - redundância;
+% - direções;
+% - conformidade;
+% - tratamento das condições experimentais.
+
+
+\textit{Normalização e ponderação.}
+
+TO\_BE\_FILLED.
+
+% Informar futuramente:
+%
+% - normalização principal realmente aprovada;
+% - tratamento BENEFIT/COST/TARGET;
+% - CRITIC.
+
+
+% ------------------------------------------------------------
+% CRITIC
+% ------------------------------------------------------------
+%
+% Utilizar somente se houver espaço e se essa formulação for
+% exatamente a utilizada na implementação final.
+%
+% C_j = sigma_j * sum_k (1 - r_jk)
+%
+% w_j = C_j / sum_j C_j
+%
+% ------------------------------------------------------------
+
+% Exemplo futuro:
+%
+% \begin{equation}
+% C_j =
+% \sigma_j
+% \sum_{k=1}^{p}(1-r_{jk}),
+% \qquad
+% w_j =
+% \frac{C_j}{\sum_{j=1}^{p} C_j}.
+% \end{equation}
+
+
+\textit{Classificação multicritério.}
+
+TO\_BE\_FILLED.
+
+% Explicar futuramente o TOPSIS de forma condensada:
+%
+% matriz ponderada
+% ↓
+% ideal positivo
+% ↓
+% ideal negativo
+% ↓
+% distâncias
+% ↓
+% coeficiente de proximidade
+
+
+% ------------------------------------------------------------
+% TOPSIS
+% ------------------------------------------------------------
+%
+% Fórmula candidata, somente se houver espaço:
+%
+% C_i = S_i^- / (S_i^+ + S_i^-)
+%
+% ------------------------------------------------------------
+
+% \begin{equation}
+% C_i =
+% \frac{S_i^-}
+% {S_i^+ + S_i^-}.
+% \end{equation}
+
+
+\textit{Sensibilidade e robustez.}
+
+TO\_BE\_FILLED.
+
+% Resumir apenas as verificações efetivamente executadas:
+%
+% - cenários;
+% - Pareto;
+% - perturbação de pesos;
+% - leave-one-criterion-out;
+% - normalização alternativa;
+% - leave-one-alternative-out;
+% - robustez.
+%
+% Não é necessário listar todo o grid de análises.
+
+
+\textit{Ferramentas computacionais.}
+
+As análises estatísticas e multicritério foram desenvolvidas em R.
+
+% Acrescentar futuramente somente ferramentas realmente usadas.
+%
+% Exemplo:
+%
+% "A execução foi organizada de forma reproduzível com ..."
+%
+% Não afirmar uso de Docker, renv, targets etc. até que
+% tenham sido efetivamente empregados no projeto.
+
+
+% ============================================================
+% 3. RESULTADOS E DISCUSSÃO
+% ============================================================
+
+\section{Resultados e Discussão}
+
+% ------------------------------------------------------------
+% ORIENTAÇÃO OFICIAL DA PROFESSORA
+%
+% Inserir tabelas e/ou gráficos.
+%
+% É permitido criar subtítulos.
+%
+% Não apenas descrever gráficos:
+% INTERPRETAR os resultados.
+%
+% ------------------------------------------------------------
+
+
+\textit{Auditoria e estrutura dos dados.}
+
+TO\_BE\_FILLED.
+
+% Apresentar apenas inconsistências que realmente afetem:
+%
+% - qualidade da base;
+% - critérios;
+% - interpretação;
+% - conclusão.
+
+
+\textit{Pesos dos critérios.}
+
+TO\_BE\_FILLED.
+
+% Informar:
+%
+% - principais pesos CRITIC;
+% - interpretação correta;
+% - possíveis concentrações.
+%
+% Não chamar peso CRITIC de importância técnica absoluta.
+
+
+\textit{Ranking multicritério.}
+
+TO\_BE\_FILLED.
+
+% Apresentar futuramente:
+%
+% TOP 1
+% TOP 2
+% TOP 3
+% coeficientes
+% gap
+% conformidade
+
+
+\textit{Pareto e robustez.}
+
+TO\_BE\_FILLED.
+
+% Integrar:
+%
+% - status Pareto;
+% - estabilidade do vencedor;
+% - estabilidade do top 3;
+% - principais alterações nos cenários;
+% - sensibilidade.
+%
+% Não escrever frequência simulada como probabilidade real.
+
+
+% ============================================================
+% FIGURA — EXEMPLO ESTRUTURAL
+% ============================================================
+%
+% Inserir somente se a figura tiver alto valor informativo.
+%
+% A figura deverá ser gerada pelo pipeline em R.
+%
+% Possíveis candidatas:
+%
+% - ranking TOPSIS;
+% - robustez;
+% - comparação do top 3.
+%
+% ============================================================
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[
+%         width=0.95\columnwidth
+%     ]{figures/ranking_topsis.pdf}
+%
+%     \caption{
+%         Coeficientes TOPSIS dos fluidos avaliados.
+%     }
+%
+%     \label{fig:ranking_topsis}
+% \end{figure}
+
+
+% ============================================================
+% TABELA — EXEMPLO ESTRUTURAL
+% ============================================================
+%
+% A tabela final deve ser compacta.
+%
+% Um possível formato futuro:
+%
+% fluido | TOPSIS | posição | conformidade
+%
+% Só usar quando existirem resultados reais.
+%
+% ============================================================
+
+% \begin{table}[H]
+%     \centering
+%
+%     \caption{
+%         Classificação multicritério dos fluidos.
+%     }
+%
+%     \label{tab:ranking}
+%
+%     \begin{tabular}{lccc}
+%         \toprule
+%         Fluido & TOPSIS & Rank & Status \\
+%         \midrule
+%         TO\_BE\_FILLED & & & \\
+%         \bottomrule
+%     \end{tabular}
+%
+%     \tabelanota{
+%         Valores apresentados apenas após a execução oficial.
+%     }
+%
+% \end{table}
+
+
+% ============================================================
+% 4. CONCLUSÕES
+% ============================================================
+
+\section{Conclusões}
+
+% ------------------------------------------------------------
+% ORIENTAÇÃO OFICIAL:
+% inserir os principais achados.
+%
+% A conclusão deve responder diretamente ao objetivo.
+% ------------------------------------------------------------
+
+TO\_BE\_FILLED.
+
+% A conclusão final deverá considerar simultaneamente:
+%
+% ranking principal
+% +
+% gap
+% +
+% conformidade
+% +
+% cenários
+% +
+% Pareto
+% +
+% sensibilidade
+% +
+% robustez
+%
+%
+% Não escrever antecipadamente:
+%
+% "O fluido X é o melhor."
+%
+%
+% A redação dependerá dos resultados reais.
+%
+% Se não houver vencedor robusto, declarar explicitamente.
+
+
+% ============================================================
+% 5. REFERÊNCIAS
+% ============================================================
+
+\section{Referências}
+
+% ------------------------------------------------------------
+% ORIENTAÇÃO OFICIAL DA PROFESSORA
+%
+% - referências citadas no texto por números arábicos
+%   entre parênteses;
+% - lista bibliográfica segundo as normas da ABNT.
+%
+% Não inventar referências.
+%
+% Nesta fase documental, nenhuma referência será incluída
+% apenas como placeholder bibliográfico.
+% ------------------------------------------------------------
+
+\begin{enumerate}[
+    label=\arabic*.,
+    leftmargin=*,
+    itemsep=2pt
+]
+
+    % Exemplos futuros:
+    %
+    % \item Referência original do método CRITIC.
+    %
+    % \item Referência original ou metodológica do TOPSIS.
+    %
+    % \item Referência técnica relacionada aos fluidos
+    %       de corte, quando efetivamente utilizada.
+
+\end{enumerate}
+
+
+% ============================================================
+% FIM DAS DUAS COLUNAS
+% ============================================================
+
+\end{multicols}
+
+
+% ============================================================
+% CONTROLE FINAL — NÃO APARECE NO PDF
+% ============================================================
+%
+% Antes da entrega:
+%
+% [ ] máximo 4 páginas incluindo referências
+% [ ] título correto
+% [ ] nomes completos
+% [ ] afiliação correta
+% [ ] e-mail correto
+% [ ] logos oficiais
+% [ ] resumo <= 1200 caracteres com espaço
+% [ ] 3 a 5 palavras-chave
+% [ ] Introdução objetiva
+% [ ] objetivo explícito
+% [ ] método reproduzível
+% [ ] R mencionado
+% [ ] resultados oficiais
+% [ ] nenhum resultado preliminar
+% [ ] figuras corretas
+% [ ] tabelas corretas
+% [ ] discussão interpretativa
+% [ ] conclusão responde ao objetivo
+% [ ] limitações essenciais preservadas
+% [ ] referências reais
+% [ ] citações numéricas
+% [ ] referências em ABNT
+% [ ] PDF conferido visualmente
+%
+% ============================================================
+
 \end{document}

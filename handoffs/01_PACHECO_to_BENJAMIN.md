@@ -1,15 +1,18 @@
-# Handoff Pacheco → Benjamin
+# 01_PACHECO_to_BENJAMIN.md — Handoff da Auditoria e Base Canônica para ADA e Critérios
 
-## Entregáveis aprovados
+## 1. Responsável que entrega
 
-## Arquivos oficiais
+**Pacheco**
 
-## Decisões importantes
+---
 
-## Pendências
+## 2. Responsável que recebe
 
-## O que não deve ser alterado silenciosamente
+**Benjamin**
 
-## Próxima etapa
+---
 
-## Data / aprovação
+## 3. Status do handoff
+
+```text
+STATUS = DRAFT

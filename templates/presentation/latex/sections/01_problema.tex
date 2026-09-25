@@ -1,1 +1,193 @@
-% 01_problema
+% ============================================================
+% 01_PROBLEMA.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Apresentar o problema de decisão que motiva o projeto.
+%
+% Este arquivo constitui apenas a BASE da apresentação.
+% Os integrantes deverão posteriormente complementar a
+% contextualização com as referências e informações técnicas
+% efetivamente utilizadas no trabalho.
+%
+% Não inserir resultados numéricos nesta seção.
+% ============================================================
+
+
+% ============================================================
+% FRAME 1 — PROBLEMA DE DECISÃO
+% ============================================================
+
+\begin{frame}{Problema de decisão}
+
+    \begin{block}{Pergunta central}
+        Como classificar os fluidos de corte de forma
+        \textbf{transparente, reprodutível e tecnicamente justificável},
+        considerando simultaneamente múltiplos critérios de avaliação?
+    \end{block}
+
+    \vspace{0.3cm}
+
+    A comparação entre alternativas não deve depender de uma única
+    variável, pois diferentes fluidos podem apresentar vantagens e
+    desvantagens em diferentes dimensões.
+
+    \vspace{0.3cm}
+
+    \begin{itemize}
+        \item uma alternativa pode apresentar bom desempenho em um critério
+              e desempenho inferior em outro;
+
+        \item critérios podem possuir unidades, escalas e direções distintas;
+
+        \item algumas informações podem representar desempenho, enquanto
+              outras podem representar restrições ou conformidade técnica;
+
+        \item inconsistências ou problemas na base de dados podem afetar
+              diretamente qualquer classificação posterior.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 2 — POR QUE MULTICRITÉRIO?
+% ============================================================
+
+\begin{frame}{Por que uma abordagem multicritério?}
+
+    \begin{columns}[T]
+
+        % ----------------------------------------------------
+        % COLUNA ESQUERDA
+        % ----------------------------------------------------
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Problema}
+                Avaliar cada variável isoladamente pode produzir
+                conclusões diferentes para a mesma alternativa.
+            \end{block}
+
+            \vspace{0.2cm}
+
+            Portanto, é necessário considerar conjuntamente:
+
+            \begin{itemize}
+                \item desempenho;
+                \item qualidade;
+                \item aspectos técnicos;
+                \item aspectos econômicos, quando disponíveis;
+                \item estabilidade entre condições;
+                \item conformidade.
+            \end{itemize}
+
+        \end{column}
+
+
+        % ----------------------------------------------------
+        % COLUNA DIREITA
+        % ----------------------------------------------------
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Necessidade}
+                A classificação deve combinar os critérios sem ocultar
+                os compromissos existentes entre eles.
+            \end{block}
+
+            \vspace{0.2cm}
+
+            O projeto deverá permitir:
+
+            \begin{itemize}
+                \item identificar redundâncias;
+                \item ponderar critérios de forma reproduzível;
+                \item comparar as alternativas;
+                \item verificar dominância;
+                \item avaliar sensibilidade;
+                \item avaliar robustez do ranking.
+            \end{itemize}
+
+        \end{column}
+
+    \end{columns}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 3 — PRINCÍPIO DO PROJETO
+% ============================================================
+
+\begin{frame}{Princípio do projeto}
+
+    \begin{center}
+
+        \textbf{Não classificar antes de compreender e validar os dados.}
+
+    \end{center}
+
+    \vspace{0.4cm}
+
+    \begin{block}{Sequência lógica}
+        \centering
+        Dados
+        $\rightarrow$
+        Auditoria
+        $\rightarrow$
+        Critérios
+        $\rightarrow$
+        Ponderação
+        $\rightarrow$
+        Classificação
+        $\rightarrow$
+        Robustez
+    \end{block}
+
+    \vspace{0.4cm}
+
+    Assim, o ranking final deverá ser consequência de uma cadeia
+    metodológica rastreável, e não de uma escolha direta baseada
+    apenas em observações isoladas da planilha.
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Importante}
+        Nesta fase de preparação da estrutura, nenhum fluido é definido
+        como superior aos demais. Essa conclusão deverá surgir somente
+        após a execução das análises pelos integrantes.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% MATERIAL EXTERNO
+% ============================================================
+%
+% Caso a professora forneça posteriormente:
+%
+% - definição específica do problema;
+% - texto de contextualização;
+% - requisito técnico;
+% - referência;
+% - imagem;
+%
+% o conteúdo deverá ser incorporado preservando a fonte e
+% sem substituir silenciosamente o material oficial.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% PROBLEM_SECTION_STATUS = BASE_PREPARED
+%
+% Nenhum resultado científico foi produzido nesta etapa.
+%
+% ============================================================

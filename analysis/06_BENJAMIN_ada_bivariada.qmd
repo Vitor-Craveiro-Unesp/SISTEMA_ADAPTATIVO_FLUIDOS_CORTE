@@ -1,20 +1,1113 @@
 ---
-title: "06 BENJAMIN ada bivariada"
-format: html
+title: "06 — Análise Descritiva Bivariada"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Benjamin"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+06_BENJAMIN_ADA_BIVARIADA.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Benjamin
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Investigar relações entre variáveis e condições antes da
+definição formal dos critérios multicritério.
 
-## Validações
+A análise deverá permitir estudar:
 
-## Pendências
+- associação entre variáveis quantitativas;
+- comparação entre condições;
+- comparação entre grupos;
+- possíveis trade-offs;
+- possíveis redundâncias;
+- valores influentes;
+- relações que merecem aprofundamento multivariado.
+
+IMPORTANTE
+
+Esta etapa NÃO deverá:
+
+- definir pesos;
+- calcular CRITIC;
+- calcular TOPSIS;
+- produzir ranking;
+- excluir critérios apenas por correlação;
+- interpretar correlação como causalidade.
+
+Nesta fase:
+
+BIVARIATE_ADA_STATUS = NOT_EXECUTED
+CRITERIA_STATUS = NOT_FINALIZED
+CRITIC_STATUS = NOT_EXECUTED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 06 — ADA Bivariada
+
+**Responsável:** Benjamin
+
+**Status:** `DRAFT`
+
+**Entrada principal:** base canônica aprovada
+
+**Entrada auxiliar:** ADA inicial de Pacheco
+
+**Versão da base:** `TO_BE_FILLED`
+
+**Handoff de entrada:** `handoffs/01_PACHECO_to_BENJAMIN.md`
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é compreender como as variáveis se relacionam entre si e como essas relações podem influenciar a definição dos critérios.
+
+Fluxo:
+
+```text
+base canônica
+↓
+pares de variáveis
+↓
+visualizações
+↓
+medidas de associação
+↓
+comparações por condição
+↓
+trade-offs
+↓
+redundâncias potenciais
+↓
+questões para ADA multivariada
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] base canônica aprovada
+[ ] versão confirmada
+[ ] ADA inicial concluída
+[ ] variáveis constantes conhecidas
+[ ] missing conhecidos
+[ ] unidades conhecidas
+[ ] limitações recebidas de Pacheco
+[ ] handoff lido
+```
+
+
+# 4. Entrada oficial
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+INITIAL_ADA_VERSION = TO_BE_FILLED
+DATA_DICTIONARY_VERSION = TO_BE_FILLED
+```
+
+
+# 5. Não alterar a base
+
+Benjamin deverá utilizar a base recebida.
+
+Se detectar erro de origem:
+
+```text
+detectar
+↓
+registrar
+↓
+retornar para Pacheco
+↓
+corrigir upstream
+↓
+receber nova versão
+```
+
+Não corrigir silenciosamente neste caderno.
+
+
+# 6. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 7. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Poderá incluir:
+#
+# - carregamento de pacotes;
+# - carregamento da base canônica;
+# - funções auxiliares;
+# - parâmetros gráficos;
+# - regras de tratamento de missing.
+#
+# ============================================================
+```
+
+
+# 8. Carregamento da base
+
+```{r}
+# ============================================================
+# CARREGAMENTO DA BASE
+# ============================================================
+#
+# Utilizar exclusivamente a versão aprovada da base canônica.
+#
+# ============================================================
+```
+
+
+# 9. Validação inicial
+
+Confirmar:
+
+```text
+[ ] versão correta
+[ ] dimensões esperadas
+[ ] identificadores válidos
+[ ] tipos coerentes
+[ ] unidades conhecidas
+[ ] missing conhecidos
+[ ] nenhuma duplicata indevida
+```
+
+
+# 10. Variáveis candidatas à análise bivariada
+
+Registrar:
+
+```text
+BIVARIATE_VARIABLES = TO_BE_FILLED
+```
+
+A seleção deve se basear na estrutura dos dados e na ADA inicial.
+
+
+# 11. Variáveis excluídas desta etapa
+
+Campos como:
+
+```text
+identificadores
+linhagem
+metadados
+```
+
+não devem entrar automaticamente na análise de associação.
+
+Registrar:
+
+```text
+NON_ANALYTICAL_COLUMNS = TO_BE_FILLED
+```
+
+
+# 12. Estrutura da análise bivariada
+
+A investigação poderá ser organizada em:
+
+```text
+quantitativa × quantitativa
+quantitativa × categórica
+condição × variável
+fluido × variável
+```
+
+
+# 13. Quantitativa × quantitativa
+
+Para pares numéricos, considerar:
+
+```text
+scatterplots
+correlação
+forma da relação
+valores influentes
+heterogeneidade
+```
+
+
+# 14. Scatterplots
+
+```{r}
+# ============================================================
+# SCATTERPLOTS
+# ============================================================
+#
+# Gerar somente para pares relevantes.
+#
+# Evitar produzir automaticamente centenas de gráficos sem
+# utilidade interpretativa.
+#
+# ============================================================
+```
+
+
+# 15. Relação linear
+
+Avaliar visualmente se a relação parece aproximadamente linear antes de interpretar Pearson como resumo principal.
+
+
+# 16. Relação monotônica
+
+Quando houver relação monotônica não necessariamente linear, Spearman poderá ser informativo.
+
+
+# 17. Correlação de Pearson
+
+Quando apropriado:
+
+\[
+r_{XY}
+=
+\frac{
+\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})
+}{
+\sqrt{
+\sum_{i=1}^{n}(x_i-\bar{x})^2
+\sum_{i=1}^{n}(y_i-\bar{y})^2
+}
+}
+\]
+
+
+# 18. Interpretação de Pearson
+
+Pearson resume:
+
+```text
+associação linear
+```
+
+Não:
+
+```text
+causalidade
+```
+
+
+# 19. Correlação de Spearman
+
+Quando pertinente, utilizar como medida de associação monotônica baseada em postos.
+
+Registrar:
+
+```text
+SPEARMAN_STATUS = TO_BE_FILLED
+```
+
+
+# 20. Método principal
+
+Registrar futuramente:
+
+```text
+PRIMARY_CORRELATION_METHOD = TO_BE_FILLED
+```
+
+A escolha deverá ser justificada.
+
+
+# 21. Não escolher correlação pelo resultado
+
+Não utilizar Pearson ou Spearman apenas porque um deles produz associação mais forte.
+
+A escolha deve refletir:
+
+```text
+estrutura da relação
+escala
+valores extremos
+objetivo da análise
+```
+
+
+# 22. Tamanho efetivo da amostra
+
+Para cada correlação relevante, registrar ou considerar:
+
+```text
+n efetivo
+```
+
+Especialmente importante quando houver missing.
+
+
+# 23. Missing em pares
+
+Registrar:
+
+```text
+PAIRWISE_MISSING_RULE = TO_BE_FILLED
+```
+
+A estratégia deverá ser explícita.
+
+
+# 24. Matriz de correlação
+
+Quando útil:
+
+```{r}
+# ============================================================
+# MATRIZ DE CORRELAÇÃO
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Registrar:
+#
+# - método;
+# - variáveis;
+# - regra de missing;
+# - tamanho amostral quando relevante.
+#
+# ============================================================
+```
+
+
+# 25. Resultado da matriz
+
+Registrar futuramente:
+
+```text
+CORRELATION_MATRIX_STATUS = TO_BE_FILLED
+```
+
+
+# 26. Heatmap de correlação
+
+Pode ser utilizado se melhorar a leitura da estrutura global.
+
+Não utilizar apenas como elemento visual decorativo.
+
+
+# 27. Pares com associação elevada
+
+Registrar:
+
+```text
+HIGH_ASSOCIATION_PAIRS = TO_BE_FILLED
+```
+
+O limiar, se utilizado, deverá ser documentado.
+
+
+# 28. Não excluir automaticamente
+
+Uma correlação elevada não significa automaticamente que uma variável deve ser excluída.
+
+
+# 29. Evidências para redundância
+
+A avaliação deve considerar:
+
+```text
+correlação
++
+significado técnico
++
+forma de cálculo
++
+origem das variáveis
+```
+
+
+# 30. Relação matemática entre variáveis
+
+Se uma variável for função direta de outra, isso pode indicar redundância estrutural mesmo sem necessidade de correlação.
+
+
+# 31. Total e componentes
+
+Se houver:
+
+\[
+T = X_1 + X_2 + \cdots + X_k
+\]
+
+o uso simultâneo de total e componentes deverá ser avaliado com atenção.
+
+
+# 32. Correlação positiva
+
+Correlação positiva alta pode indicar informação semelhante.
+
+Mas a interpretação depende do significado técnico.
+
+
+# 33. Correlação negativa
+
+Correlação negativa pode representar:
+
+```text
+trade-off
+```
+
+e não necessariamente redundância.
+
+
+# 34. Importância para o CRITIC
+
+Na formulação padrão do CRITIC:
+
+\[
+1-r_{jk}
+\]
+
+correlações negativas aumentam o termo de conflito.
+
+Essa consequência deverá ser lembrada posteriormente.
+
+
+# 35. Não usar módulo silenciosamente
+
+Não substituir:
+
+\[
+1-r_{jk}
+\]
+
+por:
+
+\[
+1-|r_{jk}|
+\]
+
+sem decisão metodológica explícita.
+
+
+# 36. Valores influentes
+
+Um único ponto pode alterar fortemente a correlação.
+
+Registrar:
+
+```text
+INFLUENTIAL_POINTS = TO_BE_FILLED
+```
+
+
+# 37. Investigação dos pontos influentes
+
+Para cada caso:
+
+```text
+confirmar valor
+↓
+verificar origem
+↓
+avaliar efeito
+↓
+documentar
+```
+
+
+# 38. Não remover automaticamente
+
+Ponto influente não deve ser removido apenas por afetar a correlação.
+
+
+# 39. Sensibilidade exploratória da correlação
+
+Quando necessário, poderá ser comparada a associação:
+
+```text
+com todos os pontos
+```
+
+e:
+
+```text
+sem ponto influente
+```
+
+apenas como diagnóstico.
+
+
+# 40. Quantitativa × categórica
+
+Quando houver variável categórica ou condição, investigar a distribuição da variável quantitativa entre grupos.
+
+
+# 41. Gráficos por grupo
+
+Poderão ser utilizados:
+
+```text
+boxplots
+dotplots
+strip plots
+resumos por grupo
+```
+
+
+# 42. Comparação entre condições
+
+```{r}
+# ============================================================
+# COMPARAÇÃO ENTRE CONDIÇÕES
+# ============================================================
+#
+# Avaliar se as mesmas variáveis apresentam comportamento
+# distinto entre condições experimentais.
+#
+# ============================================================
+```
+
+
+# 43. Perguntas sobre condições
+
+Investigar:
+
+```text
+a ordem dos fluidos muda?
+a magnitude muda?
+a dispersão muda?
+há inversões?
+há instabilidade?
+```
+
+
+# 44. Inversão de desempenho
+
+Registrar:
+
+```text
+RANK_ORDER_REVERSALS_BY_CONDITION = TO_BE_FILLED
+```
+
+Aqui o termo refere-se apenas à ordem exploratória por variável, não ao rank reversal final do TOPSIS.
+
+
+# 45. Estabilidade entre condições
+
+Registrar:
+
+```text
+CONDITION_STABILITY_FINDINGS = TO_BE_FILLED
+```
+
+
+# 46. Agregação futura
+
+A ADA bivariada deve fornecer evidências para Benjamin decidir depois se uma variável deve ser:
+
+```text
+mantida por condição
+agregada
+transformada
+representada por estabilidade
+```
+
+
+# 47. Não agregar ainda sem justificativa
+
+A média não deve ser escolhida automaticamente.
+
+
+# 48. Comparação entre fluidos
+
+Para uma mesma variável, observar:
+
+```text
+proximidade
+diferenças
+outliers
+trocas de ordem
+```
+
+
+# 49. Ranking univariado exploratório
+
+Pode ser utilizado apenas como diagnóstico.
+
+Registrar:
+
+```text
+UNIVARIATE_ORDERING_STATUS = EXPLORATORY
+```
+
+
+# 50. Trade-offs
+
+Um trade-off ocorre quando uma alternativa melhora em um aspecto e piora em outro.
+
+Registrar:
+
+```text
+POTENTIAL_TRADE_OFFS = TO_BE_FILLED
+```
+
+
+# 51. Visualização de trade-off
+
+Scatterplots podem ser especialmente úteis para mostrar relações conflitantes.
+
+
+# 52. Trade-off não é erro
+
+Relação conflitante entre critérios pode ser parte real do problema multicritério.
+
+
+# 53. Variáveis constantes
+
+Retomar informações recebidas de Pacheco:
+
+```text
+CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+
+# 54. Correlação com variável constante
+
+A correlação pode ser indefinida quando:
+
+\[
+\operatorname{Var}(X)=0
+\]
+
+Esses casos deverão ser detectados antes da matriz.
+
+
+# 55. Variáveis quase constantes
+
+Registrar:
+
+```text
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+
+# 56. Missing e correlação
+
+Se uma variável tiver missing elevado, a associação observada pode depender de um subconjunto pequeno.
+
+Registrar:
+
+```text
+LOW_EFFECTIVE_N_PAIRS = TO_BE_FILLED
+```
+
+
+# 57. Escalas diferentes
+
+Correlação é invariável a mudanças lineares de escala, mas gráficos podem exigir padronização visual adequada.
+
+
+# 58. Não normalizar apenas para calcular correlação
+
+A normalização multicritério ainda não foi definida.
+
+A análise de correlação pode trabalhar com as variáveis em sua escala original, conforme adequado.
+
+
+# 59. Correlação de critérios derivados
+
+Se duas variáveis forem derivadas dos mesmos componentes, a associação pode decorrer da própria construção matemática.
+
+Documentar isso.
+
+
+# 60. Causalidade
+
+É proibido concluir:
+
+```text
+X aumenta Y
+```
+
+apenas porque:
+
+```text
+cor(X,Y) > 0
+```
+
+
+# 61. Linguagem adequada
+
+Preferir:
+
+```text
+associação positiva
+associação negativa
+relação aparente
+padrão monotônico
+```
+
+em vez de:
+
+```text
+efeito
+causa
+determina
+```
+
+
+# 62. Pequeno n
+
+Se o número de alternativas for pequeno, correlações podem ser instáveis.
+
+Registrar:
+
+```text
+SMALL_N_WARNING = TO_BE_FILLED
+```
+
+
+# 63. Intervalos de confiança
+
+Poderão ser considerados quando fizerem sentido, mas não são obrigatórios nesta base.
+
+A decisão ficará com Benjamin durante a implementação.
+
+
+# 64. Testes de hipótese
+
+A ADA bivariada tem objetivo principalmente exploratório.
+
+Não transformar automaticamente todas as relações em testes formais.
+
+
+# 65. Significância versus relevância
+
+Mesmo se testes forem utilizados:
+
+```text
+p-valor
+≠
+importância prática
+```
+
+
+# 66. Multiplicidade
+
+Se muitos testes forem executados, considerar o problema de multiplicidade.
+
+A estratégia deverá ser definida apenas se os testes forem realmente necessários.
+
+
+# 67. Tabela de associações
+
+Estrutura futura:
+
+| Variável A | Variável B | Método | Associação | n | Interpretação |
+|---|---|---|---:|---:|---|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 68. Tabela de redundâncias potenciais
+
+| Variável A | Variável B | Evidência estatística | Evidência técnica | Status |
+|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 69. Status de redundância
+
+Possíveis estados:
+
+```text
+POTENTIALLY_REDUNDANT
+NOT_REDUNDANT
+REQUIRES_REVIEW
+```
+
+
+# 70. Decisão final de redundância
+
+Não será tomada apenas neste caderno.
+
+A decisão poderá ser consolidada na etapa de critérios.
+
+
+# 71. Relações que merecem ADA multivariada
+
+Registrar:
+
+```text
+MULTIVARIATE_QUESTIONS = TO_BE_FILLED
+```
+
+
+# 72. Grupos de variáveis
+
+Se houver conjuntos de variáveis fortemente relacionados:
+
+```text
+VARIABLE_GROUPS = TO_BE_FILLED
+```
+
+Esses grupos poderão ser investigados por PCA ou outras técnicas.
+
+
+# 73. Figuras candidatas
+
+Exemplos:
+
+```text
+scatterplots
+heatmap de correlação
+boxplots por condição
+gráficos de trade-off
+```
+
+
+# 74. Código das figuras
+
+```{r}
+# ============================================================
+# FIGURAS BIVARIADAS
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Priorizar visualizações com função interpretativa clara.
+#
+# ============================================================
+```
+
+
+# 75. Tabelas candidatas
+
+Poderão incluir:
+
+```text
+matriz de correlação
+pares mais associados
+trade-offs
+comparações entre condições
+```
+
+
+# 76. Resultados exploratórios
+
+Registrar:
+
+```text
+BIVARIATE_FINDING_1 = TO_BE_FILLED
+BIVARIATE_FINDING_2 = TO_BE_FILLED
+BIVARIATE_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 77. Interpretação
+
+Para cada resultado:
+
+```text
+o que aparece?
+↓
+isso indica redundância, conflito ou apenas associação?
+↓
+qual análise adicional é necessária?
+```
+
+
+# 78. Limitações
+
+Registrar:
+
+```text
+BIVARIATE_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 79. Possíveis limitações
+
+Somente se confirmadas:
+
+```text
+n pequeno
+missing
+pontos influentes
+relações não lineares
+condições incompletas
+baixa variabilidade
+```
+
+
+# 80. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+Caso a escolha do método principal de correlação tenha impacto relevante, poderá ser documentada formalmente.
+
+
+# 81. Não fechar critérios ainda
+
+A lista final de critérios permanece:
+
+```text
+CRITERIA_STATUS = NOT_FINALIZED
+```
+
+
+# 82. O que esta etapa entrega
+
+Entrega:
+
+```text
+associações
++
+trade-offs
++
+redundâncias potenciais
++
+efeitos de condição
++
+questões multivariadas
+```
+
+
+# 83. O que esta etapa não entrega
+
+Não entrega:
+
+```text
+critérios finais
+matriz de decisão final
+normalização final
+CRITIC
+TOPSIS
+```
+
+
+# 84. Próxima etapa
+
+A próxima análise será:
+
+```text
+analysis/07_BENJAMIN_ada_multivariada.qmd
+```
+
+
+# 85. Entrada para ADA multivariada
+
+Deverá fornecer:
+
+```text
+variáveis candidatas
+pares associados
+grupos de variáveis
+trade-offs
+pontos influentes
+limitações
+```
+
+
+# 86. Handoff interno
+
+Registrar:
+
+```text
+HIGH_ASSOCIATION_PAIRS = TO_BE_FILLED
+POTENTIAL_REDUNDANCIES = TO_BE_FILLED
+POTENTIAL_TRADE_OFFS = TO_BE_FILLED
+MULTIVARIATE_QUESTIONS = TO_BE_FILLED
+```
+
+
+# 87. Validação antes de encerrar
+
+```text
+[ ] base correta utilizada
+[ ] variáveis corretas utilizadas
+[ ] método de correlação registrado
+[ ] missing tratado de forma explícita
+[ ] pares relevantes visualizados
+[ ] valores influentes investigados
+[ ] correlações não interpretadas causalmente
+[ ] trade-offs registrados
+[ ] redundâncias apenas classificadas como potenciais
+[ ] limitações registradas
+```
+
+
+# 88. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 89. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+BIVARIATE_ADA_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+CRITERIA_STATUS = NOT_FINALIZED
+
+CRITIC_STATUS = NOT_EXECUTED
+```
+
+
+# 90. Princípio final
+
+> A ADA bivariada deve revelar como as variáveis se relacionam, mas não transformar associação em causalidade nem correlação em decisão automática de exclusão. Seu papel é fornecer evidências para a análise multivariada e para a definição posterior dos critérios.

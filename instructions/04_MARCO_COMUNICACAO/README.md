@@ -1,18 +1,58 @@
-# Marco — Integração científica, relatório e apresentação
+# ETAPA 4 — Integração, Relatório Técnico e Apresentação
 
-## Entradas
-- relatórios Pacheco, Benjamin e Vitor
-- tabelas e figuras em `results/`
-- template oficial
-- layout visual de referência
+## 1. Responsável principal
 
-## Procedimentos
-1. Integrar capítulos sem recalcular resultados.
-2. Conferir números com `results/`.
-3. Padronizar LaTeX, legendas e referências.
-4. Montar apresentação seguindo o layout.
-5. Registrar limitações e transparência.
-6. Produzir relatório completo v1 e apresentação v1.
+**Marco**
 
-## Regra
-Se houver divergência numérica, devolver à etapa que gerou o resultado. Não corrigir manualmente no texto.
+### Revisão
+
+A etapa será revisada por:
+
+- Pacheco;
+- Benjamin;
+- Vitor;
+- Marco.
+
+A revisão coletiva é obrigatória antes da entrega final.
+
+---
+
+## 2. Objetivo da etapa
+
+Integrar os resultados científicos produzidos nas etapas anteriores em uma
+comunicação final:
+
+- tecnicamente correta;
+- estatisticamente defensável;
+- reproduzível;
+- clara;
+- visualmente consistente;
+- adequada para relatório acadêmico;
+- adequada para apresentação oral.
+
+Marco não recebe a responsabilidade de refazer as análises.
+
+Sua função principal é transformar os resultados já validados em uma narrativa
+científica coerente.
+
+---
+
+## 3. Princípio fundamental
+
+A etapa de comunicação não pode alterar os resultados científicos para
+melhorar a narrativa.
+
+O fluxo correto é:
+
+```text
+resultados validados
+↓
+interpretação aprovada
+↓
+tabelas e figuras
+↓
+texto científico
+↓
+relatório final
+↓
+apresentação

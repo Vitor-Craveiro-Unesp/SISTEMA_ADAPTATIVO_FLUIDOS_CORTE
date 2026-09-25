@@ -1,20 +1,1307 @@
 ---
-title: "04 PACHECO base canonica"
-format: html
+title: "04 — Construção da Base Canônica"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Pacheco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+04_PACHECO_BASE_CANONICA.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Pacheco
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Construir e validar a BASE CANÔNICA do projeto a partir da
+fonte original, da auditoria e das regras de reconciliação
+aprovadas.
 
-## Validações
+A base canônica será a fonte oficial utilizada pelas etapas
+analíticas posteriores.
 
-## Pendências
+Ela deverá ser:
+
+- reproduzível;
+- rastreável;
+- documentada;
+- versionada;
+- coerente;
+- construída por código.
+
+IMPORTANTE
+
+A base canônica NÃO deverá ser criada manualmente em Excel.
+
+Fluxo esperado:
+
+dados brutos
+↓
+auditoria
+↓
+reconciliação
+↓
+transformações aprovadas
+↓
+base canônica
+↓
+validação
+↓
+aprovação
+↓
+ADA inicial
+
+Nesta fase:
+
+CANONICAL_DATA_STATUS = NOT_CREATED
+CODE_STATUS = NOT_IMPLEMENTED
+RESULTS_STATUS = NOT_GENERATED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 04 — Construção da Base Canônica
+
+**Responsável:** Pacheco
+
+**Status:** `DRAFT`
+
+**Entrada principal:** `analysis/03_PACHECO_reconciliacao.qmd`
+
+**Versão da auditoria:** `TO_BE_FILLED`
+
+**Versão da reconciliação:** `TO_BE_FILLED`
+
+**Versão da base canônica:** `TO_BE_FILLED`
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é gerar a versão oficial dos dados que servirá como entrada para as análises posteriores.
+
+Fluxo:
+
+```text
+fonte original
++
+regras de reconciliação
++
+decisões aprovadas
+↓
+transformações reproduzíveis
+↓
+base canônica
+↓
+validação estrutural
+↓
+validação de conteúdo
+↓
+versionamento
+↓
+aprovação
+```
+
+
+# 3. Definição de base canônica
+
+Neste projeto, a base canônica representa:
+
+```text
+a versão oficial dos dados tratados
+utilizada como fonte das análises posteriores
+```
+
+Ela deve ser a referência para:
+
+```text
+ADA inicial
+ADA bivariada
+ADA multivariada
+critérios
+conformidade
+CRITIC
+TOPSIS
+robustez
+```
+
+
+# 4. Pré-condição
+
+Antes da construção:
+
+```text
+[ ] inventário concluído
+[ ] auditoria concluída
+[ ] reconciliação concluída
+[ ] regras de transformação conhecidas
+[ ] identificadores reconciliados
+[ ] unidades reconciliadas
+[ ] missing classificados
+[ ] problemas bloqueantes resolvidos ou explicitados
+[ ] decisões metodológicas registradas quando necessárias
+```
+
+
+# 5. Entradas
+
+Registrar futuramente:
+
+```text
+RAW_FILE = TO_BE_FILLED
+AUDIT_VERSION = TO_BE_FILLED
+RECONCILIATION_VERSION = TO_BE_FILLED
+DECISIONS_VERSION = TO_BE_FILLED
+```
+
+
+# 6. Saída esperada
+
+Registrar futuramente:
+
+```text
+CANONICAL_DATA_PATH = TO_BE_FILLED
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+CANONICAL_DATA_FORMAT = TO_BE_FILLED
+```
+
+
+# 7. Regra fundamental
+
+A base canônica deve ser construída por código.
+
+Evitar:
+
+```text
+abrir planilha
+↓
+copiar
+↓
+colar
+↓
+corrigir manualmente
+↓
+salvar
+```
+
+Preferir:
+
+```text
+ler fonte
+↓
+aplicar regras documentadas
+↓
+validar
+↓
+exportar
+```
+
+
+# 8. Fonte original
+
+A fonte original permanece em:
+
+```text
+data/raw/
+```
+
+e não deve ser alterada.
+
+
+# 9. Destino da base canônica
+
+A estrutura do projeto prevê:
+
+```text
+data/processed/
+```
+
+para dados processados finais.
+
+O caminho real deverá ser definido pelos integrantes durante a implementação.
+
+
+# 10. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 11. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Poderá incluir:
+#
+# - carregamento da fonte;
+# - carregamento das regras de reconciliação;
+# - funções auxiliares;
+# - caminhos relativos;
+# - configurações de validação.
+#
+# ============================================================
+```
+
+
+# 12. Leitura da fonte
+
+```{r}
+# ============================================================
+# LEITURA DOS DADOS
+# ============================================================
+#
+# Ler a fonte original de forma reproduzível.
+#
+# Não depender de edição manual prévia.
+#
+# ============================================================
+```
+
+
+# 13. Carregamento das regras de reconciliação
+
+```{r}
+# ============================================================
+# REGRAS DE RECONCILIAÇÃO
+# ============================================================
+#
+# Aplicar somente regras aprovadas e documentadas.
+#
+# Nenhuma exceção deve ser criada silenciosamente.
+#
+# ============================================================
+```
+
+
+# 14. Identificadores canônicos
+
+Definir identificadores consistentes para as alternativas.
+
+Registrar:
+
+```text
+CANONICAL_FLUID_ID = TO_BE_FILLED
+```
+
+
+# 15. Mapeamento de identificadores
+
+Tabela futura:
+
+| Identificador original | Identificador canônico | Regra | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 16. Regra de unicidade
+
+A chave deverá ser única na unidade de análise correta.
+
+Exemplo conceitual:
+
+```text
+fluid_id
++
+condition_id
++
+replicate_id
+```
+
+quando necessário.
+
+
+# 17. Chaves
+
+Registrar futuramente:
+
+```text
+PRIMARY_KEY = TO_BE_FILLED
+SECONDARY_KEYS = TO_BE_FILLED
+```
+
+
+# 18. Estrutura long versus wide
+
+A forma da base deverá ser escolhida conforme as necessidades analíticas.
+
+Possibilidades:
+
+```text
+long
+wide
+```
+
+A estrutura definitiva deverá ser documentada.
+
+Registrar:
+
+```text
+CANONICAL_STRUCTURE = TO_BE_FILLED
+```
+
+
+# 19. Preservação das condições
+
+Quando existirem condições experimentais distintas:
+
+```text
+preservar inicialmente
+```
+
+Não reduzir automaticamente a médias.
+
+
+# 20. Variáveis canônicas
+
+Cada variável deverá possuir:
+
+```text
+nome canônico
+descrição
+tipo
+unidade
+fonte
+regra de transformação
+status
+```
+
+
+# 21. Convenção de nomes
+
+Os integrantes deverão escolher uma convenção consistente.
+
+Exemplos possíveis:
+
+```text
+snake_case
+nomes sem espaço
+nomes descritivos
+```
+
+A convenção real deverá ser definida durante a implementação.
+
+```text
+NAMING_CONVENTION = TO_BE_FILLED
+```
+
+
+# 22. Dicionário de dados
+
+A base canônica deverá possuir um dicionário associado.
+
+Estrutura esperada:
+
+| Variable | Original name | Description | Type | Unit | Source | Transformation |
+|---|---|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |  |  |
+
+
+# 23. Tipos canônicos
+
+Cada variável deverá possuir tipo consistente.
+
+Exemplos:
+
+```text
+numeric
+integer
+character
+factor
+logical
+date
+```
+
+Registrar:
+
+```text
+TYPE_CONVERSION_STATUS = TO_BE_FILLED
+```
+
+
+# 24. Conversões de tipo
+
+Somente realizar conversões aprovadas.
+
+Exemplo:
+
+```text
+"1.23"
+↓
+1.23
+```
+
+apenas quando o significado estiver confirmado.
+
+
+# 25. Unidades canônicas
+
+Registrar:
+
+```text
+CANONICAL_UNITS = TO_BE_FILLED
+```
+
+Todas as variáveis equivalentes deverão estar na mesma unidade quando necessário para comparação.
+
+
+# 26. Conversões de unidade
+
+Para cada conversão:
+
+```text
+valor original
++
+unidade original
+↓
+regra
+↓
+valor canônico
++
+unidade canônica
+```
+
+
+# 27. Precisão
+
+Manter a maior precisão disponível para cálculo.
+
+Não arredondar a base canônica apenas para facilitar visualização.
+
+
+# 28. Arredondamento
+
+Regra:
+
+```text
+BASE_CANONICA = precisão completa
+RELATÓRIO/SLIDE = arredondamento de comunicação
+```
+
+
+# 29. Missing
+
+Valores ausentes devem permanecer coerentes com a classificação feita na reconciliação.
+
+Registrar:
+
+```text
+MISSING_RULES_APPLIED = TO_BE_FILLED
+```
+
+
+# 30. Não converter NA para zero
+
+Regra permanente:
+
+```text
+NA != 0
+```
+
+salvo decisão explicitamente aprovada.
+
+
+# 31. Não aplicável
+
+Quando houver diferença entre:
+
+```text
+missing
+```
+
+e:
+
+```text
+não aplicável
+```
+
+ela deverá ser preservada ou documentada.
+
+
+# 32. Variáveis derivadas
+
+Toda variável derivada deve possuir fórmula.
+
+Exemplo conceitual:
+
+\[
+Z=f(X_1,X_2,\ldots,X_p)
+\]
+
+Registrar:
+
+```text
+DERIVED_VARIABLES = TO_BE_FILLED
+```
+
+
+# 33. Fonte da variável derivada
+
+Para cada variável derivada:
+
+```text
+nome
+componentes
+fórmula
+unidade
+justificativa
+```
+
+
+# 34. Totais
+
+Quando houver total:
+
+\[
+T=\sum_{j=1}^{k}x_j
+\]
+
+o cálculo deverá ser realizado em R a partir dos componentes aprovados.
+
+
+# 35. Médias
+
+Quando houver média:
+
+\[
+\bar{x}
+=
+\frac{1}{k}\sum_{j=1}^{k}x_j
+\]
+
+documentar claramente quais componentes participam.
+
+
+# 36. Variáveis econômicas
+
+Somente incorporar informações econômicas validadas ou claramente identificadas quanto ao status.
+
+Registrar:
+
+```text
+ECONOMIC_VARIABLE_STATUS = TO_BE_FILLED
+```
+
+
+# 37. Dados econômicos incompletos
+
+Se existirem:
+
+```text
+manter status explícito
+```
+
+Não fabricar valor para completar a base.
+
+
+# 38. Especificações técnicas
+
+Especificações não devem necessariamente integrar a base principal como critério.
+
+Podem existir em estrutura auxiliar para conformidade.
+
+Registrar:
+
+```text
+SPECIFICATION_DATA_STRUCTURE = TO_BE_FILLED
+```
+
+
+# 39. Informações diagnósticas
+
+Variáveis sem poder discriminatório podem continuar disponíveis como diagnóstico.
+
+Não eliminar apenas porque não serão usadas no ranking.
+
+
+# 40. Variáveis constantes
+
+Registrar:
+
+```text
+CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+A decisão de uso como critério será de Benjamin.
+
+
+# 41. Variáveis quase constantes
+
+Registrar:
+
+```text
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+
+# 42. Exclusões
+
+Se alguma informação for excluída da base canônica, registrar:
+
+```text
+EXCLUSIONS = TO_BE_FILLED
+```
+
+Toda exclusão deve possuir justificativa.
+
+
+# 43. Colunas auxiliares
+
+Campos necessários apenas para rastreabilidade poderão ser mantidos ou armazenados separadamente.
+
+Exemplos:
+
+```text
+source_sheet
+source_row
+original_variable
+issue_id
+```
+
+
+# 44. Linhagem
+
+Quando viável, preservar informação que permita reconstruir:
+
+```text
+valor canônico
+↓
+transformação
+↓
+valor original
+↓
+fonte
+```
+
+
+# 45. Código de construção
+
+```{r}
+# ============================================================
+# CONSTRUÇÃO DA BASE CANÔNICA
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# O código deverá:
+#
+# 1. ler a fonte;
+# 2. aplicar identificadores canônicos;
+# 3. aplicar conversões aprovadas;
+# 4. aplicar regras de reconciliação;
+# 5. gerar variáveis derivadas aprovadas;
+# 6. organizar a estrutura final;
+# 7. produzir a base canônica.
+#
+# ============================================================
+```
+
+
+# 46. Não adicionar regra local silenciosa
+
+Evitar:
+
+```text
+if (fluid == "X") value <- Y
+```
+
+sem referência a uma decisão ou regra documentada.
+
+
+# 47. Estrutura esperada da base
+
+Registrar futuramente:
+
+```text
+N_ROWS = TO_BE_FILLED
+N_COLUMNS = TO_BE_FILLED
+N_FLUIDS = TO_BE_FILLED
+N_CONDITIONS = TO_BE_FILLED
+```
+
+
+# 48. Validação estrutural
+
+A base deverá ser validada quanto a:
+
+```text
+dimensões
+nomes
+tipos
+chaves
+duplicatas
+missing
+unidades
+```
+
+
+# 49. Código de validação estrutural
+
+```{r}
+# ============================================================
+# VALIDAÇÃO ESTRUTURAL
+# ============================================================
+#
+# Implementar verificações como:
+#
+# - linhas > 0;
+# - colunas > 0;
+# - chave válida;
+# - nomes únicos;
+# - tipos esperados;
+# - nenhuma duplicata indevida.
+#
+# ============================================================
+```
+
+
+# 50. Validação das chaves
+
+Registrar:
+
+```text
+KEY_VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 51. Duplicatas
+
+Confirmar:
+
+```text
+UNEXPECTED_DUPLICATES = TO_BE_FILLED
+```
+
+Repetições legítimas deverão possuir identificadores adequados.
+
+
+# 52. Validação dos tipos
+
+Registrar:
+
+```text
+TYPE_VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 53. Validação de unidades
+
+Registrar:
+
+```text
+UNIT_VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 54. Validação de missing
+
+Registrar:
+
+```text
+MISSING_VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 55. Validação de finitude
+
+Para variáveis numéricas, verificar:
+
+```text
+NA
+NaN
+Inf
+-Inf
+```
+
+e interpretar cada ocorrência.
+
+
+# 56. Valores impossíveis
+
+Quando houver limites matemáticos ou físicos inequivocamente conhecidos, verificar violações.
+
+Não inventar limites técnicos.
+
+
+# 57. Comparação com fonte reconciliada
+
+A base final deverá ser comparada com as regras produzidas na etapa anterior.
+
+```text
+CANONICAL_VS_RECONCILIATION_STATUS = TO_BE_FILLED
+```
+
+
+# 58. Número de alterações
+
+Registrar futuramente:
+
+```text
+N_RENAMED_FIELDS = TO_BE_FILLED
+N_TYPE_CONVERSIONS = TO_BE_FILLED
+N_UNIT_CONVERSIONS = TO_BE_FILLED
+N_RECONCILED_VALUES = TO_BE_FILLED
+N_DERIVED_VARIABLES = TO_BE_FILLED
+```
+
+
+# 59. Validação de totais
+
+Totais importantes deverão ser recalculados na base canônica e comparados com os valores aprovados na reconciliação.
+
+
+# 60. Validação de médias
+
+Mesmo princípio para médias e outros agregados.
+
+
+# 61. Validação de alternativas
+
+Confirmar:
+
+```text
+[ ] todas as alternativas esperadas estão presentes
+[ ] nenhuma alternativa indevida foi criada
+[ ] identificadores são consistentes
+```
+
+
+# 62. Validação de condições
+
+Confirmar:
+
+```text
+[ ] condições corretamente identificadas
+[ ] nenhuma condição foi perdida
+[ ] ausência de condição está documentada
+```
+
+
+# 63. Validação de repetição
+
+Quando houver replicatas:
+
+```text
+[ ] replicate_id válido
+[ ] número de repetições conhecido
+[ ] repetições incompletas registradas
+```
+
+
+# 64. Dicionário
+
+O dicionário deverá ser validado contra a base.
+
+Cada coluna da base deverá possuir entrada correspondente.
+
+
+# 65. Variável sem dicionário
+
+Não aprovar a base se houver coluna analítica cuja interpretação seja desconhecida.
+
+
+# 66. Testes automatizados
+
+Quando apropriado, implementar em:
+
+```text
+tests/testthat/
+```
+
+testes sobre:
+
+```text
+estrutura
+chaves
+tipos
+intervalos
+unidades
+valores derivados
+```
+
+
+# 67. Testes mínimos
+
+Possíveis propriedades:
+
+```text
+nrow(data) > 0
+ncol(data) > 0
+identificadores não vazios
+nomes únicos
+nenhum Inf inesperado
+```
+
+
+# 68. Reprodutibilidade
+
+A base deverá ser reconstruível do zero a partir da fonte original e das regras aprovadas.
+
+
+# 69. Determinismo
+
+Para as mesmas entradas:
+
+```text
+mesma base canônica
+```
+
+deve ser produzida.
+
+
+# 70. Hash
+
+Quando útil, registrar:
+
+```text
+CANONICAL_DATA_HASH = TO_BE_FILLED
+```
+
+para identificar inequivocamente a versão usada downstream.
+
+
+# 71. Versionamento
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+```
+
+
+# 72. Regra de alteração
+
+Se a base canônica já aprovada mudar:
+
+```text
+nova versão
+↓
+nova validação
+↓
+novo handoff
+↓
+reexecução downstream
+```
+
+
+# 73. Não substituir versão silenciosamente
+
+Evitar sobrescrever uma versão aprovada sem manter rastreabilidade da alteração.
+
+
+# 74. Exportação
+
+```{r}
+# ============================================================
+# EXPORTAÇÃO
+# ============================================================
+#
+# O formato definitivo será escolhido pelos integrantes.
+#
+# Possibilidades:
+#
+# - RDS;
+# - Parquet;
+# - CSV;
+#
+# ou outro formato tecnicamente adequado.
+#
+# Não fixar formato neste template.
+#
+# ============================================================
+```
+
+
+# 75. Formato oficial
+
+Registrar futuramente:
+
+```text
+PRIMARY_CANONICAL_FORMAT = TO_BE_FILLED
+```
+
+
+# 76. Formatos auxiliares
+
+Poderão existir formatos auxiliares para inspeção humana, mas deve haver uma única versão lógica oficial da base.
+
+
+# 77. CSV versus formato tipado
+
+Caso CSV seja utilizado, considerar que ele não preserva tipos tão diretamente quanto formatos nativos.
+
+A escolha deverá ser feita pelos integrantes.
+
+
+# 78. Não exportar planilha manual
+
+Evitar utilizar uma nova planilha editável como única fonte oficial da base processada.
+
+
+# 79. Artefatos esperados
+
+Quando executado:
+
+```text
+CANONICAL_DATA_ARTIFACT = TO_BE_FILLED
+DATA_DICTIONARY_ARTIFACT = TO_BE_FILLED
+LINEAGE_ARTIFACT = TO_BE_FILLED
+VALIDATION_ARTIFACT = TO_BE_FILLED
+```
+
+
+# 80. Nenhum artefato criado agora
+
+Nesta fase:
+
+```text
+CANONICAL_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 81. Resumo da base canônica
+
+Após execução:
+
+```text
+N_ROWS = TO_BE_FILLED
+N_COLUMNS = TO_BE_FILLED
+N_FLUIDS = TO_BE_FILLED
+N_NUMERIC_VARIABLES = TO_BE_FILLED
+N_CATEGORICAL_VARIABLES = TO_BE_FILLED
+```
+
+
+# 82. Missing final
+
+Registrar:
+
+```text
+FINAL_MISSING_SUMMARY = TO_BE_FILLED
+```
+
+
+# 83. Problemas pendentes
+
+Registrar:
+
+```text
+OPEN_ISSUES = TO_BE_FILLED
+```
+
+
+# 84. Problemas bloqueantes
+
+Registrar:
+
+```text
+BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+Se houver bloqueio:
+
+```text
+CANONICAL_DATA_STATUS = BLOCKED
+```
+
+
+# 85. Limitações da base
+
+Registrar:
+
+```text
+CANONICAL_DATA_LIMITATIONS = TO_BE_FILLED
+```
+
+Essas limitações deverão acompanhar a base para Benjamin.
+
+
+# 86. Aprovação
+
+A base somente poderá ser considerada oficial quando:
+
+```text
+estrutura validada
++
+conteúdo validado
++
+regras reconciliadas
++
+limitações registradas
++
+revisão realizada
+```
+
+
+# 87. Status possíveis
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+
+# 88. Status atual
+
+```text
+CANONICAL_DATA_STATUS = NOT_CREATED
+```
+
+
+# 89. Revisão cruzada
+
+Registrar futuramente:
+
+```text
+REVIEWED_BY = TO_BE_FILLED
+REVIEW_DATE = TO_BE_FILLED
+REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 90. Checklist de aprovação
+
+```text
+[ ] fonte original preservada
+[ ] regras de reconciliação aplicadas
+[ ] identificadores válidos
+[ ] chaves válidas
+[ ] unidades válidas
+[ ] tipos válidos
+[ ] missing conhecidos
+[ ] variáveis derivadas validadas
+[ ] totais validados
+[ ] nenhuma alteração silenciosa
+[ ] dicionário completo
+[ ] linhagem disponível
+[ ] testes executados
+[ ] limitações registradas
+[ ] versão definida
+[ ] revisão concluída
+```
+
+
+# 91. Próxima etapa
+
+Depois da aprovação da base:
+
+```text
+analysis/05_PACHECO_ada_inicial.qmd
+```
+
+
+# 92. Entrada da ADA inicial
+
+A ADA deverá utilizar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+```
+
+e não uma cópia paralela da planilha original.
+
+
+# 93. Entrega futura para Benjamin
+
+Após a ADA inicial, o handoff deverá informar:
+
+```text
+versão da base
+estrutura
+variáveis
+unidades
+missing
+limitações
+issues abertos
+achados exploratórios
+```
+
+
+# 94. O que Benjamin não deve fazer
+
+Benjamin não deverá:
+
+```text
+corrigir silenciosamente a base
+alterar identificadores
+trocar valores reconciliados
+```
+
+Se detectar problema upstream, a etapa de Pacheco deverá ser reaberta.
+
+
+# 95. Resultados desta etapa
+
+Após execução:
+
+```text
+CANONICAL_DATA_STATUS = TO_BE_FILLED
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 96. Conclusão
+
+A conclusão desta etapa deverá responder:
+
+```text
+a base está pronta para análise estatística?
+```
+
+Preencher:
+
+```text
+CANONICAL_DATA_CONCLUSION = TO_BE_FILLED
+```
+
+
+# 97. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+CANONICAL_DATA_STATUS = NOT_CREATED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+```
+
+
+# 98. Princípio final
+
+> A base canônica deve ser reconstruível a partir da fonte original e das decisões documentadas. Sua confiabilidade não depende de parecer “limpa”, mas de ser coerente, rastreável e reproduzível.

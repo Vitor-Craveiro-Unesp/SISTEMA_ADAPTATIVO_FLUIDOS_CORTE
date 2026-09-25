@@ -1,1 +1,472 @@
-% Comandos personalizados.
+% ============================================================
+% COMMANDS.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Centralizar comandos reutilizáveis da apresentação.
+%
+% Este arquivo faz parte apenas da BASE do projeto.
+%
+% Não inserir aqui:
+%
+% - resultados;
+% - pesos CRITIC;
+% - coeficientes TOPSIS;
+% - ranking;
+% - conclusões;
+% - valores calculados.
+%
+% Resultados científicos deverão ser produzidos posteriormente
+% pelos integrantes por meio da execução em R.
+%
+% ============================================================
+
+
+% ============================================================
+% PLACEHOLDER PADRÃO
+% ============================================================
+%
+% Utilizado enquanto uma informação ainda não foi confirmada.
+%
+% Exemplo:
+%
+% \TBF
+%
+% ============================================================
+
+\providecommand{\TBF}{\texttt{TO\_BE\_FILLED}}
+
+
+% ============================================================
+% IDENTIFICAÇÃO DO PROJETO
+% ============================================================
+
+\providecommand{\ProjectTitle}{
+Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+}
+
+\providecommand{\ProjectSubtitle}{
+Auditoria de Dados, CRITIC, TOPSIS, Pareto e Análise de Robustez
+}
+
+\providecommand{\ProjectYear}{
+2026
+}
+
+
+% ============================================================
+% INFORMAÇÕES INSTITUCIONAIS
+% ============================================================
+%
+% Preencher somente quando as informações oficiais estiverem
+% confirmadas pela professora ou pelo grupo.
+%
+% ============================================================
+
+\providecommand{\InstitutionName}{
+\TBF
+}
+
+\providecommand{\CourseName}{
+\TBF
+}
+
+\providecommand{\DepartmentName}{
+\TBF
+}
+
+\providecommand{\DisciplineName}{
+\TBF
+}
+
+\providecommand{\ProfessorName}{
+\TBF
+}
+
+
+% ============================================================
+% INTEGRANTES
+% ============================================================
+%
+% Nesta fase utilizamos somente os nomes pelos quais os
+% integrantes estão sendo identificados no projeto.
+%
+% Antes da apresentação final, substituir pelos nomes completos
+% quando necessário.
+%
+% ============================================================
+
+\providecommand{\MemberPacheco}{
+Pacheco
+}
+
+\providecommand{\MemberBenjamin}{
+Benjamin
+}
+
+\providecommand{\MemberVitor}{
+Vitor
+}
+
+\providecommand{\MemberMarco}{
+Marco
+}
+
+
+% ============================================================
+% LISTA DE INTEGRANTES
+% ============================================================
+
+\providecommand{\ProjectMembers}{
+\MemberPacheco,
+\MemberBenjamin,
+\MemberVitor,
+\MemberMarco
+}
+
+
+% ============================================================
+% NOMES DOS MÉTODOS
+% ============================================================
+%
+% Estes comandos servem apenas para manter a nomenclatura
+% consistente ao longo da apresentação.
+%
+% ============================================================
+
+\providecommand{\CRITIC}{
+\textsc{CRITIC}
+}
+
+\providecommand{\TOPSIS}{
+\textsc{TOPSIS}
+}
+
+\providecommand{\PCA}{
+\textsc{PCA}
+}
+
+
+% ============================================================
+% TERMOS PADRONIZADOS
+% ============================================================
+
+\providecommand{\BenefitCriterion}{
+\texttt{BENEFIT}
+}
+
+\providecommand{\CostCriterion}{
+\texttt{COST}
+}
+
+\providecommand{\TargetCriterion}{
+\texttt{TARGET}
+}
+
+\providecommand{\RestrictionCriterion}{
+\texttt{RESTRICTION}
+}
+
+\providecommand{\DiagnosticCriterion}{
+\texttt{DIAGNOSTIC}
+}
+
+
+% ============================================================
+% STATUS DO PROJETO
+% ============================================================
+
+\providecommand{\StatusDraft}{
+\texttt{DRAFT}
+}
+
+\providecommand{\StatusReview}{
+\texttt{UNDER\_REVIEW}
+}
+
+\providecommand{\StatusApproved}{
+\texttt{APPROVED}
+}
+
+\providecommand{\StatusBlocked}{
+\texttt{BLOCKED}
+}
+
+\providecommand{\StatusSuperseded}{
+\texttt{SUPERSEDED}
+}
+
+
+% ============================================================
+% STATUS DE EXECUÇÃO
+% ============================================================
+
+\providecommand{\NotExecuted}{
+\texttt{NOT\_EXECUTED}
+}
+
+\providecommand{\NotGenerated}{
+\texttt{NOT\_GENERATED}
+}
+
+\providecommand{\NotDefined}{
+\texttt{NOT\_DEFINED}
+}
+
+
+% ============================================================
+% TERMOS DE CONFORMIDADE
+% ============================================================
+
+\providecommand{\Confirmed}{
+\texttt{CONFIRMED}
+}
+
+\providecommand{\PendingConfirmation}{
+\texttt{PENDING\_CONFIRMATION}
+}
+
+\providecommand{\UnknownStatus}{
+\texttt{UNKNOWN}
+}
+
+
+% ============================================================
+% TIPOS DE RESTRIÇÃO
+% ============================================================
+
+\providecommand{\HardConstraint}{
+\texttt{HARD\_CONSTRAINT}
+}
+
+\providecommand{\SoftConstraint}{
+\texttt{SOFT\_CONSTRAINT}
+}
+
+
+% ============================================================
+% TEXTO DE ALERTA PARA RESULTADOS AINDA NÃO GERADOS
+% ============================================================
+%
+% Pode ser utilizado durante a construção da apresentação.
+%
+% Exemplo:
+%
+% \PendingResult
+%
+% Deve ser removido ou substituído na versão final apresentada.
+%
+% ============================================================
+
+\providecommand{\PendingResult}{
+\textit{Resultado a ser preenchido após a execução da análise.}
+}
+
+
+% ============================================================
+% TEXTO DE ALERTA PARA MATERIAL EXTERNO
+% ============================================================
+
+\providecommand{\ExternalMaterialPending}{
+\textit{Material externo a ser inserido após confirmação.}
+}
+
+
+% ============================================================
+% MACROS MATEMÁTICAS — CRITIC
+% ============================================================
+%
+% Apenas atalhos de notação.
+%
+% Não executam cálculo.
+%
+% ============================================================
+
+\providecommand{\CriticInformation}[1]{
+C_{#1}
+}
+
+\providecommand{\CriticWeight}[1]{
+w_{#1}
+}
+
+\providecommand{\CriticSD}[1]{
+\sigma_{#1}
+}
+
+\providecommand{\CriterionCorrelation}[2]{
+r_{#1#2}
+}
+
+
+% ============================================================
+% MACROS MATEMÁTICAS — TOPSIS
+% ============================================================
+
+\providecommand{\TopsisPositiveDistance}[1]{
+S_{#1}^{+}
+}
+
+\providecommand{\TopsisNegativeDistance}[1]{
+S_{#1}^{-}
+}
+
+\providecommand{\TopsisCoefficient}[1]{
+C_{#1}
+}
+
+
+% ============================================================
+% MACRO PARA SETAS DE PIPELINE
+% ============================================================
+
+\providecommand{\PipelineArrow}{
+\(\rightarrow\)
+}
+
+
+% ============================================================
+% MACRO PARA TEXTO DE REGRA
+% ============================================================
+%
+% Uso:
+%
+% \ProjectRule{texto}
+%
+% Mantém a apresentação visual simples, sem depender de cores
+% personalizadas definidas neste arquivo.
+%
+% ============================================================
+
+\providecommand{\ProjectRule}[1]{
+\begin{alertblock}{Regra}
+#1
+\end{alertblock}
+}
+
+
+% ============================================================
+% MACRO PARA PRINCÍPIO
+% ============================================================
+
+\providecommand{\ProjectPrinciple}[1]{
+\begin{block}{Princípio}
+#1
+\end{block}
+}
+
+
+% ============================================================
+% MACRO PARA RESULTADO FUTURO
+% ============================================================
+%
+% Uso:
+%
+% \FutureResult{Nome do resultado}
+%
+% ============================================================
+
+\providecommand{\FutureResult}[1]{
+\begin{block}{#1}
+\TBF
+\end{block}
+}
+
+
+% ============================================================
+% RESULTADOS — NÃO DEFINIR AQUI
+% ============================================================
+%
+% NÃO criar agora comandos como:
+%
+% \WinnerFluid
+% \TopOne
+% \TopTwo
+% \TopThree
+% \HighestCriticWeight
+% \TopsisScoreA
+%
+% porque esses valores ainda não existem oficialmente.
+%
+% Se futuramente o grupo decidir automatizar a inserção dos
+% resultados no LaTeX, esses comandos deverão ser gerados a
+% partir dos resultados do pipeline em R, e não preenchidos
+% manualmente.
+%
+% ============================================================
+
+
+% ============================================================
+% CAMINHOS
+% ============================================================
+%
+% Não colocar caminhos absolutos como:
+%
+% C:/Users/Nome/Desktop/...
+%
+% Utilizar sempre caminhos relativos ao projeto.
+%
+% ============================================================
+
+
+% ============================================================
+% LOGOS
+% ============================================================
+%
+% Os arquivos oficiais de logo deverão ficar, conforme a
+% estrutura atual da apresentação, em:
+%
+% templates/presentation/latex/assets/
+%
+% Os nomes dos arquivos somente deverão ser definidos depois que
+% os materiais efetivos forem adicionados.
+%
+% Portanto não criamos macros de caminho de logo agora.
+%
+% ============================================================
+
+
+% ============================================================
+% COMPATIBILIDADE
+% ============================================================
+%
+% Os comandos deste arquivo utilizam \providecommand em vez de
+% \newcommand para reduzir conflitos caso algum comando seja
+% definido anteriormente pelo template ou tema.
+%
+% ============================================================
+
+
+% ============================================================
+% RESPONSABILIDADE DOS INTEGRANTES
+% ============================================================
+%
+% Durante a execução do projeto, os integrantes poderão:
+%
+% - acrescentar macros realmente úteis;
+% - automatizar a inserção de valores;
+% - simplificar comandos;
+% - remover placeholders;
+%
+% desde que preservem:
+%
+% - rastreabilidade;
+% - consistência;
+% - reprodutibilidade.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% COMMANDS_STATUS = BASE_PREPARED
+%
+% SCIENTIFIC_RESULTS_DEFINED = FALSE
+% INSTITUTION_DATA_CONFIRMED = FALSE
+% OFFICIAL_LOGOS_DEFINED = FALSE
+%
+% ============================================================

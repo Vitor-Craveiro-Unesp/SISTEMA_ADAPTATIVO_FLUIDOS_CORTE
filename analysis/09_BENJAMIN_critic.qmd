@@ -1,20 +1,1789 @@
 ---
-title: "09 BENJAMIN critic"
-format: html
+title: "09 — Matriz de Decisão, Normalização e CRITIC"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Benjamin"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+09_BENJAMIN_CRITIC.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Benjamin
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Consolidar a representação multicritério que será entregue a
+Vitor para aplicação do TOPSIS.
 
-## Validações
+Esta etapa deverá:
 
-## Pendências
+1. consolidar os critérios aprovados;
+2. registrar critérios excluídos e suas justificativas;
+3. definir direção dos critérios;
+4. tratar corretamente critérios TARGET, se existirem;
+5. construir a matriz de decisão;
+6. validar a matriz;
+7. definir e aplicar a normalização;
+8. calcular a matriz de correlação utilizada pelo CRITIC;
+9. calcular a informação de cada critério;
+10. calcular e validar os pesos CRITIC;
+11. produzir o handoff para Vitor.
+
+REGRA CENTRAL
+
+CRITIC calcula pesos informacionais.
+
+Peso CRITIC
+≠
+importância técnica absoluta.
+
+A formulação principal adotada como referência é:
+
+C_j = sigma_j * sum_k (1 - r_jk)
+
+w_j = C_j / sum_j C_j
+
+Não substituir silenciosamente:
+
+1 - r
+
+por:
+
+1 - |r|
+
+Nesta fase:
+
+CRITERIA_STATUS = NOT_FINALIZED
+DECISION_MATRIX_STATUS = NOT_CREATED
+NORMALIZATION_STATUS = NOT_EXECUTED
+CRITIC_STATUS = NOT_EXECUTED
+TOPSIS_STATUS = NOT_EXECUTED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 09 — Matriz de Decisão, Normalização e CRITIC
+
+**Responsável:** Benjamin
+
+**Status:** `DRAFT`
+
+**Entrada principal:** base canônica aprovada
+
+**Entradas analíticas anteriores:**
+
+```text
+analysis/05_PACHECO_ada_inicial.qmd
+analysis/06_BENJAMIN_ada_bivariada.qmd
+analysis/07_BENJAMIN_ada_multivariada.qmd
+analysis/08_BENJAMIN_conformidade.qmd
+```
+
+**Handoff de saída:**
+
+```text
+handoffs/02_BENJAMIN_to_VITOR.md
+```
+
+
+# 2. Objetivo
+
+O objetivo é converter os dados tecnicamente validados em uma representação multicritério reproduzível.
+
+Fluxo:
+
+```text
+base canônica
+↓
+evidências da ADA
+↓
+conformidade
+↓
+seleção dos critérios
+↓
+direção dos critérios
+↓
+matriz de decisão
+↓
+normalização
+↓
+correlação
+↓
+CRITIC
+↓
+pesos
+↓
+handoff para TOPSIS
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] base canônica aprovada
+[ ] ADA inicial concluída
+[ ] ADA bivariada concluída
+[ ] ADA multivariada concluída
+[ ] conformidade analisada
+[ ] variáveis constantes conhecidas
+[ ] redundâncias avaliadas
+[ ] unidades conhecidas
+[ ] missing conhecidos
+[ ] limitações conhecidas
+[ ] especificações técnicas separadas de desempenho
+```
+
+
+# 4. Versões de entrada
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+BIVARIATE_ADA_VERSION = TO_BE_FILLED
+MULTIVARIATE_ADA_VERSION = TO_BE_FILLED
+CONFORMITY_VERSION = TO_BE_FILLED
+```
+
+
+# 5. Regra de congelamento da entrada
+
+Benjamin não deverá alterar silenciosamente a base canônica.
+
+Se surgir erro upstream:
+
+```text
+problema detectado
+↓
+registrar
+↓
+reabrir etapa responsável
+↓
+corrigir na origem
+↓
+gerar nova versão
+↓
+reexecutar análises dependentes
+```
+
+
+# 6. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 7. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Poderá incluir:
+#
+# - carregamento da base;
+# - critérios aprovados;
+# - direção dos critérios;
+# - estratégia para TARGET;
+# - método de normalização;
+# - método de correlação;
+# - tolerâncias numéricas.
+#
+# Nenhuma configuração científica é fixada neste template.
+#
+# ============================================================
+```
+
+
+# 8. Critérios candidatos
+
+Consolidar as variáveis candidatas provenientes das etapas anteriores.
+
+Registrar:
+
+```text
+CRITERION_CANDIDATES = TO_BE_FILLED
+```
+
+
+# 9. Evidência necessária
+
+Cada critério deverá possuir justificativa baseada em elementos como:
+
+```text
+significado técnico
+variabilidade
+capacidade discriminatória
+redundância
+qualidade dos dados
+completude
+condição experimental
+papel no problema
+```
+
+
+# 10. Tabela de avaliação dos critérios
+
+Estrutura futura:
+
+| Critério candidato | Papel técnico | Variabilidade | Redundância | Completude | Decisão |
+|---|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 11. Status possíveis
+
+Cada variável poderá receber status como:
+
+```text
+INCLUDE
+EXCLUDE
+DIAGNOSTIC_ONLY
+CONSTRAINT_ONLY
+TARGET
+PENDING_REVIEW
+```
+
+
+# 12. Critérios incluídos
+
+Registrar:
+
+```text
+INCLUDED_CRITERIA = TO_BE_FILLED
+```
+
+
+# 13. Critérios excluídos
+
+Registrar:
+
+```text
+EXCLUDED_CRITERIA = TO_BE_FILLED
+```
+
+
+# 14. Justificativa das exclusões
+
+Toda exclusão deverá possuir justificativa explícita.
+
+Possíveis razões reais podem incluir:
+
+```text
+variável constante
+redundância estrutural
+dados incompletos
+ausência de interpretação técnica
+critério duplicado
+restrição em vez de desempenho
+```
+
+Não utilizar uma justificativa que não tenha sido observada.
+
+
+# 15. Não escolher critérios pelo vencedor
+
+É proibido:
+
+```text
+testar várias combinações
+↓
+observar qual fluido vence
+↓
+escolher a combinação preferida
+```
+
+A definição de critérios deve ser anterior à interpretação do ranking.
+
+
+# 16. Variáveis constantes
+
+Se:
+
+\[
+\operatorname{Var}(X_j)=0
+\]
+
+o critério não oferece discriminação entre as alternativas.
+
+Registrar:
+
+```text
+CONSTANT_CRITERIA = TO_BE_FILLED
+```
+
+
+# 17. Variáveis quase constantes
+
+Registrar:
+
+```text
+NEAR_CONSTANT_CRITERIA = TO_BE_FILLED
+```
+
+A decisão deverá considerar a magnitude real da variação e o significado técnico.
+
+
+# 18. Redundância
+
+Uma possível redundância deverá considerar:
+
+```text
+correlação
++
+estrutura matemática
++
+significado técnico
++
+origem da variável
+```
+
+
+# 19. Total e componentes
+
+Se existir relação do tipo:
+
+\[
+T=X_1+X_2+\cdots+X_k
+\]
+
+avaliar cuidadosamente a inclusão simultânea de:
+
+```text
+T
+```
+
+e:
+
+```text
+X_1, X_2, ..., X_k
+```
+
+para evitar dupla representação da mesma informação.
+
+
+# 20. Critério versus restrição
+
+Separar explicitamente:
+
+```text
+PERFORMANCE_CRITERION
+```
+
+de:
+
+```text
+CONSTRAINT
+```
+
+
+# 21. Conformidade
+
+Resultados de:
+
+```text
+analysis/08_BENJAMIN_conformidade.qmd
+```
+
+não devem ser transformados automaticamente em critérios.
+
+
+# 22. Direção dos critérios
+
+Cada critério de desempenho deverá possuir direção explícita:
+
+```text
+BENEFIT
+COST
+TARGET
+```
+
+
+# 23. BENEFIT
+
+Para um critério de benefício:
+
+```text
+quanto maior, melhor
+```
+
+
+# 24. COST
+
+Para um critério de custo:
+
+```text
+quanto menor, melhor
+```
+
+
+# 25. TARGET
+
+Para um critério do tipo alvo:
+
+```text
+quanto mais próximo do alvo, melhor
+```
+
+Ele exige transformação apropriada antes de entrar em uma matriz orientada.
+
+
+# 26. Tabela de direção
+
+| Critério | Direção | Unidade | Justificativa |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 27. Critérios TARGET
+
+Registrar:
+
+```text
+TARGET_CRITERIA = TO_BE_FILLED
+```
+
+
+# 28. Valor-alvo
+
+Para cada TARGET:
+
+```text
+TARGET_VALUE = TO_BE_FILLED
+TARGET_SOURCE = TO_BE_FILLED
+```
+
+
+# 29. Transformação de TARGET
+
+A transformação deverá representar proximidade ao alvo.
+
+Uma forma possível poderá depender de:
+
+\[
+d_{ij}=|x_{ij}-T_j|
+\]
+
+mas a transformação definitiva deverá ser escolhida e documentada pelos integrantes.
+
+
+# 30. Não inventar target
+
+Um alvo só poderá ser utilizado quando:
+
+```text
+confirmado
++
+interpretável
++
+documentado
+```
+
+
+# 31. Orientação
+
+A equipe deverá definir claramente em qual ponto todos os critérios passam a possuir interpretação:
+
+```text
+maior valor = melhor desempenho
+```
+
+Registrar:
+
+```text
+ORIENTATION_STAGE = TO_BE_FILLED
+```
+
+
+# 32. Regra contra dupla inversão
+
+Se a normalização já transformar todos os critérios para:
+
+```text
+maior = melhor
+```
+
+então o TOPSIS não deverá inverter novamente critérios COST.
+
+Esse ponto deve ser comunicado explicitamente a Vitor.
+
+
+# 33. Unidade de análise
+
+Registrar:
+
+```text
+DECISION_ALTERNATIVE_UNIT = TO_BE_FILLED
+```
+
+
+# 34. Alternativas
+
+Registrar futuramente:
+
+```text
+N_ALTERNATIVES = TO_BE_FILLED
+ALTERNATIVES = TO_BE_FILLED
+```
+
+
+# 35. Critérios finais
+
+Registrar:
+
+```text
+N_CRITERIA = TO_BE_FILLED
+FINAL_CRITERIA = TO_BE_FILLED
+```
+
+
+# 36. Matriz de decisão
+
+A matriz original poderá ser representada por:
+
+\[
+X=
+\begin{bmatrix}
+x_{11} & x_{12} & \cdots & x_{1m}\\
+x_{21} & x_{22} & \cdots & x_{2m}\\
+\vdots & \vdots & \ddots & \vdots\\
+x_{n1} & x_{n2} & \cdots & x_{nm}
+\end{bmatrix}
+\]
+
+onde:
+
+```text
+n = número de alternativas
+m = número de critérios
+```
+
+
+# 37. Linhas e colunas
+
+Definir explicitamente:
+
+```text
+linhas = fluidos / alternativas
+colunas = critérios
+```
+
+
+# 38. Construção da matriz
+
+```{r}
+# ============================================================
+# MATRIZ DE DECISÃO
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Espera-se:
+#
+# - uma linha por alternativa;
+# - uma coluna por critério;
+# - identificadores preservados separadamente;
+# - nenhuma coluna não analítica misturada à matriz numérica.
+#
+# ============================================================
+```
+
+
+# 39. Ordem das alternativas
+
+A ordem das linhas não poderá determinar os resultados.
+
+Ainda assim, preservar identificadores explícitos.
+
+
+# 40. Ordem dos critérios
+
+Os pesos deverão ser associados por nome, não apenas por posição.
+
+Isso reduz risco de erro como:
+
+```text
+peso do critério A
+aplicado ao critério B
+```
+
+
+# 41. Tabela da matriz de decisão
+
+Estrutura futura:
+
+| Fluido | Critério 1 | Critério 2 | ... | Critério m |
+|---|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 42. Missing na matriz
+
+Registrar:
+
+```text
+DECISION_MATRIX_MISSING_STATUS = TO_BE_FILLED
+```
+
+
+# 43. Matriz incompleta
+
+Se houver missing em critérios essenciais:
+
+```text
+não continuar silenciosamente
+```
+
+Avaliar se:
+
+```text
+critério deve ser excluído
+alternativa não é avaliável
+valor pode ser recuperado upstream
+ou outra decisão metodológica é necessária
+```
+
+
+# 44. Imputação
+
+Não imputar automaticamente apenas para tornar a matriz completa.
+
+Registrar:
+
+```text
+MCDM_IMPUTATION_RULE = TO_BE_FILLED
+```
+
+
+# 45. Finitude
+
+A matriz deverá ser validada para:
+
+```text
+NA
+NaN
+Inf
+-Inf
+```
+
+
+# 46. Escala original
+
+Registrar a amplitude e a unidade dos critérios antes da normalização.
+
+
+# 47. Por que normalizar
+
+Os critérios podem possuir:
+
+```text
+unidades diferentes
+magnitudes diferentes
+escalas diferentes
+```
+
+A normalização é necessária para torná-los comparáveis dentro do método multicritério.
+
+
+# 48. Método de normalização
+
+Registrar futuramente:
+
+```text
+PRIMARY_NORMALIZATION_METHOD = TO_BE_FILLED
+```
+
+
+# 49. Justificativa
+
+A escolha deverá considerar:
+
+```text
+formulação do TOPSIS
+direção do critério
+estrutura dos dados
+robustez
+interpretação
+```
+
+
+# 50. Normalização vetorial
+
+Uma possibilidade clássica do TOPSIS é:
+
+\[
+r_{ij}
+=
+\frac{x_{ij}}
+{\sqrt{\sum_{i=1}^{n}x_{ij}^2}}
+\]
+
+para critérios que já estejam na orientação apropriada.
+
+
+# 51. Denominador
+
+Para cada critério:
+
+\[
+d_j
+=
+\sqrt{
+\sum_{i=1}^{n}x_{ij}^2
+}
+\]
+
+Verificar:
+
+```text
+d_j > 0
+```
+
+
+# 52. Denominador zero
+
+Se:
+
+\[
+d_j=0
+\]
+
+o critério deverá ser investigado.
+
+Não dividir por zero.
+
+
+# 53. Min-max
+
+Outra possibilidade metodológica é normalização min-max.
+
+Sua utilização, se escolhida, deverá ser documentada e compatível com a direção dos critérios.
+
+
+# 54. Regra para BENEFIT
+
+Uma forma conceitual de min-max orientada é:
+
+\[
+r_{ij}
+=
+\frac{x_{ij}-\min(x_j)}
+{\max(x_j)-\min(x_j)}
+\]
+
+
+# 55. Regra para COST
+
+Uma forma conceitual orientada é:
+
+\[
+r_{ij}
+=
+\frac{\max(x_j)-x_{ij}}
+{\max(x_j)-\min(x_j)}
+\]
+
+
+# 56. Critério constante em min-max
+
+Se:
+
+\[
+\max(x_j)-\min(x_j)=0
+\]
+
+a normalização é degenerada.
+
+Esse critério deverá ser tratado antes da divisão.
+
+
+# 57. TARGET na normalização
+
+Critérios TARGET deverão ser transformados segundo a regra aprovada antes de serem tratados como critério orientado.
+
+Não aplicar BENEFIT ou COST arbitrariamente.
+
+
+# 58. Normalização principal versus robustez
+
+Um método deverá ser definido como principal.
+
+Métodos alternativos poderão ser usados posteriormente por Vitor para análise de sensibilidade.
+
+
+# 59. Código de normalização
+
+```{r}
+# ============================================================
+# NORMALIZAÇÃO
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# A função deverá:
+#
+# - receber matriz válida;
+# - respeitar direção dos critérios;
+# - tratar TARGET conforme regra aprovada;
+# - detectar denominador zero;
+# - manter nomes;
+# - retornar matriz validada.
+#
+# ============================================================
+```
+
+
+# 60. Matriz normalizada
+
+Representar por:
+
+\[
+R=[r_{ij}]
+\]
+
+
+# 61. Validação da matriz normalizada
+
+Confirmar:
+
+```text
+[ ] mesmas alternativas
+[ ] mesmos critérios
+[ ] nomes preservados
+[ ] nenhum NA inesperado
+[ ] nenhum NaN
+[ ] nenhum Inf
+[ ] orientação conhecida
+```
+
+
+# 62. Intervalos esperados
+
+Se o método escolhido produzir valores limitados, verificar os limites esperados.
+
+Por exemplo, em algumas normalizações:
+
+\[
+0 \le r_{ij}\le1
+\]
+
+somente quando essa propriedade realmente se aplicar.
+
+
+# 63. Não arredondar antes do CRITIC
+
+A matriz utilizada nos cálculos deverá manter precisão completa.
+
+
+# 64. CRITIC
+
+CRITIC significa:
+
+```text
+Criteria Importance Through Intercriteria Correlation
+```
+
+
+# 65. Interpretação
+
+O método atribui mais informação a critérios que combinam:
+
+```text
+maior contraste/dispersão
++
+maior conflito com outros critérios
+```
+
+
+# 66. Entrada do CRITIC
+
+Registrar:
+
+```text
+CRITIC_INPUT_MATRIX = TO_BE_FILLED
+```
+
+A equipe deverá definir explicitamente se o CRITIC será aplicado sobre a matriz normalizada/orientada escolhida.
+
+
+# 67. Dispersão
+
+Para cada critério \(j\), calcular:
+
+\[
+\sigma_j
+=
+\operatorname{sd}(r_{\cdot j})
+\]
+
+ou definição equivalente aprovada.
+
+
+# 68. Critério sem dispersão
+
+Se:
+
+\[
+\sigma_j=0
+\]
+
+então o critério não apresenta contraste entre alternativas.
+
+
+# 69. Correlação
+
+Calcular:
+
+\[
+r_{jk}
+=
+\operatorname{cor}(R_{\cdot j},R_{\cdot k})
+\]
+
+segundo o método de correlação aprovado.
+
+
+# 70. Método de correlação
+
+Registrar:
+
+```text
+CRITIC_CORRELATION_METHOD = TO_BE_FILLED
+```
+
+
+# 71. Pearson
+
+Se Pearson for adotado como método principal, justificar com base na natureza dos critérios e na formulação definida.
+
+
+# 72. Spearman
+
+Spearman poderá ser utilizado posteriormente como análise de robustez se houver justificativa.
+
+Não substituir silenciosamente o método principal.
+
+
+# 73. Fórmula do conflito
+
+A formulação padrão utilizada como referência é:
+
+\[
+1-r_{jk}
+\]
+
+
+# 74. Correlação positiva alta
+
+Se:
+
+\[
+r_{jk}\approx1
+\]
+
+então:
+
+\[
+1-r_{jk}\approx0
+\]
+
+indicando baixa informação de conflito entre esses critérios.
+
+
+# 75. Correlação zero
+
+Se:
+
+\[
+r_{jk}\approx0
+\]
+
+então:
+
+\[
+1-r_{jk}\approx1
+\]
+
+
+# 76. Correlação negativa
+
+Se:
+
+\[
+r_{jk}<0
+\]
+
+então:
+
+\[
+1-r_{jk}>1
+\]
+
+o que aumenta o componente de conflito.
+
+
+# 77. Regra importante
+
+No método principal:
+
+```text
+correlação negativa
+≠
+redundância automática
+```
+
+Ela pode representar informação conflitante relevante ao CRITIC.
+
+
+# 78. Não usar módulo
+
+Não substituir silenciosamente:
+
+\[
+1-r_{jk}
+\]
+
+por:
+
+\[
+1-|r_{jk}|
+\]
+
+
+# 79. Alteração de fórmula
+
+Qualquer mudança dessa formulação deverá exigir:
+
+```text
+justificativa
++
+decisão metodológica
++
+registro em decisions/
+```
+
+
+# 80. Informação do critério
+
+Para cada critério:
+
+\[
+C_j
+=
+\sigma_j
+\sum_{k=1}^{m}
+(1-r_{jk})
+\]
+
+
+# 81. Diagonal
+
+Como:
+
+\[
+r_{jj}=1
+\]
+
+o termo:
+
+\[
+1-r_{jj}=0
+\]
+
+não contribui para \(C_j\).
+
+
+# 82. Peso
+
+O peso CRITIC é:
+
+\[
+w_j
+=
+\frac{C_j}
+{\sum_{\ell=1}^{m}C_\ell}
+\]
+
+
+# 83. Soma dos pesos
+
+Validar:
+
+\[
+\sum_{j=1}^{m}w_j\approx1
+\]
+
+
+# 84. Não negatividade
+
+Na formulação esperada:
+
+\[
+w_j\ge0
+\]
+
+dentro da tolerância numérica.
+
+
+# 85. Caso degenerado
+
+Se:
+
+\[
+\sum_j C_j=0
+\]
+
+o CRITIC não produz uma ponderação informativa normalizável pela fórmula padrão.
+
+
+# 86. Não usar pesos iguais silenciosamente
+
+Se ocorrer caso degenerado:
+
+```text
+não substituir automaticamente por pesos iguais
+```
+
+O problema deverá ser:
+
+```text
+detectado
+↓
+registrado
+↓
+investigado
+↓
+decidido
+```
+
+
+# 87. NA na correlação
+
+Se uma correlação resultar em:
+
+```text
+NA
+```
+
+investigar causas como:
+
+```text
+variável constante
+missing
+n insuficiente
+problema numérico
+```
+
+
+# 88. Não converter NA de correlação para zero
+
+Não usar:
+
+```text
+NA → 0
+```
+
+sem justificativa metodológica.
+
+
+# 89. Código CRITIC
+
+```{r}
+# ============================================================
+# CRITIC
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Fluxo esperado:
+#
+# 1. receber matriz apropriada;
+# 2. validar critérios;
+# 3. calcular dispersão;
+# 4. calcular matriz de correlação;
+# 5. calcular conflito;
+# 6. calcular C_j;
+# 7. normalizar C_j para w_j;
+# 8. preservar associação critério-peso;
+# 9. validar resultados.
+#
+# ============================================================
+```
+
+
+# 90. Associação por nome
+
+O resultado deverá preservar estrutura como:
+
+```text
+criterion_name
+weight
+```
+
+Não depender exclusivamente da posição do vetor.
+
+
+# 91. Tabela de CRITIC
+
+Estrutura futura:
+
+| Critério | Dispersão | Informação \(C_j\) | Peso \(w_j\) |
+|---|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 92. Matriz de correlação do CRITIC
+
+Registrar também a matriz efetivamente utilizada para cálculo dos pesos.
+
+
+# 93. Validações do CRITIC
+
+```{r}
+# ============================================================
+# VALIDAÇÃO CRITIC
+# ============================================================
+#
+# Confirmar:
+#
+# - número de pesos = número de critérios;
+# - nomes coincidem;
+# - nenhum NA;
+# - nenhum NaN;
+# - nenhum Inf;
+# - pesos >= 0;
+# - soma dos pesos aproximadamente 1;
+# - nenhum critério foi perdido silenciosamente.
+#
+# ============================================================
+```
+
+
+# 94. Tolerância numérica
+
+Registrar:
+
+```text
+CRITIC_NUMERICAL_TOLERANCE = TO_BE_FILLED
+```
+
+
+# 95. Teste com exemplo simples
+
+A implementação deverá ser testada em um caso pequeno cuja resposta possa ser verificada manualmente.
+
+
+# 96. Permutação de critérios
+
+Como teste adicional, alterar a ordem das colunas não deve alterar a associação entre:
+
+```text
+nome do critério
+```
+
+e:
+
+```text
+peso correspondente
+```
+
+
+# 97. Permutação de alternativas
+
+Alterar a ordem das linhas não deverá alterar os pesos CRITIC, desde que os mesmos dados permaneçam presentes.
+
+
+# 98. Peso CRITIC não é juízo técnico
+
+Um peso alto significa maior informação segundo a formulação utilizada.
+
+Não significa automaticamente:
+
+```text
+critério tecnicamente mais importante
+```
+
+
+# 99. Peso pequeno
+
+Um peso pequeno também não significa:
+
+```text
+critério sem importância técnica
+```
+
+
+# 100. Conformidade permanece separada
+
+Os pesos não eliminam a necessidade de comunicar:
+
+```text
+status de conformidade
+```
+
+
+# 101. Resultado dos critérios
+
+Após execução:
+
+```text
+CRITERIA_STATUS = TO_BE_FILLED
+N_FINAL_CRITERIA = TO_BE_FILLED
+```
+
+
+# 102. Resultado da matriz
+
+Registrar:
+
+```text
+DECISION_MATRIX_STATUS = TO_BE_FILLED
+N_ALTERNATIVES = TO_BE_FILLED
+N_CRITERIA = TO_BE_FILLED
+```
+
+
+# 103. Resultado da normalização
+
+Registrar:
+
+```text
+NORMALIZATION_STATUS = TO_BE_FILLED
+PRIMARY_NORMALIZATION_METHOD = TO_BE_FILLED
+```
+
+
+# 104. Resultado do CRITIC
+
+Registrar:
+
+```text
+CRITIC_STATUS = TO_BE_FILLED
+CRITIC_CORRELATION_METHOD = TO_BE_FILLED
+```
+
+
+# 105. Pesos
+
+Somente após execução:
+
+```text
+CRITIC_WEIGHTS = TO_BE_FILLED
+```
+
+
+# 106. Critério de maior peso
+
+Somente após execução:
+
+```text
+HIGHEST_WEIGHT_CRITERION = TO_BE_FILLED
+```
+
+
+# 107. Critério de menor peso
+
+Somente após execução:
+
+```text
+LOWEST_WEIGHT_CRITERION = TO_BE_FILLED
+```
+
+
+# 108. Interpretação
+
+A interpretação deverá considerar conjuntamente:
+
+```text
+dispersão
++
+correlação
++
+significado técnico
+```
+
+
+# 109. Não interpretar apenas o peso
+
+Evitar conclusões como:
+
+```text
+“o critério X é o mais importante”
+```
+
+Preferir formulações do tipo:
+
+```text
+“o critério X recebeu maior peso informacional segundo o CRITIC”
+```
+
+
+# 110. Critérios com pesos próximos
+
+Se vários pesos forem semelhantes, registrar essa proximidade.
+
+Não exagerar diferenças pequenas.
+
+
+# 111. Precisão
+
+Calcular com precisão completa.
+
+Arredondar somente para:
+
+```text
+tabelas
+texto
+slides
+```
+
+
+# 112. Tabela para comunicação
+
+Uma tabela resumida poderá apresentar:
+
+```text
+critério
+direção
+unidade
+peso CRITIC
+```
+
+
+# 113. Matriz para Vitor
+
+Vitor deverá receber inequivocamente:
+
+```text
+matriz de decisão original
+matriz normalizada/orientada utilizada
+vetor de pesos
+direções
+nomes dos critérios
+nomes das alternativas
+```
+
+
+# 114. Metadados para Vitor
+
+Registrar:
+
+```text
+ORIENTATION_STATUS = TO_BE_FILLED
+NORMALIZATION_METHOD = TO_BE_FILLED
+CORRELATION_METHOD = TO_BE_FILLED
+```
+
+
+# 115. Aviso sobre orientação
+
+O handoff deverá responder explicitamente:
+
+```text
+a matriz entregue já está orientada como maior = melhor?
+```
+
+Registrar:
+
+```text
+HIGHER_IS_BETTER_AFTER_NORMALIZATION = TO_BE_FILLED
+```
+
+
+# 116. Prevenção de dupla transformação
+
+Se:
+
+```text
+HIGHER_IS_BETTER_AFTER_NORMALIZATION = TRUE
+```
+
+Vitor não deverá inverter novamente critérios COST.
+
+
+# 117. Artefatos futuros
+
+Quando executado:
+
+```text
+CRITERIA_TABLE = TO_BE_FILLED
+DECISION_MATRIX_ARTIFACT = TO_BE_FILLED
+NORMALIZED_MATRIX_ARTIFACT = TO_BE_FILLED
+CRITIC_CORRELATION_ARTIFACT = TO_BE_FILLED
+CRITIC_WEIGHTS_ARTIFACT = TO_BE_FILLED
+```
+
+
+# 118. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+CRITIC_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 119. Resultados não devem ser digitados manualmente
+
+Pesos, matrizes e tabelas devem ser derivados da execução real.
+
+
+# 120. Reprodutibilidade
+
+Deve ser possível reconstruir:
+
+```text
+base canônica
+↓
+critérios
+↓
+matriz
+↓
+normalização
+↓
+CRITIC
+↓
+pesos
+```
+
+sem edição manual oculta.
+
+
+# 121. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+
+# 122. Decisões que podem exigir DEC
+
+Exemplos:
+
+```text
+seleção/exclusão de critério importante
+tratamento de TARGET
+método principal de normalização
+método de correlação
+mudança da formulação padrão do CRITIC
+```
+
+
+# 123. Limitações
+
+Registrar:
+
+```text
+CRITIC_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 124. Possíveis limitações
+
+Somente quando observadas:
+
+```text
+poucas alternativas
+correlações instáveis
+critério com baixa dispersão
+missing
+redundância residual
+dependência do método de normalização
+```
+
+
+# 125. Robustez dos pesos
+
+A robustez dos pesos poderá ser investigada posteriormente por Vitor em conjunto com a robustez do ranking.
+
+Não expandir esta etapa desnecessariamente.
+
+
+# 126. O que esta etapa entrega
+
+Entrega:
+
+```text
+critérios finais
++
+direções
++
+matriz de decisão
++
+matriz normalizada/orientada
++
+pesos CRITIC
++
+limitações
++
+metadados metodológicos
+```
+
+
+# 127. O que esta etapa não entrega
+
+Não entrega:
+
+```text
+ranking TOPSIS
+cenários finais
+Pareto
+sensibilidade final
+robustez final
+vencedor definitivo
+```
+
+
+# 128. Handoff para Vitor
+
+Ao finalizar, atualizar:
+
+```text
+handoffs/02_BENJAMIN_to_VITOR.md
+```
+
+
+# 129. Conteúdo mínimo do handoff
+
+Vitor deverá receber:
+
+```text
+CANONICAL_DATA_VERSION
+FINAL_CRITERIA
+CRITERION_DIRECTION
+DECISION_MATRIX_VERSION
+NORMALIZATION_METHOD
+NORMALIZED_MATRIX_VERSION
+HIGHER_IS_BETTER_AFTER_NORMALIZATION
+CRITIC_CORRELATION_METHOD
+CRITIC_WEIGHTS
+CONFORMITY_STATUS
+OPEN_ISSUES
+LIMITATIONS
+```
+
+
+# 130. Revisão cruzada
+
+Antes do handoff:
+
+```text
+[ ] critérios revisados
+[ ] direções revisadas
+[ ] TARGET revisados
+[ ] matriz revisada
+[ ] normalização revisada
+[ ] correlação revisada
+[ ] fórmula CRITIC revisada
+[ ] pesos revisados
+[ ] soma dos pesos revisada
+[ ] associação por nomes revisada
+```
+
+
+# 131. Critério de aprovação
+
+Esta etapa poderá ser aprovada quando:
+
+```text
+critérios justificados
++
+matriz válida
++
+normalização definida
++
+CRITIC validado
++
+pesos reproduzíveis
++
+handoff completo
+```
+
+
+# 132. Próxima etapa
+
+A próxima análise será:
+
+```text
+analysis/10_VITOR_topsis.qmd
+```
+
+
+# 133. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 134. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+CRITERIA_STATUS = NOT_FINALIZED
+
+DECISION_MATRIX_STATUS = NOT_CREATED
+
+NORMALIZATION_STATUS = NOT_EXECUTED
+
+CRITIC_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+TOPSIS_STATUS = NOT_EXECUTED
+```
+
+
+# 135. Princípio final
+
+> O CRITIC não decide sozinho quais critérios pertencem ao problema e não representa importância técnica absoluta. Seu papel é atribuir pesos informacionais aos critérios já definidos, combinando contraste e conflito entre eles. A validade dos pesos depende da qualidade da base, da definição da matriz de decisão, da orientação dos critérios e da transparência das escolhas metodológicas.

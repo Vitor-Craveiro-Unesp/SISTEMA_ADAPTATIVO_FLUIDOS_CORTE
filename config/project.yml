@@ -1,255 +1,1227 @@
+# ============================================================
+# PROJECT.YML
+# Sistema Adaptativo de Classificação Multicritério
+# de Fluidos de Corte
+#
+# FINALIDADE
+#
+# Centralizar informações estruturais e operacionais do projeto.
+#
+# Este arquivo NÃO contém:
+#
+# - resultados científicos;
+# - critérios finais;
+# - pesos;
+# - ranking;
+# - valores experimentais.
+#
+# Ele descreve a arquitetura geral que deverá ser respeitada
+# pelas etapas do projeto.
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 1. PROJETO
+# ------------------------------------------------------------
+
 project:
+
+  id: "fluidos_corte"
+
   name: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
-  short_name: "FLUIDOS_CORTE"
-  version: "0.1.0"
 
-  description: >
-    Projeto estatístico para auditoria, análise exploratória,
-    validação e classificação multicritério de fluidos de corte,
-    utilizando R, CRITIC, TOPSIS, análise de cenários,
-    Pareto e análise de sensibilidade/robustez.
+  short_name: "Fluidos de Corte"
 
-  deadline:
-    official: "2026-10-20"
-    internal_target: "2026-10-20 20:00"
+  type: "Trabalho de Laboratório de Estatística"
 
-  language:
-    primary: "R"
+  year: 2026
 
-  report_language: "pt-BR"
+  language: "pt-BR"
 
-team:
+  status: "BASE_PREPARED"
 
-  pacheco:
-    role: "Auditoria, preparação dos dados e ADA inicial"
+  repository_status: "LOCAL"
 
-    responsibilities:
-      - "Importação dos dados"
-      - "Inventário da planilha"
-      - "Auditoria estrutural"
-      - "Dados faltantes"
-      - "Duplicidades"
-      - "Unidades"
-      - "Erros de soma"
-      - "Erros de média"
-      - "Validação de fórmulas"
-      - "Reconciliação entre abas"
-      - "Registro de inconsistências"
-      - "Construção da base canônica"
-      - "ADA inicial"
+  scientific_execution_status: "NOT_STARTED"
 
-    main_output:
-      - "data/processed/base_canonica_v1.rds"
-      - "report/stages/01_pacheco/"
 
-  benjamin:
-    role: "ADA aprofundada, critérios e ponderação"
+# ------------------------------------------------------------
+# 2. OBJETIVO GERAL
+# ------------------------------------------------------------
 
-    responsibilities:
-      - "ADA bivariada"
-      - "ADA multivariada"
-      - "Correlação"
-      - "Redundância"
-      - "Análise de conformidade"
-      - "Classificação dos critérios"
-      - "Matriz de decisão"
-      - "Normalização"
-      - "CRITIC"
+objective:
 
-    main_output:
-      - "results/critic/"
-      - "report/stages/02_benjamin/"
+  main: >
+    Construir um sistema estatístico e multicritério transparente,
+    reproduzível e tecnicamente interpretável para comparar e
+    classificar fluidos de corte a partir dos dados experimentais
+    disponíveis.
 
-  vitor:
-    role: "Ranking multicritério e robustez"
+  decision_goal: >
+    Produzir uma classificação das alternativas baseada em dados
+    auditados, critérios justificados, ponderação CRITIC, TOPSIS e
+    análises de robustez.
 
-    responsibilities:
-      - "TOPSIS"
-      - "Ranking principal"
-      - "Cenários"
-      - "Pareto"
-      - "Sensibilidade"
-      - "Robustez"
+  ranking_status: "NOT_GENERATED"
 
-    main_output:
-      - "results/topsis/"
-      - "results/scenarios/"
-      - "results/robustness/"
-      - "report/stages/03_vitor/"
 
-  marco:
-    role: "Integração científica, relatório e apresentação"
-
-    responsibilities:
-      - "Integração dos resultados"
-      - "Relatório técnico"
-      - "LaTeX"
-      - "Tabelas"
-      - "Figuras"
-      - "Apresentação"
-      - "Conclusão"
-      - "Limitações"
-
-    main_output:
-      - "report/final/"
-      - "presentation/"
-      - "report/stages/04_marco/"
-
-workflow:
-
-  order:
-    - "infraestrutura"
-    - "auditoria"
-    - "reconciliacao"
-    - "base_canonica"
-    - "ada_univariada"
-    - "ada_bivariada"
-    - "ada_multivariada"
-    - "conformidade"
-    - "criterios"
-    - "matriz_decisao"
-    - "normalizacao"
-    - "critic"
-    - "topsis"
-    - "cenarios"
-    - "pareto"
-    - "sensibilidade"
-    - "robustez"
-    - "relatorio"
-    - "apresentacao"
-    - "revisao"
-
-  handoffs:
-    - from: "Pacheco"
-      to: "Benjamin"
-
-    - from: "Benjamin"
-      to: "Vitor"
-
-    - from: "Vitor"
-      to: "Marco"
-
-    - from: "Marco"
-      to: "Todos"
+# ------------------------------------------------------------
+# 3. PRINCÍPIO METODOLÓGICO
+# ------------------------------------------------------------
 
 methodology:
 
-  main_weighting_method: "CRITIC"
-  main_ranking_method: "TOPSIS"
+  workflow:
 
-  complementary_methods:
-    - "Análise de conformidade"
-    - "Correlação"
-    - "Análise de redundância"
-    - "PCA quando justificável"
-    - "Clusterização exploratória quando justificável"
-    - "Fronteira de Pareto"
-    - "Análise de cenários"
-    - "Análise de sensibilidade"
-    - "Análise de robustez"
+    - "DATA_INVENTORY"
+    - "DATA_AUDIT"
+    - "DATA_RECONCILIATION"
+    - "CANONICAL_DATASET"
+    - "INITIAL_ADA"
+    - "BIVARIATE_ADA"
+    - "MULTIVARIATE_ADA"
+    - "TECHNICAL_CONFORMITY"
+    - "CRITERIA_DEFINITION"
+    - "DECISION_MATRIX"
+    - "NORMALIZATION"
+    - "CRITIC"
+    - "TOPSIS"
+    - "SCENARIOS"
+    - "PARETO"
+    - "SENSITIVITY"
+    - "ROBUSTNESS"
+    - "FINAL_INTERPRETATION"
+
+  ranking_method: "TOPSIS"
+
+  weighting_method: "CRITIC"
+
+  pareto_analysis: true
+
+  robustness_analysis: true
+
+  black_box_decision_model:
+    allowed: false
+
+  explainability:
+    required: true
+
+  reproducibility:
+    required: true
+
+
+# ------------------------------------------------------------
+# 4. LINGUAGEM ANALÍTICA
+# ------------------------------------------------------------
+
+analysis_environment:
+
+  primary_language: "R"
+
+  python_as_primary_analysis_language:
+    allowed: false
+
+  r_version:
+    required: true
+    value: null
+
+  reproducible_environment:
+    planned: true
+
+  dependency_manager:
+    planned: "renv"
+
+  pipeline_manager:
+    planned: "targets"
+
+  test_framework:
+    planned: "testthat"
+
+  containerization:
+    planned: true
+    technology: "Docker"
+
+
+# ------------------------------------------------------------
+# 5. EQUIPE
+# ------------------------------------------------------------
+
+team:
+
+  members:
+
+    pacheco:
+
+      name: "Pacheco"
+
+      role: "DATA_AUDIT_AND_PREPARATION"
+
+      responsibilities:
+
+        - "inventario"
+        - "auditoria"
+        - "reconciliacao"
+        - "base_canonica"
+        - "ada_inicial"
+
+
+    benjamin:
+
+      name: "Benjamin"
+
+      role: "CRITERIA_AND_WEIGHTING"
+
+      responsibilities:
+
+        - "ada_bivariada"
+        - "ada_multivariada"
+        - "conformidade"
+        - "criterios"
+        - "matriz_decisao"
+        - "normalizacao"
+        - "critic"
+
+
+    vitor:
+
+      name: "Vitor"
+
+      role: "RANKING_AND_ROBUSTNESS"
+
+      responsibilities:
+
+        - "topsis"
+        - "ranking_principal"
+        - "cenarios"
+        - "pareto"
+        - "sensibilidade"
+        - "robustez"
+
+
+    marco:
+
+      name: "Marco"
+
+      role: "INTEGRATION_AND_COMMUNICATION"
+
+      responsibilities:
+
+        - "integracao_resultados"
+        - "relatorio_final"
+        - "tabelas_finais"
+        - "figuras_finais"
+        - "apresentacao"
+        - "conclusoes"
+        - "limitacoes"
+
+
+# ------------------------------------------------------------
+# 6. RESPONSABILIDADE COLETIVA
+# ------------------------------------------------------------
+
+shared_responsibilities:
+
+  - "revisao_cruzada"
+  - "infraestrutura"
+  - "controle_de_versao"
+  - "checkpoints"
+  - "revisao_final"
+  - "ensaio_apresentacao"
+  - "entrega_final"
+
+
+# ------------------------------------------------------------
+# 7. ETAPAS
+# ------------------------------------------------------------
+
+stages:
+
+  stage_01:
+
+    id: "01"
+
+    name: "INVENTARIO"
+
+    responsible: "Pacheco"
+
+    notebook: "analysis/01_PACHECO_inventario.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_02:
+
+    id: "02"
+
+    name: "AUDITORIA"
+
+    responsible: "Pacheco"
+
+    notebook: "analysis/02_PACHECO_auditoria.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_03:
+
+    id: "03"
+
+    name: "RECONCILIACAO"
+
+    responsible: "Pacheco"
+
+    notebook: "analysis/03_PACHECO_reconciliacao.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_04:
+
+    id: "04"
+
+    name: "BASE_CANONICA"
+
+    responsible: "Pacheco"
+
+    notebook: "analysis/04_PACHECO_base_canonica.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_05:
+
+    id: "05"
+
+    name: "ADA_INICIAL"
+
+    responsible: "Pacheco"
+
+    notebook: "analysis/05_PACHECO_ada_inicial.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_06:
+
+    id: "06"
+
+    name: "ADA_BIVARIADA"
+
+    responsible: "Benjamin"
+
+    notebook: "analysis/06_BENJAMIN_ada_bivariada.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_07:
+
+    id: "07"
+
+    name: "ADA_MULTIVARIADA"
+
+    responsible: "Benjamin"
+
+    notebook: "analysis/07_BENJAMIN_ada_multivariada.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_08:
+
+    id: "08"
+
+    name: "CONFORMIDADE"
+
+    responsible: "Benjamin"
+
+    notebook: "analysis/08_BENJAMIN_conformidade.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_09:
+
+    id: "09"
+
+    name: "CRITIC"
+
+    responsible: "Benjamin"
+
+    notebook: "analysis/09_BENJAMIN_critic.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_10:
+
+    id: "10"
+
+    name: "TOPSIS"
+
+    responsible: "Vitor"
+
+    notebook: "analysis/10_VITOR_topsis.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_11:
+
+    id: "11"
+
+    name: "CENARIOS_E_PARETO"
+
+    responsible: "Vitor"
+
+    notebook: "analysis/11_VITOR_cenarios_pareto.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_12:
+
+    id: "12"
+
+    name: "ROBUSTEZ"
+
+    responsible: "Vitor"
+
+    notebook: "analysis/12_VITOR_robustez.qmd"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_13:
+
+    id: "13"
+
+    name: "INTEGRACAO"
+
+    responsible: "Marco"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_14:
+
+    id: "14"
+
+    name: "RELATORIO_E_APRESENTACAO"
+
+    responsible: "Marco"
+
+    status: "NOT_EXECUTED"
+
+
+  stage_15:
+
+    id: "15"
+
+    name: "REVISAO_FINAL"
+
+    responsible: "TODOS"
+
+    status: "NOT_EXECUTED"
+
+
+# ------------------------------------------------------------
+# 8. ORDEM DE DEPENDÊNCIA
+# ------------------------------------------------------------
+
+dependencies:
+
+  "02": ["01"]
+
+  "03": ["02"]
+
+  "04": ["03"]
+
+  "05": ["04"]
+
+  "06": ["04", "05"]
+
+  "07": ["06"]
+
+  "08": ["04", "06", "07"]
+
+  "09": ["04", "06", "07", "08"]
+
+  "10": ["09"]
+
+  "11": ["10"]
+
+  "12": ["10", "11"]
+
+  "13": ["12"]
+
+  "14": ["13"]
+
+  "15": ["14"]
+
+
+# ------------------------------------------------------------
+# 9. HANDOFFS
+# ------------------------------------------------------------
+
+handoffs:
+
+  pacheco_to_benjamin:
+
+    file: "handoffs/01_PACHECO_to_BENJAMIN.md"
+
+    status: "NOT_READY"
+
+
+  benjamin_to_vitor:
+
+    file: "handoffs/02_BENJAMIN_to_VITOR.md"
+
+    status: "NOT_READY"
+
+
+  vitor_to_marco:
+
+    file: "handoffs/03_VITOR_to_MARCO.md"
+
+    status: "NOT_READY"
+
+
+  marco_to_all:
+
+    file: "handoffs/04_MARCO_to_TODOS.md"
+
+    status: "NOT_READY"
+
+
+# ------------------------------------------------------------
+# 10. DIRETÓRIOS
+# ------------------------------------------------------------
 
 paths:
 
-  data:
-    raw: "data/raw"
-    interim: "data/interim"
-    processed: "data/processed"
+  raw_data: "data/raw"
 
-  code:
-    r: "R"
-    analysis: "analysis"
-    scripts: "scripts"
+  interim_data: "data/interim"
 
-  tests:
-    root: "tests/testthat"
+  processed_data: "data/processed"
 
-  results:
-    root: "results"
-    audit: "results/audit"
-    ada: "results/ada"
-    tables: "results/tables"
-    figures: "results/figures"
-    critic: "results/critic"
-    topsis: "results/topsis"
-    scenarios: "results/scenarios"
-    robustness: "results/robustness"
+  analysis: "analysis"
 
-  documentation:
-    instructions: "instructions"
-    decisions: "decisions"
-    handoffs: "handoffs"
+  r_code: "R"
 
-  reports:
-    stages: "report/stages"
-    final: "report/final"
+  shared_r_code: "R/shared"
 
-  presentation:
-    root: "presentation"
-    templates: "templates/presentation"
-    reference_pdf: "templates/presentation/reference_pdf"
-    latex_template: "templates/presentation/latex"
+  tests: "tests/testthat"
 
-files:
+  config: "config"
 
-  raw_dataset:
-    expected_name: "ensaio_bancada_alunos.xlsx"
-    expected_path: "data/raw/ensaio_bancada_alunos.xlsx"
+  decisions: "decisions"
 
-  canonical_dataset:
-    expected_name: "base_canonica_v1.rds"
-    expected_path: "data/processed/base_canonica_v1.rds"
+  handoffs: "handoffs"
 
-  decision_matrix:
-    expected_name: "matriz_decisao.rds"
-    expected_path: "data/processed/matriz_decisao.rds"
+  instructions: "instructions"
 
-reproducibility:
+  templates: "templates"
 
-  docker: true
-  renv: true
-  targets: true
-  testthat: true
-  git: true
-  github: true
+  results: "results"
 
-data_policy:
+  report: "report"
 
-  raw_is_immutable: true
+  presentation_templates: "templates/presentation"
 
-  allow_manual_edit_raw: false
 
-  allow_silent_correction: false
+# ------------------------------------------------------------
+# 11. DIRETÓRIOS DE RESULTADOS
+# ------------------------------------------------------------
 
-  allow_automatic_outlier_removal: false
+result_paths:
 
-  allow_unjustified_imputation: false
+  audit: "results/audit"
 
-  require_decision_record: true
+  ada: "results/ada"
 
-  require_handoff_between_stages: true
+  tables: "results/tables"
+
+  figures: "results/figures"
+
+  critic: "results/critic"
+
+  topsis: "results/topsis"
+
+  scenarios: "results/scenarios"
+
+  robustness: "results/robustness"
+
+
+# ------------------------------------------------------------
+# 12. DADOS BRUTOS
+# ------------------------------------------------------------
+
+raw_data_policy:
+
+  immutable: true
+
+  manual_editing:
+    allowed: false
+
+  overwrite:
+    allowed: false
+
+  use_as_direct_final_analysis_source:
+    allowed: false
+
+  preserve_original_filename:
+    preferred: true
+
+  preserve_original_content:
+    required: true
+
+
+# ------------------------------------------------------------
+# 13. BASE CANÔNICA
+# ------------------------------------------------------------
+
+canonical_data:
+
+  status: "NOT_CREATED"
+
+  required_before_downstream_analysis: true
+
+  reproducible_generation:
+    required: true
+
+  manual_creation:
+    allowed: false
+
+  preserve_full_precision: true
+
+  versioning:
+    required: true
+
+  hash:
+    recommended: true
+
+
+# ------------------------------------------------------------
+# 14. MISSING
+# ------------------------------------------------------------
+
+missing_data:
+
+  na_equals_zero: false
+
+  automatic_imputation:
+    allowed: false
+
+  require_explicit_interpretation: true
+
+  require_documented_treatment: true
+
+
+# ------------------------------------------------------------
+# 15. PRECISÃO NUMÉRICA
+# ------------------------------------------------------------
+
+numerical_precision:
+
+  calculations:
+    use_full_available_precision: true
+
+  intermediate_rounding:
+    allowed: false
+
+  ranking_from_rounded_values:
+    allowed: false
+
+  rounding_for_presentation:
+    allowed: true
+
+
+# ------------------------------------------------------------
+# 16. CONFORMIDADE
+# ------------------------------------------------------------
+
+conformity:
+
+  status: "NOT_EXECUTED"
+
+  separate_from_performance: true
+
+  require_confirmed_specifications: true
+
+  invent_missing_specifications:
+    allowed: false
+
+  automatically_remove_noncompliant:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 17. CRITÉRIOS
+# ------------------------------------------------------------
+
+criteria:
+
+  config_file: "config/criterios.yml"
+
+  status: "NOT_FINALIZED"
+
+  define_before_interpreting_ranking: true
+
+  choose_based_on_winner:
+    allowed: false
+
+  silent_exclusion:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 18. NORMALIZAÇÃO
+# ------------------------------------------------------------
+
+normalization:
+
+  status: "NOT_DEFINED"
+
+  primary_method: null
+
+  maintain_full_precision: true
+
+  double_cost_inversion:
+    allowed: false
+
+  alternative_method_for_robustness:
+    planned: true
+
+
+# ------------------------------------------------------------
+# 19. CRITIC
+# ------------------------------------------------------------
+
+critic:
+
+  status: "NOT_EXECUTED"
+
+  formula:
+
+    information:
+      expression: "C_j = sigma_j * sum_k(1 - r_jk)"
+
+    weights:
+      expression: "w_j = C_j / sum_j(C_j)"
+
+  conflict_expression: "1 - r_jk"
+
+  use_absolute_correlation:
+    value: false
+
+  equal_weight_fallback:
+    allowed: false
+
+  interpretation: "INFORMATION_WEIGHT"
+
+
+# ------------------------------------------------------------
+# 20. TOPSIS
+# ------------------------------------------------------------
+
+topsis:
+
+  status: "NOT_EXECUTED"
+
+  weighted_matrix:
+    expression: "v_ij = w_j * r_ij"
+
+  positive_distance:
+    expression: "S_i_plus = sqrt(sum_j((v_ij - v_j_plus)^2))"
+
+  negative_distance:
+    expression: "S_i_minus = sqrt(sum_j((v_ij - v_j_minus)^2))"
+
+  closeness:
+    expression: "C_i = S_i_minus / (S_i_plus + S_i_minus)"
+
+  expected_closeness_range:
+
+    min: 0
+
+    max: 1
+
+  primary_ranking:
+    order: "DESCENDING_CLOSENESS"
+
+  ranking_status: "NOT_GENERATED"
+
+
+# ------------------------------------------------------------
+# 21. PARETO
+# ------------------------------------------------------------
+
+pareto:
+
+  status: "NOT_EXECUTED"
+
+  use_weights: false
+
+  require_oriented_criteria: true
+
+  self_dominance:
+    allowed: false
+
+  strict_improvement_in_at_least_one_criterion:
+    required: true
+
+
+# ------------------------------------------------------------
+# 22. ROBUSTEZ
+# ------------------------------------------------------------
+
+robustness:
+
+  status: "NOT_EXECUTED"
+
+  planned_analyses:
+
+    - "SCENARIOS"
+    - "WEIGHT_SENSITIVITY"
+    - "LOCO"
+    - "ALTERNATIVE_NORMALIZATION"
+    - "LOAO"
+    - "RANK_REVERSAL"
+
+  simulations:
+    optional: true
+
+  frequencies_are_probabilities:
+    value: false
+
+
+# ------------------------------------------------------------
+# 23. DECISÕES
+# ------------------------------------------------------------
+
+decision_records:
+
+  directory: "decisions"
+
+  template: "decisions/DEC-000-EXEMPLO.md"
+
+  numbering:
+
+    example_reserved: "DEC-000"
+
+    first_real_decision: "DEC-001"
+
+  create_only_when_needed: true
+
+  major_methodological_change_requires_record: true
+
+
+# ------------------------------------------------------------
+# 24. GIT
+# ------------------------------------------------------------
+
+git:
+
+  enabled: true
+
+  repository_created_on_remote: false
+
+  default_branch_planned: "main"
+
+  direct_commit_to_main:
+    recommended: false
+
+  planned_branches:
+
+    pacheco: "pacheco/auditoria"
+
+    benjamin: "benjamin/criterios"
+
+    vitor: "vitor/ranking"
+
+    marco: "marco/relatorio"
+
+  pull_request_review:
+    planned: true
+
+
+# ------------------------------------------------------------
+# 25. CI
+# ------------------------------------------------------------
+
+continuous_integration:
+
+  workflow: ".github/workflows/ci.yml"
+
+  status: "BASE_STRUCTURE_ONLY"
+
+  run_scientific_pipeline: false
+
+  run_tests: false
+
+  run_targets: false
+
+  compile_report: false
+
+  future_expansion: true
+
+
+# ------------------------------------------------------------
+# 26. RELATÓRIO
+# ------------------------------------------------------------
+
+report:
+
+  status: "BASE_PREPARED"
+
+  official_source: "report/final/main.tex"
+
+  language: "pt-BR"
+
+  format: "LaTeX"
+
+  maximum_pages: 4
+
+  references_included_in_page_limit: true
+
+  abstract:
+
+    maximum_characters_with_spaces: 1200
+
+  keywords:
+
+    minimum: 3
+
+    maximum: 5
+
+  sections:
+
+    - "Introdução"
+    - "Material e Método"
+    - "Resultados e Discussão"
+    - "Conclusões"
+    - "Referências"
+
+  results_before_execution:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 27. RELATÓRIOS INTERNOS
+# ------------------------------------------------------------
+
+stage_reports:
+
+  pacheco:
+    file: "report/stages/01_pacheco/relatorio_auditoria.qmd"
+
+  benjamin:
+    file: "report/stages/02_benjamin/relatorio_ada_criterios.qmd"
+
+  vitor:
+    file: "report/stages/03_vitor/relatorio_ranking.qmd"
+
+  marco:
+    file: "report/stages/04_marco/relatorio_integracao.qmd"
+
+
+# ------------------------------------------------------------
+# 28. APRESENTAÇÃO
+# ------------------------------------------------------------
+
+presentation:
+
+  status: "BASE_PREPARED"
+
+  format: "LaTeX Beamer"
+
+  template_root: "templates/presentation/latex"
+
+  main_file: "templates/presentation/latex/main.tex"
+
+  external_assets: "templates/presentation/latex/assets"
+
+  reference_material: "templates/presentation/reference_pdf"
+
+  use_unvalidated_results:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 29. MATERIAL EXTERNO
+# ------------------------------------------------------------
+
+external_material:
+
+  professor_material:
+
+    priority_over_generic_project_templates: true
+
+    preserve_original: true
+
+    invent_missing_information:
+      allowed: false
+
+
+  raw_data_destination: "data/raw"
+
+  presentation_assets_destination: "templates/presentation/latex/assets"
+
+  presentation_reference_destination: "templates/presentation/reference_pdf"
+
+
+# ------------------------------------------------------------
+# 30. RESULTADOS
+# ------------------------------------------------------------
 
 results_policy:
 
-  source_of_truth: "results/"
+  current_status: "NOT_GENERATED"
 
-  manual_entry_in_report: false
+  manually_create_scientific_results:
+    allowed: false
 
-  manual_entry_in_presentation: false
+  generated_by_code:
+    required: true
 
-  require_reproducible_results: true
+  manually_edit_scientific_values:
+    allowed: false
 
-quality_control:
+  validate_before_reporting:
+    required: true
 
-  require_tests_before_handoff: true
 
-  require_status_update_before_handoff: true
+# ------------------------------------------------------------
+# 31. TABELAS
+# ------------------------------------------------------------
 
-  require_stage_report: true
+tables:
 
-  require_decision_log_for_methodological_changes: true
+  source: "GENERATED_RESULTS"
 
-  require_collective_checkpoint:
-    - "Pacheco_to_Benjamin"
-    - "Benjamin_to_Vitor"
-    - "Vitor_to_Marco"
-    - "Marco_to_Todos"
+  manual_scientific_value_entry:
+    allowed: false
+
+  preserve_full_precision_in_computation: true
+
+  presentation_rounding:
+    allowed: true
+
+
+# ------------------------------------------------------------
+# 32. FIGURAS
+# ------------------------------------------------------------
+
+figures:
+
+  source: "GENERATED_RESULTS"
+
+  reproducible_generation:
+    required: true
+
+  manual_scientific_value_editing:
+    allowed: false
+
+  decorative_external_images:
+    allowed: true
+
+  external_images_must_not_be_presented_as_results: true
+
+
+# ------------------------------------------------------------
+# 33. TESTES
+# ------------------------------------------------------------
+
+testing:
+
+  framework: "testthat"
+
+  status: "NOT_IMPLEMENTED"
+
+  directory: "tests/testthat"
+
+  expected_coverage_areas:
+
+    - "data_validation"
+    - "canonical_dataset"
+    - "normalization"
+    - "critic"
+    - "topsis"
+    - "pareto"
+    - "robustness"
+
+
+# ------------------------------------------------------------
+# 34. PIPELINE
+# ------------------------------------------------------------
+
+pipeline:
+
+  manager: "targets"
+
+  file: "_targets.R"
+
+  status: "NOT_IMPLEMENTED"
+
+  rerun_downstream_after_upstream_change: true
+
+  silent_stale_outputs:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 35. DOCKER
+# ------------------------------------------------------------
+
+docker:
+
+  planned: true
+
+  dockerfile: "Dockerfile"
+
+  compose_file: "compose.yaml"
+
+  status: "BASE_PREPARED"
+
+
+# ------------------------------------------------------------
+# 36. REPRODUTIBILIDADE
+# ------------------------------------------------------------
+
+reproducibility:
+
+  required: true
+
+  absolute_paths:
+    allowed: false
+
+  hidden_manual_steps:
+    allowed: false
+
+  fixed_seed_when_randomness_exists:
+    required: true
+
+  same_input_same_output:
+    expected: true
+
+
+# ------------------------------------------------------------
+# 37. STATUS PERMITIDOS
+# ------------------------------------------------------------
+
+allowed_status:
+
+  - "NOT_STARTED"
+  - "NOT_EXECUTED"
+  - "NOT_CREATED"
+  - "NOT_GENERATED"
+  - "DRAFT"
+  - "UNDER_REVIEW"
+  - "APPROVED"
+  - "BLOCKED"
+  - "SUPERSEDED"
+  - "BASE_PREPARED"
+
+
+# ------------------------------------------------------------
+# 38. REABERTURA DE ETAPAS
+# ------------------------------------------------------------
+
+reopen_policy:
+
+  upstream_change_requires_impact_review: true
+
+  possible_triggers:
+
+    - "DATA_CHANGE"
+    - "RECONCILIATION_CHANGE"
+    - "CRITERIA_CHANGE"
+    - "NORMALIZATION_CHANGE"
+    - "WEIGHT_CHANGE"
+    - "METHOD_CHANGE"
+
+  rerun_affected_downstream_stages: true
+
+
+# ------------------------------------------------------------
+# 39. APROVAÇÃO
+# ------------------------------------------------------------
+
+approval:
+
+  scientific_stage_requires_review: true
+
+  handoff_before_next_member:
+    required: true
+
+  final_results_require_cross_review: true
+
+  final_delivery_requires_all_members_review: true
+
+
+# ------------------------------------------------------------
+# 40. ESTADO ATUAL
+# ------------------------------------------------------------
+
+current_state:
+
+  architecture: "BASE_PREPARED"
+
+  data_inventory: "NOT_EXECUTED"
+
+  audit: "NOT_EXECUTED"
+
+  reconciliation: "NOT_EXECUTED"
+
+  canonical_dataset: "NOT_CREATED"
+
+  ada: "NOT_EXECUTED"
+
+  criteria: "NOT_FINALIZED"
+
+  conformity: "NOT_EXECUTED"
+
+  critic: "NOT_EXECUTED"
+
+  topsis: "NOT_EXECUTED"
+
+  scenarios: "NOT_EXECUTED"
+
+  pareto: "NOT_EXECUTED"
+
+  robustness: "NOT_EXECUTED"
+
+  final_ranking: "NOT_GENERATED"
+
+  report_results: "NOT_GENERATED"
+
+  presentation_results: "NOT_GENERATED"
+
+
+# ------------------------------------------------------------
+# 41. PRINCÍPIO FINAL
+# ------------------------------------------------------------
+
+principles:
+
+  preserve_raw_data: true
+
+  no_silent_corrections: true
+
+  no_silent_methodological_changes: true
+
+  no_results_before_execution: true
+
+  no_winner_driven_method_selection: true
+
+  conformity_separate_from_performance: true
+
+  correlation_is_not_causation: true
+
+  critic_weight_is_not_absolute_technical_importance: true
+
+  scenario_frequency_is_not_probability: true
+
+  ranking_requires_robustness_context: true

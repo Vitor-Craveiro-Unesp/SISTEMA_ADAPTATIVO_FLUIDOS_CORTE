@@ -1,20 +1,335 @@
-\documentclass[aspectratio=169]{beamer}
-\input{preamble}
-\input{theme}
-\input{commands}
+% ============================================================
+% MAIN.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% ARQUIVO PRINCIPAL DA APRESENTAÇÃO
+%
+% FINALIDADE
+%
+% Este arquivo:
+%
+% 1. define a classe Beamer;
+% 2. carrega o preâmbulo;
+% 3. carrega o tema;
+% 4. carrega os comandos reutilizáveis;
+% 5. organiza as seções da apresentação;
+% 6. importa os arquivos individuais de conteúdo.
+%
+% Este arquivo NÃO deve conter resultados científicos.
+%
+% Os integrantes deverão desenvolver e atualizar o conteúdo
+% científico nos arquivos correspondentes de sections/.
+%
+% ============================================================
 
-\title{Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte}
-\author{Pacheco \and Benjamin \and Vitor \and Marco}
-\date{2026}
+
+% ============================================================
+% CLASSE DO DOCUMENTO
+% ============================================================
+
+\documentclass[
+    10pt,
+    aspectratio=169
+]{beamer}
+
+
+% ============================================================
+% PREÂMBULO
+% ============================================================
+%
+% Pacotes, configurações gerais e recursos necessários para
+% a apresentação.
+%
+% ============================================================
+
+\input{preamble.tex}
+
+
+% ============================================================
+% TEMA
+% ============================================================
+%
+% Configuração visual da apresentação.
+%
+% ============================================================
+
+\input{theme.tex}
+
+
+% ============================================================
+% COMANDOS
+% ============================================================
+%
+% Macros e textos reutilizáveis.
+%
+% ============================================================
+
+\input{commands.tex}
+
+
+% ============================================================
+% METADADOS
+% ============================================================
+%
+% Esses metadados poderão ser utilizados pelo tema ou pelo PDF.
+%
+% A capa principal está em:
+%
+% sections/00_capa.tex
+%
+% ============================================================
+
+\title{\ProjectTitle}
+
+\subtitle{\ProjectSubtitle}
+
+\author{\ProjectMembers}
+
+\date{\ProjectYear}
+
+
+% ============================================================
+% INÍCIO DO DOCUMENTO
+% ============================================================
 
 \begin{document}
-\frame{\titlepage}
-\input{sections/00_capa}
-\input{sections/01_problema}
-\input{sections/02_dados}
-\input{sections/03_auditoria}
-\input{sections/04_ada}
-\input{sections/05_metodologia}
-\input{sections/06_resultados}
-\input{sections/07_conclusao}
+
+
+% ============================================================
+% 00 — CAPA
+% ============================================================
+
+\input{sections/00_capa.tex}
+
+
+% ============================================================
+% 01 — PROBLEMA
+% ============================================================
+
+\section{Problema}
+
+\input{sections/01_problema.tex}
+
+
+% ============================================================
+% 02 — DADOS
+% ============================================================
+
+\section{Dados}
+
+\input{sections/02_dados.tex}
+
+
+% ============================================================
+% 03 — AUDITORIA
+% ============================================================
+
+\section{Auditoria}
+
+\input{sections/03_auditoria.tex}
+
+
+% ============================================================
+% 04 — ANÁLISE EXPLORATÓRIA
+% ============================================================
+
+\section{Análise Exploratória}
+
+\input{sections/04_ada.tex}
+
+
+% ============================================================
+% 05 — METODOLOGIA
+% ============================================================
+
+\section{Metodologia}
+
+\input{sections/05_metodologia.tex}
+
+
+% ============================================================
+% 06 — RESULTADOS
+% ============================================================
+
+\section{Resultados}
+
+\input{sections/06_resultados.tex}
+
+
+% ============================================================
+% 07 — CONCLUSÃO
+% ============================================================
+
+\section{Conclusão}
+
+\input{sections/07_conclusao.tex}
+
+
+% ============================================================
+% FIM DO DOCUMENTO
+% ============================================================
+
 \end{document}
+
+
+% ============================================================
+% ORGANIZAÇÃO DA APRESENTAÇÃO
+% ============================================================
+%
+% main.tex
+% │
+% ├── preamble.tex
+% ├── theme.tex
+% ├── commands.tex
+% │
+% └── sections/
+%     ├── 00_capa.tex
+%     ├── 01_problema.tex
+%     ├── 02_dados.tex
+%     ├── 03_auditoria.tex
+%     ├── 04_ada.tex
+%     ├── 05_metodologia.tex
+%     ├── 06_resultados.tex
+%     └── 07_conclusao.tex
+%
+% ============================================================
+
+
+% ============================================================
+% RESPONSABILIDADE DOS ARQUIVOS
+% ============================================================
+%
+% main.tex
+%     Organização geral.
+%
+% preamble.tex
+%     Pacotes e configurações técnicas.
+%
+% theme.tex
+%     Aparência da apresentação.
+%
+% commands.tex
+%     Comandos reutilizáveis.
+%
+% sections/
+%     Conteúdo dos slides.
+%
+% assets/
+%     Logos e demais materiais externos confirmados.
+%
+% figures/
+%     Figuras utilizadas na apresentação.
+%
+% ============================================================
+
+
+% ============================================================
+% REGRA PARA RESULTADOS
+% ============================================================
+%
+% Este arquivo não deverá receber comandos como:
+%
+% \def\Winner{...}
+% \def\TopOne{...}
+% \def\CriticWeight{...}
+%
+% com valores preenchidos manualmente.
+%
+% Resultados futuros deverão vir da execução realizada pelos
+% integrantes e, quando possível, ser incorporados de forma
+% reproduzível.
+%
+% ============================================================
+
+
+% ============================================================
+% ORDEM METODOLÓGICA
+% ============================================================
+%
+% A organização dos arquivos preserva a narrativa:
+%
+% problema
+% ↓
+% dados
+% ↓
+% auditoria
+% ↓
+% ADA
+% ↓
+% metodologia
+% ↓
+% resultados
+% ↓
+% conclusão
+%
+% ============================================================
+
+
+% ============================================================
+% SOBRE A QUANTIDADE DE SLIDES
+% ============================================================
+%
+% Os arquivos de sections/ contêm uma BASE relativamente
+% completa.
+%
+% Isso NÃO significa que todos os frames deverão permanecer na
+% apresentação final.
+%
+% Depois da execução, os integrantes deverão:
+%
+% - selecionar os slides essenciais;
+% - eliminar redundâncias;
+% - substituir texto por figuras quando apropriado;
+% - adaptar ao tempo da apresentação;
+% - preservar a narrativa científica.
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL DA PROFESSORA
+% ============================================================
+%
+% Caso a professora forneça posteriormente um template oficial
+% de apresentação, uma identidade visual específica ou regras
+% adicionais, essas orientações terão prioridade sobre a
+% configuração genérica criada nesta base.
+%
+% ============================================================
+
+
+% ============================================================
+% COMPILAÇÃO
+% ============================================================
+%
+% Este arquivo foi estruturado para ser o arquivo principal de
+% compilação da apresentação.
+%
+% Os integrantes serão responsáveis posteriormente por:
+%
+% - configurar o ambiente LaTeX;
+% - instalar dependências;
+% - validar a compilação;
+% - corrigir incompatibilidades;
+% - gerar o PDF final.
+%
+% Nesta fase estamos apenas preparando a base.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% PRESENTATION_MAIN_STATUS = BASE_PREPARED
+%
+% PREAMBLE_STATUS = TO_BE_PREPARED
+% THEME_STATUS = TO_BE_PREPARED
+% COMMANDS_STATUS = BASE_PREPARED
+%
+% SCIENTIFIC_RESULTS = NOT_EXECUTED
+% FINAL_PRESENTATION = NOT_CREATED
+%
+% ============================================================

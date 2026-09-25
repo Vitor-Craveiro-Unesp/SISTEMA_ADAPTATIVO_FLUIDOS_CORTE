@@ -1,20 +1,1321 @@
 ---
-title: "02 PACHECO auditoria"
-format: html
+title: "02 — Auditoria dos Dados"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Pacheco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+02_PACHECO_AUDITORIA.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Pacheco
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Executar a auditoria detalhada da fonte de dados após o
+inventário estrutural.
 
-## Validações
+Este caderno deverá investigar:
 
-## Pendências
+- identificadores;
+- tipos;
+- missing;
+- duplicatas;
+- unidades;
+- fórmulas;
+- totais;
+- médias;
+- valores derivados;
+- divergências entre abas;
+- campos qualitativos;
+- especificações;
+- problemas econômicos;
+- inconsistências relevantes.
+
+IMPORTANTE
+
+Nesta etapa:
+
+detectar
+≠
+corrigir silenciosamente
+
+Toda inconsistência deverá seguir:
+
+detecção
+↓
+registro
+↓
+investigação
+↓
+evidência
+↓
+decisão posterior
+
+A reconciliação definitiva será documentada no arquivo:
+
+analysis/03_PACHECO_reconciliacao.qmd
+
+Nesta fase:
+
+AUDIT_STATUS = NOT_EXECUTED
+RECONCILIATION_STATUS = NOT_STARTED
+DATA_CORRECTIONS = NONE
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 02 — Auditoria dos Dados
+
+**Responsável:** Pacheco
+
+**Status:** `DRAFT`
+
+**Entrada principal:** inventário produzido em `analysis/01_PACHECO_inventario.qmd`
+
+**Fonte original:** `TO_BE_FILLED`
+
+**Versão da fonte:** `TO_BE_FILLED`
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é determinar se os dados disponíveis são internamente consistentes e adequados para a construção da base canônica.
+
+Fluxo:
+
+```text
+inventário
+↓
+auditoria estrutural
+↓
+auditoria de valores
+↓
+auditoria de fórmulas
+↓
+comparação entre fontes
+↓
+registro de inconsistências
+↓
+reconciliação
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] inventário executado
+[ ] abas conhecidas
+[ ] variáveis conhecidas
+[ ] tipos aparentes conhecidos
+[ ] fórmulas localizadas
+[ ] alternativas observadas conhecidas
+[ ] fonte original preservada
+```
+
+
+# 4. Entradas recebidas do inventário
+
+Registrar:
+
+```text
+N_SHEETS = TO_BE_FILLED
+SHEETS = TO_BE_FILLED
+N_OBSERVED_ALTERNATIVES = TO_BE_FILLED
+VARIABLE_INVENTORY = TO_BE_FILLED
+FORMULA_INVENTORY = TO_BE_FILLED
+INITIAL_ISSUES = TO_BE_FILLED
+```
+
+
+# 5. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 6. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO DA AUDITORIA
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Responsabilidades possíveis:
+#
+# - carregar pacotes;
+# - carregar funções auxiliares;
+# - localizar fonte original;
+# - carregar inventário anterior;
+# - definir tolerâncias aprovadas.
+#
+# Não implementar decisões de reconciliação neste template.
+#
+# ============================================================
+```
+
+
+# 7. Leitura da fonte
+
+```{r}
+# ============================================================
+# LEITURA DA FONTE ORIGINAL
+# ============================================================
+#
+# A leitura deverá preservar, sempre que possível:
+#
+# - valores;
+# - nomes;
+# - estrutura;
+# - fórmulas ou resultados de fórmulas;
+# - tipos observados.
+#
+# ============================================================
+```
+
+
+# 8. Regra de preservação
+
+A auditoria não deve modificar:
+
+```text
+data/raw/
+```
+
+Toda análise é realizada sobre objetos derivados em memória ou artefatos intermediários controlados.
+
+
+# 9. Auditoria dos identificadores
+
+Verificar se os identificadores das alternativas são:
+
+```text
+consistentes
+únicos quando esperado
+presentes nas abas necessárias
+grafados da mesma forma
+```
+
+Registrar:
+
+```text
+IDENTIFIER_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 10. Diferenças de nomenclatura
+
+Investigar:
+
+```text
+espaços extras
+maiúsculas/minúsculas
+acentos
+abreviações
+nomes alternativos
+```
+
+Tabela futura:
+
+| Fonte | Identificador observado | Problema | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 11. Alternativas ausentes entre abas
+
+Registrar:
+
+```text
+MISSING_ALTERNATIVES_BY_SHEET = TO_BE_FILLED
+```
+
+Não excluir nenhuma alternativa automaticamente.
+
+
+# 12. Auditoria dos tipos
+
+Verificar se cada coluna possui tipo coerente com seu significado esperado.
+
+Possíveis problemas:
+
+```text
+número armazenado como texto
+texto misturado com número
+datas interpretadas incorretamente
+unidades dentro da célula
+fórmulas retornando texto
+```
+
+```{r}
+# ============================================================
+# AUDITORIA DE TIPOS
+# ============================================================
+#
+# Implementar verificações por variável.
+#
+# ============================================================
+```
+
+
+# 13. Colunas numéricas com texto
+
+Registrar:
+
+```text
+NUMERIC_COLUMNS_WITH_TEXT = TO_BE_FILLED
+```
+
+Não converter automaticamente sem compreender o significado.
+
+
+# 14. Valores especiais em texto
+
+Investigar valores como:
+
+```text
+repetir
+OK
+não
+isento
+N/A
+outros encontrados
+```
+
+Registrar:
+
+| Aba | Variável | Valor textual | Significado | Status |
+|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 15. Auditoria de missing
+
+A auditoria deverá separar, quando possível:
+
+```text
+TRUE_MISSING
+PENDING_MEASUREMENT
+NOT_APPLICABLE
+FORMULA_ERROR
+UNKNOWN
+```
+
+```{r}
+# ============================================================
+# AUDITORIA DE MISSING
+# ============================================================
+#
+# Implementar contagem e classificação quando houver
+# evidência suficiente.
+#
+# ============================================================
+```
+
+
+# 16. Resumo de missing
+
+Tabela futura:
+
+| Aba | Variável | Missing | Proporção | Tipo aparente |
+|---|---|---:|---:|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 17. Regra de missing
+
+Nunca aplicar automaticamente:
+
+```text
+NA → 0
+```
+
+A ausência de informação deve manter seu significado até decisão documentada.
+
+
+# 18. Auditoria de duplicatas
+
+Verificar:
+
+```text
+linhas integralmente duplicadas
+duplicação de identificadores
+duplicação por condição
+repetições experimentais legítimas
+```
+
+```{r}
+# ============================================================
+# AUDITORIA DE DUPLICATAS
+# ============================================================
+#
+# Implementar verificações adequadas à estrutura observada.
+#
+# ============================================================
+```
+
+
+# 19. Repetição experimental versus duplicata
+
+Registrar:
+
+```text
+REPLICATE_STRUCTURE = TO_BE_FILLED
+```
+
+A mesma alternativa pode aparecer mais de uma vez de forma legítima.
+
+
+# 20. Auditoria de unidades
+
+Para cada variável relevante, verificar:
+
+```text
+unidade informada
+escala
+consistência entre abas
+consistência entre linhas
+uso de unidade dentro da célula
+```
+
+Registrar:
+
+```text
+UNIT_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 21. Inventário de unidades
+
+Tabela futura:
+
+| Variável | Unidade observada | Fonte | Consistência | Status |
+|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 22. Unidades misturadas
+
+Investigar qualquer caso em que uma mesma variável aparentemente utilize escalas distintas.
+
+```text
+MIXED_UNIT_ISSUES = TO_BE_FILLED
+```
+
+
+# 23. Valores com unidade na célula
+
+Exemplos conceituais:
+
+```text
+"1 kg"
+"500 ml"
+```
+
+devem ser separados em:
+
+```text
+valor
++
+unidade
+```
+
+somente depois da confirmação do significado.
+
+
+# 24. Auditoria de intervalos
+
+Quando houver domínio conhecido, verificar valores:
+
+```text
+negativos impossíveis
+percentuais fora do domínio
+valores incompatíveis com a unidade
+```
+
+Sem especificação confirmada, não inventar limites.
+
+
+# 25. Limites técnicos versus limites de consistência
+
+Distinguir:
+
+```text
+limite matemático/estrutural
+```
+
+de:
+
+```text
+especificação técnica
+```
+
+Uma especificação técnica precisa de fonte confirmada.
+
+
+# 26. Auditoria das fórmulas
+
+Identificar as fórmulas utilizadas para:
+
+```text
+totais
+médias
+percentuais
+índices
+custos
+resumos
+```
+
+Registrar:
+
+```text
+FORMULA_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 27. Fórmulas com erro
+
+Verificar ocorrências de:
+
+```text
+#DIV/0!
+#VALUE!
+#N/A
+#REF!
+```
+
+ou equivalentes.
+
+Registrar:
+
+```text
+FORMULA_ERRORS = TO_BE_FILLED
+```
+
+
+# 28. Fórmulas diferentes para o mesmo conceito
+
+Quando o mesmo indicador aparecer em mais de uma aba, verificar se sua fórmula é equivalente.
+
+Registrar:
+
+```text
+FORMULA_DIFFERENCES = TO_BE_FILLED
+```
+
+
+# 29. Recálculo independente
+
+Valores derivados importantes deverão ser recalculados em R quando possível.
+
+Exemplos:
+
+```text
+soma
+média
+total
+percentual
+índice
+```
+
+```{r}
+# ============================================================
+# RECÁLCULO INDEPENDENTE
+# ============================================================
+#
+# Pacheco deverá implementar recálculos relevantes.
+#
+# A planilha original não deve ser considerada correta apenas
+# porque contém uma fórmula.
+#
+# ============================================================
+```
+
+
+# 30. Auditoria de somas
+
+Para cada soma relevante:
+
+\[
+d = x_{\text{planilha}} - x_{\text{recalculado}}
+\]
+
+Tabela futura:
+
+| Métrica | Planilha | Recalculado | Diferença | Status |
+|---|---:|---:|---:|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 31. Auditoria de médias
+
+Mesmo procedimento:
+
+| Métrica | Planilha | Recalculado | Diferença | Status |
+|---|---:|---:|---:|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 32. Diferença absoluta
+
+Quando apropriado:
+
+\[
+d_{\mathrm{abs}}
+=
+|x_A-x_B|
+\]
+
+
+# 33. Diferença relativa
+
+Quando houver referência adequada:
+
+\[
+d_{\mathrm{rel}}
+=
+\frac{|x_A-x_B|}
+{|x_{\mathrm{ref}}|}
+\]
+
+A definição de \(x_{\mathrm{ref}}\) deverá ser explicitada.
+
+
+# 34. Tolerância numérica
+
+Diferenças muito pequenas podem ser causadas por:
+
+```text
+arredondamento
+representação numérica
+precisão de armazenamento
+```
+
+A tolerância utilizada deverá ser definida e documentada durante a implementação.
+
+```text
+NUMERICAL_TOLERANCE = TO_BE_FILLED
+```
+
+
+# 35. Não usar tolerância para esconder discrepância
+
+Uma tolerância deve refletir precisão numérica ou técnica real.
+
+Não deve ser escolhida apenas para classificar divergências como aceitáveis.
+
+
+# 36. Auditoria entre abas
+
+Comparar valores que representam o mesmo conceito em diferentes partes da fonte.
+
+```{r}
+# ============================================================
+# COMPARAÇÃO ENTRE ABAS
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Para cada valor comparável:
+#
+# - alternativa;
+# - variável;
+# - fonte A;
+# - fonte B;
+# - diferença;
+# - status.
+#
+# ============================================================
+```
+
+
+# 37. Registro de divergências
+
+Tabela futura:
+
+| Issue ID | Alternativa | Variável | Fonte A | Fonte B | Diferença |
+|---|---|---|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 38. Classificação preliminar das divergências
+
+Possíveis categorias:
+
+```text
+ROUNDING
+FORMULA_DIFFERENCE
+UNIT_DIFFERENCE
+SOURCE_DIFFERENCE
+TRANSCRIPTION_ERROR
+UNKNOWN
+```
+
+Nesta etapa a classificação ainda pode ser provisória.
+
+
+# 39. Auditoria de totais por alternativa
+
+Quando existirem totais que agreguem várias condições ou componentes, recalcular a partir dos componentes originais.
+
+Registrar:
+
+```text
+TOTAL_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 40. Total versus componentes
+
+Se:
+
+\[
+T = x_1+x_2+\cdots+x_k
+\]
+
+verificar a igualdade com precisão completa.
+
+
+# 41. Média versus componentes
+
+Se:
+
+\[
+\bar{x}
+=
+\frac{1}{k}\sum_{j=1}^{k}x_j
+\]
+
+verificar se a quantidade de componentes utilizada é coerente.
+
+
+# 42. Auditoria de arredondamento
+
+Investigar se totais ou médias foram calculados usando:
+
+```text
+valores completos
+```
+
+ou:
+
+```text
+valores previamente arredondados
+```
+
+quando isso for relevante.
+
+
+# 43. Auditoria dos campos qualitativos
+
+Quando existirem variáveis categóricas ou qualitativas:
+
+```text
+corrosão
+espuma
+bactérias
+composição
+status técnico
+```
+
+ou equivalentes realmente observados, verificar:
+
+```text
+categorias
+grafia
+missing
+consistência
+significado
+```
+
+
+# 44. Categorias inconsistentes
+
+Exemplos conceituais:
+
+```text
+OK
+Ok
+ok
+```
+
+podem representar a mesma categoria, mas a padronização deverá ser decidida depois.
+
+Registrar:
+
+```text
+CATEGORY_INCONSISTENCIES = TO_BE_FILLED
+```
+
+
+# 45. Auditoria de especificações
+
+Identificar campos que parecem representar:
+
+```text
+limite superior
+limite inferior
+intervalo
+alvo
+isenção
+status
+```
+
+Registrar:
+
+```text
+SPECIFICATION_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 46. Fonte das especificações
+
+Para cada possível especificação, registrar:
+
+| Variável | Regra observada | Fonte | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+Status possíveis:
+
+```text
+CONFIRMED
+PENDING_CONFIRMATION
+UNKNOWN
+```
+
+
+# 47. Especificação não confirmada
+
+Não utilizar como regra de conformidade final nesta etapa.
+
+
+# 48. Auditoria econômica
+
+Quando houver informações econômicas, verificar:
+
+```text
+completude
+denominadores
+unidades monetárias
+fórmulas
+divisões por zero
+consistência entre alternativas
+```
+
+Registrar:
+
+```text
+ECONOMIC_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 49. Erro de divisão por zero
+
+Se houver:
+
+```text
+#DIV/0!
+```
+
+registrar:
+
+```text
+numerador
+denominador
+causa
+impacto
+```
+
+Não substituir por zero silenciosamente.
+
+
+# 50. Alternativas sem informação econômica
+
+Registrar:
+
+```text
+MISSING_ECONOMIC_INFORMATION = TO_BE_FILLED
+```
+
+A inclusão posterior de critério econômico dependerá da completude e da decisão de Benjamin.
+
+
+# 51. Auditoria de variáveis constantes
+
+Identificar variáveis para as quais:
+
+\[
+\operatorname{Var}(X)=0
+\]
+
+Registrar:
+
+```text
+CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+
+# 52. Variáveis quase constantes
+
+Registrar:
+
+```text
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+O critério utilizado para definir "quase constante" deverá ser explicitado durante a implementação.
+
+
+# 53. Variáveis com baixa capacidade discriminatória
+
+Detectar, mas não excluir ainda.
+
+A decisão pertence à etapa de critérios.
+
+
+# 54. Auditoria de escala
+
+Variáveis com magnitudes muito diferentes não representam erro, mas deverão ser documentadas porque influenciam a necessidade de normalização posterior.
+
+
+# 55. Auditoria das condições experimentais
+
+Verificar se:
+
+```text
+todas as alternativas possuem as mesmas condições
+número de medições é comparável
+há células ausentes por condição
+há fórmulas agregando condições
+```
+
+Registrar:
+
+```text
+CONDITION_AUDIT_STATUS = TO_BE_FILLED
+```
+
+
+# 56. Condições ausentes
+
+Registrar:
+
+| Alternativa | Variável | Condição ausente | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 57. Repetições incompletas
+
+Registrar:
+
+```text
+INCOMPLETE_REPLICATES = TO_BE_FILLED
+```
+
+
+# 58. Auditoria de coerência entre condições
+
+Avaliar casos em que uma variável esteja disponível em múltiplas condições, procurando:
+
+```text
+mudanças improváveis
+valores duplicados indevidamente
+campos vazios
+totais inconsistentes
+```
+
+
+# 59. Auditoria de precisão
+
+Registrar o número aparente de casas decimais ou precisão de medição quando isso puder afetar:
+
+```text
+comparações
+tolerâncias
+quase empates
+```
+
+
+# 60. Registro central de issues
+
+A auditoria deverá gerar uma estrutura contendo pelo menos:
+
+```text
+issue_id
+sheet
+location
+alternative
+variable
+description
+severity
+status
+evidence
+```
+
+
+# 61. Severidade
+
+Utilizar, quando adequado:
+
+```text
+CRITICAL
+MAJOR
+MINOR
+INFORMATIONAL
+```
+
+
+# 62. Problema crítico
+
+Um problema pode ser `CRITICAL` se impedir:
+
+```text
+interpretação da variável
+identificação da alternativa
+uso confiável do valor
+construção da base canônica
+```
+
+A classificação final deverá refletir o impacto real.
+
+
+# 63. Status dos issues
+
+Possíveis estados:
+
+```text
+OPEN
+UNDER_INVESTIGATION
+RESOLVED
+PENDING_EXTERNAL_CONFIRMATION
+ACCEPTED_LIMITATION
+```
+
+
+# 64. Evidência
+
+Para cada problema importante, registrar evidências suficientes para justificar a decisão futura.
+
+Exemplos:
+
+```text
+célula original
+fórmula
+valor recalculado
+outra aba
+documentação da professora
+```
+
+
+# 65. Não resolver no escuro
+
+Se não houver evidência suficiente:
+
+```text
+status = PENDING_EXTERNAL_CONFIRMATION
+```
+
+é preferível a inventar uma solução.
+
+
+# 66. Questões para a professora
+
+Quando necessário, consolidar perguntas objetivas.
+
+```text
+QUESTION_FOR_PROFESSOR_1 = TO_BE_FILLED
+QUESTION_FOR_PROFESSOR_2 = TO_BE_FILLED
+```
+
+Perguntas devem ser formuladas apenas quando os dados realmente não permitirem resolução interna.
+
+
+# 67. Material externo recebido
+
+Se a professora fornecer uma explicação posteriormente:
+
+```text
+registrar a fonte
+↓
+registrar a decisão
+↓
+reconciliar
+```
+
+Não apagar o problema original.
+
+
+# 68. Código principal da auditoria
+
+```{r}
+# ============================================================
+# AUDITORIA PRINCIPAL
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# A rotina poderá produzir:
+#
+# - auditoria de tipos;
+# - auditoria de missing;
+# - auditoria de duplicatas;
+# - auditoria de unidades;
+# - auditoria de fórmulas;
+# - recálculo independente;
+# - comparação entre abas;
+# - registro de issues.
+#
+# ============================================================
+```
+
+
+# 69. Validações do código
+
+```{r}
+# ============================================================
+# VALIDAÇÕES
+# ============================================================
+#
+# Verificar, quando aplicável:
+#
+# - número de abas;
+# - identificadores;
+# - tipos;
+# - ausência de alteração da fonte;
+# - consistência de recálculos;
+# - tolerâncias;
+# - integridade do registro de issues.
+#
+# ============================================================
+```
+
+
+# 70. Artefatos da auditoria
+
+Quando executado, registrar:
+
+```text
+AUDIT_TABLE = TO_BE_FILLED
+ISSUE_LOG = TO_BE_FILLED
+FORMULA_AUDIT = TO_BE_FILLED
+CROSS_SHEET_COMPARISON = TO_BE_FILLED
+```
+
+
+# 71. Não criar artefatos agora
+
+Nesta fase de base:
+
+```text
+AUDIT_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 72. Resultados da auditoria
+
+Preencher somente depois da execução:
+
+```text
+N_ISSUES = TO_BE_FILLED
+N_CRITICAL = TO_BE_FILLED
+N_MAJOR = TO_BE_FILLED
+N_MINOR = TO_BE_FILLED
+N_INFORMATIONAL = TO_BE_FILLED
+```
+
+
+# 73. Principais achados
+
+```text
+AUDIT_FINDING_1 = TO_BE_FILLED
+AUDIT_FINDING_2 = TO_BE_FILLED
+AUDIT_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 74. Problemas ainda abertos
+
+Registrar:
+
+```text
+OPEN_ISSUES = TO_BE_FILLED
+```
+
+
+# 75. Problemas bloqueantes
+
+Registrar:
+
+```text
+BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+Se houver problema crítico não resolvido que impeça uma base confiável:
+
+```text
+AUDIT_STATUS = BLOCKED
+```
+
+
+# 76. Problemas não bloqueantes
+
+Registrar:
+
+```text
+NON_BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 77. Limitações da auditoria
+
+Registrar apenas limitações reais.
+
+```text
+AUDIT_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 78. O que esta etapa entrega
+
+Ao final:
+
+```text
+fonte inventariada
++
+issues identificados
++
+evidências
++
+comparações
++
+recálculos
+```
+
+mas ainda não necessariamente uma base reconciliada.
+
+
+# 79. O que esta etapa não entrega
+
+Não entrega:
+
+```text
+base canônica final
+critérios
+normalização
+pesos
+ranking
+```
+
+
+# 80. Próxima etapa
+
+A próxima análise será:
+
+```text
+analysis/03_PACHECO_reconciliacao.qmd
+```
+
+
+# 81. Entrada para a reconciliação
+
+A reconciliação deverá receber:
+
+```text
+issue log
+comparações entre abas
+recálculos independentes
+status das unidades
+status das fórmulas
+pendências
+evidências
+```
+
+
+# 82. Critério de conclusão
+
+A auditoria estará concluída quando:
+
+```text
+todos os problemas relevantes forem identificados
++
+cada problema possuir evidência e status
++
+os casos que exigem reconciliação estiverem claramente definidos
+```
+
+
+# 83. Checklist antes de avançar
+
+```text
+[ ] identificadores auditados
+[ ] tipos auditados
+[ ] missing auditados
+[ ] duplicatas auditadas
+[ ] unidades auditadas
+[ ] fórmulas auditadas
+[ ] totais recalculados quando necessário
+[ ] médias recalculadas quando necessário
+[ ] abas comparadas
+[ ] especificações classificadas
+[ ] dados econômicos auditados quando existentes
+[ ] variáveis constantes identificadas
+[ ] condições experimentais auditadas
+[ ] issues registrados
+[ ] bloqueios identificados
+```
+
+
+# 84. Estado atual
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+AUDIT_STATUS = NOT_EXECUTED
+
+RECONCILIATION_STATUS = NOT_STARTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+DATA_MODIFICATIONS = NONE
+```
+
+
+# 85. Princípio final
+
+> A auditoria deve transformar suspeitas em evidências documentadas. Nenhum valor deve ser corrigido porque “parece errado”; a correção só poderá ocorrer depois que a origem do problema e a decisão de reconciliação estiverem justificadas.

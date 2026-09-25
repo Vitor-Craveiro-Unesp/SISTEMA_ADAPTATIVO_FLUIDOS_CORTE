@@ -1,11 +1,22 @@
 services:
-  r:
+  rstudio:
     build:
       context: .
       dockerfile: Dockerfile
-    working_dir: /project
+
+    container_name: fluidos_corte_r
+
+    working_dir: /workspace
+
     volumes:
-      - .:/project
+      - .:/workspace
+
     environment:
-      - RENV_PATHS_CACHE=/renv-cache
-    command: ["R"]
+      TZ: America/Sao_Paulo
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+
+    stdin_open: true
+    tty: true
+
+    command: bash

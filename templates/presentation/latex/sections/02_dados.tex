@@ -1,1 +1,358 @@
-% 02_dados
+% ============================================================
+% 02_DADOS.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Apresentar:
+% - origem dos dados;
+% - estrutura da base;
+% - unidades de análise;
+% - condições experimentais;
+% - tipos de informação disponíveis.
+%
+% Este arquivo constitui apenas a BASE da apresentação.
+%
+% Os valores quantitativos deverão ser preenchidos somente
+% depois da auditoria conduzida por Pacheco.
+%
+% ============================================================
+
+
+% ============================================================
+% FRAME 1 — FONTE DOS DADOS
+% ============================================================
+
+\begin{frame}{Fonte dos dados}
+
+    \begin{block}{Base fornecida para o projeto}
+        Os dados utilizados no estudo são provenientes do material
+        experimental disponibilizado para o trabalho.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    O arquivo original será tratado como:
+
+    \begin{itemize}
+        \item fonte primária dos dados;
+        \item arquivo imutável durante a análise;
+        \item referência para auditoria e rastreabilidade;
+        \item ponto de partida para a construção da base canônica.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Regra de integridade}
+        Nenhuma correção deverá ser realizada diretamente no arquivo
+        original. Eventuais ajustes serão realizados de forma
+        reproduzível e documentada em R.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 2 — ESTRUTURA DO ARQUIVO
+% ============================================================
+
+\begin{frame}{Estrutura dos dados}
+
+    \begin{columns}[T]
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Arquivo original}
+
+                A auditoria deverá identificar:
+
+                \begin{itemize}
+                    \item número de abas;
+                    \item função de cada aba;
+                    \item variáveis disponíveis;
+                    \item tipos de dados;
+                    \item unidades;
+                    \item fórmulas;
+                    \item campos ausentes.
+                \end{itemize}
+
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Elementos de análise}
+
+                A estrutura poderá conter informações associadas a:
+
+                \begin{itemize}
+                    \item fluidos avaliados;
+                    \item condições experimentais;
+                    \item desempenho de usinagem;
+                    \item qualidade;
+                    \item propriedades técnicas;
+                    \item informações econômicas;
+                    \item especificações.
+                \end{itemize}
+
+            \end{block}
+
+        \end{column}
+
+    \end{columns}
+
+    \vspace{0.3cm}
+
+    \centering
+    \textit{A composição definitiva da base será confirmada somente após
+    a auditoria.}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 3 — UNIDADE DE ANÁLISE
+% ============================================================
+
+\begin{frame}{Unidade de análise}
+
+    A unidade central de decisão será cada alternativa de fluido
+    identificada na base validada.
+
+    \vspace{0.3cm}
+
+    Entretanto, os valores associados a cada fluido podem depender de:
+
+    \begin{itemize}
+        \item diferentes condições experimentais;
+        \item diferentes medições;
+        \item repetições;
+        \item variáveis com escalas distintas;
+        \item informações calculadas ou agregadas.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Implicação}
+        Antes da classificação multicritério será necessário estabelecer
+        claramente como cada observação será transformada em informação
+        comparável entre os fluidos.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 4 — CONDIÇÕES EXPERIMENTAIS
+% ============================================================
+
+\begin{frame}{Condições experimentais}
+
+    \begin{block}{Preservação da estrutura experimental}
+        Quando uma mesma característica for observada em diferentes
+        condições, essas condições serão inicialmente analisadas
+        separadamente.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    Isso permite investigar:
+
+    \begin{itemize}
+        \item estabilidade do fluido;
+        \item variação entre condições;
+        \item possíveis inversões de desempenho;
+        \item existência de trade-offs;
+        \item adequação de uma eventual agregação.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Evitar agregação prematura}
+        Médias ou outros resumos não deverão ser utilizados
+        automaticamente antes de verificar se escondem diferenças
+        relevantes entre condições.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 5 — TIPOS DE INFORMAÇÃO
+% ============================================================
+
+\begin{frame}{Tipos de informação}
+
+    Os dados poderão exercer funções diferentes dentro do sistema
+    multicritério.
+
+    \vspace{0.2cm}
+
+    \begin{columns}[T]
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Desempenho}
+                Variáveis potencialmente utilizadas para comparar
+                quantitativamente as alternativas.
+            \end{block}
+
+            \begin{block}{Conformidade}
+                Informações associadas a limites ou requisitos técnicos.
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Diagnóstico}
+                Variáveis úteis à interpretação, mas que podem não
+                participar diretamente do ranking.
+            \end{block}
+
+            \begin{block}{Informação auxiliar}
+                Dados utilizados para auditoria, cálculo ou contextualização.
+            \end{block}
+
+        \end{column}
+
+    \end{columns}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 6 — DA PLANILHA À BASE CANÔNICA
+% ============================================================
+
+\begin{frame}{Da planilha à base analítica}
+
+    \begin{block}{Fluxo previsto}
+        \centering
+
+        Arquivo original
+        $\rightarrow$
+        Inventário
+        $\rightarrow$
+        Auditoria
+        $\rightarrow$
+        Reconciliação
+        $\rightarrow$
+        Base canônica
+    \end{block}
+
+    \vspace{0.4cm}
+
+    A base canônica será a versão utilizada pelas etapas estatísticas
+    posteriores.
+
+    \vspace{0.3cm}
+
+    Ela deverá possuir:
+
+    \begin{itemize}
+        \item estrutura conhecida;
+        \item unidades documentadas;
+        \item identificadores consistentes;
+        \item valores rastreáveis;
+        \item problemas pendentes registrados;
+        \item transformações reproduzíveis.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 7 — INFORMAÇÕES A PREENCHER DEPOIS
+% ============================================================
+
+\begin{frame}{Caracterização da base}
+
+    \begin{block}{Informações que serão obtidas na auditoria}
+
+        \begin{itemize}
+            \item Número de alternativas:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Número de abas:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Número de variáveis relevantes:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Condições experimentais:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Base canônica:
+                  \texttt{TO\_BE\_FILLED}
+        \end{itemize}
+
+    \end{block}
+
+    \vspace{0.3cm}
+
+    \centering
+    \textit{Esses valores deverão ser inseridos pelos integrantes após
+    a execução e validação da auditoria em R.}
+
+\end{frame}
+
+
+% ============================================================
+% FIGURA FUTURA
+% ============================================================
+%
+% Caso seja útil, os integrantes poderão substituir parte desta
+% seção por uma figura produzida a partir da auditoria.
+%
+% Exemplo conceitual:
+%
+% arquivo original
+%     ↓
+% abas
+%     ↓
+% variáveis
+%     ↓
+% base canônica
+%
+% Não é necessário criar essa figura agora.
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL EXTERNO DA PROFESSORA
+% ============================================================
+%
+% Caso a professora forneça:
+%
+% - descrição oficial dos dados;
+% - significado de abas;
+% - definição das variáveis;
+% - especificações;
+% - unidades;
+% - condições experimentais;
+%
+% utilizar o conteúdo fornecido por ela como referência oficial.
+%
+% Não preencher lacunas com suposições.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% DATA_SECTION_STATUS = BASE_PREPARED
+%
+% N_FLUIDS = TO_BE_FILLED
+% N_SHEETS = TO_BE_FILLED
+% N_VARIABLES = TO_BE_FILLED
+% EXPERIMENTAL_CONDITIONS = TO_BE_FILLED
+%
+% ============================================================

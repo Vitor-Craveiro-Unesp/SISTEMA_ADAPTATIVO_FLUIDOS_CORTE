@@ -1,608 +1,826 @@
-criteria_config:
-
-  status: "PRELIMINARY"
-
-  description: >
-    Este arquivo contém os critérios candidatos ao Sistema Adaptativo
-    de Classificação Multicritério de Fluidos de Corte.
-
-    A inclusão definitiva de cada critério depende da conclusão da
-    auditoria dos dados, ADA, análise de conformidade, correlação,
-    redundância e avaliação metodológica.
-
-  rules:
-
-    allow_final_selection_before_audit: false
-    allow_final_selection_before_ada: false
-    allow_automatic_exclusion: false
-    allow_automatic_weight_assignment: false
-
-    require_documented_decision_for_exclusion: true
-    require_documented_decision_for_transformation: true
-
----
-
-criterion_types:
-
-  benefit:
-    description: >
-      Quanto maior o valor, melhor a alternativa.
-
-  cost:
-    description: >
-      Quanto menor o valor, melhor a alternativa.
-
-  target:
-    description: >
-      Existe um valor ou intervalo desejável.
-
-  restriction:
-    description: >
-      Critério utilizado para avaliar conformidade ou elegibilidade.
-
-  diagnostic:
-    description: >
-      Variável importante para descrição e interpretação, mas que pode
-      não possuir poder discriminante suficiente para entrar no ranking.
-
----
-
-groups:
-
-  machining_performance:
-    name: "Desempenho de usinagem"
-
-  dimensional_quality:
-    name: "Qualidade dimensional"
-
-  fluid_behavior:
-    name: "Comportamento operacional e da emulsão"
-
-  economic:
-    name: "Aspectos econômicos"
-
-  composition:
-    name: "Composição e restrições"
-
----
-
-candidate_criteria:
-
-  tool_life:
-
-    name: "Vida da ferramenta"
-
-    group: "machining_performance"
-
-    source:
-      primary_sheet: "ANÁLISE USINABILIDADE"
-
-    data_type: "numeric"
-
-    unit:
-      status: "TO_CONFIRM"
-
-    expected_direction: "benefit"
-
-    expected_use:
-      ranking: true
-      conformity: false
-
-    experimental_conditions:
-      multiple_conditions: true
-
-    status: "PENDING_VALIDATION"
-
-    observations:
-      - >
-        Deve ser analisada por condição experimental antes da definição
-        da forma de agregação.
-      - >
-        Valores repetidos em outras abas devem ser reconciliados com a
-        fonte primária.
-
----
-
-  power:
-
-    name: "Potência"
-
-    group: "machining_performance"
-
-    source:
-      primary_sheet: "ANÁLISE USINABILIDADE"
-
-    data_type: "numeric"
-
-    unit: "kW"
-
-    expected_direction: "cost"
-
-    expected_use:
-      ranking: true
-      conformity: false
-
-    experimental_conditions:
-      multiple_conditions: true
-
-    status: "PENDING_VALIDATION"
-
----
-
-  roughness:
-
-    name: "Rugosidade Ra"
-
-    group: "machining_performance"
-
-    source:
-      primary_sheet: "ANÁLISE USINABILIDADE"
-
-    data_type: "numeric"
-
-    unit: "µm"
-
-    expected_direction: "cost"
-
-    expected_use:
-      ranking: true
-      conformity: true
-
-    specification:
-      type: "upper_limit"
-      value: 3.20
-      status: "TO_CONFIRM"
-
-    experimental_conditions:
-      multiple_conditions: true
-
-    status: "PENDING_VALIDATION"
-
----
-
-  concentricity:
-
-    name: "Concentricidade"
-
-    group: "dimensional_quality"
-
-    source:
-      primary_sheet: "ANÁLISE USINABILIDADE"
-
-    data_type: "numeric"
-
-    expected_direction: "target"
-
-    expected_use:
-      ranking: true
-      conformity: true
-
-    transformation_candidate:
-      method: "absolute_value"
-
-    specification:
-      type: "absolute_upper_limit"
-      value: 0.10
-      status: "TO_CONFIRM"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  circularity:
-
-    name: "Circularidade"
-
-    group: "dimensional_quality"
-
-    source:
-      primary_sheet: "ANÁLISE USINABILIDADE"
-
-    data_type: "numeric"
-
-    expected_direction: "target"
-
-    expected_use:
-      ranking: true
-      conformity: true
-
-    transformation_candidate:
-      method: "absolute_value"
-
-    specification:
-      type: "absolute_upper_limit"
-      value: 0.10
-      status: "TO_CONFIRM"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  burr:
-
-    name: "Rebarba"
-
-    group: "dimensional_quality"
-
-    data_type: "categorical_binary"
-
-    expected_direction: "absence_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-      conformity: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  mist:
-
-    name: "Névoa"
-
-    group: "fluid_behavior"
-
-    data_type: "categorical_binary"
-
-    expected_direction: "absence_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  oxidation:
-
-    name: "Oxidação"
-
-    group: "fluid_behavior"
-
-    data_type: "categorical_binary"
-
-    expected_direction: "absence_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  degradation:
-
-    name: "Degradação"
-
-    group: "fluid_behavior"
-
-    data_type: "ordinal"
-
-    expected_direction: "resistance_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  fungi:
-
-    name: "Fungos"
-
-    group: "fluid_behavior"
-
-    data_type: "categorical_binary"
-
-    expected_direction: "absence_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-      conformity: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  bacteria:
-
-    name: "Bactérias"
-
-    group: "fluid_behavior"
-
-    data_type: "categorical_binary"
-
-    expected_direction: "absence_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
-    observations:
-      - >
-        Caso não apresente variabilidade entre fluidos, deve permanecer
-        apenas como variável diagnóstica.
-
----
-
-  corrosion:
-
-    name: "Corrosão"
-
-    group: "fluid_behavior"
-
-    data_type: "ordinal"
-
-    expected_direction: "cost"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
-    observations:
-      - >
-        Caso seja constante para todos os fluidos, não deverá contribuir
-        para a classificação.
-
----
-
-  foam:
-
-    name: "Espuma"
-
-    group: "fluid_behavior"
-
-    data_type: "categorical"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_VALIDATION"
-
-    observations:
-      - >
-        Avaliar poder discriminante durante a ADA.
-
----
-
-  concentration:
-
-    name: "Concentração"
-
-    group: "fluid_behavior"
-
-    data_type: "numeric"
-
-    unit: "%"
-
-    expected_direction: "target_or_restriction"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-      conformity: true
-
-    specification:
-      status: "TO_CONFIRM"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  acidity:
-
-    name: "Acidez"
-
-    group: "fluid_behavior"
-
-    data_type: "numeric"
-
-    expected_direction: "target"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-      conformity: true
-
-    specification:
-      target_candidate: 34
-      tolerance_candidate: 2
-      status: "TO_CONFIRM"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  alkalinity:
-
-    name: "Alcalinidade"
-
-    group: "fluid_behavior"
-
-    data_type: "numeric"
-
-    expected_direction: "restriction_or_target"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-      conformity: true
-
-    specification:
-      status: "TO_CONFIRM"
-
-    status: "PENDING_VALIDATION"
-
----
-
-  suspended_solids:
-
-    name: "Sólidos suspensos"
-
-    group: "fluid_behavior"
-
-    data_type: "numeric"
-
-    unit:
-      status: "TO_CONFIRM"
-
-    expected_direction: "TO_DEFINE"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-
-    status: "PENDING_AUDIT"
-
-    observations:
-      - >
-        Não utilizar no ranking antes da confirmação das unidades e
-        padronização dos valores.
-
----
-
-  restrictive_components:
-
-    name: "Componentes restritivos"
-
-    group: "composition"
-
-    data_type: "categorical"
-
-    expected_direction: "absence_preferred"
-
-    expected_use:
-      ranking: "TO_EVALUATE"
-      conformity: "TO_EVALUATE"
-
-    status: "PENDING_AUDIT"
-
-    observations:
-      - >
-        Composição deve ser reconciliada entre fontes antes do uso.
-
----
-
-  annual_cost:
-
-    name: "Custo total anual"
-
-    group: "economic"
-
-    source:
-      primary_sheet: "AVALIAÇÃO ECONÔMICA"
-
-    data_type: "numeric"
-
-    unit: "BRL"
-
-    expected_direction: "cost"
-
-    expected_use:
-      ranking: true
-
-    status: "PENDING_AUDIT"
-
-    observations:
-      - >
-        Somente poderá ser utilizado após a auditoria completa das
-        fórmulas econômicas e dos dados faltantes.
-
----
-
-exclusion_candidates:
-
-  rules:
-
-    zero_variance:
-      action: "FLAG_FOR_EXCLUSION"
-      automatic_exclusion: false
-
-    near_zero_variance:
-      action: "REVIEW"
-
-    excessive_missing:
-      action: "REVIEW"
-
-    unresolved_unit:
-      action: "BLOCK_USE"
-
-    unresolved_cross_sheet_conflict:
-      action: "BLOCK_USE"
-
-    formula_error:
-      action: "BLOCK_USE"
-
-    strong_redundancy:
-      action: "REVIEW"
-
----
+# ============================================================
+# CRITERIOS.YML
+# Sistema Adaptativo de Classificação Multicritério
+# de Fluidos de Corte
+#
+# FINALIDADE
+#
+# Centralizar a definição dos critérios utilizados no sistema
+# multicritério.
+#
+# Este arquivo deverá registrar, depois da análise:
+#
+# - critérios candidatos;
+# - critérios aprovados;
+# - critérios excluídos;
+# - direção de preferência;
+# - unidade;
+# - papel no sistema;
+# - tratamento de TARGET;
+# - origem;
+# - justificativa;
+# - status.
+#
+# IMPORTANTE
+#
+# Nesta fase os critérios reais ainda NÃO foram definidos.
+#
+# Não preencher critérios apenas com base em observações
+# preliminares da planilha.
+#
+# A definição deverá ocorrer depois de:
+#
+# auditoria
+# ↓
+# reconciliação
+# ↓
+# base canônica
+# ↓
+# ADA inicial
+# ↓
+# ADA bivariada
+# ↓
+# ADA multivariada
+# ↓
+# conformidade
+# ↓
+# definição dos critérios
+#
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 1. METADADOS
+# ------------------------------------------------------------
+
+metadata:
+
+  project:
+    name: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+
+  config_name: "criterios"
+
+  config_version: "0.1.0"
+
+  status: "BASE_PREPARED"
+
+  responsible_stage: "BENJAMIN"
+
+  last_reviewed_by: null
+
+  last_review_date: null
+
+
+# ------------------------------------------------------------
+# 2. ESTADO ATUAL
+# ------------------------------------------------------------
+
+status:
+
+  criteria_definition: "NOT_FINALIZED"
+
+  criteria_validation: "NOT_EXECUTED"
+
+  decision_matrix: "NOT_CREATED"
+
+  normalization: "NOT_EXECUTED"
+
+  critic: "NOT_EXECUTED"
+
+  topsis: "NOT_EXECUTED"
+
+
+# ------------------------------------------------------------
+# 3. PAPÉIS POSSÍVEIS DAS VARIÁVEIS
+# ------------------------------------------------------------
+#
+# Nem toda variável disponível deverá necessariamente entrar
+# como critério do ranking.
+#
+# Uma variável poderá assumir um dos papéis abaixo.
+# ------------------------------------------------------------
+
+allowed_roles:
+
+  - "PERFORMANCE_CRITERION"
+  - "CONSTRAINT"
+  - "DIAGNOSTIC"
+  - "TARGET"
+  - "A_CONFIRMAR"
+
+
+# ------------------------------------------------------------
+# 4. DIREÇÕES PERMITIDAS
+# ------------------------------------------------------------
+#
+# BENEFIT:
+#   quanto maior, melhor.
+#
+# COST:
+#   quanto menor, melhor.
+#
+# TARGET:
+#   quanto mais próximo de um alvo definido, melhor.
+#
+# NONE:
+#   variável que não participa como critério de preferência.
+# ------------------------------------------------------------
+
+allowed_directions:
+
+  - "BENEFIT"
+  - "COST"
+  - "TARGET"
+  - "NONE"
+
+
+# ------------------------------------------------------------
+# 5. STATUS POSSÍVEIS DOS CRITÉRIOS
+# ------------------------------------------------------------
+
+allowed_status:
+
+  - "CANDIDATE"
+  - "INCLUDE"
+  - "EXCLUDE"
+  - "DIAGNOSTIC_ONLY"
+  - "CONSTRAINT_ONLY"
+  - "PENDING_REVIEW"
+  - "BLOCKED"
+
+
+# ------------------------------------------------------------
+# 6. ORIGEM POSSÍVEL DA DEFINIÇÃO
+# ------------------------------------------------------------
+#
+# O campo source deverá indicar de onde veio a informação
+# utilizada para justificar o critério.
+#
+# Não utilizar uma categoria que não corresponda à origem real.
+# ------------------------------------------------------------
+
+allowed_sources:
+
+  - "RAW_DATA"
+  - "CANONICAL_DATA"
+  - "ADA"
+  - "TECHNICAL_SPECIFICATION"
+  - "PROFESSOR_MATERIAL"
+  - "METHODOLOGICAL_DECISION"
+  - "OTHER_CONFIRMED_SOURCE"
+
+
+# ------------------------------------------------------------
+# 7. CRITÉRIOS CANDIDATOS
+# ------------------------------------------------------------
+#
+# Esta lista deverá ser preenchida por Benjamin depois das
+# análises exploratórias.
+#
+# Nesta fase ela permanece vazia.
+# ------------------------------------------------------------
+
+candidate_criteria: []
+
+
+# ------------------------------------------------------------
+# 8. CRITÉRIOS APROVADOS
+# ------------------------------------------------------------
+#
+# Esta será a lista oficial utilizada para construir a matriz
+# de decisão.
+#
+# NÃO preencher antes da definição metodológica.
+# ------------------------------------------------------------
+
+included_criteria: []
+
+
+# ------------------------------------------------------------
+# 9. CRITÉRIOS EXCLUÍDOS
+# ------------------------------------------------------------
+#
+# Toda exclusão deverá possuir justificativa.
+#
+# Exemplos de possíveis razões, somente quando realmente
+# observadas:
+#
+# - variável constante;
+# - redundância estrutural;
+# - dados incompletos;
+# - ausência de interpretação técnica;
+# - variável usada apenas como restrição;
+# - duplicação de informação.
+# ------------------------------------------------------------
+
+excluded_criteria: []
+
+
+# ------------------------------------------------------------
+# 10. VARIÁVEIS DIAGNÓSTICAS
+# ------------------------------------------------------------
+
+diagnostic_variables: []
+
+
+# ------------------------------------------------------------
+# 11. RESTRIÇÕES
+# ------------------------------------------------------------
+#
+# Variáveis utilizadas para conformidade ou restrições técnicas
+# deverão permanecer separadas dos critérios de desempenho
+# quando metodologicamente apropriado.
+# ------------------------------------------------------------
+
+constraints: []
+
+
+# ------------------------------------------------------------
+# 12. CRITÉRIOS TARGET
+# ------------------------------------------------------------
+#
+# Um critério TARGET somente poderá ser utilizado se:
+#
+# - existir alvo confirmado;
+# - a fonte do alvo estiver registrada;
+# - sua unidade for conhecida;
+# - sua transformação for definida.
+# ------------------------------------------------------------
+
+target_criteria: []
+
+
+# ------------------------------------------------------------
+# 13. ESTRUTURA ESPERADA DE UM CRITÉRIO
+# ------------------------------------------------------------
+#
+# MODELO APENAS PARA REFERÊNCIA.
+#
+# NÃO descomentar e preencher com valores inventados.
+#
+# Exemplo:
+#
+# included_criteria:
+#
+#   - id: "criterion_example"
+#
+#     variable: "nome_variavel_canonica"
+#
+#     label: "Nome legível"
+#
+#     role: "PERFORMANCE_CRITERION"
+#
+#     direction: "BENEFIT"
+#
+#     unit: "TO_BE_FILLED"
+#
+#     source: "CANONICAL_DATA"
+#
+#     status: "INCLUDE"
+#
+#     justification: >
+#       Justificativa metodológica baseada nas análises
+#       realizadas.
+#
+#     missing_policy: "TO_BE_FILLED"
+#
+#     transformation: null
+#
+#     target:
+#       value: null
+#       unit: null
+#       source: null
+#
+#     conformity:
+#       related: false
+#       specification_id: null
+#
+#     redundancy:
+#       status: "TO_BE_FILLED"
+#       related_criteria: []
+#
+#     notes: null
+#
+# ------------------------------------------------------------
+
+
+# ------------------------------------------------------------
+# 14. REGRAS DE INCLUSÃO
+# ------------------------------------------------------------
+#
+# Estas regras são princípios de decisão, e não critérios
+# automáticos.
+#
+# A inclusão deve considerar múltiplas evidências.
+# ------------------------------------------------------------
+
+inclusion_principles:
+
+  technical_interpretability:
+    required: true
+
+  identifiable_direction:
+    required: true
+
+  acceptable_data_quality:
+    required: true
+
+  reproducible_from_canonical_data:
+    required: true
+
+  sufficient_discrimination:
+    evaluate: true
+
+  redundancy:
+    evaluate: true
+
+  missingness:
+    evaluate: true
+
+  experimental_conditions:
+    evaluate: true
+
+
+# ------------------------------------------------------------
+# 15. REGRAS DE EXCLUSÃO
+# ------------------------------------------------------------
+
+exclusion_principles:
+
+  silent_exclusion:
+    allowed: false
+
+  exclusion_requires_justification:
+    required: true
+
+  exclusion_based_on_final_winner:
+    allowed: false
+
+  exclusion_only_because_of_high_correlation:
+    allowed: false
+
+  constant_variable:
+    review_required: true
+
+  structural_redundancy:
+    review_required: true
+
+  insufficient_data:
+    review_required: true
+
+
+# ------------------------------------------------------------
+# 16. REDUNDÂNCIA
+# ------------------------------------------------------------
+#
+# Correlação elevada, isoladamente, não determina exclusão.
+#
+# Avaliar:
+#
+# correlação
+# +
+# significado técnico
+# +
+# estrutura matemática
+# +
+# origem
+# ------------------------------------------------------------
 
 redundancy:
 
-  correlation:
+  automatic_exclusion_by_correlation:
+    allowed: false
 
-    high_threshold: 0.80
+  evaluate_correlation: true
 
-    very_high_threshold: 0.90
+  evaluate_structural_relationship: true
 
-    action: >
-      Investigar critérios altamente correlacionados antes de mantê-los
-      simultaneamente na matriz de decisão.
+  evaluate_technical_meaning: true
 
----
+  evaluate_shared_components: true
+
+
+# ------------------------------------------------------------
+# 17. CORRELAÇÃO
+# ------------------------------------------------------------
+#
+# O método principal será definido durante a execução.
+#
+# Pearson pode ser adotado se justificado.
+#
+# Spearman poderá ser utilizado como análise complementar ou de
+# robustez quando apropriado.
+# ------------------------------------------------------------
+
+correlation:
+
+  primary_method: null
+
+  allowed_methods:
+    - "pearson"
+    - "spearman"
+
+  causal_interpretation_allowed: false
+
+
+# ------------------------------------------------------------
+# 18. CRITÉRIOS CONSTANTES
+# ------------------------------------------------------------
+
+constant_criteria:
+
+  detect: true
+
+  automatic_inclusion: false
+
+  automatic_exclusion: false
+
+  require_review: true
+
+
+# ------------------------------------------------------------
+# 19. CRITÉRIOS QUASE CONSTANTES
+# ------------------------------------------------------------
+
+near_constant_criteria:
+
+  detect: true
+
+  threshold: null
+
+  automatic_exclusion: false
+
+  require_review: true
+
+
+# ------------------------------------------------------------
+# 20. MISSING
+# ------------------------------------------------------------
+
+missing:
+
+  convert_na_to_zero:
+    allowed: false
+
+  automatic_imputation:
+    allowed: false
+
+  require_explicit_policy:
+    value: true
+
+  criterion_with_missing:
+    action: "TO_BE_DEFINED"
+
+
+# ------------------------------------------------------------
+# 21. UNIDADES
+# ------------------------------------------------------------
+
+units:
+
+  require_known_unit:
+    value: true
+
+  mixed_units:
+    allowed: false
+
+  conversions:
+    require_documentation: true
+
+  canonical_unit_required:
+    value: true
+
+
+# ------------------------------------------------------------
+# 22. PRECISÃO
+# ------------------------------------------------------------
+
+precision:
+
+  calculations:
+    use_full_available_precision: true
+
+  round_before_critic:
+    allowed: false
+
+  round_before_topsis:
+    allowed: false
+
+  presentation_rounding:
+    allowed: true
+
+
+# ------------------------------------------------------------
+# 23. BENEFIT
+# ------------------------------------------------------------
+
+benefit:
+
+  interpretation: "HIGHER_IS_BETTER"
+
+
+# ------------------------------------------------------------
+# 24. COST
+# ------------------------------------------------------------
+
+cost:
+
+  interpretation: "LOWER_IS_BETTER"
+
+
+# ------------------------------------------------------------
+# 25. TARGET
+# ------------------------------------------------------------
+
+target:
+
+  require_confirmed_target: true
+
+  require_target_source: true
+
+  require_target_unit: true
+
+  transformation_method: null
+
+  automatic_conversion_to_benefit:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 26. ORIENTAÇÃO
+# ------------------------------------------------------------
+#
+# É essencial evitar dupla inversão dos critérios COST.
+#
+# O projeto deverá registrar em que ponto a orientação ocorre.
+# ------------------------------------------------------------
+
+orientation:
+
+  stage: null
+
+  final_orientation: null
+
+  higher_is_better_after_normalization: null
+
+  double_inversion:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 27. MATRIZ DE DECISÃO
+# ------------------------------------------------------------
 
 decision_matrix:
 
   status: "NOT_CREATED"
 
-  allowed_sources:
-    - "data/processed/"
+  alternatives_as_rows: true
 
-  requirements_before_creation:
+  criteria_as_columns: true
 
-    - "Base canônica aprovada"
-    - "ADA concluída"
-    - "Conformidade analisada"
-    - "Unidades conhecidas"
-    - "Critérios classificados"
-    - "Variáveis sem poder discriminante avaliadas"
-    - "Redundância avaliada"
-    - "Decisões metodológicas registradas"
+  preserve_alternative_names: true
 
----
+  preserve_criterion_names: true
 
-weighting:
+  allow_non_numeric_criteria: false
 
-  main_method: "CRITIC"
+  allow_unexpected_na: false
+
+  allow_nan: false
+
+  allow_infinite: false
+
+
+# ------------------------------------------------------------
+# 28. ASSOCIAÇÃO DOS PESOS
+# ------------------------------------------------------------
+#
+# Pesos deverão ser associados ao critério pelo nome.
+# ------------------------------------------------------------
+
+weight_mapping:
+
+  map_by_criterion_name: true
+
+  positional_mapping_only:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 29. NORMALIZAÇÃO
+# ------------------------------------------------------------
+#
+# A configuração principal será definida depois que os critérios
+# forem aprovados.
+# ------------------------------------------------------------
+
+normalization:
+
+  primary_method: null
 
   status: "NOT_EXECUTED"
 
-  allow_manual_override: false
+  orient_criteria: null
 
-  manual_scenario_weights:
-    allowed_only_for_sensitivity_analysis: true
+  handle_target: null
 
----
+  denominator_zero:
+    action: "ERROR_AND_REVIEW"
 
-ranking:
+  constant_criterion:
+    action: "ERROR_AND_REVIEW"
 
-  main_method: "TOPSIS"
+  maintain_full_precision: true
+
+
+# ------------------------------------------------------------
+# 30. CRITIC
+# ------------------------------------------------------------
+
+critic:
 
   status: "NOT_EXECUTED"
 
-  requirements:
+  formula:
+    conflict: "1 - r_jk"
 
-    - "Matriz de decisão aprovada"
-    - "Normalização aprovada"
-    - "Pesos aprovados"
-    - "Restrições definidas"
+  use_absolute_correlation:
+    value: false
 
----
+  correlation_method: null
 
-final_rule:
+  dispersion_method: "standard_deviation"
 
-  description: >
-    Nenhum critério presente neste arquivo deve ser considerado
-    definitivamente incluído, excluído ou ponderado antes da conclusão
-    da auditoria, ADA, análise de conformidade e checkpoint coletivo
-    correspondente.
+  require_nonnegative_weights: true
+
+  require_weight_sum_one: true
+
+  allow_na_weights: false
+
+  allow_nan_weights: false
+
+  allow_infinite_weights: false
+
+  degenerate_case:
+    equal_weight_fallback:
+      allowed: false
+
+    action: "BLOCK_AND_REVIEW"
+
+
+# ------------------------------------------------------------
+# 31. INTERPRETAÇÃO DOS PESOS
+# ------------------------------------------------------------
+
+critic_weight_interpretation:
+
+  meaning: "INFORMATION_WEIGHT"
+
+  technical_importance_equivalence:
+    allowed: false
+
+  preferred_wording: >
+    Peso informacional atribuído pelo método CRITIC.
+
+
+# ------------------------------------------------------------
+# 32. CONFORMIDADE
+# ------------------------------------------------------------
+#
+# Conformidade e desempenho permanecem separados.
+# ------------------------------------------------------------
+
+conformity:
+
+  separate_from_performance: true
+
+  automatically_convert_to_criterion:
+    allowed: false
+
+  automatically_exclude_noncompliant:
+    allowed: false
+
+  integration_strategy: null
+
+
+# ------------------------------------------------------------
+# 33. HARD CONSTRAINTS
+# ------------------------------------------------------------
+
+hard_constraints:
+
+  enabled: null
+
+  require_technical_justification: true
+
+  automatic_definition:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 34. SOFT CONSTRAINTS
+# ------------------------------------------------------------
+
+soft_constraints:
+
+  enabled: null
+
+  require_justification: true
+
+
+# ------------------------------------------------------------
+# 35. ALTERAÇÕES
+# ------------------------------------------------------------
+#
+# Se critérios já aprovados forem alterados, as etapas
+# downstream poderão precisar ser reexecutadas.
+# ------------------------------------------------------------
+
+change_control:
+
+  require_documentation: true
+
+  require_version_update: true
+
+  evaluate_downstream_impact: true
+
+  rerun_critic_when_criteria_change: true
+
+  rerun_topsis_when_criteria_change: true
+
+  rerun_robustness_when_criteria_change: true
+
+
+# ------------------------------------------------------------
+# 36. DECISÕES METODOLÓGICAS
+# ------------------------------------------------------------
+
+decisions:
+
+  related_decision_ids: []
+
+  require_decision_record_for_major_change: true
+
+
+# ------------------------------------------------------------
+# 37. HANDOFF
+# ------------------------------------------------------------
+
+handoff:
+
+  destination: "VITOR"
+
+  file: "handoffs/02_BENJAMIN_to_VITOR.md"
+
+  required_information:
+
+    - "FINAL_CRITERIA"
+    - "CRITERION_DIRECTION"
+    - "DECISION_MATRIX_VERSION"
+    - "NORMALIZATION_METHOD"
+    - "NORMALIZED_MATRIX_VERSION"
+    - "HIGHER_IS_BETTER_AFTER_NORMALIZATION"
+    - "CRITIC_CORRELATION_METHOD"
+    - "CRITIC_WEIGHTS"
+    - "CONFORMITY_STATUS"
+    - "OPEN_ISSUES"
+    - "LIMITATIONS"
+
+
+# ------------------------------------------------------------
+# 38. VALIDAÇÃO FINAL
+# ------------------------------------------------------------
+
+validation:
+
+  require_unique_criterion_ids: true
+
+  require_unique_variable_mapping: true
+
+  require_direction_for_performance_criteria: true
+
+  require_justification_for_excluded_criteria: true
+
+  require_known_units: true
+
+  require_confirmed_targets: true
+
+  require_no_unexpected_missing: true
+
+  require_weight_validation: true
+
+
+# ------------------------------------------------------------
+# 39. ESTADO FINAL DESTA CONFIGURAÇÃO
+# ------------------------------------------------------------
+
+configuration_state:
+
+  criteria_file_status: "BASE_PREPARED"
+
+  criteria_values_status: "NOT_FILLED"
+
+  scientific_configuration_status: "PENDING_ANALYSIS"
+
+  ready_for_scientific_execution: false

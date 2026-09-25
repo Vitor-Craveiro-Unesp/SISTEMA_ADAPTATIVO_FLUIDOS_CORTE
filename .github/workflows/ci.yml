@@ -1,17 +1,308 @@
+# ============================================================
+# CI — CONTINUOUS INTEGRATION
+# Sistema Adaptativo de Classificação Multicritério
+# de Fluidos de Corte
+#
+# ESTADO ATUAL
+#
+# Esta workflow valida apenas a estrutura básica do projeto.
+#
+# As análises científicas ainda NÃO são executadas aqui.
+#
+# Quando a implementação estiver pronta, esta CI poderá ser
+# ampliada para:
+#
+# - restaurar renv;
+# - executar testes testthat;
+# - executar targets;
+# - validar relatórios;
+# - validar apresentação;
+# - verificar reprodutibilidade.
+#
+# ============================================================
+
 name: CI
 
 on:
   push:
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 
 jobs:
-  test:
+
+  repository-structure:
+
+    name: Validate repository structure
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
 
-      - name: Build container
-        run: docker compose build
+      # ------------------------------------------------------
+      # 1. Baixar o conteúdo do repositório
+      # ------------------------------------------------------
 
-      - name: Run tests
-        run: docker compose run --rm r Rscript -e "testthat::test_dir('tests/testthat')"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      # ------------------------------------------------------
+      # 2. Informações básicas
+      # ------------------------------------------------------
+
+      - name: Show repository information
+        shell: bash
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch or ref: $GITHUB_REF"
+          echo "Commit: $GITHUB_SHA"
+          echo "Runner OS: $RUNNER_OS"
+
+
+      # ------------------------------------------------------
+      # 3. Validar arquivos principais
+      # ------------------------------------------------------
+
+      - name: Validate root files
+        shell: bash
+        run: |
+          set -e
+
+          required_files=(
+            "README.md"
+            "AGENTS.md"
+            "PROJECT_MAP.md"
+            "STATUS.md"
+            "CHANGELOG.md"
+            ".gitignore"
+            ".dockerignore"
+            "Dockerfile"
+            "compose.yaml"
+            "Makefile"
+            "renv.lock"
+            "_targets.R"
+          )
+
+          for file in "${required_files[@]}"; do
+
+            if [ ! -f "$file" ]; then
+              echo "::error::Required file not found: $file"
+              exit 1
+            fi
+
+            echo "OK: $file"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 4. Validar diretórios principais
+      # ------------------------------------------------------
+
+      - name: Validate main directories
+        shell: bash
+        run: |
+          set -e
+
+          required_dirs=(
+            "analysis"
+            "config"
+            "data"
+            "decisions"
+            "handoffs"
+            "instructions"
+            "R"
+            "report"
+            "results"
+            "scripts"
+            "templates"
+            "tests"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+
+            if [ ! -d "$dir" ]; then
+              echo "::error::Required directory not found: $dir"
+              exit 1
+            fi
+
+            echo "OK: $dir"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 5. Validar estrutura dos dados
+      # ------------------------------------------------------
+
+      - name: Validate data directories
+        shell: bash
+        run: |
+          set -e
+
+          required_dirs=(
+            "data/raw"
+            "data/interim"
+            "data/processed"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+
+            if [ ! -d "$dir" ]; then
+              echo "::error::Required data directory not found: $dir"
+              exit 1
+            fi
+
+            echo "OK: $dir"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 6. Validar estrutura de código R
+      # ------------------------------------------------------
+
+      - name: Validate R directories
+        shell: bash
+        run: |
+          set -e
+
+          required_dirs=(
+            "R/pacheco"
+            "R/benjamin"
+            "R/vitor"
+            "R/marco"
+            "R/shared"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+
+            if [ ! -d "$dir" ]; then
+              echo "::error::Required R directory not found: $dir"
+              exit 1
+            fi
+
+            echo "OK: $dir"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 7. Validar cadernos analíticos
+      # ------------------------------------------------------
+
+      - name: Validate analysis notebooks
+        shell: bash
+        run: |
+          set -e
+
+          required_files=(
+            "analysis/01_PACHECO_inventario.qmd"
+            "analysis/02_PACHECO_auditoria.qmd"
+            "analysis/03_PACHECO_reconciliacao.qmd"
+            "analysis/04_PACHECO_base_canonica.qmd"
+            "analysis/05_PACHECO_ada_inicial.qmd"
+            "analysis/06_BENJAMIN_ada_bivariada.qmd"
+            "analysis/07_BENJAMIN_ada_multivariada.qmd"
+            "analysis/08_BENJAMIN_conformidade.qmd"
+            "analysis/09_BENJAMIN_critic.qmd"
+            "analysis/10_VITOR_topsis.qmd"
+            "analysis/11_VITOR_cenarios_pareto.qmd"
+            "analysis/12_VITOR_robustez.qmd"
+          )
+
+          for file in "${required_files[@]}"; do
+
+            if [ ! -f "$file" ]; then
+              echo "::error::Analysis notebook not found: $file"
+              exit 1
+            fi
+
+            echo "OK: $file"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 8. Validar estrutura de resultados
+      # ------------------------------------------------------
+
+      - name: Validate results directories
+        shell: bash
+        run: |
+          set -e
+
+          required_dirs=(
+            "results/audit"
+            "results/ada"
+            "results/tables"
+            "results/figures"
+            "results/critic"
+            "results/topsis"
+            "results/scenarios"
+            "results/robustness"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+
+            if [ ! -d "$dir" ]; then
+              echo "::error::Required results directory not found: $dir"
+              exit 1
+            fi
+
+            echo "OK: $dir"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 9. Validar estrutura dos relatórios
+      # ------------------------------------------------------
+
+      - name: Validate report structure
+        shell: bash
+        run: |
+          set -e
+
+          required_dirs=(
+            "report/stages/01_pacheco"
+            "report/stages/02_benjamin"
+            "report/stages/03_vitor"
+            "report/stages/04_marco"
+            "report/final"
+            "report/templates"
+          )
+
+          for dir in "${required_dirs[@]}"; do
+
+            if [ ! -d "$dir" ]; then
+              echo "::error::Required report directory not found: $dir"
+              exit 1
+            fi
+
+            echo "OK: $dir"
+
+          done
+
+
+      # ------------------------------------------------------
+      # 10. Conclusão
+      # ------------------------------------------------------
+
+      - name: Base validation completed
+        shell: bash
+        run: |
+          echo "=============================================="
+          echo "Repository base validation completed."
+          echo "=============================================="
+          echo ""
+          echo "Scientific pipeline execution: NOT ENABLED"
+          echo "R tests: NOT ENABLED"
+          echo "targets execution: NOT ENABLED"
+          echo "Report compilation: NOT ENABLED"
+          echo ""
+          echo "Current CI status: BASE_STRUCTURE_ONLY"

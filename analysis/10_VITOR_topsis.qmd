@@ -1,20 +1,1386 @@
 ---
-title: "10 VITOR topsis"
-format: html
+title: "10 — TOPSIS e Ranking Principal"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Vitor"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+10_VITOR_TOPSIS.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Vitor
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Aplicar o TOPSIS utilizando a representação multicritério
+aprovada e entregue por Benjamin.
 
-## Validações
+Esta etapa deverá:
 
-## Pendências
+1. validar a entrada recebida;
+2. confirmar a orientação dos critérios;
+3. combinar matriz normalizada e pesos;
+4. calcular as soluções ideal positiva e negativa;
+5. calcular as distâncias;
+6. calcular os coeficientes de proximidade;
+7. produzir o ranking principal;
+8. analisar gaps e quase empates;
+9. integrar status de conformidade;
+10. preparar as análises de cenários e robustez.
+
+REGRA CENTRAL
+
+Vitor NÃO deverá:
+
+- redefinir critérios;
+- alterar pesos CRITIC silenciosamente;
+- inverter novamente critérios já orientados;
+- escolher normalização pelo ranking produzido;
+- arredondar antes dos cálculos;
+- declarar vencedor definitivo antes da robustez.
+
+Nesta fase:
+
+TOPSIS_STATUS = NOT_EXECUTED
+PRIMARY_RANKING_STATUS = NOT_GENERATED
+ROBUSTNESS_STATUS = NOT_EXECUTED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 10 — TOPSIS e Ranking Principal
+
+**Responsável:** Vitor
+
+**Status:** `DRAFT`
+
+**Entrada principal:** resultados aprovados de Benjamin
+
+**Handoff de entrada:**
+
+```text
+handoffs/02_BENJAMIN_to_VITOR.md
+```
+
+**Próxima etapa:**
+
+```text
+analysis/11_VITOR_cenarios_pareto.qmd
+```
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é calcular o ranking multicritério principal das alternativas por TOPSIS, utilizando exclusivamente a matriz e os pesos aprovados.
+
+Fluxo:
+
+```text
+matriz normalizada/orientada
++
+pesos CRITIC
+↓
+matriz ponderada
+↓
+ideal positivo
+↓
+ideal negativo
+↓
+distâncias
+↓
+coeficiente de proximidade
+↓
+ranking
+↓
+gaps
+↓
+interpretação
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] handoff de Benjamin aprovado
+[ ] critérios finais conhecidos
+[ ] direções conhecidas
+[ ] matriz de decisão disponível
+[ ] normalização definida
+[ ] matriz normalizada disponível
+[ ] orientação da matriz explicitada
+[ ] pesos CRITIC validados
+[ ] soma dos pesos validada
+[ ] conformidade disponível
+[ ] limitações conhecidas
+```
+
+
+# 4. Versões de entrada
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+DECISION_MATRIX_VERSION = TO_BE_FILLED
+NORMALIZED_MATRIX_VERSION = TO_BE_FILLED
+CRITIC_WEIGHTS_VERSION = TO_BE_FILLED
+CONFORMITY_VERSION = TO_BE_FILLED
+```
+
+
+# 5. Metadados recebidos
+
+Registrar:
+
+```text
+FINAL_CRITERIA = TO_BE_FILLED
+CRITERION_DIRECTION = TO_BE_FILLED
+NORMALIZATION_METHOD = TO_BE_FILLED
+HIGHER_IS_BETTER_AFTER_NORMALIZATION = TO_BE_FILLED
+CRITIC_CORRELATION_METHOD = TO_BE_FILLED
+```
+
+
+# 6. Regra de congelamento
+
+Vitor deverá considerar como congelados:
+
+```text
+critérios
+direções
+normalização principal
+pesos CRITIC
+```
+
+salvo reabertura formal da etapa de Benjamin.
+
+
+# 7. Problema upstream
+
+Se for detectado erro em:
+
+```text
+peso
+critério
+direção
+matriz
+normalização
+```
+
+o procedimento será:
+
+```text
+registrar
+↓
+interromper análise afetada
+↓
+retornar para Benjamin
+↓
+receber nova versão
+↓
+reexecutar downstream
+```
+
+
+# 8. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 9. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Poderá incluir:
+#
+# - carregamento das matrizes;
+# - carregamento dos pesos;
+# - tolerância numérica;
+# - funções de TOPSIS;
+# - parâmetros de apresentação.
+#
+# ============================================================
+```
+
+
+# 10. Carregamento das entradas
+
+```{r}
+# ============================================================
+# CARREGAMENTO
+# ============================================================
+#
+# Carregar:
+#
+# - matriz normalizada/orientada;
+# - pesos CRITIC;
+# - nomes das alternativas;
+# - nomes dos critérios;
+# - status de conformidade.
+#
+# ============================================================
+```
+
+
+# 11. Validação dimensional
+
+Se:
+
+```text
+n = número de alternativas
+m = número de critérios
+```
+
+então a matriz deverá possuir:
+
+\[
+n \times m
+\]
+
+e o vetor de pesos deverá possuir:
+
+\[
+m
+\]
+
+elementos.
+
+
+# 12. Validação dos nomes
+
+Confirmar:
+
+```text
+[ ] nomes dos critérios coincidem entre matriz e pesos
+[ ] nenhum critério ausente
+[ ] nenhum peso extra
+[ ] nomes das alternativas preservados
+```
+
+
+# 13. Associação por nome
+
+O pareamento deverá ser feito por:
+
+```text
+criterion_name
+```
+
+e não apenas por posição.
+
+
+# 14. Validação dos pesos
+
+Confirmar:
+
+\[
+w_j \ge 0
+\]
+
+e:
+
+\[
+\sum_{j=1}^{m} w_j \approx 1
+\]
+
+Registrar:
+
+```text
+WEIGHT_VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 15. Finitude
+
+Confirmar ausência inesperada de:
+
+```text
+NA
+NaN
+Inf
+-Inf
+```
+
+na matriz e nos pesos.
+
+
+# 16. Orientação
+
+Antes do TOPSIS, responder explicitamente:
+
+```text
+todos os critérios já estão orientados como maior = melhor?
+```
+
+Registrar:
+
+```text
+HIGHER_IS_BETTER_AFTER_NORMALIZATION = TO_BE_FILLED
+```
+
+
+# 17. Regra contra dupla inversão
+
+Se:
+
+```text
+HIGHER_IS_BETTER_AFTER_NORMALIZATION = TRUE
+```
+
+então:
+
+```text
+NÃO inverter critérios COST novamente
+```
+
+
+# 18. Caso a orientação ainda não esteja resolvida
+
+Se a matriz recebida ainda mantiver direções diferentes:
+
+```text
+STATUS = BLOCKED
+```
+
+até que a regra aprovada esteja inequivocamente definida.
+
+
+# 19. Matriz normalizada
+
+Representar por:
+
+\[
+R=[r_{ij}]
+\]
+
+com:
+
+```text
+i = alternativa
+j = critério
+```
+
+
+# 20. Matriz ponderada
+
+A matriz ponderada será:
+
+\[
+v_{ij}=w_jr_{ij}
+\]
+
+
+# 21. Código da matriz ponderada
+
+```{r}
+# ============================================================
+# MATRIZ PONDERADA
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Para cada critério j:
+#
+# v_ij = r_ij * w_j
+#
+# Preservar:
+#
+# - nomes das alternativas;
+# - nomes dos critérios.
+#
+# ============================================================
+```
+
+
+# 22. Validação da ponderação
+
+Confirmar:
+
+```text
+[ ] dimensões preservadas
+[ ] nomes preservados
+[ ] pesos aplicados ao critério correto
+[ ] nenhum NA/NaN/Inf criado
+```
+
+
+# 23. Matriz ponderada
+
+Registrar futuramente:
+
+```text
+WEIGHTED_MATRIX_STATUS = TO_BE_FILLED
+```
+
+
+# 24. Solução ideal positiva
+
+Quando todos os critérios já estiverem orientados como:
+
+```text
+maior = melhor
+```
+
+a solução ideal positiva será:
+
+\[
+v_j^+
+=
+\max_i v_{ij}
+\]
+
+
+# 25. Solução ideal negativa
+
+\[
+v_j^-
+=
+\min_i v_{ij}
+\]
+
+
+# 26. Vetores ideais
+
+Registrar:
+
+```text
+POSITIVE_IDEAL = TO_BE_FILLED
+NEGATIVE_IDEAL = TO_BE_FILLED
+```
+
+
+# 27. Validação do ideal positivo
+
+Para cada critério:
+
+```text
+v_j^+
+```
+
+deve pertencer ao domínio dos valores ponderados observados segundo a formulação usada.
+
+
+# 28. Validação do ideal negativo
+
+O mesmo se aplica a:
+
+```text
+v_j^-
+```
+
+
+# 29. Código dos ideais
+
+```{r}
+# ============================================================
+# SOLUÇÕES IDEAIS
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Antes do cálculo, confirmar a orientação da matriz.
+#
+# ============================================================
+```
+
+
+# 30. Distância à solução ideal positiva
+
+Para cada alternativa:
+
+\[
+S_i^+
+=
+\sqrt{
+\sum_{j=1}^{m}
+(v_{ij}-v_j^+)^2
+}
+\]
+
+
+# 31. Distância à solução ideal negativa
+
+\[
+S_i^-
+=
+\sqrt{
+\sum_{j=1}^{m}
+(v_{ij}-v_j^-)^2
+}
+\]
+
+
+# 32. Código das distâncias
+
+```{r}
+# ============================================================
+# DISTÂNCIAS TOPSIS
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Calcular:
+#
+# S_i^+
+# S_i^-
+#
+# para todas as alternativas.
+#
+# ============================================================
+```
+
+
+# 33. Não negatividade das distâncias
+
+Validar:
+
+\[
+S_i^+ \ge 0
+\]
+
+e:
+
+\[
+S_i^- \ge 0
+\]
+
+
+# 34. Coeficiente de proximidade
+
+O coeficiente TOPSIS será:
+
+\[
+C_i
+=
+\frac{S_i^-}
+{S_i^+ + S_i^-}
+\]
+
+
+# 35. Interpretação
+
+Em geral:
+
+```text
+C_i mais próximo de 1
+→ alternativa mais próxima do ideal positivo
+e mais distante do ideal negativo
+```
+
+
+# 36. Intervalo
+
+Validar:
+
+\[
+0\le C_i\le1
+\]
+
+dentro da tolerância numérica.
+
+
+# 37. Denominador
+
+Verificar:
+
+\[
+S_i^+ + S_i^- > 0
+\]
+
+para cada alternativa.
+
+
+# 38. Caso degenerado
+
+Se:
+
+\[
+S_i^+ + S_i^- = 0
+\]
+
+o caso deverá ser tratado explicitamente.
+
+Não produzir `NaN` silenciosamente.
+
+
+# 39. Código do coeficiente
+
+```{r}
+# ============================================================
+# COEFICIENTE DE PROXIMIDADE
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# C_i = S_i^- / (S_i^+ + S_i^-)
+#
+# ============================================================
+```
+
+
+# 40. Tabela TOPSIS
+
+Estrutura futura:
+
+| Fluido | \(S_i^+\) | \(S_i^-\) | \(C_i\) |
+|---|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 41. Ranking
+
+Ordenar as alternativas por:
+
+```text
+C_i decrescente
+```
+
+
+# 42. Posição
+
+Registrar:
+
+```text
+rank = 1, 2, ..., n
+```
+
+
+# 43. Tabela do ranking
+
+| Posição | Fluido | Coeficiente TOPSIS |
+|---:|---|---:|
+| 1 | `TO_BE_FILLED` |  |
+| 2 | `TO_BE_FILLED` |  |
+| ... | ... | ... |
+
+
+# 44. Precisão
+
+O ranking deverá utilizar:
+
+```text
+coeficientes em precisão completa
+```
+
+e não valores previamente arredondados.
+
+
+# 45. Arredondamento
+
+Somente depois da ordenação poderá ser aplicado arredondamento para comunicação.
+
+
+# 46. Empate exato
+
+Se dois coeficientes forem exatamente iguais dentro da regra numérica escolhida:
+
+```text
+TIE_STATUS = TO_BE_FILLED
+```
+
+
+# 47. Não criar desempate arbitrário
+
+Não desempatar usando:
+
+```text
+ordem alfabética
+linha da planilha
+preferência pessoal
+```
+
+sem regra metodológica definida.
+
+
+# 48. Quase empate
+
+Mesmo sem empate exato, diferenças muito pequenas devem ser destacadas.
+
+Registrar:
+
+```text
+NEAR_TIE_STATUS = TO_BE_FILLED
+```
+
+
+# 49. Gap entre posições
+
+Definir, para posições consecutivas:
+
+\[
+\Delta_i
+=
+C_{(i)}-C_{(i+1)}
+\]
+
+onde:
+
+```text
+C_(i)
+```
+
+representa o coeficiente da posição \(i\).
+
+
+# 50. Gap entre primeiro e segundo
+
+\[
+\Delta_{1,2}
+=
+C_{(1)}-C_{(2)}
+\]
+
+
+# 51. Interpretação do gap
+
+Gap pequeno sugere que o primeiro lugar pode depender fortemente de:
+
+```text
+pesos
+normalização
+critério
+alternativa
+```
+
+e portanto merece atenção na robustez.
+
+
+# 52. Não definir limiar arbitrário
+
+Não classificar automaticamente:
+
+```text
+gap pequeno
+```
+
+sem justificar a escala utilizada.
+
+
+# 53. Ranking principal
+
+Registrar somente após execução:
+
+```text
+PRIMARY_RANKING = TO_BE_FILLED
+```
+
+
+# 54. Primeiro colocado
+
+Somente após execução:
+
+```text
+PRIMARY_TOP_1 = TO_BE_FILLED
+```
+
+
+# 55. Top 3
+
+Somente após execução:
+
+```text
+PRIMARY_TOP_3 = TO_BE_FILLED
+```
+
+
+# 56. Status do ranking
+
+O ranking desta etapa deve ser chamado de:
+
+```text
+RANKING PRINCIPAL
+```
+
+e não ainda de:
+
+```text
+RANKING DEFINITIVO
+```
+
+
+# 57. Motivo
+
+Ainda faltam:
+
+```text
+cenários
+Pareto
+sensibilidade
+leave-one-criterion-out
+normalização alternativa
+leave-one-alternative-out
+robustez
+```
+
+
+# 58. Conformidade
+
+Integrar ao ranking informação de:
+
+```text
+analysis/08_BENJAMIN_conformidade.qmd
+```
+
+
+# 59. Não misturar pontuação e conformidade
+
+A tabela pode conter:
+
+```text
+posição
+coeficiente TOPSIS
+status de conformidade
+```
+
+sem transformar conformidade em parte do coeficiente, salvo decisão metodológica prévia.
+
+
+# 60. Estrutura de comunicação
+
+| Rank | Fluido | TOPSIS | Conformidade |
+|---:|---|---:|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 61. Alternativa não conforme
+
+Uma alternativa poderá aparecer bem posicionada e ainda assim possuir status:
+
+```text
+NON_COMPLIANT
+```
+
+Isso deverá ser mostrado, não escondido.
+
+
+# 62. Alternativa não avaliável
+
+Se conformidade não puder ser determinada:
+
+```text
+NOT_EVALUABLE
+```
+
+deve permanecer explícito.
+
+
+# 63. Peso e contribuição
+
+Quando útil, Vitor poderá investigar a contribuição ponderada dos critérios para compreender o resultado.
+
+Registrar:
+
+```text
+CONTRIBUTION_ANALYSIS_STATUS = TO_BE_FILLED
+```
+
+
+# 64. Contribuição não é decomposição causal
+
+Evitar afirmar que um critério:
+
+```text
+causou
+```
+
+a posição final.
+
+Preferir:
+
+```text
+contribuiu para diferenciar
+```
+
+
+# 65. Perfil do primeiro colocado
+
+Após execução, poderá ser descrito:
+
+```text
+em quais critérios está próximo do ideal
+em quais está distante
+onde possui limitações
+```
+
+
+# 66. Perfil do segundo colocado
+
+Também deve ser analisado quando o gap for pequeno.
+
+
+# 67. Comparação do top 3
+
+Uma tabela de critérios poderá ser útil para entender diferenças entre:
+
+```text
+1º
+2º
+3º
+```
+
+
+# 68. Não selecionar apenas critérios favoráveis
+
+A comparação deve mostrar o conjunto relevante, não apenas variáveis que favoreçam o primeiro colocado.
+
+
+# 69. Figura do ranking
+
+Poderá ser gerada uma figura do coeficiente TOPSIS.
+
+```{r}
+# ============================================================
+# FIGURA DO RANKING
+# ============================================================
+#
+# Implementar se útil.
+#
+# Mostrar:
+#
+# - alternativas;
+# - coeficiente C_i;
+# - ordem;
+# - rótulos legíveis.
+#
+# ============================================================
+```
+
+
+# 70. Gráfico de barras
+
+Se utilizado, ordenar de acordo com o ranking.
+
+
+# 71. Dotplot
+
+Pode ser preferível quando houver poucas alternativas.
+
+
+# 72. Mostrar gaps
+
+Uma visualização deve permitir perceber proximidade entre coeficientes.
+
+
+# 73. Não exagerar o eixo
+
+Evitar escolhas gráficas que façam diferenças pequenas parecerem enormes.
+
+
+# 74. Validação do TOPSIS
+
+```{r}
+# ============================================================
+# VALIDAÇÃO TOPSIS
+# ============================================================
+#
+# Confirmar:
+#
+# - pesos válidos;
+# - matriz válida;
+# - ideais corretos;
+# - distâncias >= 0;
+# - C_i entre 0 e 1;
+# - nenhuma alternativa perdida;
+# - ordenação correta;
+# - nomes preservados.
+#
+# ============================================================
+```
+
+
+# 75. Teste com caso simples
+
+A função TOPSIS deverá ser testada com exemplo pequeno verificável manualmente.
+
+
+# 76. Alternativa ideal
+
+Em um caso de teste, se uma alternativa coincidir exatamente com o ideal positivo:
+
+\[
+S_i^+=0
+\]
+
+e o coeficiente deverá refletir essa condição corretamente.
+
+
+# 77. Alternativa anti-ideal
+
+Se coincidir com o ideal negativo:
+
+\[
+S_i^-=0
+\]
+
+o comportamento também deverá ser validado.
+
+
+# 78. Permutação das linhas
+
+Reordenar as alternativas na entrada não deve alterar o resultado associado a cada nome.
+
+
+# 79. Permutação das colunas
+
+Reordenar critérios, pesos e metadados conjuntamente não deve alterar o resultado.
+
+
+# 80. Associação por nomes
+
+Esse teste é importante para detectar erro de pareamento entre:
+
+```text
+peso
+```
+
+e:
+
+```text
+critério
+```
+
+
+# 81. Reprodutibilidade
+
+Para as mesmas entradas:
+
+```text
+mesmo ranking
+```
+
+deve ser produzido.
+
+
+# 82. Aleatoriedade
+
+O TOPSIS principal é determinístico.
+
+Não criar seed se não houver componente aleatório.
+
+
+# 83. Resultados principais
+
+Após execução:
+
+```text
+TOPSIS_STATUS = TO_BE_FILLED
+PRIMARY_RANKING_STATUS = TO_BE_FILLED
+PRIMARY_TOP_1 = TO_BE_FILLED
+PRIMARY_TOP_3 = TO_BE_FILLED
+GAP_1_2 = TO_BE_FILLED
+```
+
+
+# 84. Coeficientes
+
+Registrar:
+
+```text
+TOPSIS_COEFFICIENTS = TO_BE_FILLED
+```
+
+
+# 85. Achados
+
+Registrar:
+
+```text
+TOPSIS_FINDING_1 = TO_BE_FILLED
+TOPSIS_FINDING_2 = TO_BE_FILLED
+TOPSIS_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 86. Linguagem de interpretação
+
+Preferir:
+
+```text
+“obteve maior coeficiente TOPSIS no cenário principal”
+```
+
+em vez de:
+
+```text
+“é definitivamente o melhor fluido”
+```
+
+
+# 87. Interpretação do primeiro lugar
+
+A conclusão deve refletir apenas:
+
+```text
+dados
++
+critérios
++
+normalização
++
+pesos
+```
+
+do cenário principal.
+
+
+# 88. Dependência metodológica
+
+Registrar explicitamente que o ranking pode depender de:
+
+```text
+conjunto de critérios
+normalização
+pesos
+alternativas presentes
+```
+
+
+# 89. Limitações
+
+Registrar:
+
+```text
+TOPSIS_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 90. Possíveis limitações
+
+Somente se realmente observadas:
+
+```text
+gap pequeno
+pesos concentrados
+poucas alternativas
+proximidade entre coeficientes
+dependência da normalização
+```
+
+
+# 91. Artefatos futuros
+
+Quando executado:
+
+```text
+WEIGHTED_MATRIX_ARTIFACT = TO_BE_FILLED
+IDEAL_SOLUTIONS_ARTIFACT = TO_BE_FILLED
+TOPSIS_RESULTS_ARTIFACT = TO_BE_FILLED
+PRIMARY_RANKING_ARTIFACT = TO_BE_FILLED
+TOPSIS_FIGURE = TO_BE_FILLED
+```
+
+
+# 92. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+TOPSIS_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 93. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+
+# 94. Não criar nova decisão sem necessidade
+
+Vitor deve aplicar a metodologia recebida.
+
+Decisões novas surgem apenas se aparecer situação não prevista que exija escolha real.
+
+
+# 95. Saída para cenários
+
+A próxima etapa deverá receber:
+
+```text
+PRIMARY_RANKING
+TOPSIS_COEFFICIENTS
+CRITIC_WEIGHTS
+NORMALIZATION_METHOD
+CONFORMITY_STATUS
+GAPS
+LIMITATIONS
+```
+
+
+# 96. Cenários
+
+As variações de preferência e pesos serão tratadas em:
+
+```text
+analysis/11_VITOR_cenarios_pareto.qmd
+```
+
+
+# 97. Pareto
+
+A fronteira de Pareto também será tratada na próxima etapa e não depende dos pesos CRITIC.
+
+
+# 98. Robustez
+
+A conclusão final sobre estabilidade será tratada em:
+
+```text
+analysis/12_VITOR_robustez.qmd
+```
+
+
+# 99. O que esta etapa entrega
+
+Entrega:
+
+```text
+matriz ponderada
++
+soluções ideais
++
+distâncias
++
+coeficientes TOPSIS
++
+ranking principal
++
+gaps
++
+integração com conformidade
+```
+
+
+# 100. O que esta etapa não entrega
+
+Não entrega ainda:
+
+```text
+ranking definitivo
+robustez final
+estabilidade sob cenários
+Pareto
+LOCO
+LOAO
+rank reversal
+```
+
+
+# 101. Revisão cruzada
+
+Antes de avançar:
+
+```text
+[ ] entrada de Benjamin conferida
+[ ] pesos conferidos
+[ ] nomes conferidos
+[ ] orientação conferida
+[ ] nenhuma dupla inversão
+[ ] matriz ponderada conferida
+[ ] ideais conferidos
+[ ] distâncias conferidas
+[ ] coeficientes conferidos
+[ ] ranking conferido
+[ ] conformidade integrada corretamente
+```
+
+
+# 102. Critério de conclusão
+
+Esta etapa estará pronta quando:
+
+```text
+TOPSIS reproduzível
++
+ranking principal validado
++
+gaps documentados
++
+conformidade associada
++
+entradas para cenários preparadas
+```
+
+
+# 103. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 104. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+TOPSIS_STATUS = NOT_EXECUTED
+
+PRIMARY_RANKING_STATUS = NOT_GENERATED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+SCENARIO_STATUS = NOT_EXECUTED
+
+PARETO_STATUS = NOT_EXECUTED
+
+ROBUSTNESS_STATUS = NOT_EXECUTED
+```
+
+
+# 105. Princípio final
+
+> O TOPSIS produz uma ordenação relativa às escolhas metodológicas e aos dados fornecidos. O primeiro colocado no cenário principal deve ser tratado como resultado do modelo principal, não como conclusão definitiva antes das análises de cenários, Pareto, sensibilidade e robustez.

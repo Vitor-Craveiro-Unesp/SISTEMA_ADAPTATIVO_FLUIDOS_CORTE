@@ -1,20 +1,1079 @@
 ---
-title: "05 PACHECO ada inicial"
-format: html
+title: "05 — Análise Descritiva Inicial"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Pacheco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+05_PACHECO_ADA_INICIAL.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Pacheco
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Realizar a análise descritiva inicial da base canônica.
 
-## Validações
+Esta etapa deverá produzir uma visão geral dos dados antes das
+análises bivariadas e multivariadas conduzidas por Benjamin.
 
-## Pendências
+A ADA inicial deverá investigar:
+
+- distribuição das variáveis;
+- medidas de posição;
+- medidas de dispersão;
+- missing remanescentes;
+- valores extremos;
+- diferenças aparentes entre fluidos;
+- diferenças entre condições;
+- variáveis constantes;
+- variáveis quase constantes;
+- padrões que merecem aprofundamento.
+
+IMPORTANTE
+
+Esta etapa NÃO deverá:
+
+- definir os critérios finais;
+- excluir variáveis por correlação;
+- calcular CRITIC;
+- calcular TOPSIS;
+- produzir ranking oficial;
+- concluir qual fluido é o melhor.
+
+Nesta fase:
+
+ADA_INITIAL_STATUS = NOT_EXECUTED
+CRITERIA_STATUS = NOT_DEFINED
+RANKING_STATUS = NOT_EXECUTED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 05 — ADA Inicial
+
+**Responsável:** Pacheco
+
+**Status:** `DRAFT`
+
+**Entrada:** base canônica aprovada
+
+**Versão da base:** `TO_BE_FILLED`
+
+**Próxima etapa:** ADA bivariada de Benjamin
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é descrever a estrutura estatística básica da base canônica e identificar padrões que devam ser investigados nas análises seguintes.
+
+Fluxo:
+
+```text
+base canônica
+↓
+resumo estrutural
+↓
+estatística descritiva
+↓
+distribuições
+↓
+comparações entre fluidos
+↓
+comparações entre condições
+↓
+valores extremos
+↓
+variabilidade
+↓
+achados exploratórios
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] base canônica criada
+[ ] base canônica validada
+[ ] base canônica aprovada
+[ ] versão registrada
+[ ] dicionário de dados disponível
+[ ] unidades conhecidas
+[ ] limitações conhecidas
+```
+
+
+# 4. Entrada oficial
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+CANONICAL_DATA_PATH = TO_BE_FILLED
+DATA_DICTIONARY_VERSION = TO_BE_FILLED
+```
+
+
+# 5. Regra de entrada
+
+A ADA inicial deverá utilizar exclusivamente a base canônica aprovada.
+
+Não utilizar:
+
+```text
+planilha original
+cópia local
+arquivo exportado manualmente
+versão intermediária não aprovada
+```
+
+
+# 6. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 7. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Responsabilidades possíveis:
+#
+# - carregar pacotes;
+# - carregar funções;
+# - carregar base canônica;
+# - preparar configurações gráficas;
+# - definir parâmetros descritivos necessários.
+#
+# ============================================================
+```
+
+
+# 8. Carregamento da base
+
+```{r}
+# ============================================================
+# CARREGAMENTO DA BASE CANÔNICA
+# ============================================================
+#
+# Ler a versão aprovada da base canônica.
+#
+# Confirmar explicitamente sua versão antes da análise.
+#
+# ============================================================
+```
+
+
+# 9. Validação antes da ADA
+
+Confirmar:
+
+```text
+[ ] número de linhas esperado
+[ ] número de colunas esperado
+[ ] identificadores presentes
+[ ] tipos coerentes
+[ ] unidades conhecidas
+[ ] nenhuma duplicata indevida
+[ ] nenhum Inf inesperado
+```
+
+
+# 10. Dimensões
+
+Registrar:
+
+```text
+N_ROWS = TO_BE_FILLED
+N_COLUMNS = TO_BE_FILLED
+N_FLUIDS = TO_BE_FILLED
+N_CONDITIONS = TO_BE_FILLED
+```
+
+
+# 11. Estrutura das variáveis
+
+Registrar:
+
+```text
+N_NUMERIC = TO_BE_FILLED
+N_CATEGORICAL = TO_BE_FILLED
+N_DIAGNOSTIC = TO_BE_FILLED
+```
+
+
+# 12. Variáveis numéricas
+
+Listar futuramente:
+
+```text
+NUMERIC_VARIABLES = TO_BE_FILLED
+```
+
+
+# 13. Variáveis categóricas
+
+Registrar:
+
+```text
+CATEGORICAL_VARIABLES = TO_BE_FILLED
+```
+
+
+# 14. Variáveis auxiliares
+
+Campos utilizados apenas para:
+
+```text
+identificação
+linhagem
+fonte
+controle
+```
+
+não deverão ser confundidos com variáveis analíticas.
+
+
+# 15. Missing remanescentes
+
+Registrar:
+
+```text
+FINAL_MISSING_STATUS = TO_BE_FILLED
+```
+
+
+# 16. Resumo de missing
+
+Tabela futura:
+
+| Variável | n | Missing | Proporção |
+|---|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 17. Missing não é zero
+
+Regra permanece:
+
+```text
+NA != 0
+```
+
+
+# 18. Estatísticas descritivas
+
+Para variáveis numéricas, quando adequadas, calcular:
+
+```text
+n
+média
+mediana
+desvio-padrão
+mínimo
+máximo
+quartis
+amplitude
+```
+
+```{r}
+# ============================================================
+# ESTATÍSTICA DESCRITIVA
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# A tabela deverá ser gerada a partir da base real.
+#
+# ============================================================
+```
+
+
+# 19. Média
+
+Quando pertinente:
+
+\[
+\bar{x}
+=
+\frac{1}{n}
+\sum_{i=1}^{n}x_i
+\]
+
+
+# 20. Mediana
+
+A mediana deverá ser considerada principalmente quando a distribuição for assimétrica ou houver valores extremos relevantes.
+
+
+# 21. Desvio-padrão
+
+Quando apropriado:
+
+\[
+s
+=
+\sqrt{
+\frac{1}{n-1}
+\sum_{i=1}^{n}
+(x_i-\bar{x})^2
+}
+\]
+
+
+# 22. Amplitude
+
+\[
+A
+=
+x_{\max}-x_{\min}
+\]
+
+
+# 23. Quartis
+
+Registrar quando úteis para:
+
+```text
+dispersão
+assimetria
+valores extremos
+```
+
+
+# 24. Tabela descritiva geral
+
+Estrutura futura:
+
+| Variável | n | Média | Mediana | DP | Mín. | Q1 | Q3 | Máx. |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |  |  |  |  |
+
+
+# 25. Arredondamento
+
+Os cálculos devem utilizar precisão completa.
+
+A tabela poderá apresentar números arredondados apenas para leitura.
+
+
+# 26. Distribuições
+
+Para cada variável relevante, investigar:
+
+```text
+forma
+assimetria
+concentração
+dispersão
+valores extremos
+```
+
+
+# 27. Histogramas
+
+Quando adequados:
+
+```{r}
+# ============================================================
+# HISTOGRAMAS
+# ============================================================
+#
+# Gerar apenas para variáveis em que esse tipo de visualização
+# seja informativo.
+#
+# ============================================================
+```
+
+
+# 28. Densidades
+
+Podem ser usadas apenas quando o tamanho amostral e a natureza da variável tornarem a representação útil.
+
+
+# 29. Boxplots
+
+Poderão ser utilizados para:
+
+```text
+comparar fluidos
+comparar condições
+identificar valores extremos
+```
+
+
+# 30. Dotplots
+
+Com poucas alternativas, gráficos de pontos podem ser mais informativos que histogramas.
+
+
+# 31. Escolha gráfica
+
+Não utilizar o mesmo tipo de gráfico para todas as variáveis por automatismo.
+
+Escolher de acordo com:
+
+```text
+n
+tipo da variável
+objetivo
+legibilidade
+```
+
+
+# 32. Comparação entre fluidos
+
+Para cada variável relevante, observar diferenças aparentes entre as alternativas.
+
+```{r}
+# ============================================================
+# COMPARAÇÃO ENTRE FLUIDOS
+# ============================================================
+#
+# Implementar gráficos e resumos adequados.
+#
+# Esta etapa é exploratória.
+#
+# ============================================================
+```
+
+
+# 33. Ranking univariado exploratório
+
+Pode ser útil ordenar fluidos por uma variável individual.
+
+Esse resultado deve ser marcado como:
+
+```text
+EXPLORATORY
+```
+
+e nunca como ranking global.
+
+
+# 34. Nenhum vencedor nesta etapa
+
+É proibido concluir:
+
+```text
+FLUIDO X = MELHOR
+```
+
+com base apenas na ADA inicial.
+
+
+# 35. Comparação entre condições
+
+Quando uma variável estiver disponível em diferentes condições:
+
+```text
+preservar a separação
+```
+
+antes de qualquer agregação.
+
+
+# 36. Resumo por condição
+
+Tabela futura:
+
+| Variável | Condição | n | Média | Mediana | DP |
+|---|---|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 37. Variação entre condições
+
+Avaliar:
+
+```text
+mudança de magnitude
+mudança de posição
+instabilidade
+possível inversão
+```
+
+
+# 38. Agregação prematura
+
+Evitar:
+
+```text
+condição 1
++
+condição 2
++
+condição 3
+↓
+média imediata
+```
+
+antes de investigar se as condições carregam informação relevante.
+
+
+# 39. Estabilidade exploratória
+
+Quando fizer sentido, avaliar medidas simples de dispersão entre condições.
+
+Exemplos possíveis:
+
+```text
+amplitude
+desvio-padrão
+coeficiente de variação
+```
+
+A escolha definitiva de eventual critério de estabilidade pertence a Benjamin.
+
+
+# 40. Coeficiente de variação
+
+Quando tecnicamente adequado:
+
+\[
+CV
+=
+\frac{s}{\bar{x}}
+\]
+
+Seu uso deve considerar problemas quando a média estiver próxima de zero.
+
+
+# 41. Valores extremos
+
+Detectar valores potencialmente extremos.
+
+Registrar:
+
+```text
+OUTLIER_CANDIDATES = TO_BE_FILLED
+```
+
+
+# 42. Valores extremos não são erros
+
+Fluxo correto:
+
+```text
+detectar
+↓
+confirmar na base
+↓
+interpretar
+↓
+avaliar influência
+```
+
+
+# 43. Regra de exclusão
+
+Nenhum valor deve ser removido apenas porque é extremo.
+
+
+# 44. Variáveis constantes
+
+Identificar:
+
+\[
+\operatorname{Var}(X)=0
+\]
+
+Registrar:
+
+```text
+CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+
+# 45. Variáveis quase constantes
+
+Registrar:
+
+```text
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+A definição operacional deverá ser documentada se utilizada.
+
+
+# 46. Capacidade discriminatória
+
+Uma variável constante não diferencia as alternativas.
+
+Isso deverá ser comunicado a Benjamin, mas não significa necessariamente remover o campo da base.
+
+
+# 47. Variáveis categóricas
+
+Para variáveis categóricas, produzir:
+
+```text
+frequências
+proporções
+categorias observadas
+missing
+```
+
+
+# 48. Tabela de frequências
+
+Estrutura futura:
+
+| Variável | Categoria | Frequência | Proporção |
+|---|---|---:|---:|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 49. Categorias raras
+
+Registrar:
+
+```text
+RARE_CATEGORIES = TO_BE_FILLED
+```
+
+Não combinar categorias sem justificativa.
+
+
+# 50. Informações de conformidade
+
+Nesta etapa, variáveis relacionadas a conformidade podem ser descritas, mas a análise formal pertence a Benjamin.
+
+
+# 51. Especificações pendentes
+
+Manter:
+
+```text
+PENDING_CONFIRMATION
+```
+
+quando aplicável.
+
+
+# 52. Relação entre variáveis
+
+Pacheco poderá realizar inspeções bivariadas simples apenas para gerar perguntas para a próxima etapa.
+
+
+# 53. Correlação inicial
+
+Se utilizada:
+
+```text
+CORRELATION_STATUS = EXPLORATORY
+```
+
+A análise formal de associação e redundância será de Benjamin.
+
+
+# 54. Não excluir por correlação nesta etapa
+
+Mesmo que duas variáveis pareçam muito associadas:
+
+```text
+não remover
+```
+
+sem análise formal posterior.
+
+
+# 55. Matriz de correlação preliminar
+
+Se produzida:
+
+```{r}
+# ============================================================
+# CORRELAÇÃO EXPLORATÓRIA
+# ============================================================
+#
+# Uso opcional.
+#
+# A matriz poderá servir para preparar perguntas para Benjamin.
+#
+# Não tomar decisões finais de redundância aqui.
+#
+# ============================================================
+```
+
+
+# 56. Associações qualitativas
+
+Registrar apenas padrões visuais ou descritivos.
+
+Evitar inferência causal.
+
+
+# 57. Pequeno número de observações
+
+Com poucas alternativas, evitar interpretação exagerada de:
+
+```text
+histogramas
+correlações
+formas de distribuição
+```
+
+
+# 58. ADA com n pequeno
+
+Quando o número de fluidos for pequeno, priorizar visualizações que mostrem os pontos individuais.
+
+
+# 59. Figuras candidatas
+
+Poderão ser geradas:
+
+```text
+boxplots
+dotplots
+gráficos por condição
+distribuições
+resumos por fluido
+```
+
+
+# 60. Código das figuras
+
+```{r}
+# ============================================================
+# FIGURAS DA ADA INICIAL
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Priorizar gráficos que mostrem os dados com clareza.
+#
+# ============================================================
+```
+
+
+# 61. Figuras não são decoração
+
+Cada figura deve responder a uma pergunta.
+
+Perguntar:
+
+```text
+o que esta figura mostra que a tabela não mostra?
+```
+
+
+# 62. Tabelas candidatas
+
+Poderão incluir:
+
+```text
+resumo numérico
+missing
+variáveis constantes
+resumo por fluido
+resumo por condição
+```
+
+
+# 63. Resultados exploratórios
+
+Registrar:
+
+```text
+EXPLORATORY_FINDING_1 = TO_BE_FILLED
+EXPLORATORY_FINDING_2 = TO_BE_FILLED
+EXPLORATORY_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 64. Linguagem adequada
+
+Preferir:
+
+```text
+“observou-se maior valor”
+“o padrão sugere”
+“a variável apresentou maior dispersão”
+```
+
+Evitar:
+
+```text
+“provou”
+“causou”
+“é definitivamente melhor”
+```
+
+
+# 65. Interpretação
+
+Para cada achado relevante:
+
+```text
+padrão observado
+↓
+significado estatístico/descritivo
+↓
+questão para etapa seguinte
+```
+
+
+# 66. Questões para Benjamin
+
+Ao final, registrar perguntas como:
+
+```text
+quais variáveis parecem redundantes?
+quais relações precisam de análise bivariada?
+quais condições precisam ser preservadas?
+quais variáveis possuem baixa discriminação?
+```
+
+Preencher:
+
+```text
+QUESTION_FOR_BENJAMIN_1 = TO_BE_FILLED
+QUESTION_FOR_BENJAMIN_2 = TO_BE_FILLED
+QUESTION_FOR_BENJAMIN_3 = TO_BE_FILLED
+```
+
+
+# 67. Variáveis prioritárias para aprofundamento
+
+Registrar:
+
+```text
+PRIORITY_VARIABLES_FOR_BIVARIATE_ADA = TO_BE_FILLED
+```
+
+
+# 68. Variáveis de baixa prioridade
+
+Registrar apenas com justificativa exploratória:
+
+```text
+LOW_INFORMATION_VARIABLES = TO_BE_FILLED
+```
+
+A decisão final pertence a Benjamin.
+
+
+# 69. Limitações
+
+Registrar:
+
+```text
+ADA_INITIAL_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 70. Possíveis limitações
+
+Somente se confirmadas:
+
+```text
+n pequeno
+missing
+valores extremos
+baixa variabilidade
+condições incompletas
+precisão limitada
+```
+
+
+# 71. Artefatos
+
+Quando executado:
+
+```text
+DESCRIPTIVE_TABLE = TO_BE_FILLED
+MISSING_TABLE = TO_BE_FILLED
+INITIAL_ADA_FIGURES = TO_BE_FILLED
+```
+
+
+# 72. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+ADA_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 73. Validação
+
+Antes de encerrar:
+
+```text
+[ ] base correta utilizada
+[ ] variáveis descritas
+[ ] missing revisados
+[ ] medidas calculadas corretamente
+[ ] figuras conferidas
+[ ] valores extremos investigados
+[ ] variáveis constantes identificadas
+[ ] condições comparadas quando aplicável
+[ ] nenhuma conclusão multicritério antecipada
+```
+
+
+# 74. Resultado desta etapa
+
+Após execução:
+
+```text
+ADA_INITIAL_STATUS = TO_BE_FILLED
+```
+
+
+# 75. O que esta etapa entrega
+
+Entrega:
+
+```text
+visão descritiva da base
++
+padrões iniciais
++
+variáveis problemáticas
++
+variáveis constantes
++
+questões para aprofundamento
+```
+
+
+# 76. O que esta etapa não entrega
+
+Não entrega:
+
+```text
+critérios finais
+peso de critérios
+matriz de decisão final
+CRITIC
+TOPSIS
+ranking
+```
+
+
+# 77. Próxima etapa
+
+A próxima análise será:
+
+```text
+analysis/06_BENJAMIN_ada_bivariada.qmd
+```
+
+
+# 78. Handoff para Benjamin
+
+Pacheco deverá entregar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+ADA_INITIAL_STATUS = TO_BE_FILLED
+CONSTANT_VARIABLES = TO_BE_FILLED
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+IMPORTANT_OUTLIERS = TO_BE_FILLED
+PRIORITY_VARIABLES = TO_BE_FILLED
+OPEN_ISSUES = TO_BE_FILLED
+LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 79. Coerência com handoff formal
+
+Essas informações deverão ser compatíveis com:
+
+```text
+handoffs/01_PACHECO_to_BENJAMIN.md
+```
+
+
+# 80. Critério de conclusão
+
+A ADA inicial está pronta quando Benjamin consegue responder:
+
+```text
+qual base usar?
+quais variáveis existem?
+como elas se comportam?
+quais problemas permanecem?
+quais relações precisam ser aprofundadas?
+```
+
+
+# 81. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 82. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+ADA_INITIAL_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+CRITERIA_STATUS = NOT_DEFINED
+
+RANKING_STATUS = NOT_EXECUTED
+```
+
+
+# 83. Princípio final
+
+> A ADA inicial deve revelar a estrutura dos dados sem transformá-la prematuramente em uma decisão. Seu papel é mostrar o que merece investigação e preparar Benjamin para analisar relações, redundâncias e critérios com maior profundidade.

@@ -1,20 +1,1393 @@
 ---
-title: "11 VITOR cenarios pareto"
-format: html
+title: "11 — Cenários e Análise de Pareto"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Vitor"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+11_VITOR_CENARIOS_PARETO.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Vitor
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Avaliar o comportamento do ranking sob diferentes cenários de
+preferência e analisar a eficiência das alternativas por meio
+da fronteira de Pareto.
 
-## Validações
+Esta etapa possui dois blocos distintos:
 
-## Pendências
+A. CENÁRIOS
+   - modifica pesos/preferências;
+   - recalcula TOPSIS;
+   - compara posições;
+   - avalia estabilidade.
+
+B. PARETO
+   - não utiliza pesos;
+   - identifica relações de dominância;
+   - identifica alternativas não dominadas;
+   - mostra trade-offs entre critérios.
+
+IMPORTANTE
+
+Não interpretar:
+
+frequência de vitória em cenários
+
+como:
+
+probabilidade real de um fluido ser o melhor.
+
+Também não interpretar:
+
+alternativa Pareto-eficiente
+
+como:
+
+vencedora do ranking.
+
+Nesta fase:
+
+SCENARIO_STATUS = NOT_EXECUTED
+PARETO_STATUS = NOT_EXECUTED
+ROBUSTNESS_STATUS = NOT_EXECUTED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 11 — Cenários e Pareto
+
+**Responsável:** Vitor
+
+**Status:** `DRAFT`
+
+**Entrada principal:** ranking TOPSIS principal
+
+**Entrada auxiliar:** critérios, pesos, matriz normalizada e conformidade
+
+**Etapa anterior:**
+
+```text
+analysis/10_VITOR_topsis.qmd
+```
+
+**Próxima etapa:**
+
+```text
+analysis/12_VITOR_robustez.qmd
+```
+
+
+# 2. Objetivo
+
+Esta etapa deverá responder duas perguntas diferentes:
+
+```text
+1. O ranking muda quando as preferências sobre os critérios mudam?
+
+2. Quais alternativas são não dominadas considerando
+   simultaneamente os critérios?
+```
+
+
+# 3. Fluxo geral
+
+```text
+ranking principal
+│
+├── cenários
+│   ↓
+│   novos pesos
+│   ↓
+│   TOPSIS
+│   ↓
+│   comparação de rankings
+│
+└── Pareto
+    ↓
+    critérios orientados
+    ↓
+    dominância
+    ↓
+    fronteira não dominada
+```
+
+
+# 4. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] TOPSIS principal concluído
+[ ] ranking principal validado
+[ ] matriz normalizada/orientada disponível
+[ ] critérios finais conhecidos
+[ ] pesos CRITIC conhecidos
+[ ] orientação dos critérios conhecida
+[ ] conformidade disponível
+[ ] limitações do cenário principal conhecidas
+```
+
+
+# 5. Versões de entrada
+
+Registrar:
+
+```text
+PRIMARY_TOPSIS_VERSION = TO_BE_FILLED
+NORMALIZED_MATRIX_VERSION = TO_BE_FILLED
+CRITIC_WEIGHTS_VERSION = TO_BE_FILLED
+CONFORMITY_VERSION = TO_BE_FILLED
+```
+
+
+# 6. Regra de congelamento
+
+Nesta etapa, não alterar:
+
+```text
+base canônica
+critérios finais
+direções
+regra de normalização principal
+```
+
+sem reabertura formal da etapa correspondente.
+
+
+# 7. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 8. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Poderá incluir:
+#
+# - ranking principal;
+# - matriz normalizada;
+# - pesos CRITIC;
+# - cenários definidos;
+# - funções TOPSIS;
+# - funções de dominância de Pareto.
+#
+# ============================================================
+```
+
+
+# 9. Parte A — Cenários
+
+# 10. Finalidade dos cenários
+
+Os cenários deverão avaliar como diferentes estruturas de preferência afetam o ranking.
+
+Eles não devem ser escolhidos depois de observar qual fluido fica em primeiro.
+
+
+# 11. Regra contra pós-seleção
+
+É proibido:
+
+```text
+testar pesos aleatórios
+↓
+encontrar combinação que favorece um fluido
+↓
+chamar essa combinação de cenário relevante
+```
+
+Os cenários devem possuir justificativa independente do resultado.
+
+
+# 12. Cenário-base
+
+O cenário principal deverá reproduzir:
+
+```text
+pesos CRITIC
++
+normalização principal
++
+TOPSIS principal
+```
+
+Registrar:
+
+```text
+BASE_SCENARIO = TO_BE_FILLED
+```
+
+
+# 13. Reprodução do cenário-base
+
+A implementação dos cenários deverá confirmar que:
+
+```text
+cenário-base
+=
+ranking principal
+```
+
+dentro da precisão numérica esperada.
+
+
+# 14. Cenários alternativos
+
+Possíveis tipos conceituais:
+
+```text
+ênfase em desempenho técnico
+ênfase em economia
+ênfase em estabilidade
+pesos iguais
+preferência específica justificada
+```
+
+A lista real deverá ser definida pelo grupo com base nos critérios efetivamente existentes.
+
+
+# 15. Não criar cenário sem critério correspondente
+
+Se não houver critério econômico validado, por exemplo, não criar cenário econômico apenas para preencher o relatório.
+
+
+# 16. Registro dos cenários
+
+Cada cenário deverá possuir:
+
+```text
+scenario_id
+nome
+descrição
+justificativa
+vetor de pesos
+regra de construção
+```
+
+
+# 17. Tabela de cenários
+
+Estrutura futura:
+
+| Cenário | Descrição | Justificativa | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 18. Vetores de peso
+
+Para cada cenário:
+
+\[
+w_j^{(s)}
+\]
+
+onde:
+
+```text
+s = cenário
+```
+
+
+# 19. Propriedades dos pesos
+
+Validar para cada cenário:
+
+\[
+w_j^{(s)} \ge 0
+\]
+
+e:
+
+\[
+\sum_j w_j^{(s)} \approx 1
+\]
+
+
+# 20. Pesos iguais
+
+Se utilizado como cenário de referência:
+
+\[
+w_j=\frac{1}{m}
+\]
+
+para:
+
+```text
+m = número de critérios
+```
+
+Não tratá-lo automaticamente como metodologia principal.
+
+
+# 21. Reponderação
+
+Se um grupo de critérios receber maior importância, a regra deverá ser definida claramente.
+
+Exemplo conceitual:
+
+```text
+multiplicar pesos do grupo por fator
+↓
+renormalizar
+```
+
+A regra real deverá ser documentada.
+
+
+# 22. Renormalização
+
+Após alterar pesos:
+
+\[
+w_j'
+=
+\frac{\tilde{w}_j}
+{\sum_k\tilde{w}_k}
+\]
+
+
+# 23. Código dos cenários
+
+```{r}
+# ============================================================
+# CENÁRIOS
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Para cada cenário:
+#
+# 1. definir pesos;
+# 2. validar;
+# 3. calcular TOPSIS;
+# 4. gerar ranking;
+# 5. comparar com cenário-base.
+#
+# ============================================================
+```
+
+
+# 24. Mesma matriz
+
+Quando o cenário altera apenas pesos:
+
+```text
+matriz normalizada
+```
+
+deverá permanecer a mesma.
+
+
+# 25. Não recalcular CRITIC em cenário de preferência
+
+Se o objetivo do cenário é testar uma preferência externa:
+
+```text
+não recalcular CRITIC
+```
+
+a menos que o próprio desenho metodológico do cenário determine isso explicitamente.
+
+
+# 26. Resultado por cenário
+
+Tabela futura:
+
+| Cenário | Rank | Fluido | TOPSIS |
+|---|---:|---|---:|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 27. Primeiro colocado por cenário
+
+Registrar:
+
+```text
+SCENARIO_WINNERS = TO_BE_FILLED
+```
+
+
+# 28. Top 3 por cenário
+
+Registrar:
+
+```text
+SCENARIO_TOP3 = TO_BE_FILLED
+```
+
+
+# 29. Mudança de posição
+
+Para alternativa \(i\):
+
+\[
+\Delta rank_i^{(s)}
+=
+rank_i^{(s)}
+-
+rank_i^{(base)}
+\]
+
+
+# 30. Interpretação
+
+Com essa definição:
+
+```text
+Δrank > 0
+→ posição numérica aumentou
+→ desempenho relativo piorou
+
+Δrank < 0
+→ posição numérica diminuiu
+→ desempenho relativo melhorou
+```
+
+
+# 31. Comparação de posições
+
+Estrutura futura:
+
+| Fluido | Base | Cenário 1 | Cenário 2 | ... |
+|---|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 32. Mudança do vencedor
+
+Registrar:
+
+```text
+WINNER_CHANGE_STATUS = TO_BE_FILLED
+```
+
+
+# 33. Estabilidade do primeiro lugar
+
+Perguntar:
+
+```text
+o mesmo fluido permanece em primeiro?
+```
+
+em todos ou na maioria dos cenários avaliados?
+
+
+# 34. Frequência do primeiro lugar
+
+Quando houver vários cenários:
+
+\[
+f_i^{(1)}
+=
+\frac{
+\text{número de cenários em que } i \text{ fica em 1º}
+}{
+\text{número total de cenários}
+}
+\]
+
+
+# 35. Regra de interpretação
+
+Essa frequência representa:
+
+```text
+proporção dentro do conjunto de cenários estudados
+```
+
+e NÃO:
+
+```text
+probabilidade de ser o melhor na população
+```
+
+
+# 36. Frequência de top 3
+
+Também poderá ser calculada:
+
+\[
+f_i^{(3)}
+=
+\frac{
+\text{número de cenários em que } i \in top3
+}{
+N_{\text{cenários}}
+}
+\]
+
+
+# 37. Não chamar de probabilidade
+
+Evitar:
+
+```text
+“o fluido possui 80% de chance de ser o melhor”
+```
+
+quando o valor vier de cenários construídos.
+
+
+# 38. Coeficientes por cenário
+
+Além das posições, comparar:
+
+```text
+C_i
+```
+
+porque mudanças de posição podem ocorrer com diferenças muito pequenas.
+
+
+# 39. Gap por cenário
+
+Registrar:
+
+\[
+\Delta_{1,2}^{(s)}
+=
+C_{(1)}^{(s)}-C_{(2)}^{(s)}
+\]
+
+
+# 40. Quase empate por cenário
+
+Registrar:
+
+```text
+SCENARIO_NEAR_TIES = TO_BE_FILLED
+```
+
+
+# 41. Visualização de cenários
+
+Poderão ser utilizadas:
+
+```text
+heatmap de posições
+parallel coordinates de ranking
+dotplot dos coeficientes
+tabela comparativa
+```
+
+
+# 42. Legibilidade
+
+Se houver poucos cenários, uma tabela pode ser superior a um gráfico complexo.
+
+
+# 43. Código de visualização
+
+```{r}
+# ============================================================
+# VISUALIZAÇÃO DOS CENÁRIOS
+# ============================================================
+#
+# Implementar apenas quando melhorar a interpretação.
+#
+# ============================================================
+```
+
+
+# 44. Cenários e conformidade
+
+O status de conformidade não muda apenas porque o peso muda.
+
+Manter:
+
+```text
+ranking do cenário
++
+conformidade
+```
+
+
+# 45. Cenário não corrige não conformidade
+
+Uma alternativa não conforme que sobe de posição continua não conforme.
+
+
+# 46. Cenários relevantes
+
+Registrar:
+
+```text
+RELEVANT_SCENARIOS = TO_BE_FILLED
+```
+
+
+# 47. Cenários descartados
+
+Se algum cenário inicialmente proposto for descartado:
+
+```text
+DISCARDED_SCENARIOS = TO_BE_FILLED
+```
+
+com justificativa.
+
+
+# 48. Parte B — Pareto
+
+# 49. Objetivo da análise de Pareto
+
+A análise de Pareto busca identificar alternativas para as quais não existe outra alternativa claramente melhor em todos os critérios relevantes.
+
+
+# 50. Independência dos pesos
+
+Pareto não utiliza:
+
+```text
+pesos CRITIC
+```
+
+ou:
+
+```text
+pesos de cenários
+```
+
+
+# 51. Entrada de Pareto
+
+Registrar:
+
+```text
+PARETO_INPUT_MATRIX = TO_BE_FILLED
+```
+
+
+# 52. Orientação dos critérios
+
+Antes da dominância, todos os critérios devem estar representados na mesma direção de preferência.
+
+Preferencialmente:
+
+```text
+maior = melhor
+```
+
+
+# 53. Regra de orientação
+
+Registrar:
+
+```text
+PARETO_HIGHER_IS_BETTER = TO_BE_FILLED
+```
+
+
+# 54. Não usar matriz ponderada
+
+Para Pareto, em geral, não utilizar:
+
+```text
+matriz ponderada por CRITIC
+```
+
+porque isso introduziria preferências na dominância.
+
+
+# 55. Escala e Pareto
+
+Transformações monotônicas que preservam a ordem individual dos critérios não alteram a relação de dominância.
+
+Ainda assim, registrar qual matriz foi utilizada.
+
+
+# 56. Definição de dominância
+
+Considerando todos os critérios como benefício, a alternativa \(a\) domina \(b\) se:
+
+\[
+x_{aj}\ge x_{bj}
+\quad
+\forall j
+\]
+
+e:
+
+\[
+x_{aj}>x_{bj}
+\]
+
+para pelo menos um critério.
+
+
+# 57. Não dominância
+
+Uma alternativa é Pareto-não-dominada quando nenhuma outra alternativa a domina.
+
+
+# 58. Fronteira de Pareto
+
+O conjunto das alternativas não dominadas forma a fronteira de Pareto de primeira camada.
+
+
+# 59. Alternativa idêntica
+
+Se duas alternativas possuírem exatamente os mesmos valores em todos os critérios:
+
+```text
+uma não deve dominar a outra apenas por igualdade
+```
+
+
+# 60. Auto-dominância
+
+Uma alternativa nunca deve dominar a si mesma.
+
+
+# 61. Código de dominância
+
+```{r}
+# ============================================================
+# PARETO
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Para cada par de alternativas:
+#
+# - comparar todos os critérios;
+# - verificar weak dominance;
+# - exigir superioridade estrita em pelo menos um critério;
+# - impedir auto-dominância.
+#
+# ============================================================
+```
+
+
+# 62. Matriz de dominância
+
+Quando útil, representar:
+
+\[
+D_{ab}
+=
+\begin{cases}
+1, & \text{se } a \text{ domina } b\\
+0, & \text{caso contrário}
+\end{cases}
+\]
+
+
+# 63. Validação da diagonal
+
+Deve valer:
+
+\[
+D_{aa}=0
+\]
+
+
+# 64. Número de dominadores
+
+Para alternativa \(i\):
+
+\[
+d_i
+=
+\sum_{k}D_{ki}
+\]
+
+
+# 65. Pareto-eficiente
+
+Se:
+
+\[
+d_i=0
+\]
+
+a alternativa pertence à fronteira de primeira ordem.
+
+
+# 66. Resultado da fronteira
+
+Registrar:
+
+```text
+PARETO_FRONT = TO_BE_FILLED
+```
+
+
+# 67. Alternativas dominadas
+
+Registrar:
+
+```text
+DOMINATED_ALTERNATIVES = TO_BE_FILLED
+```
+
+
+# 68. Relações de dominância
+
+Tabela futura:
+
+| Dominante | Dominada |
+|---|---|
+| `TO_BE_FILLED` |  |
+
+
+# 69. Número de alternativas dominadas
+
+Registrar:
+
+```text
+N_DOMINATED = TO_BE_FILLED
+N_NON_DOMINATED = TO_BE_FILLED
+```
+
+
+# 70. Camadas de Pareto
+
+Se for útil, poderão ser construídas camadas sucessivas:
+
+```text
+Front 1
+Front 2
+Front 3
+...
+```
+
+Isso é opcional.
+
+
+# 71. Pareto layer
+
+Registrar, se implementado:
+
+```text
+PARETO_LAYER_STATUS = TO_BE_FILLED
+```
+
+
+# 72. Não dominado não significa melhor
+
+Uma alternativa pode ser não dominada por representar um trade-off extremo e ainda ter baixa posição no TOPSIS.
+
+
+# 73. Dominada e ranking
+
+Uma alternativa dominada por outra merece atenção interpretativa se aparecer acima de sua dominante no ranking.
+
+Isso pode indicar necessidade de revisar:
+
+```text
+orientação
+pesos
+implementação
+```
+
+ou compreender efeitos específicos do método.
+
+
+# 74. TOPSIS versus Pareto
+
+Registrar:
+
+```text
+TOPSIS_PARETO_CONSISTENCY_STATUS = TO_BE_FILLED
+```
+
+
+# 75. Primeiro colocado e Pareto
+
+Verificar se o primeiro colocado do TOPSIS pertence à fronteira de Pareto.
+
+Registrar:
+
+```text
+TOP1_IS_PARETO_EFFICIENT = TO_BE_FILLED
+```
+
+
+# 76. Se o primeiro colocado for dominado
+
+Esse resultado deverá ser investigado cuidadosamente antes de prosseguir.
+
+
+# 77. Top 3 e Pareto
+
+Registrar:
+
+```text
+TOP3_PARETO_STATUS = TO_BE_FILLED
+```
+
+
+# 78. Trade-offs
+
+A fronteira deverá ajudar a identificar alternativas que representam diferentes compromissos entre critérios.
+
+
+# 79. Número de critérios
+
+Com muitos critérios, é comum que várias alternativas se tornem não dominadas.
+
+Esse comportamento deverá ser considerado na interpretação.
+
+
+# 80. Maldição da dimensionalidade em Pareto
+
+À medida que o número de critérios aumenta:
+
+```text
+probabilidade de dominância pode diminuir
+```
+
+e a fronteira pode ficar grande.
+
+
+# 81. Pareto como diagnóstico
+
+Por isso, Pareto deve ser usado como:
+
+```text
+evidência complementar
+```
+
+e não como método único de classificação.
+
+
+# 82. Visualização em dois critérios
+
+Quando houver apenas dois critérios selecionados para ilustração:
+
+```text
+scatterplot
++
+fronteira
+```
+
+pode facilitar a comunicação.
+
+
+# 83. Visualização com mais critérios
+
+Não é possível representar toda a fronteira multidimensional diretamente em um gráfico 2D sem perda de informação.
+
+
+# 84. Não selecionar dois critérios arbitrariamente
+
+Uma figura 2D deve ser claramente apresentada como projeção ou exemplo.
+
+
+# 85. Código de visualização de Pareto
+
+```{r}
+# ============================================================
+# FIGURAS DE PARETO
+# ============================================================
+#
+# Implementar somente quando a representação escolhida for
+# informativa.
+#
+# ============================================================
+```
+
+
+# 86. Tabela Pareto
+
+Estrutura futura:
+
+| Fluido | Pareto | Dominadores | Rank TOPSIS |
+|---|---|---:|---:|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 87. Conformidade e Pareto
+
+Também poderá ser apresentada:
+
+```text
+Pareto
++
+conformidade
+```
+
+sem misturar os conceitos.
+
+
+# 88. Pareto-eficiente não conforme
+
+É possível existir uma alternativa:
+
+```text
+Pareto-eficiente
++
+não conforme
+```
+
+Ela deverá continuar sinalizada como não conforme.
+
+
+# 89. Resultados dos cenários
+
+Somente após execução:
+
+```text
+SCENARIO_STATUS = TO_BE_FILLED
+N_SCENARIOS = TO_BE_FILLED
+SCENARIO_WINNERS = TO_BE_FILLED
+```
+
+
+# 90. Resultados de Pareto
+
+Somente após execução:
+
+```text
+PARETO_STATUS = TO_BE_FILLED
+PARETO_FRONT = TO_BE_FILLED
+N_NON_DOMINATED = TO_BE_FILLED
+```
+
+
+# 91. Achados de cenários
+
+Registrar:
+
+```text
+SCENARIO_FINDING_1 = TO_BE_FILLED
+SCENARIO_FINDING_2 = TO_BE_FILLED
+SCENARIO_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 92. Achados de Pareto
+
+Registrar:
+
+```text
+PARETO_FINDING_1 = TO_BE_FILLED
+PARETO_FINDING_2 = TO_BE_FILLED
+PARETO_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 93. Interpretação integrada
+
+Perguntas principais:
+
+```text
+o vencedor muda entre cenários?
+o top 3 permanece estável?
+quais alternativas são Pareto-eficientes?
+o vencedor principal está na fronteira?
+há alternativas dominadas bem posicionadas?
+```
+
+
+# 94. Não concluir robustez ainda
+
+A análise de cenários contribui para robustez, mas ainda faltam testes estruturais.
+
+Registrar:
+
+```text
+ROBUSTNESS_STATUS = NOT_EXECUTED
+```
+
+
+# 95. Limitações dos cenários
+
+Registrar:
+
+```text
+SCENARIO_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 96. Limitações de Pareto
+
+Registrar:
+
+```text
+PARETO_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 97. Cenários não representam população
+
+Os cenários representam apenas as estruturas de preferência analisadas.
+
+
+# 98. Pareto depende dos critérios
+
+Alterar o conjunto de critérios pode alterar a fronteira.
+
+Esse ponto será relevante na robustez.
+
+
+# 99. Artefatos futuros de cenários
+
+Quando executado:
+
+```text
+SCENARIO_WEIGHTS_ARTIFACT = TO_BE_FILLED
+SCENARIO_RANKINGS_ARTIFACT = TO_BE_FILLED
+SCENARIO_COMPARISON_TABLE = TO_BE_FILLED
+SCENARIO_FIGURE = TO_BE_FILLED
+```
+
+
+# 100. Artefatos futuros de Pareto
+
+```text
+PARETO_FRONT_ARTIFACT = TO_BE_FILLED
+DOMINANCE_MATRIX_ARTIFACT = TO_BE_FILLED
+PARETO_TABLE = TO_BE_FILLED
+PARETO_FIGURE = TO_BE_FILLED
+```
+
+
+# 101. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+SCENARIO_ARTIFACTS = NOT_GENERATED
+PARETO_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 102. Validação dos cenários
+
+```{r}
+# ============================================================
+# VALIDAÇÃO DOS CENÁRIOS
+# ============================================================
+#
+# Confirmar:
+#
+# - todos os pesos >= 0;
+# - soma aproximadamente 1;
+# - mesmas alternativas;
+# - mesmos critérios;
+# - cenário-base reproduz TOPSIS principal;
+# - nenhuma dupla transformação;
+# - nenhuma alteração silenciosa da matriz.
+#
+# ============================================================
+```
+
+
+# 103. Validação de Pareto
+
+```{r}
+# ============================================================
+# VALIDAÇÃO DE PARETO
+# ============================================================
+#
+# Confirmar:
+#
+# - critérios corretamente orientados;
+# - diagonal da dominância = 0;
+# - alternativa não domina a si mesma;
+# - igualdade total não gera dominância;
+# - todas as alternativas classificadas;
+# - fronteira calculada corretamente.
+#
+# ============================================================
+```
+
+
+# 104. Teste simples de Pareto
+
+A implementação deverá ser testada em exemplo manual onde as relações de dominância sejam conhecidas.
+
+
+# 105. Permutação de linhas
+
+Reordenar alternativas não deverá alterar:
+
+```text
+relações de dominância
+fronteira
+```
+
+
+# 106. Permutação de critérios
+
+Reordenar colunas, preservando os mesmos critérios, também não deverá alterar a dominância.
+
+
+# 107. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+
+# 108. Decisões possíveis
+
+Poderá ser necessário registrar formalmente:
+
+```text
+conjunto de cenários
+regra de construção dos pesos
+matriz utilizada para Pareto
+uso ou não de camadas de Pareto
+```
+
+
+# 109. O que esta etapa entrega
+
+Entrega:
+
+```text
+rankings por cenário
++
+comparação com cenário-base
++
+estabilidade preliminar
++
+fronteira de Pareto
++
+relações de dominância
++
+trade-offs
+```
+
+
+# 110. O que esta etapa não entrega
+
+Ainda não entrega:
+
+```text
+robustez final
+sensibilidade sistemática
+LOCO
+normalização alternativa
+LOAO
+rank reversal
+conclusão final
+```
+
+
+# 111. Entrada para robustez
+
+A próxima etapa deverá receber:
+
+```text
+PRIMARY_RANKING
+SCENARIO_RANKINGS
+SCENARIO_WEIGHTS
+PARETO_FRONT
+DOMINANCE_RELATIONS
+CONFORMITY_STATUS
+LIMITATIONS
+```
+
+
+# 112. Próxima etapa
+
+```text
+analysis/12_VITOR_robustez.qmd
+```
+
+
+# 113. Checklist antes de avançar
+
+```text
+[ ] cenário-base reproduz ranking principal
+[ ] cenários definidos antes da interpretação
+[ ] pesos dos cenários válidos
+[ ] justificativas registradas
+[ ] mudanças do ranking analisadas
+[ ] frequências não chamadas de probabilidades
+[ ] Pareto calculado sem pesos
+[ ] critérios Pareto orientados corretamente
+[ ] auto-dominância impedida
+[ ] alternativas idênticas tratadas corretamente
+[ ] fronteira validada
+[ ] relação TOPSIS × Pareto interpretada
+[ ] conformidade mantida separada
+```
+
+
+# 114. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 115. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+SCENARIO_STATUS = NOT_EXECUTED
+
+PARETO_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+ROBUSTNESS_STATUS = NOT_EXECUTED
+```
+
+
+# 116. Princípio final
+
+> Os cenários mostram como o ranking responde a diferentes estruturas de preferência; Pareto mostra quais alternativas não são superadas simultaneamente em todos os critérios. Nenhuma dessas análises substitui a outra, e nenhuma delas deve ser interpretada isoladamente como prova definitiva de superioridade.

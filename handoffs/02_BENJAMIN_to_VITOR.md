@@ -1,15 +1,18 @@
-# Handoff Benjamin → Vitor
+# 02_BENJAMIN_to_VITOR.md — Handoff de Critérios, Normalização e CRITIC para TOPSIS e Ranking
 
-## Entregáveis aprovados
+## 1. Responsável que entrega
 
-## Arquivos oficiais
+**Benjamin**
 
-## Decisões importantes
+---
 
-## Pendências
+## 2. Responsável que recebe
 
-## O que não deve ser alterado silenciosamente
+**Vitor**
 
-## Próxima etapa
+---
 
-## Data / aprovação
+## 3. Status do handoff
+
+```text
+STATUS = DRAFT

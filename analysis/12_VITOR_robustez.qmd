@@ -1,20 +1,2216 @@
 ---
-title: "12 VITOR robustez"
-format: html
+title: "12 — Sensibilidade e Robustez do Ranking"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Vitor"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+12_VITOR_ROBUSTEZ.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Vitor
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Avaliar a robustez do ranking multicritério antes que ele seja
+tratado como resultado final do projeto.
 
-## Validações
+A análise deverá investigar, quando aplicável:
 
-## Pendências
+1. sensibilidade dos pesos;
+2. perturbações sistemáticas;
+3. leave-one-criterion-out — LOCO;
+4. normalizações alternativas;
+5. métodos de correlação alternativos no CRITIC, quando
+   metodologicamente justificados;
+6. leave-one-alternative-out — LOAO;
+7. rank reversal;
+8. estabilidade do primeiro lugar;
+9. estabilidade do top 3;
+10. variação das posições;
+11. variação dos coeficientes TOPSIS;
+12. integração com cenários, Pareto e conformidade.
+
+REGRA CENTRAL
+
+Robustez não significa que o ranking nunca possa mudar.
+
+A questão é:
+
+quanto o resultado depende de decisões razoáveis ou pequenas
+perturbações na metodologia?
+
+IMPORTANTE
+
+Frequência observada em simulações ou cenários:
+
+NÃO É
+
+probabilidade real de uma alternativa ser a melhor.
+
+Nesta fase:
+
+ROBUSTNESS_STATUS = NOT_EXECUTED
+FINAL_RANKING_STATUS = NOT_APPROVED
+RESULTS_STATUS = NOT_GENERATED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 12 — Sensibilidade e Robustez
+
+**Responsável:** Vitor
+
+**Status:** `DRAFT`
+
+**Entrada principal:** ranking TOPSIS principal
+
+**Entradas auxiliares:**
+
+```text
+pesos CRITIC
+matriz de decisão
+matriz normalizada
+cenários
+Pareto
+conformidade
+limitações metodológicas
+```
+
+**Etapas anteriores:**
+
+```text
+analysis/10_VITOR_topsis.qmd
+analysis/11_VITOR_cenarios_pareto.qmd
+```
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é verificar se as conclusões do ranking permanecem razoavelmente estáveis diante de alterações metodológicas controladas.
+
+Fluxo:
+
+```text
+ranking principal
+↓
+perturbações controladas
+↓
+reexecução
+↓
+comparação dos rankings
+↓
+estabilidade
+↓
+rank reversal
+↓
+síntese de robustez
+↓
+resultado final interpretável
+```
+
+
+# 3. Pergunta central
+
+Esta etapa deverá responder:
+
+```text
+o ranking é uma conclusão estruturalmente estável
+ou
+depende fortemente de escolhas específicas?
+```
+
+
+# 4. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] TOPSIS principal concluído
+[ ] ranking principal validado
+[ ] cenários concluídos
+[ ] Pareto concluído
+[ ] pesos CRITIC disponíveis
+[ ] critérios finais conhecidos
+[ ] normalização principal conhecida
+[ ] orientação conhecida
+[ ] conformidade disponível
+[ ] limitações conhecidas
+```
+
+
+# 5. Versões de entrada
+
+Registrar:
+
+```text
+PRIMARY_RANKING_VERSION = TO_BE_FILLED
+DECISION_MATRIX_VERSION = TO_BE_FILLED
+NORMALIZED_MATRIX_VERSION = TO_BE_FILLED
+CRITIC_WEIGHTS_VERSION = TO_BE_FILLED
+SCENARIO_VERSION = TO_BE_FILLED
+PARETO_VERSION = TO_BE_FILLED
+CONFORMITY_VERSION = TO_BE_FILLED
+```
+
+
+# 6. Ranking de referência
+
+Registrar:
+
+```text
+BASE_RANKING = TO_BE_FILLED
+BASE_TOP1 = TO_BE_FILLED
+BASE_TOP3 = TO_BE_FILLED
+BASE_GAP_1_2 = TO_BE_FILLED
+```
+
+
+# 7. Regra de comparação
+
+Todas as análises de robustez deverão ser comparadas com um cenário-base claramente definido.
+
+Registrar:
+
+```text
+REFERENCE_CONFIGURATION = TO_BE_FILLED
+```
+
+
+# 8. Cenário-base
+
+O cenário-base deverá refletir:
+
+```text
+critérios aprovados
++
+normalização principal
++
+CRITIC principal
++
+TOPSIS principal
+```
+
+
+# 9. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 10. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO DA ROBUSTEZ
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Poderá incluir:
+#
+# - ranking-base;
+# - matriz original;
+# - critérios;
+# - direções;
+# - pesos;
+# - métodos de normalização;
+# - funções CRITIC;
+# - funções TOPSIS;
+# - parâmetros de sensibilidade;
+# - seed, quando houver aleatoriedade.
+#
+# ============================================================
+```
+
+
+# 11. Estrutura da análise
+
+A robustez poderá ser organizada em:
+
+```text
+A. sensibilidade dos pesos
+B. LOCO
+C. normalização alternativa
+D. CRITIC alternativo, se justificado
+E. LOAO
+F. rank reversal
+G. síntese global
+```
+
+
+# 12. Parte A — Sensibilidade dos pesos
+
+# 13. Objetivo
+
+Avaliar quanto o ranking muda quando os pesos são perturbados de forma controlada.
+
+
+# 14. Peso principal
+
+Seja:
+
+\[
+w_j
+\]
+
+o peso CRITIC principal do critério \(j\).
+
+
+# 15. Perturbação
+
+Uma forma geral de perturbação poderá ser:
+
+\[
+\tilde{w}_j
+=
+w_j(1+\delta_j)
+\]
+
+onde:
+
+\[
+\delta_j
+\]
+
+representa a perturbação aplicada.
+
+
+# 16. Renormalização
+
+Depois da perturbação:
+
+\[
+w_j'
+=
+\frac{\tilde{w}_j}
+{\sum_k \tilde{w}_k}
+\]
+
+
+# 17. Validade dos pesos
+
+Para toda configuração:
+
+\[
+w_j' \ge 0
+\]
+
+e:
+
+\[
+\sum_j w_j' \approx 1
+\]
+
+
+# 18. Intensidade das perturbações
+
+Registrar:
+
+```text
+WEIGHT_PERTURBATION_LEVELS = TO_BE_FILLED
+```
+
+Os valores deverão ser definidos pelo grupo durante a implementação.
+
+
+# 19. Não escolher perturbação pelo resultado
+
+Os níveis de perturbação devem ser definidos antes da interpretação do ranking.
+
+
+# 20. Perturbação determinística
+
+Uma abordagem poderá alterar um critério por vez.
+
+Exemplo conceitual:
+
+```text
+peso +δ
+peso -δ
+```
+
+seguido de renormalização.
+
+
+# 21. Perturbação simultânea
+
+Também poderá ser avaliada, quando metodologicamente útil, a perturbação simultânea de vários pesos.
+
+
+# 22. Sensibilidade local
+
+Uma análise local procura verificar pequenas alterações ao redor do vetor principal.
+
+
+# 23. Sensibilidade mais ampla
+
+Perturbações maiores podem ser utilizadas para avaliar fragilidade estrutural, desde que sejam interpretadas como cenários hipotéticos.
+
+
+# 24. Código de sensibilidade dos pesos
+
+```{r}
+# ============================================================
+# SENSIBILIDADE DOS PESOS
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Para cada configuração:
+#
+# 1. gerar pesos perturbados;
+# 2. validar não negatividade;
+# 3. renormalizar;
+# 4. recalcular TOPSIS;
+# 5. registrar ranking;
+# 6. comparar com ranking-base.
+#
+# ============================================================
+```
+
+
+# 25. Delta zero
+
+Quando:
+
+\[
+\delta=0
+\]
+
+o resultado deverá reproduzir exatamente o cenário-base, dentro da tolerância numérica.
+
+
+# 26. Validação fundamental
+
+Registrar:
+
+```text
+ZERO_PERTURBATION_REPRODUCES_BASE = TO_BE_FILLED
+```
+
+
+# 27. Primeiro lugar
+
+Registrar para cada configuração:
+
+```text
+TOP1 = TO_BE_FILLED
+```
+
+
+# 28. Top 3
+
+Registrar:
+
+```text
+TOP3 = TO_BE_FILLED
+```
+
+
+# 29. Frequência do primeiro lugar
+
+Se houver várias configurações:
+
+\[
+f_i^{(1)}
+=
+\frac{
+\#\{\text{configurações em que }i\text{ fica em 1º}\}
+}{
+N_{\text{configurações}}
+}
+\]
+
+
+# 30. Interpretação correta
+
+Essa frequência significa:
+
+```text
+estabilidade dentro do conjunto de perturbações estudado
+```
+
+e não:
+
+```text
+probabilidade real de vitória
+```
+
+
+# 31. Frequência de top 3
+
+\[
+f_i^{(3)}
+=
+\frac{
+\#\{\text{configurações em que }i\in top3\}
+}{
+N_{\text{configurações}}
+}
+\]
+
+
+# 32. Melhor posição
+
+Para cada alternativa:
+
+```text
+BEST_RANK = TO_BE_FILLED
+```
+
+
+# 33. Pior posição
+
+```text
+WORST_RANK = TO_BE_FILLED
+```
+
+
+# 34. Amplitude de posição
+
+\[
+A_i^{rank}
+=
+rank_i^{max}
+-
+rank_i^{min}
+\]
+
+
+# 35. Posição média
+
+Quando útil:
+
+\[
+\bar{r}_i
+=
+\frac{1}{S}
+\sum_{s=1}^{S}
+r_i^{(s)}
+\]
+
+
+# 36. Posição mediana
+
+Também poderá ser apresentada, principalmente quando houver distribuição assimétrica das posições.
+
+
+# 37. Coeficiente TOPSIS médio
+
+Se fizer sentido:
+
+\[
+\bar{C}_i
+=
+\frac{1}{S}
+\sum_{s=1}^{S}
+C_i^{(s)}
+\]
+
+
+# 38. Não comparar apenas posições
+
+Mudanças de rank podem ser grandes mesmo quando os coeficientes são muito próximos.
+
+Registrar também:
+
+```text
+coeficientes
+gaps
+```
+
+
+# 39. Gap do primeiro lugar
+
+Para cada configuração:
+
+\[
+\Delta_{1,2}^{(s)}
+=
+C_{(1)}^{(s)}
+-
+C_{(2)}^{(s)}
+\]
+
+
+# 40. Instabilidade do primeiro lugar
+
+Registrar:
+
+```text
+TOP1_STABILITY = TO_BE_FILLED
+```
+
+
+# 41. Estabilidade do top 3
+
+Registrar:
+
+```text
+TOP3_STABILITY = TO_BE_FILLED
+```
+
+
+# 42. Parte B — Leave-One-Criterion-Out
+
+# 43. Definição
+
+LOCO significa:
+
+```text
+Leave-One-Criterion-Out
+```
+
+A análise remove um critério por vez para avaliar sua influência estrutural.
+
+
+# 44. Objetivo
+
+Perguntar:
+
+```text
+o ranking depende fortemente de um critério específico?
+```
+
+
+# 45. Processo
+
+Para cada critério \(j\):
+
+```text
+remover critério j
+↓
+reconstruir representação apropriada
+↓
+recalcular pesos quando necessário
+↓
+recalcular TOPSIS
+↓
+comparar ranking
+```
+
+
+# 46. Regra importante
+
+Se os pesos principais são derivados por CRITIC, remover um critério altera a estrutura de correlação.
+
+Portanto, em uma análise LOCO estrutural:
+
+```text
+CRITIC deverá ser recalculado
+```
+
+para o conjunto restante, salvo desenho metodológico diferente explicitamente justificado.
+
+
+# 47. Não apenas renormalizar pesos antigos
+
+A simples renormalização dos pesos restantes responde a uma pergunta diferente.
+
+Se utilizada, deverá ser identificada como variante distinta.
+
+
+# 48. LOCO principal
+
+Registrar:
+
+```text
+LOCO_WEIGHT_RULE = TO_BE_FILLED
+```
+
+
+# 49. Código LOCO
+
+```{r}
+# ============================================================
+# LEAVE-ONE-CRITERION-OUT
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Para cada critério:
+#
+# 1. remover o critério;
+# 2. reconstruir a matriz necessária;
+# 3. recalcular CRITIC, quando definido;
+# 4. recalcular TOPSIS;
+# 5. comparar ranking;
+# 6. registrar impacto.
+#
+# ============================================================
+```
+
+
+# 50. Resultado LOCO
+
+Tabela futura:
+
+| Critério removido | Top 1 | Rank base do Top 1 | Mudança relevante |
+|---|---|---:|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 51. Critério influente
+
+Registrar:
+
+```text
+HIGH_INFLUENCE_CRITERIA = TO_BE_FILLED
+```
+
+
+# 52. Mudança do vencedor
+
+```text
+LOCO_WINNER_CHANGE = TO_BE_FILLED
+```
+
+
+# 53. Top 3 no LOCO
+
+Registrar:
+
+```text
+LOCO_TOP3_STABILITY = TO_BE_FILLED
+```
+
+
+# 54. Interpretar com cuidado
+
+Se remover um critério muda o vencedor, isso não significa automaticamente que o critério é problemático.
+
+Pode significar que ele possui informação importante.
+
+
+# 55. Dependência excessiva
+
+A preocupação aumenta quando o ranking depende quase inteiramente de um único critério e essa dependência não é tecnicamente justificada.
+
+
+# 56. Parte C — Normalização alternativa
+
+# 57. Objetivo
+
+Avaliar se o ranking depende fortemente do método de normalização.
+
+
+# 58. Método principal
+
+Registrar:
+
+```text
+PRIMARY_NORMALIZATION_METHOD = TO_BE_FILLED
+```
+
+
+# 59. Método alternativo
+
+Registrar:
+
+```text
+ALTERNATIVE_NORMALIZATION_METHOD = TO_BE_FILLED
+```
+
+
+# 60. Escolha do método alternativo
+
+A normalização alternativa deverá ser:
+
+```text
+matematicamente válida
++
+compatível com os critérios
++
+justificada
+```
+
+e não escolhida pelo resultado desejado.
+
+
+# 61. Recalcular CRITIC
+
+Como CRITIC depende da representação dos critérios, ao trocar a normalização deverá ser avaliada a necessidade de:
+
+```text
+recalcular a matriz de correlação
+recalcular dispersões
+recalcular C_j
+recalcular pesos
+```
+
+
+# 62. Regra principal
+
+Na análise estrutural de normalização:
+
+```text
+nova normalização
+↓
+novo CRITIC
+↓
+novo TOPSIS
+```
+
+quando essa sequência corresponder à metodologia definida.
+
+
+# 63. Código de normalização alternativa
+
+```{r}
+# ============================================================
+# NORMALIZAÇÃO ALTERNATIVA
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Fluxo esperado:
+#
+# matriz original
+# ↓
+# normalização alternativa
+# ↓
+# CRITIC
+# ↓
+# TOPSIS
+# ↓
+# comparação com cenário-base
+#
+# ============================================================
+```
+
+
+# 64. Validação
+
+Confirmar:
+
+```text
+[ ] mesmos critérios
+[ ] mesmas alternativas
+[ ] mesmas direções
+[ ] nenhuma dupla inversão
+[ ] normalização válida
+[ ] CRITIC recalculado quando necessário
+[ ] TOPSIS recalculado
+```
+
+
+# 65. Resultado
+
+Registrar:
+
+```text
+NORMALIZATION_SENSITIVITY_STATUS = TO_BE_FILLED
+```
+
+
+# 66. Mudança do vencedor
+
+```text
+NORMALIZATION_WINNER_CHANGE = TO_BE_FILLED
+```
+
+
+# 67. Estabilidade do top 3
+
+```text
+NORMALIZATION_TOP3_STABILITY = TO_BE_FILLED
+```
+
+
+# 68. Comparação dos coeficientes
+
+Coeficientes TOPSIS obtidos com normalizações diferentes não devem ser comparados como se estivessem necessariamente na mesma escala interpretativa.
+
+A comparação principal deve focar:
+
+```text
+ordem
+estabilidade
+mudanças relevantes
+```
+
+
+# 69. Parte D — Correlação alternativa no CRITIC
+
+# 70. Uso opcional
+
+Esta análise só deverá ser executada se houver justificativa metodológica.
+
+
+# 71. Método principal
+
+Registrar:
+
+```text
+PRIMARY_CRITIC_CORRELATION = TO_BE_FILLED
+```
+
+
+# 72. Método alternativo
+
+Por exemplo, se Pearson for principal, Spearman poderá ser avaliado como sensibilidade.
+
+Registrar:
+
+```text
+ALTERNATIVE_CRITIC_CORRELATION = TO_BE_FILLED
+```
+
+
+# 73. Não substituir a formulação do conflito
+
+Mesmo com método de correlação alternativo, manter:
+
+\[
+1-r_{jk}
+\]
+
+salvo decisão formal em contrário.
+
+
+# 74. Código
+
+```{r}
+# ============================================================
+# CRITIC — CORRELAÇÃO ALTERNATIVA
+# ============================================================
+#
+# Uso opcional.
+#
+# Se executado:
+#
+# - recalcular correlação;
+# - recalcular C_j;
+# - recalcular pesos;
+# - recalcular TOPSIS;
+# - comparar ranking.
+#
+# ============================================================
+```
+
+
+# 75. Resultado
+
+Registrar:
+
+```text
+CORRELATION_METHOD_SENSITIVITY = TO_BE_FILLED
+```
+
+
+# 76. Parte E — Leave-One-Alternative-Out
+
+# 77. Definição
+
+LOAO significa:
+
+```text
+Leave-One-Alternative-Out
+```
+
+A análise remove uma alternativa por vez e recalcula o sistema.
+
+
+# 78. Objetivo
+
+Avaliar:
+
+```text
+o ranking das alternativas restantes depende da presença
+de uma determinada alternativa?
+```
+
+
+# 79. Por que isso importa
+
+Métodos multicritério como TOPSIS podem ser sensíveis ao conjunto de alternativas porque:
+
+```text
+normalização pode mudar
+ideais podem mudar
+CRITIC pode mudar
+pesos podem mudar
+```
+
+
+# 80. Procedimento LOAO
+
+Para cada alternativa \(a\):
+
+```text
+remover a
+↓
+recalcular normalização
+↓
+recalcular CRITIC
+↓
+recalcular TOPSIS
+↓
+comparar ordem das alternativas restantes
+```
+
+
+# 81. Regra fundamental
+
+A alternativa removida:
+
+```text
+não pode aparecer
+```
+
+em nenhuma parte do resultado correspondente.
+
+
+# 82. Código LOAO
+
+```{r}
+# ============================================================
+# LEAVE-ONE-ALTERNATIVE-OUT
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# Para cada alternativa:
+#
+# 1. remover alternativa;
+# 2. recalcular normalização;
+# 3. recalcular CRITIC;
+# 4. recalcular TOPSIS;
+# 5. comparar ranking das alternativas restantes.
+#
+# ============================================================
+```
+
+
+# 83. Resultado LOAO
+
+Estrutura futura:
+
+| Alternativa removida | Novo top 1 | Mudança no top 3 | Rank reversal? |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 84. Parte F — Rank reversal
+
+# 85. Definição operacional
+
+Neste projeto, rank reversal deverá ser registrado quando a ordem relativa entre duas alternativas remanescentes muda após uma alteração estrutural do conjunto de alternativas.
+
+
+# 86. Exemplo conceitual
+
+No cenário-base:
+
+```text
+A > B
+```
+
+Após remover outra alternativa \(C\):
+
+```text
+B > A
+```
+
+Isso caracteriza uma inversão da ordem relativa entre A e B.
+
+
+# 87. Não confundir
+
+Se a alternativa removida estava acima de outra, a simples mudança do número da posição não representa necessariamente rank reversal.
+
+
+# 88. Comparação por pares
+
+Para alternativas \(i\) e \(k\), comparar:
+
+```text
+ordem no cenário-base
+```
+
+com:
+
+```text
+ordem após remoção
+```
+
+
+# 89. Matriz de ordem
+
+Quando útil, representar:
+
+\[
+O_{ik}
+=
+\begin{cases}
+1, & C_i>C_k\\
+-1, & C_i<C_k\\
+0, & C_i=C_k
+\end{cases}
+\]
+
+
+# 90. Inversão
+
+Há rank reversal quando o sinal da relação entre duas alternativas remanescentes muda.
+
+
+# 91. Quase empate
+
+Inversões entre alternativas com coeficientes extremamente próximos deverão ser interpretadas com cautela.
+
+
+# 92. Tolerância
+
+Registrar:
+
+```text
+RANK_REVERSAL_TOLERANCE = TO_BE_FILLED
+```
+
+
+# 93. Número de reversões
+
+Registrar:
+
+```text
+N_RANK_REVERSALS = TO_BE_FILLED
+```
+
+
+# 94. Alternativas envolvidas
+
+```text
+RANK_REVERSAL_PAIRS = TO_BE_FILLED
+```
+
+
+# 95. Rank reversal e metodologia
+
+A presença de rank reversal não invalida automaticamente o TOPSIS.
+
+Ela indica sensibilidade à composição do conjunto de alternativas.
+
+
+# 96. Intensidade
+
+Registrar se as reversões ocorrem:
+
+```text
+no topo
+no meio
+na cauda
+```
+
+do ranking.
+
+
+# 97. Reversão do primeiro lugar
+
+Registrar:
+
+```text
+TOP1_RANK_REVERSAL = TO_BE_FILLED
+```
+
+
+# 98. Parte G — Comparação dos rankings
+
+# 99. Correlação de postos
+
+Quando útil, utilizar medidas de concordância entre rankings.
+
+
+# 100. Spearman de postos
+
+Uma possibilidade:
+
+\[
+\rho
+=
+1-
+\frac{
+6\sum_i d_i^2
+}{
+n(n^2-1)
+}
+\]
+
+em casos sem empates e quando a formulação for apropriada.
+
+
+# 101. Kendall
+
+Kendall também poderá ser utilizado para concordância entre ordens, se houver justificativa.
+
+
+# 102. Método escolhido
+
+Registrar:
+
+```text
+RANK_AGREEMENT_METHOD = TO_BE_FILLED
+```
+
+
+# 103. Não usar apenas correlação de rankings
+
+Uma correlação alta pode esconder mudança do primeiro lugar.
+
+Por isso avaliar conjuntamente:
+
+```text
+correlação
++
+top 1
++
+top 3
++
+gaps
++
+melhor/pior posição
+```
+
+
+# 104. Comparação com cenário-base
+
+Tabela futura:
+
+| Análise | Top 1 | Top 3 estável? | Concordância | Observação |
+|---|---|---|---:|---|
+| Base |  |  |  |  |
+| Sensibilidade pesos |  |  |  |  |
+| LOCO |  |  |  |  |
+| Normalização alternativa |  |  |  |  |
+| LOAO |  |  |  |  |
+
+
+# 105. Parte H — Simulações
+
+# 106. Uso opcional
+
+Simulações de pesos poderão ser utilizadas se fizerem parte do plano metodológico aprovado.
+
+
+# 107. Não são obrigatórias
+
+Robustez pode ser avaliada de forma determinística por:
+
+```text
+cenários
+LOCO
+normalização alternativa
+LOAO
+```
+
+sem necessariamente usar simulação aleatória.
+
+
+# 108. Simulação de pesos
+
+Se utilizada, a geração deverá respeitar:
+
+```text
+w_j >= 0
+```
+
+e:
+
+```text
+sum(w_j) = 1
+```
+
+
+# 109. Seed
+
+Se houver componente aleatório:
+
+```text
+SEED = TO_BE_FILLED
+```
+
+
+# 110. Número de simulações
+
+Registrar:
+
+```text
+N_SIMULATIONS = TO_BE_FILLED
+```
+
+
+# 111. Regra de geração
+
+Registrar:
+
+```text
+WEIGHT_SIMULATION_METHOD = TO_BE_FILLED
+```
+
+
+# 112. Distribuição
+
+A distribuição usada para gerar pesos deverá ser justificada.
+
+Não escolher uma distribuição apenas por conveniência.
+
+
+# 113. Configurações inválidas
+
+Qualquer vetor com:
+
+```text
+peso negativo
+soma zero
+NA
+NaN
+Inf
+```
+
+deverá ser rejeitado.
+
+
+# 114. Frequência de vitória simulada
+
+Se calculada, interpretar apenas como:
+
+```text
+frequência sob o mecanismo de simulação especificado
+```
+
+e nunca como:
+
+```text
+probabilidade real de superioridade
+```
+
+
+# 115. Resultado das simulações
+
+Registrar:
+
+```text
+SIMULATION_STATUS = TO_BE_FILLED
+```
+
+
+# 116. Parte I — Integração com cenários
+
+Retomar os resultados de:
+
+```text
+analysis/11_VITOR_cenarios_pareto.qmd
+```
+
+
+# 117. Cenários
+
+Registrar:
+
+```text
+SCENARIO_TOP1_STABILITY = TO_BE_FILLED
+SCENARIO_TOP3_STABILITY = TO_BE_FILLED
+```
+
+
+# 118. Cenários versus sensibilidade
+
+Distinguir:
+
+```text
+cenários
+→ mudanças de preferência interpretáveis
+
+sensibilidade
+→ perturbações metodológicas/controladas
+```
+
+
+# 119. Parte J — Integração com Pareto
+
+Registrar:
+
+```text
+BASE_TOP1_IS_PARETO_EFFICIENT = TO_BE_FILLED
+BASE_TOP3_PARETO_STATUS = TO_BE_FILLED
+```
+
+
+# 120. Evidência complementar
+
+Uma alternativa que:
+
+```text
+permanece bem posicionada
++
+permanece Pareto-eficiente
++
+é estável em sensibilidade
+```
+
+possui evidência mais forte de robustez multicritério.
+
+Isso ainda deve ser interpretado dentro das limitações do projeto.
+
+
+# 121. Alternativa dominada
+
+Se uma alternativa bem posicionada for dominada, investigar antes da conclusão final.
+
+
+# 122. Parte K — Integração com conformidade
+
+O ranking robusto não substitui requisitos técnicos.
+
+
+# 123. Tabela integrada
+
+Uma tabela final poderá conter:
+
+| Fluido | Rank base | Robustez | Pareto | Conformidade |
+|---|---:|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 124. Não conforme
+
+Uma alternativa poderá ser:
+
+```text
+robusta no ranking
++
+Pareto-eficiente
++
+não conforme
+```
+
+Essas informações devem permanecer separadas.
+
+
+# 125. Não avaliável
+
+Também preservar:
+
+```text
+NOT_EVALUABLE
+```
+
+quando aplicável.
+
+
+# 126. Parte L — Síntese de robustez
+
+A robustez final deverá considerar múltiplas evidências.
+
+
+# 127. Dimensões da robustez
+
+Avaliar pelo menos, quando aplicável:
+
+```text
+estabilidade do top 1
+estabilidade do top 3
+sensibilidade dos pesos
+LOCO
+normalização
+LOAO
+rank reversal
+cenários
+Pareto
+gaps
+```
+
+
+# 128. Não criar índice composto sem necessidade
+
+Não transformar automaticamente todos esses resultados em um único:
+
+```text
+robustness_score
+```
+
+sem metodologia explícita.
+
+
+# 129. Classificação qualitativa
+
+Se o grupo optar por categorias como:
+
+```text
+HIGH
+MODERATE
+LOW
+```
+
+de robustez, as regras deverão ser definidas antecipadamente.
+
+
+# 130. Regra de classificação
+
+Registrar:
+
+```text
+ROBUSTNESS_CLASSIFICATION_RULE = TO_BE_FILLED
+```
+
+
+# 131. Evitar subjetividade oculta
+
+Não classificar um resultado como:
+
+```text
+“robusto”
+```
+
+sem mostrar quais evidências sustentam essa conclusão.
+
+
+# 132. Tabela-resumo de robustez
+
+Estrutura futura:
+
+| Teste | Resultado | Mudança do top 1? | Impacto no top 3? | Interpretação |
+|---|---|---|---|---|
+| Sensibilidade dos pesos |  |  |  |  |
+| LOCO |  |  |  |  |
+| Normalização alternativa |  |  |  |  |
+| LOAO |  |  |  |  |
+| Cenários |  |  |  |  |
+| Pareto |  |  |  |  |
+
+
+# 133. Resumo por alternativa
+
+Poderá ser produzida estrutura como:
+
+| Fluido | Rank base | Melhor rank | Pior rank | Top 1 freq. | Top 3 freq. |
+|---|---:|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 134. Frequências
+
+Reforço:
+
+```text
+frequências
+≠
+probabilidades
+```
+
+
+# 135. Código principal de robustez
+
+```{r}
+# ============================================================
+# ROBUSTEZ
+# ============================================================
+#
+# Implementar por Vitor.
+#
+# A rotina poderá coordenar:
+#
+# - sensibilidade de pesos;
+# - LOCO;
+# - normalização alternativa;
+# - CRITIC alternativo;
+# - LOAO;
+# - rank reversal;
+# - síntese de estabilidade.
+#
+# ============================================================
+```
+
+
+# 136. Validação geral
+
+```{r}
+# ============================================================
+# VALIDAÇÕES
+# ============================================================
+#
+# Confirmar:
+#
+# - cenário-base reproduz resultado principal;
+# - pesos são válidos;
+# - LOCO remove exatamente um critério;
+# - LOAO remove exatamente uma alternativa;
+# - alternativa removida não reaparece;
+# - normalizações são válidas;
+# - CRITIC é recalculado quando necessário;
+# - TOPSIS é recalculado corretamente;
+# - nomes são preservados;
+# - resultados não contêm NA/NaN/Inf inesperados.
+#
+# ============================================================
+```
+
+
+# 137. Teste LOCO
+
+Para cada execução:
+
+```text
+número de critérios
+=
+m - 1
+```
+
+
+# 138. Teste LOAO
+
+Para cada execução:
+
+```text
+número de alternativas
+=
+n - 1
+```
+
+
+# 139. Teste da alternativa removida
+
+Confirmar:
+
+```text
+removed_alternative %in% result
+```
+
+deve ser:
+
+```text
+FALSE
+```
+
+
+# 140. Teste do critério removido
+
+Confirmar analogamente que o critério removido não participa do cálculo LOCO correspondente.
+
+
+# 141. Permutação
+
+A ordem de processamento das perturbações não deverá alterar os resultados individuais.
+
+
+# 142. Reprodutibilidade
+
+Executar novamente com as mesmas entradas deverá gerar os mesmos resultados.
+
+
+# 143. Resultados de sensibilidade
+
+Após execução:
+
+```text
+WEIGHT_SENSITIVITY_STATUS = TO_BE_FILLED
+```
+
+
+# 144. Resultados LOCO
+
+```text
+LOCO_STATUS = TO_BE_FILLED
+```
+
+
+# 145. Resultados normalização
+
+```text
+NORMALIZATION_ROBUSTNESS_STATUS = TO_BE_FILLED
+```
+
+
+# 146. Resultados LOAO
+
+```text
+LOAO_STATUS = TO_BE_FILLED
+```
+
+
+# 147. Rank reversal
+
+```text
+RANK_REVERSAL_STATUS = TO_BE_FILLED
+```
+
+
+# 148. Primeiro lugar
+
+Registrar:
+
+```text
+BASE_TOP1 = TO_BE_FILLED
+```
+
+
+# 149. Estabilidade do primeiro lugar
+
+```text
+TOP1_STABILITY_SUMMARY = TO_BE_FILLED
+```
+
+
+# 150. Top 3
+
+Registrar:
+
+```text
+BASE_TOP3 = TO_BE_FILLED
+TOP3_STABILITY_SUMMARY = TO_BE_FILLED
+```
+
+
+# 151. Melhor e pior posição
+
+Registrar para alternativas relevantes:
+
+```text
+BEST_POSITION = TO_BE_FILLED
+WORST_POSITION = TO_BE_FILLED
+```
+
+
+# 152. Alternativa mais estável
+
+Somente se a métrica estiver claramente definida:
+
+```text
+MOST_STABLE_ALTERNATIVE = TO_BE_FILLED
+```
+
+
+# 153. Alternativa mais sensível
+
+Somente se sustentado pelos resultados:
+
+```text
+MOST_SENSITIVE_ALTERNATIVE = TO_BE_FILLED
+```
+
+
+# 154. Achados principais
+
+Registrar:
+
+```text
+ROBUSTNESS_FINDING_1 = TO_BE_FILLED
+ROBUSTNESS_FINDING_2 = TO_BE_FILLED
+ROBUSTNESS_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 155. Linguagem de interpretação
+
+Preferir:
+
+```text
+“o primeiro lugar permaneceu estável nas análises realizadas”
+```
+
+ou:
+
+```text
+“o primeiro lugar apresentou sensibilidade à remoção do critério X”
+```
+
+em vez de:
+
+```text
+“o resultado está provado”
+```
+
+
+# 156. Robustez alta
+
+Uma conclusão de alta robustez deverá ser sustentada por evidências convergentes.
+
+
+# 157. Robustez moderada
+
+Pode existir quando:
+
+```text
+top 1 é relativamente estável
+mas
+posições próximas variam
+```
+
+ou estrutura semelhante observada nos resultados reais.
+
+
+# 158. Robustez baixa
+
+Pode existir quando:
+
+```text
+pequenas mudanças
+↓
+mudam fortemente o topo
+```
+
+desde que essa conclusão seja sustentada pelos testes.
+
+
+# 159. Não definir categorias agora
+
+Nesta base:
+
+```text
+ROBUSTNESS_CLASS = TO_BE_FILLED
+```
+
+Nenhuma classificação foi antecipada.
+
+
+# 160. Gap e robustez
+
+Um gap muito pequeno entre primeiro e segundo merece ser interpretado junto com a sensibilidade.
+
+
+# 161. Gap grande
+
+Um gap maior também não garante robustez se mudanças estruturais alterarem fortemente o ranking.
+
+
+# 162. Robustez do coeficiente versus posição
+
+Distinguir:
+
+```text
+estabilidade dos coeficientes
+```
+
+de:
+
+```text
+estabilidade das posições
+```
+
+
+# 163. Limitações
+
+Registrar:
+
+```text
+ROBUSTNESS_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 164. Possíveis limitações
+
+Somente se realmente presentes:
+
+```text
+poucas alternativas
+poucos critérios
+forte colinearidade
+cenários limitados
+perturbações arbitrárias
+rank reversal
+missing
+critério dominante
+```
+
+
+# 165. Limite da análise de robustez
+
+Nenhuma análise consegue testar todas as configurações metodológicas possíveis.
+
+A conclusão se aplica ao conjunto de análises efetivamente realizado.
+
+
+# 166. Artefatos futuros
+
+Quando executado:
+
+```text
+WEIGHT_SENSITIVITY_ARTIFACT = TO_BE_FILLED
+LOCO_ARTIFACT = TO_BE_FILLED
+NORMALIZATION_SENSITIVITY_ARTIFACT = TO_BE_FILLED
+LOAO_ARTIFACT = TO_BE_FILLED
+RANK_REVERSAL_ARTIFACT = TO_BE_FILLED
+ROBUSTNESS_SUMMARY_ARTIFACT = TO_BE_FILLED
+```
+
+
+# 167. Figuras futuras
+
+Poderão ser geradas:
+
+```text
+distribuição das posições
+heatmap de rankings
+sensibilidade dos pesos
+intervalo de posições
+comparação de métodos
+```
+
+
+# 168. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+ROBUSTNESS_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 169. Figura de intervalo de posição
+
+Uma figura poderá apresentar para cada alternativa:
+
+```text
+melhor posição
+posição-base
+pior posição
+```
+
+se melhorar a interpretação.
+
+
+# 170. Figura de frequência
+
+Se utilizada, rotular explicitamente como:
+
+```text
+frequência nas configurações avaliadas
+```
+
+e não:
+
+```text
+probabilidade
+```
+
+
+# 171. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+
+# 172. Decisões possíveis
+
+Poderão exigir registro:
+
+```text
+níveis de perturbação
+normalização alternativa
+método de correlação alternativo
+regra LOCO
+regra de rank reversal
+classificação qualitativa de robustez
+```
+
+
+# 173. Não selecionar testes retrospectivamente
+
+O conjunto principal de análises de robustez deverá ser definido sem escolher apenas testes favoráveis ao ranking-base.
+
+
+# 174. Resultado final de Vitor
+
+Somente depois da conclusão das análises poderá ser registrado:
+
+```text
+FINAL_VITOR_RANKING = TO_BE_FILLED
+```
+
+
+# 175. Ranking final
+
+O ranking final deverá ser acompanhado de:
+
+```text
+coeficiente principal
+gaps
+robustez
+Pareto
+conformidade
+limitações
+```
+
+
+# 176. Primeiro colocado final
+
+Somente após análise:
+
+```text
+FINAL_TOP1 = TO_BE_FILLED
+```
+
+
+# 177. Top 3 final
+
+```text
+FINAL_TOP3 = TO_BE_FILLED
+```
+
+
+# 178. Regra de linguagem
+
+Mesmo após robustez, a conclusão deve permanecer condicionada a:
+
+```text
+dados observados
++
+critérios definidos
++
+métodos utilizados
+```
+
+
+# 179. Não declarar superioridade universal
+
+Evitar:
+
+```text
+“o fluido X é o melhor em qualquer situação”
+```
+
+se o estudo não sustentar essa afirmação.
+
+
+# 180. Conclusão adequada
+
+Uma conclusão futura poderá ter estrutura como:
+
+```text
+“No sistema multicritério definido neste estudo, utilizando
+os critérios, normalização e ponderação estabelecidos, a
+alternativa TO_BE_FILLED apresentou ...”
+```
+
+A redação exata dependerá dos resultados reais.
+
+
+# 181. Integração com relatório
+
+Os resultados aprovados deverão alimentar:
+
+```text
+report/stages/03_vitor/relatorio_ranking.qmd
+```
+
+e posteriormente:
+
+```text
+report/final/main.tex
+```
+
+
+# 182. Integração com apresentação
+
+Somente resultados aprovados deverão alimentar:
+
+```text
+templates/presentation/latex/sections/06_resultados.tex
+templates/presentation/latex/sections/07_conclusao.tex
+```
+
+
+# 183. Não duplicar números manualmente
+
+Sempre que possível, tabelas e figuras utilizadas na comunicação deverão ser derivadas dos resultados oficiais.
+
+
+# 184. Handoff para Marco
+
+Ao concluir, atualizar:
+
+```text
+handoffs/03_VITOR_to_MARCO.md
+```
+
+
+# 185. Conteúdo mínimo do handoff
+
+Marco deverá receber:
+
+```text
+PRIMARY_RANKING
+FINAL_RANKING
+TOPSIS_COEFFICIENTS
+CRITIC_WEIGHTS
+TOP1
+TOP3
+GAPS
+SCENARIO_RESULTS
+PARETO_FRONT
+WEIGHT_SENSITIVITY
+LOCO_RESULTS
+NORMALIZATION_SENSITIVITY
+LOAO_RESULTS
+RANK_REVERSAL_RESULTS
+ROBUSTNESS_SUMMARY
+CONFORMITY_STATUS
+LIMITATIONS
+```
+
+
+# 186. O que Marco pode assumir
+
+Somente aquilo que estiver:
+
+```text
+APPROVED
+```
+
+no handoff.
+
+
+# 187. O que Marco não deve fazer
+
+Marco não deverá recalcular ou alterar silenciosamente:
+
+```text
+pesos
+TOPSIS
+ranking
+robustez
+Pareto
+```
+
+
+# 188. Problema detectado por Marco
+
+Se surgir inconsistência:
+
+```text
+retornar para Vitor
+↓
+corrigir na etapa de origem
+↓
+gerar nova versão
+↓
+atualizar handoff
+```
+
+
+# 189. Revisão cruzada
+
+Antes do handoff:
+
+```text
+[ ] sensibilidade revisada
+[ ] LOCO revisado
+[ ] normalização alternativa revisada
+[ ] LOAO revisado
+[ ] rank reversal revisado
+[ ] cenários revisados
+[ ] Pareto revisado
+[ ] conformidade integrada
+[ ] robustez interpretada
+[ ] limitações registradas
+```
+
+
+# 190. Critério de conclusão
+
+Esta etapa estará concluída quando:
+
+```text
+ranking principal
++
+cenários
++
+Pareto
++
+sensibilidade
++
+LOCO
++
+normalização alternativa
++
+LOAO
++
+rank reversal
++
+síntese de robustez
+```
+
+estiverem executados, validados e interpretados conforme o plano metodológico adotado.
+
+
+# 191. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 192. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+WEIGHT_SENSITIVITY_STATUS = NOT_EXECUTED
+
+LOCO_STATUS = NOT_EXECUTED
+
+NORMALIZATION_ROBUSTNESS_STATUS = NOT_EXECUTED
+
+LOAO_STATUS = NOT_EXECUTED
+
+RANK_REVERSAL_STATUS = NOT_EXECUTED
+
+SIMULATION_STATUS = NOT_EXECUTED
+
+ROBUSTNESS_STATUS = NOT_EXECUTED
+
+FINAL_RANKING_STATUS = NOT_APPROVED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+```
+
+
+# 193. Princípio final
+
+> Um ranking multicritério só deve ser apresentado com confiança depois de se compreender sua sensibilidade. A robustez não exige imutabilidade absoluta, mas exige que as mudanças observadas diante de perturbações razoáveis sejam conhecidas, quantificadas e comunicadas com transparência.

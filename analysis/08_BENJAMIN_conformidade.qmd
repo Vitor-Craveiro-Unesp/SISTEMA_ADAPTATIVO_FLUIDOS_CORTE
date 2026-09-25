@@ -1,20 +1,1420 @@
 ---
-title: "08 BENJAMIN conformidade"
-format: html
+title: "08 — Análise de Conformidade Técnica"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Benjamin"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+08_BENJAMIN_CONFORMIDADE.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Benjamin
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Avaliar a conformidade técnica das alternativas com base em
+especificações, limites, faixas ou requisitos devidamente
+confirmados.
 
-## Validações
+REGRA CENTRAL
 
-## Pendências
+CONFORMIDADE TÉCNICA
+não é sinônimo de
+DESEMPENHO MULTICRITÉRIO.
+
+Um fluido pode:
+
+- apresentar bom desempenho relativo;
+- possuir alta pontuação multicritério;
+
+e ainda:
+
+- descumprir uma especificação técnica.
+
+Da mesma forma, um fluido conforme não é automaticamente o
+melhor no ranking global.
+
+IMPORTANTE
+
+Somente utilizar como regra oficial:
+
+- especificações confirmadas;
+- limites com fonte conhecida;
+- requisitos cuja interpretação esteja documentada.
+
+Não inventar limites.
+
+Nesta fase:
+
+CONFORMITY_STATUS = NOT_EXECUTED
+SPECIFICATION_STATUS = NOT_FINALIZED
+CRITIC_STATUS = NOT_EXECUTED
+TOPSIS_STATUS = NOT_EXECUTED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 08 — Conformidade Técnica
+
+**Responsável:** Benjamin
+
+**Status:** `DRAFT`
+
+**Entrada principal:** base canônica aprovada
+
+**Entradas auxiliares:**
+
+```text
+auditoria
+reconciliação
+ADA inicial
+ADA bivariada
+ADA multivariada
+especificações confirmadas
+```
+
+**Versão da base:** `TO_BE_FILLED`
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é avaliar, de forma reproduzível, se cada alternativa atende às regras técnicas confirmadas.
+
+Fluxo:
+
+```text
+especificação
+↓
+fonte
+↓
+validação da regra
+↓
+variável correspondente
+↓
+comparação
+↓
+status de conformidade
+↓
+integração posterior com análise multicritério
+```
+
+
+# 3. Separação conceitual
+
+Neste projeto deverão permanecer separados:
+
+```text
+conformidade
+```
+
+e:
+
+```text
+preferência/desempenho
+```
+
+
+# 4. Exemplo conceitual
+
+Uma especificação pode exigir:
+
+```text
+X >= limite mínimo
+```
+
+Enquanto o sistema multicritério pode tratar:
+
+```text
+quanto maior X, melhor
+```
+
+Essas duas informações não são equivalentes.
+
+
+# 5. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] base canônica aprovada
+[ ] unidades validadas
+[ ] variáveis técnicas conhecidas
+[ ] possíveis especificações inventariadas
+[ ] fontes das especificações avaliadas
+[ ] pendências de Pacheco conhecidas
+[ ] material externo relevante conferido
+```
+
+
+# 6. Entrada oficial
+
+Registrar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+SPECIFICATION_SOURCE_VERSION = TO_BE_FILLED
+```
+
+
+# 7. Fonte das especificações
+
+Cada especificação deverá possuir fonte identificável.
+
+Possíveis origens reais podem incluir:
+
+```text
+material fornecido pela professora
+documentação técnica fornecida ao grupo
+informação presente na fonte original
+outra referência formal aprovada
+```
+
+Registrar apenas o que realmente existir.
+
+
+# 8. Não inventar especificações
+
+É proibido criar:
+
+```text
+limites
+faixas
+alvos
+tolerâncias técnicas
+```
+
+com base apenas em conhecimento geral ou conveniência analítica.
+
+
+# 9. Status da fonte
+
+Cada especificação deverá possuir status:
+
+```text
+CONFIRMED
+PENDING_CONFIRMATION
+UNKNOWN
+```
+
+
+# 10. Regra de uso
+
+Somente:
+
+```text
+CONFIRMED
+```
+
+pode ser utilizada como regra oficial de conformidade.
+
+
+# 11. Especificação pendente
+
+Quando:
+
+```text
+SPECIFICATION_STATUS = PENDING_CONFIRMATION
+```
+
+a regra poderá ser descrita, mas não aplicada como decisão final.
+
+
+# 12. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 13. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO DA CONFORMIDADE
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Poderá incluir:
+#
+# - carregamento da base canônica;
+# - carregamento das especificações;
+# - mapeamento entre regra e variável;
+# - tolerâncias técnicas confirmadas;
+# - funções de avaliação.
+#
+# ============================================================
+```
+
+
+# 14. Carregamento da base
+
+```{r}
+# ============================================================
+# CARREGAMENTO DA BASE CANÔNICA
+# ============================================================
+#
+# Utilizar exclusivamente a versão aprovada.
+#
+# ============================================================
+```
+
+
+# 15. Estrutura das especificações
+
+Cada regra deverá conter, quando aplicável:
+
+```text
+spec_id
+variável
+tipo da regra
+limite inferior
+limite superior
+alvo
+unidade
+fonte
+status
+observação
+```
+
+
+# 16. Tabela-mestre de especificações
+
+Estrutura futura:
+
+| Spec ID | Variável | Tipo | Regra | Unidade | Fonte | Status |
+|---|---|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |  |  |
+
+
+# 17. Tipos possíveis de regra
+
+Uma especificação pode assumir formas como:
+
+```text
+mínimo
+máximo
+intervalo
+alvo
+categoria obrigatória
+isenção
+presença/ausência
+```
+
+
+# 18. Limite mínimo
+
+Forma geral:
+
+\[
+x_i \ge L
+\]
+
+onde:
+
+```text
+L = limite mínimo confirmado
+```
+
+
+# 19. Limite máximo
+
+Forma geral:
+
+\[
+x_i \le U
+\]
+
+
+# 20. Intervalo
+
+Forma geral:
+
+\[
+L \le x_i \le U
+\]
+
+
+# 21. Alvo
+
+Quando houver valor-alvo:
+
+\[
+x_i \approx T
+\]
+
+A regra de tolerância ao redor de \(T\) deverá ser confirmada, não inventada.
+
+
+# 22. Critério categórico
+
+Exemplo conceitual:
+
+```text
+categoria observada
+=
+categoria permitida
+```
+
+A equivalência deve ser definida explicitamente.
+
+
+# 23. Unidade
+
+Antes de aplicar qualquer limite:
+
+```text
+unidade do dado
+=
+unidade da especificação
+```
+
+ou existir conversão documentada.
+
+
+# 24. Validação de unidades
+
+Registrar:
+
+```text
+SPEC_UNIT_VALIDATION_STATUS = TO_BE_FILLED
+```
+
+
+# 25. Conversão
+
+Se conversão for necessária:
+
+```text
+valor observado
+↓
+conversão documentada
+↓
+unidade da especificação
+↓
+avaliação
+```
+
+
+# 26. Não comparar unidades incompatíveis
+
+Nunca avaliar diretamente:
+
+```text
+mg/L
+```
+
+contra:
+
+```text
+g/L
+```
+
+sem conversão explícita.
+
+
+# 27. Tolerância técnica
+
+Se a especificação trouxer tolerância:
+
+```text
+TECHNICAL_TOLERANCE = TO_BE_FILLED
+```
+
+Ela deve vir da fonte ou de decisão justificada.
+
+
+# 28. Tolerância numérica
+
+Separar:
+
+```text
+tolerância técnica
+```
+
+de:
+
+```text
+tolerância de ponto flutuante
+```
+
+A segunda serve apenas para questões computacionais.
+
+
+# 29. Mapeamento das variáveis
+
+Para cada especificação, registrar qual campo da base representa a grandeza correspondente.
+
+Tabela futura:
+
+| Spec ID | Variável da especificação | Variável canônica | Compatível? |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 30. Ambiguidade de variável
+
+Se não for possível mapear a regra a uma variável de forma inequívoca:
+
+```text
+STATUS = PENDING_CONFIRMATION
+```
+
+
+# 31. Missing
+
+Quando o valor necessário para avaliar a conformidade estiver ausente, não classificar automaticamente como:
+
+```text
+NON_COMPLIANT
+```
+
+
+# 32. Estados possíveis por observação
+
+Uma classificação mais adequada poderá incluir:
+
+```text
+COMPLIANT
+NON_COMPLIANT
+NOT_EVALUABLE
+NOT_APPLICABLE
+PENDING_CONFIRMATION
+```
+
+
+# 33. Missing técnico
+
+Quando:
+
+```text
+x_i = NA
+```
+
+o resultado dependerá do significado do missing.
+
+Registrar:
+
+```text
+MISSING_CONFORMITY_RULE = TO_BE_FILLED
+```
+
+
+# 34. Regra mínima
+
+Sem valor observado e sem informação adicional:
+
+```text
+NOT_EVALUABLE
+```
+
+é geralmente preferível a inventar conformidade ou não conformidade.
+
+
+# 35. Não aplicável
+
+Algumas regras podem não se aplicar a todas as alternativas.
+
+Registrar explicitamente:
+
+```text
+NOT_APPLICABLE
+```
+
+
+# 36. Avaliação por observação
+
+Estrutura futura:
+
+| Fluido | Spec ID | Valor | Regra | Status |
+|---|---|---:|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 37. Código de avaliação
+
+```{r}
+# ============================================================
+# AVALIAÇÃO DE CONFORMIDADE
+# ============================================================
+#
+# Implementar por Benjamin.
+#
+# Cada regra deverá:
+#
+# - identificar a variável;
+# - verificar unidade;
+# - verificar missing;
+# - aplicar a condição confirmada;
+# - retornar status explícito.
+#
+# ============================================================
+```
+
+
+# 38. Transparência
+
+A função de conformidade deverá permitir identificar:
+
+```text
+valor observado
++
+regra aplicada
++
+resultado
+```
+
+
+# 39. Não produzir apenas TRUE/FALSE
+
+Quando útil, preservar mais informação que:
+
+```text
+TRUE
+FALSE
+```
+
+para permitir estados como:
+
+```text
+NOT_EVALUABLE
+PENDING_CONFIRMATION
+```
+
+
+# 40. Conformidade por variável
+
+Registrar futuramente:
+
+```text
+CONFORMITY_BY_VARIABLE = TO_BE_FILLED
+```
+
+
+# 41. Conformidade por fluido
+
+Para cada alternativa, sintetizar quais regras foram:
+
+```text
+atendidas
+não atendidas
+não avaliáveis
+não aplicáveis
+pendentes
+```
+
+
+# 42. Tabela-resumo por fluido
+
+| Fluido | Conforme | Não conforme | Não avaliável | Pendente |
+|---|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 43. Regra global de conformidade
+
+Não criar automaticamente uma regra como:
+
+```text
+fluido conforme
+=
+atende todas as especificações
+```
+
+sem primeiro definir o significado técnico esperado.
+
+
+# 44. Hard constraints
+
+Uma especificação poderá atuar como restrição obrigatória apenas se houver justificativa técnica clara.
+
+Registrar:
+
+```text
+HARD_CONSTRAINTS = TO_BE_FILLED
+```
+
+
+# 45. Soft constraints
+
+Algumas regras podem ser utilizadas apenas como:
+
+```text
+diagnóstico
+alerta
+preferência
+```
+
+e não como exclusão automática.
+
+Registrar:
+
+```text
+SOFT_CONSTRAINTS = TO_BE_FILLED
+```
+
+
+# 46. Hard constraint não é automático
+
+Uma especificação confirmada não precisa necessariamente excluir a alternativa do ranking.
+
+O tratamento deve ser definido metodologicamente.
+
+
+# 47. Estratégias possíveis
+
+A equipe poderá futuramente optar por:
+
+```text
+1. excluir alternativa não conforme;
+2. manter no ranking e sinalizar não conformidade;
+3. produzir ranking de desempenho e conformidade separadamente;
+4. utilizar outro tratamento documentado.
+```
+
+Nenhuma dessas opções deve ser escolhida silenciosamente.
+
+
+# 48. Estratégia oficial
+
+Registrar futuramente:
+
+```text
+CONFORMITY_INTEGRATION_STRATEGY = TO_BE_FILLED
+```
+
+
+# 49. Recomendação estrutural
+
+Sempre manter disponíveis duas informações separadas:
+
+```text
+performance_score
+```
+
+e:
+
+```text
+conformity_status
+```
+
+
+# 50. Conformidade versus benefício
+
+Uma variável pode ser de benefício no ranking e também possuir limite mínimo.
+
+Exemplo conceitual:
+
+```text
+quanto maior, melhor
++
+deve ser ≥ L
+```
+
+
+# 51. Conformidade versus custo
+
+Uma variável pode ser de custo e possuir limite máximo.
+
+```text
+quanto menor, melhor
++
+deve ser ≤ U
+```
+
+
+# 52. Alvo
+
+Uma variável do tipo alvo exige tratamento cuidadoso.
+
+Ela não é automaticamente:
+
+```text
+benefit
+```
+
+nem:
+
+```text
+cost
+```
+
+
+# 53. Critério do tipo target
+
+Para ranking posterior, poderá ser necessária transformação da distância ao alvo.
+
+Essa decisão pertence à definição da matriz multicritério.
+
+
+# 54. Conformidade com target
+
+A avaliação técnica poderá ser feita diretamente contra:
+
+```text
+faixa aceitável
+```
+
+se a faixa estiver confirmada.
+
+
+# 55. Critérios e restrições
+
+Benjamin deverá classificar cada variável candidata, quando aplicável, como:
+
+```text
+PERFORMANCE_CRITERION
+CONSTRAINT
+DIAGNOSTIC
+TARGET
+A_CONFIRMAR
+```
+
+
+# 56. Tabela de classificação
+
+| Variável | Papel | Justificativa | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 57. Não duplicar informação
+
+Se uma variável for usada como:
+
+```text
+restrição dura
+```
+
+e também:
+
+```text
+critério de desempenho
+```
+
+isso deverá ser explicitamente justificado para evitar dupla influência indevida.
+
+
+# 58. Número de violações
+
+O número de especificações não atendidas pode ser apresentado como resumo descritivo.
+
+Não transformar automaticamente:
+
+```text
+número de violações
+```
+
+em critério multicritério.
+
+
+# 59. Gravidade da violação
+
+Uma diferença pequena e uma diferença grande em relação ao limite podem ter significados distintos.
+
+Não criar escala de gravidade sem base técnica.
+
+
+# 60. Margem até o limite
+
+Quando útil, poderá ser calculada uma margem diagnóstica.
+
+Para limite mínimo:
+
+\[
+m_i=x_i-L
+\]
+
+Para limite máximo:
+
+\[
+m_i=U-x_i
+\]
+
+
+# 61. Interpretação da margem
+
+Em ambos os casos, se definida dessa forma:
+
+```text
+m_i >= 0
+```
+
+indica atendimento.
+
+Essa margem continua sendo diagnóstica até decisão posterior.
+
+
+# 62. Margem relativa
+
+Só utilizar se tecnicamente apropriado e com denominador significativo.
+
+Não criar automaticamente.
+
+
+# 63. Próximo do limite
+
+Uma alternativa tecnicamente conforme, mas muito próxima ao limite, pode merecer comentário.
+
+Registrar:
+
+```text
+NEAR_LIMIT_CASES = TO_BE_FILLED
+```
+
+
+# 64. Limite arredondado
+
+Comparações devem utilizar a precisão disponível.
+
+Evitar classificar com base apenas em números arredondados de tabela.
+
+
+# 65. Condições experimentais
+
+Se uma especificação depender da condição experimental, aplicar a regra na condição correta.
+
+
+# 66. Regra por condição
+
+Registrar:
+
+```text
+CONDITION_SPECIFIC_RULES = TO_BE_FILLED
+```
+
+
+# 67. Conformidade parcial entre condições
+
+Se um fluido atender em uma condição e falhar em outra:
+
+```text
+não resumir automaticamente
+```
+
+sem regra definida.
+
+
+# 68. Repetições
+
+Se houver múltiplas medições, definir como a conformidade será avaliada:
+
+```text
+por observação
+por condição
+por agregado
+```
+
+Registrar:
+
+```text
+REPLICATE_CONFORMITY_RULE = TO_BE_FILLED
+```
+
+
+# 69. Não usar média automaticamente
+
+Uma média conforme pode esconder observações individuais fora da especificação.
+
+A regra técnica deve determinar o tratamento correto.
+
+
+# 70. Especificações qualitativas
+
+Para requisitos como:
+
+```text
+presença
+ausência
+categoria
+isenção
+```
+
+o mapeamento deve ser explícito.
+
+
+# 71. Normalização textual
+
+Categorias equivalentes poderão ser padronizadas somente quando sua equivalência já estiver confirmada upstream.
+
+
+# 72. Especificações incompletas
+
+Se a regra existir sem:
+
+```text
+unidade
+limite
+interpretação
+```
+
+ela deverá permanecer pendente.
+
+
+# 73. Issues
+
+Registrar problemas como:
+
+```text
+spec_id
+variável
+problema
+impacto
+status
+```
+
+
+# 74. Problemas bloqueantes
+
+Registrar:
+
+```text
+BLOCKING_CONFORMITY_ISSUES = TO_BE_FILLED
+```
+
+
+# 75. Problemas não bloqueantes
+
+Registrar:
+
+```text
+NON_BLOCKING_CONFORMITY_ISSUES = TO_BE_FILLED
+```
+
+
+# 76. Perguntas para a professora
+
+Quando realmente necessário:
+
+```text
+QUESTION_FOR_PROFESSOR_1 = TO_BE_FILLED
+QUESTION_FOR_PROFESSOR_2 = TO_BE_FILLED
+```
+
+
+# 77. Não preencher lacunas com internet automaticamente
+
+Se a especificação oficial do trabalho não estiver confirmada, não substituir silenciosamente por valores encontrados externamente.
+
+Pesquisa externa só deverá ser incorporada se o grupo decidir formalmente utilizá-la e documentar a fonte.
+
+
+# 78. Validação computacional
+
+```{r}
+# ============================================================
+# VALIDAÇÃO
+# ============================================================
+#
+# Verificar:
+#
+# - todas as regras possuem fonte;
+# - todas as regras possuem unidade quando necessária;
+# - todas as variáveis existem;
+# - comparações são realizadas na escala correta;
+# - status possíveis são válidos;
+# - nenhuma especificação pendente é usada como regra oficial.
+#
+# ============================================================
+```
+
+
+# 79. Testes úteis
+
+Quando apropriado:
+
+```text
+valor exatamente no limite
+valor logo abaixo
+valor logo acima
+missing
+não aplicável
+limite mínimo
+limite máximo
+intervalo
+```
+
+
+# 80. Teste de fronteira
+
+Para:
+
+\[
+x \ge L
+\]
+
+confirmar que:
+
+```text
+x = L
+```
+
+é classificado corretamente.
+
+
+# 81. Nenhum NA lógico inesperado
+
+A função de conformidade deverá retornar estado explícito quando a comparação não puder ser realizada.
+
+
+# 82. Tabela principal
+
+Quando executado, produzir estrutura semelhante a:
+
+| Fluido | Variável | Valor | Regra | Fonte | Conformidade |
+|---|---|---:|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 83. Figura opcional
+
+Uma visualização poderá mostrar:
+
+```text
+valor observado
+limite
+status
+```
+
+se isso facilitar a comunicação.
+
+
+# 84. Não usar cor isoladamente
+
+Se houver figura de conformidade, não depender apenas de:
+
+```text
+verde
+vermelho
+```
+
+para transmitir status.
+
+
+# 85. Resultados
+
+Preencher somente após execução:
+
+```text
+N_CONFIRMED_SPECS = TO_BE_FILLED
+N_PENDING_SPECS = TO_BE_FILLED
+N_COMPLIANT_CASES = TO_BE_FILLED
+N_NON_COMPLIANT_CASES = TO_BE_FILLED
+N_NOT_EVALUABLE_CASES = TO_BE_FILLED
+```
+
+
+# 86. Achados
+
+Registrar:
+
+```text
+CONFORMITY_FINDING_1 = TO_BE_FILLED
+CONFORMITY_FINDING_2 = TO_BE_FILLED
+CONFORMITY_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 87. Linguagem de interpretação
+
+Preferir:
+
+```text
+“atendeu à especificação”
+“não atendeu ao limite informado”
+“não pôde ser avaliado”
+“a regra permanece pendente de confirmação”
+```
+
+Evitar:
+
+```text
+“é ruim”
+“é inviável”
+“é inferior”
+```
+
+sem justificativa adicional.
+
+
+# 88. Conformidade não determina ranking
+
+Mesmo após execução:
+
+```text
+CONFORMITY_RESULT
+≠
+TOPSIS_RESULT
+```
+
+
+# 89. Ranking não substitui conformidade
+
+Da mesma forma:
+
+```text
+TOPSIS_RESULT
+≠
+TECHNICAL_COMPLIANCE
+```
+
+
+# 90. Integração futura
+
+O resultado poderá ser combinado na apresentação final como:
+
+```text
+posição no ranking
++
+coeficiente TOPSIS
++
+status de conformidade
++
+robustez
+```
+
+
+# 91. Critérios candidatos
+
+Após a conformidade, Benjamin poderá consolidar a lista de variáveis candidatas ao sistema multicritério.
+
+Registrar:
+
+```text
+PERFORMANCE_CRITERION_CANDIDATES = TO_BE_FILLED
+CONSTRAINT_VARIABLES = TO_BE_FILLED
+DIAGNOSTIC_VARIABLES = TO_BE_FILLED
+TARGET_VARIABLES = TO_BE_FILLED
+```
+
+
+# 92. Matriz de decisão
+
+A construção formal da matriz de decisão deverá respeitar as instruções definidas para Benjamin.
+
+Neste conjunto de cadernos, a preparação posterior culminará em:
+
+```text
+analysis/09_BENJAMIN_critic.qmd
+```
+
+mas a matriz e a normalização devem ser definidas antes da aplicação do CRITIC.
+
+
+# 93. Direção dos critérios
+
+Para cada critério de desempenho, definir posteriormente:
+
+```text
+BENEFIT
+COST
+TARGET
+```
+
+com justificativa.
+
+
+# 94. Não confundir direção e conformidade
+
+Exemplo:
+
+```text
+COST
+```
+
+indica preferência por valores menores.
+
+Não significa automaticamente que valores altos são tecnicamente não conformes.
+
+
+# 95. Limitações
+
+Registrar:
+
+```text
+CONFORMITY_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 96. Possíveis limitações
+
+Somente quando reais:
+
+```text
+especificação pendente
+missing
+unidade não confirmada
+regra válida apenas para algumas condições
+fonte incompleta
+```
+
+
+# 97. Artefatos futuros
+
+Quando executado:
+
+```text
+SPECIFICATION_TABLE = TO_BE_FILLED
+CONFORMITY_TABLE = TO_BE_FILLED
+CONFORMITY_SUMMARY = TO_BE_FILLED
+CONFORMITY_FIGURES = TO_BE_FILLED
+```
+
+
+# 98. Nenhum artefato agora
+
+Nesta fase:
+
+```text
+CONFORMITY_ARTIFACTS = NOT_GENERATED
+```
+
+
+# 99. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+Uma decisão formal poderá ser necessária para definir:
+
+```text
+tratamento de não conformes
+hard constraints
+soft constraints
+integração com ranking
+```
+
+
+# 100. O que esta etapa entrega
+
+Entrega:
+
+```text
+especificações validadas
++
+mapeamento das regras
++
+status de conformidade
++
+pendências
++
+separação entre restrições e desempenho
+```
+
+
+# 101. O que esta etapa não entrega
+
+Não entrega:
+
+```text
+pesos CRITIC
+coeficiente TOPSIS
+ranking global
+robustez
+vencedor final
+```
+
+
+# 102. Entrada para a etapa multicritério
+
+Ao final, deverão estar claros:
+
+```text
+quais variáveis são restrições
+quais são diagnósticas
+quais podem ser critérios de desempenho
+quais possuem target
+quais especificações permanecem pendentes
+```
+
+
+# 103. Validação antes de encerrar
+
+```text
+[ ] base correta utilizada
+[ ] fontes das especificações registradas
+[ ] unidades compatíveis
+[ ] limites confirmados separados dos pendentes
+[ ] missing tratados explicitamente
+[ ] não aplicáveis tratados explicitamente
+[ ] hard constraints justificados
+[ ] soft constraints justificados
+[ ] nenhuma especificação inventada
+[ ] conformidade separada de desempenho
+[ ] limitações registradas
+```
+
+
+# 104. Status final
+
+Possíveis estados:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 105. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+CONFORMITY_STATUS = NOT_EXECUTED
+
+SPECIFICATION_STATUS = NOT_FINALIZED
+
+CRITERIA_STATUS = NOT_FINALIZED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+CRITIC_STATUS = NOT_EXECUTED
+
+TOPSIS_STATUS = NOT_EXECUTED
+```
+
+
+# 106. Princípio final
+
+> A conformidade responde se uma alternativa atende a uma exigência técnica confirmada. O sistema multicritério responde como as alternativas se comparam em desempenho. Essas duas perguntas devem permanecer distintas para que o ranking seja tecnicamente interpretável e não esconda violações de especificação.

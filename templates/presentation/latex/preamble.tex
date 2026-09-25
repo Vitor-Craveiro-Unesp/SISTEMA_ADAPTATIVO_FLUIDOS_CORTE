@@ -1,5 +1,458 @@
-\usepackage[utf8]{inputenc}
+% ============================================================
+% PREAMBLE.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Centralizar:
+%
+% - codificação;
+% - idioma;
+% - matemática;
+% - tabelas;
+% - figuras;
+% - caminhos gráficos;
+% - configurações gerais da apresentação.
+%
+% Este arquivo faz parte apenas da BASE do projeto.
+%
+% Não deve conter:
+%
+% - resultados científicos;
+% - ranking;
+% - pesos;
+% - conclusões;
+% - conteúdo específico dos slides.
+%
+% ============================================================
+
+
+% ============================================================
+% CODIFICAÇÃO E IDIOMA
+% ============================================================
+
 \usepackage[T1]{fontenc}
-\usepackage{booktabs}
-\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+
+
+% ============================================================
+% MATEMÁTICA
+% ============================================================
+
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+
+% ============================================================
+% FIGURAS
+% ============================================================
+
+\usepackage{graphicx}
+
+
+% ============================================================
+% CAMINHOS DE FIGURAS
+% ============================================================
+%
+% Como main.tex está localizado em:
+%
+% templates/presentation/latex/
+%
+% os caminhos abaixo serão relativos a esse diretório.
+%
+% assets/
+%     logos e materiais externos confirmados.
+%
+% figures/
+%     figuras utilizadas na apresentação.
+%
+% ============================================================
+
+\graphicspath{
+    {assets/}
+    {figures/}
+}
+
+
+% ============================================================
+% TABELAS
+% ============================================================
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
+
+% ============================================================
+% COLUNAS E ALINHAMENTO
+% ============================================================
+%
+% O ambiente columns utilizado nos slides já pertence ao Beamer.
+%
+% tabularx é carregado acima apenas para permitir tabelas que
+% precisem se ajustar automaticamente à largura disponível.
+%
+% ============================================================
+
+
+% ============================================================
+% MICROTIPOGRAFIA
+% ============================================================
+%
+% Melhora pequenas características tipográficas quando
+% suportado pelo compilador.
+%
+% Não modifica resultados ou conteúdo científico.
+%
+% ============================================================
+
+\usepackage{microtype}
+
+
+% ============================================================
+% CONFIGURAÇÕES MATEMÁTICAS
+% ============================================================
+%
+% Evita numeração automática de equações na apresentação.
+%
+% As equações utilizadas nos slides têm função explicativa e,
+% normalmente, não precisam de numeração.
+%
+% ============================================================
+
+\setbeamertemplate{theorems}[numbered]
+
+
+% ============================================================
+% NAVEGAÇÃO
+% ============================================================
+%
+% Os símbolos padrão de navegação do Beamer geralmente ocupam
+% espaço visual sem acrescentar informação à apresentação.
+%
+% Por isso são ocultados nesta base.
+%
+% ============================================================
+
+\setbeamertemplate{navigation symbols}{}
+
+
+% ============================================================
+% NOTAS
+% ============================================================
+%
+% A apresentação poderá futuramente utilizar notas do Beamer,
+% mas nenhuma configuração específica será ativada nesta fase.
+%
+% Caso os integrantes decidam utilizar:
+%
+% \note{...}
+%
+% deverão definir posteriormente como essas notas serão
+% compiladas.
+%
+% ============================================================
+
+
+% ============================================================
+% REFERÊNCIAS
+% ============================================================
+%
+% Nenhum pacote bibliográfico adicional é carregado agora.
+%
+% Motivo:
+%
+% - ainda não sabemos como os integrantes irão gerenciar as
+%   referências da apresentação;
+%
+% - nenhuma referência científica foi selecionada ainda;
+%
+% - não queremos impor BibTeX/Biber sem necessidade.
+%
+% Se a apresentação final utilizar referências bibliográficas,
+% a implementação correspondente será feita pelos integrantes.
+%
+% ============================================================
+
+
+% ============================================================
+% CORES
+% ============================================================
+%
+% Não definir cores neste arquivo.
+%
+% As cores visuais da apresentação serão centralizadas em:
+%
+% theme.tex
+%
+% Isso evita duplicação de configurações.
+%
+% ============================================================
+
+
+% ============================================================
+% FONTES
+% ============================================================
+%
+% A apresentação utilizará inicialmente as fontes padrão do
+% Beamer.
+%
+% Não estamos impondo uma fonte institucional nesta fase.
+%
+% Caso a professora forneça um template visual ou orientação
+% tipográfica, ela deverá substituir esta configuração genérica.
+%
+% ============================================================
+
+
+% ============================================================
+% HIPERLINKS
+% ============================================================
+%
+% O Beamer já fornece suporte interno ao hyperref.
+%
+% Portanto, não é necessário carregar \usepackage{hyperref}
+% novamente.
+%
+% Configurações específicas de links poderão ser adicionadas
+% futuramente se forem necessárias.
+%
+% ============================================================
+
+
+% ============================================================
+% LEGENDAS
+% ============================================================
+%
+% O Beamer já possui mecanismos próprios para figuras e tabelas.
+%
+% Evitamos carregar o pacote caption aqui porque ele pode gerar
+% conflitos de formatação com o Beamer.
+%
+% ============================================================
+
+
+% ============================================================
+% FLOATS
+% ============================================================
+%
+% Em apresentações Beamer, figuras e tabelas normalmente não
+% precisam de mecanismos tradicionais de posicionamento como:
+%
+% [htbp]
+% [H]
+%
+% O conteúdo é organizado diretamente dentro dos frames.
+%
+% Portanto, o pacote float não é necessário nesta base.
+%
+% ============================================================
+
+
+% ============================================================
+% CAMINHOS ABSOLUTOS
+% ============================================================
+%
+% Nunca utilizar:
+%
+% C:/Users/Nome/Desktop/...
+%
+% nos arquivos LaTeX.
+%
+% Todo recurso deve utilizar caminho relativo ao repositório.
+%
+% ============================================================
+
+
+% ============================================================
+% ASSETS
+% ============================================================
+%
+% Materiais externos confirmados poderão ser colocados em:
+%
+% assets/
+%
+% Exemplos futuros:
+%
+% assets/unesp.jpg
+% assets/estat.png
+%
+% Não é necessário criar ou adicionar imagens agora.
+%
+% ============================================================
+
+
+% ============================================================
+% FIGURAS CIENTÍFICAS
+% ============================================================
+%
+% As figuras geradas posteriormente pelos integrantes poderão
+% ser disponibilizadas em:
+%
+% figures/
+%
+% Exemplos futuros:
+%
+% figures/pesos_critic.pdf
+% figures/ranking_topsis.pdf
+% figures/pareto.pdf
+% figures/robustez.pdf
+%
+% Esses nomes são apenas exemplos conceituais.
+%
+% Não criar esses arquivos agora.
+%
+% ============================================================
+
+
+% ============================================================
+% FORMATOS RECOMENDADOS
+% ============================================================
+%
+% Para gráficos científicos:
+%
+% preferencialmente:
+%
+% PDF
+%
+% quando forem gráficos vetoriais.
+%
+% Para imagens externas:
+%
+% PNG
+% JPG
+% PDF
+%
+% conforme o material original.
+%
+% ============================================================
+
+
+% ============================================================
+% TAMANHO DAS FIGURAS
+% ============================================================
+%
+% Preferir dimensões relativas:
+%
+% \includegraphics[width=0.90\textwidth]{...}
+%
+% ou:
+%
+% \includegraphics[width=\columnwidth]{...}
+%
+% evitando tamanhos absolutos desnecessários.
+%
+% ============================================================
+
+
+% ============================================================
+% EQUAÇÕES
+% ============================================================
+%
+% Fórmulas metodológicas centrais poderão aparecer nos slides,
+% por exemplo:
+%
+% CRITIC:
+%
+% C_j =
+% \sigma_j
+% \sum_k (1-r_{jk})
+%
+% TOPSIS:
+%
+% C_i =
+% S_i^- / (S_i^+ + S_i^-)
+%
+% Este arquivo apenas fornece os pacotes necessários para que
+% essas equações possam ser compiladas.
+%
+% ============================================================
+
+
+% ============================================================
+% TABELAS GRANDES
+% ============================================================
+%
+% Evitar tabelas extensas em slides.
+%
+% Caso uma tabela não caiba em um frame, os integrantes deverão
+% avaliar:
+%
+% - reduzir o número de colunas;
+% - mostrar somente as linhas importantes;
+% - transformar a informação em gráfico;
+% - utilizar slide adicional.
+%
+% Não reduzir excessivamente a fonte apenas para fazer uma
+% tabela caber.
+%
+% ============================================================
+
+
+% ============================================================
+% RESPONSABILIDADE DOS INTEGRANTES
+% ============================================================
+%
+% Durante a execução, os integrantes poderão acrescentar pacotes
+% necessários para necessidades reais.
+%
+% Exemplos:
+%
+% - pacote para diagramas;
+% - pacote bibliográfico;
+% - pacote para tabelas específicas;
+% - suporte adicional a código.
+%
+% Entretanto, cada dependência nova deve possuir finalidade
+% clara.
+%
+% Evitar adicionar pacotes apenas por precaução.
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL DA PROFESSORA
+% ============================================================
+%
+% Se a professora fornecer posteriormente um template Beamer,
+% um arquivo .sty, uma identidade visual ou regras específicas
+% de apresentação:
+%
+% material oficial
+% >
+% configuração genérica desta base
+%
+% As alterações deverão ser realizadas mantendo uma cópia ou
+% referência do material original.
+%
+% ============================================================
+
+
+% ============================================================
+% COMPATIBILIDADE
+% ============================================================
+%
+% A configuração foi mantida simples para facilitar a
+% compilação por diferentes ambientes LaTeX.
+%
+% A validação final da compilação será responsabilidade dos
+% integrantes durante a execução do projeto.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% PREAMBLE_STATUS = BASE_PREPARED
+%
+% SCIENTIFIC_RESULTS = NOT_EXECUTED
+% REFERENCES_CONFIGURED = FALSE
+% OFFICIAL_THEME_AVAILABLE = FALSE
+%
+% ============================================================

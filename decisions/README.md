@@ -1,15 +1,29 @@
-# Registro de decisões
+# DECISIONS — Registro de Decisões Metodológicas
 
-Cada decisão relevante deve receber um ID sequencial.
+## 1. Objetivo
 
-Exemplo: `DEC-001-vida-fluido-B.md`
+A pasta `decisions/` registra decisões metodológicas, estatísticas,
+computacionais e operacionais relevantes tomadas durante o desenvolvimento do
+projeto:
 
-Estrutura mínima:
-- problema
-- evidências
-- alternativas
-- decisão
-- justificativa
-- impacto
-- responsáveis
-- data
+> **Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte**
+
+O objetivo é garantir que decisões importantes sejam:
+
+- explícitas;
+- justificadas;
+- revisáveis;
+- rastreáveis;
+- reproduzíveis;
+- associadas às etapas e resultados que afetam.
+
+---
+
+# 2. Estrutura da pasta
+
+Inicialmente:
+
+```text
+decisions/
+├── README.md
+└── DEC-000-EXEMPLO.md

@@ -1,16 +1,293 @@
-.Rproj.user
+# ============================================================
+# Sistema Adaptativo de Classificação Multicritério
+# de Fluidos de Corte
+#
+# Arquivos que não devem ser versionados pelo Git.
+# ============================================================
+
+
+# ------------------------------------------------------------
+# R / RStudio — estado local
+# ------------------------------------------------------------
+
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
+
+*.Rhistory
+*.RData
+
+
+# ------------------------------------------------------------
+# renv
+#
+# renv.lock DEVE permanecer versionável.
+#
+# Bibliotecas e caches locais não devem ir para o Git.
+# ------------------------------------------------------------
+
 renv/library/
 renv/staging/
+renv/cache/
+renv/local/
+renv/cellar/
+
+
+# ------------------------------------------------------------
+# Configurações locais do R
+# ------------------------------------------------------------
+
+.Renviron
+.Renviron.*
+!.Renviron.example
+
+.Rprofile.local
+
+
+# ------------------------------------------------------------
+# Dados brutos externos
+#
+# Por segurança, arquivos de dados fornecidos externamente
+# não são versionados automaticamente.
+#
+# README.md e .gitkeep permanecem versionáveis.
+#
+# Se futuramente o grupo confirmar que determinado arquivo
+# pode ser publicado/versionado, esta regra poderá ser
+# alterada conscientemente.
+# ------------------------------------------------------------
+
+data/raw/*
+
+!data/raw/.gitkeep
+!data/raw/README.md
+
+
+# ------------------------------------------------------------
+# Link externo / Drive
+#
+# Pode conter URL privada ou informação de acesso.
+# Não versionar por padrão.
+# ------------------------------------------------------------
+
+data/raw/linkacessodrive.txt
+
+
+# ------------------------------------------------------------
+# Dados intermediários
+#
+# São derivados da execução e devem ser reproduzíveis.
+# ------------------------------------------------------------
+
+data/interim/*
+
+!data/interim/.gitkeep
+!data/interim/README.md
+
+
+# ------------------------------------------------------------
+# Dados processados
+#
+# A base canônica será gerada pela pipeline.
+# Não versionar automaticamente nesta fase.
+# ------------------------------------------------------------
+
+data/processed/*
+
+!data/processed/.gitkeep
+!data/processed/README.md
+
+
+# ------------------------------------------------------------
+# Quarto
+# ------------------------------------------------------------
+
 .quarto/
 _freeze/
-*.log
+_site/
+
+
+# ------------------------------------------------------------
+# Cache
+# ------------------------------------------------------------
+
+.cache/
+cache/
+
+
+# ------------------------------------------------------------
+# LaTeX — arquivos auxiliares
+# ------------------------------------------------------------
+
 *.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.nav
 *.out
-*.toc
+*.run.xml
+*.snm
 *.synctex.gz
+*.toc
+*.vrb
+
+latexmk/
+
+
+# ------------------------------------------------------------
+# Arquivos temporários de renderização
+# ------------------------------------------------------------
+
+*.utf8.md
+*.knit.md
+
+*_files/
+*_cache/
+
+
+# ------------------------------------------------------------
+# Arquivos temporários
+# ------------------------------------------------------------
+
+*.tmp
+*.temp
+*.bak
+*.old
+
+*~
+~$*
+
+
+# ------------------------------------------------------------
+# Logs
+# ------------------------------------------------------------
+
+*.log
+
+
+# ------------------------------------------------------------
+# Sistema operacional
+# ------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# ------------------------------------------------------------
+# VS Code / IDE
+#
+# Configurações pessoais não devem ser versionadas por padrão.
+# Se futuramente houver configurações compartilhadas úteis,
+# regras específicas poderão ser adicionadas.
+# ------------------------------------------------------------
+
+.vscode/
+.idea/
+
+
+# ------------------------------------------------------------
+# Python eventual / ferramentas auxiliares
+#
+# O projeto científico é em R, mas ferramentas auxiliares
+# podem gerar ambientes Python locais.
+# ------------------------------------------------------------
+
+__pycache__/
+*.pyc
+*.pyo
+
+.venv/
+venv/
+
+
+# ------------------------------------------------------------
+# Node / ferramentas auxiliares
+# ------------------------------------------------------------
+
+node_modules/
+
+
+# ------------------------------------------------------------
+# Arquivos de ambiente / segredos
+# ------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+
+# ------------------------------------------------------------
+# Credenciais / chaves
+# ------------------------------------------------------------
+
+*.pem
+*.key
+*.p12
+*.pfx
+
+credentials.*
+secrets.*
+
+
+# ------------------------------------------------------------
+# Backups locais
+# ------------------------------------------------------------
+
+backup/
+backups/
+
+
+# ------------------------------------------------------------
+# Arquivos compactados locais
+#
+# Evita versionar cópias do próprio projeto ou grandes
+# pacotes temporários.
+# ------------------------------------------------------------
+
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+
+
+# ------------------------------------------------------------
+# Outputs temporários do relatório
+#
+# O código-fonte LaTeX permanece versionável.
+# ------------------------------------------------------------
+
 report/final/output/*
+
+!report/final/output/.gitkeep
+
+
+# ------------------------------------------------------------
+# Outputs temporários da apresentação, se a pasta existir
+# ------------------------------------------------------------
+
 presentation/output/*
-results/**/.DS_Store
+
+!presentation/output/.gitkeep
+
+
+# ------------------------------------------------------------
+# IMPORTANTE — results/
+# ------------------------------------------------------------
+
+# results/ NÃO é ignorado globalmente.
+#
+# A equipe poderá decidir futuramente quais resultados
+# científicos aprovados devem permanecer versionados.
+#
+# Não adicionar aqui:
+#
+# results/
+#
+# sem uma decisão consciente do grupo.

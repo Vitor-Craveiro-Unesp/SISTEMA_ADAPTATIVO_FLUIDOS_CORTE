@@ -1,16 +1,2109 @@
 ---
-title: "Relatório de Integração"
-format: pdf
+title: "Relatório de Integração dos Resultados"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Marco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+RELATORIO_INTEGRACAO.QMD
+============================================================
 
-## Metodologia
+Responsável principal: Marco
 
-## Resultados
+Este é um RELATÓRIO INTERNO DE INTEGRAÇÃO.
 
-## Validações
+Não corresponde diretamente ao relatório técnico final de
+até 4 páginas exigido pela professora.
 
-## Problemas/pendências
+Seu objetivo é:
 
-## Entregáveis
+1. consolidar os resultados aprovados de Pacheco;
+2. consolidar os resultados aprovados de Benjamin;
+3. consolidar os resultados aprovados de Vitor;
+4. conferir a consistência entre versões;
+5. preparar a síntese científica;
+6. definir o conteúdo essencial do relatório final;
+7. definir o conteúdo essencial da apresentação;
+8. registrar limitações;
+9. preparar o handoff coletivo.
+
+Marco NÃO deve recalcular as análises científicas.
+
+Os números oficiais continuam sendo produzidos pelo pipeline
+em R e pelas etapas responsáveis.
+
+============================================================
+-->
+
+
+# 1. Identificação da etapa
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 04 — Integração dos Resultados, Relatório e Apresentação
+
+**Responsável:** Marco
+
+**Revisores:** Pacheco, Benjamin e Vitor
+
+**Status:** `DRAFT`
+
+**Versão do relatório de integração:** `TO_BE_FILLED`
+
+**Handoff de entrada:** `handoffs/03_VITOR_to_MARCO.md`
+
+**Handoff de saída:** `handoffs/04_MARCO_to_TODOS.md`
+
+
+# 2. Objetivo
+
+Esta etapa tem como objetivo integrar os resultados científicos já produzidos e
+aprovados nas etapas anteriores em uma narrativa única, coerente e rastreável.
+
+A sequência conceitual é:
+
+```text
+Pacheco
+auditoria + base canônica
+↓
+Benjamin
+critérios + conformidade + CRITIC
+↓
+Vitor
+TOPSIS + ranking + Pareto + robustez
+↓
+Marco
+integração
+↓
+relatório técnico final
++
+apresentação
+↓
+revisão coletiva
+```
+
+
+# 3. Regra fundamental
+
+Marco não deverá utilizar esta etapa para:
+
+```text
+recalcular resultados
+alterar pesos
+alterar critérios
+alterar ranking
+alterar Pareto
+alterar robustez
+```
+
+Sua função é:
+
+```text
+integrar
+↓
+verificar consistência
+↓
+interpretar
+↓
+comunicar
+```
+
+
+# 4. Pré-condição
+
+Marco somente deverá iniciar a integração científica quando:
+
+```text
+03_VITOR_to_MARCO.md
+=
+APPROVED
+```
+
+ou quando houver autorização formal equivalente.
+
+
+# 5. Dependências
+
+A integração depende de toda a cadeia anterior:
+
+```text
+01_PACHECO_to_BENJAMIN.md
+↓
+02_BENJAMIN_to_VITOR.md
+↓
+03_VITOR_to_MARCO.md
+```
+
+
+# 6. Versões recebidas
+
+Preencher futuramente:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+DECISION_MATRIX_VERSION = TO_BE_FILLED
+NORMALIZATION_VERSION = TO_BE_FILLED
+CRITIC_VERSION = TO_BE_FILLED
+TOPSIS_VERSION = TO_BE_FILLED
+RANKING_VERSION = TO_BE_FILLED
+SCENARIOS_VERSION = TO_BE_FILLED
+PARETO_VERSION = TO_BE_FILLED
+SENSITIVITY_VERSION = TO_BE_FILLED
+ROBUSTNESS_VERSION = TO_BE_FILLED
+```
+
+
+# 7. Regra de compatibilidade
+
+Todos os resultados utilizados deverão pertencer à mesma cadeia lógica de
+versões.
+
+É proibido integrar, por exemplo:
+
+```text
+base nova
++
+pesos antigos
++
+ranking novo
++
+robustez antiga
+```
+
+sem reexecução coerente das dependências.
+
+
+# 8. Verificação inicial
+
+Antes da integração:
+
+```text
+[ ] handoff de Vitor aprovado
+[ ] ranking oficial identificado
+[ ] top 3 identificado
+[ ] pesos oficiais identificados
+[ ] Pareto identificado
+[ ] sensibilidade identificada
+[ ] robustez identificada
+[ ] limitações recebidas
+[ ] conclusões autorizadas recebidas
+```
+
+
+# 9. Fonte única da verdade
+
+A fonte dos resultados científicos deverá ser:
+
+```text
+pipeline em R
++
+resultados aprovados
+```
+
+Não:
+
+```text
+relatório digitado manualmente
+slide
+mensagem
+memória do grupo
+```
+
+
+# 10. Integração da etapa de Pacheco
+
+A contribuição de Pacheco deverá ser resumida a partir de:
+
+```text
+report/stages/01_pacheco/relatorio_auditoria.qmd
+```
+
+e do handoff correspondente.
+
+
+# 11. Elementos de Pacheco que Marco deve recuperar
+
+Quando disponíveis:
+
+```text
+arquivo bruto utilizado
+estrutura dos dados
+principais inconsistências
+reconciliações importantes
+base canônica
+missing relevantes
+unidades
+limitações da base
+achados essenciais da ADA inicial
+```
+
+
+# 12. Não reproduzir toda a auditoria
+
+O relatório oficial possui limite de quatro páginas.
+
+Portanto, Marco deverá distinguir:
+
+```text
+auditoria necessária para justificar confiabilidade
+```
+
+de:
+
+```text
+detalhe técnico interno
+```
+
+
+# 13. Síntese da auditoria
+
+Preencher futuramente:
+
+```text
+AUDIT_MAIN_FINDING_1 = TO_BE_FILLED
+AUDIT_MAIN_FINDING_2 = TO_BE_FILLED
+AUDIT_MAIN_FINDING_3 = TO_BE_FILLED
+```
+
+
+# 14. Base canônica
+
+Registrar:
+
+```text
+CANONICAL_DATA_STATUS = TO_BE_FILLED
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+```
+
+
+# 15. Limitações vindas de Pacheco
+
+Registrar:
+
+```text
+PACHECO_LIMITATIONS = TO_BE_FILLED
+```
+
+Essas limitações não devem desaparecer durante a integração.
+
+
+# 16. Integração da etapa de Benjamin
+
+A contribuição de Benjamin deverá ser recuperada de:
+
+```text
+report/stages/02_benjamin/relatorio_ada_criterios.qmd
+```
+
+e do handoff correspondente.
+
+
+# 17. Elementos de Benjamin
+
+Marco deverá recuperar:
+
+```text
+relações relevantes
+redundância
+conformidade
+critérios selecionados
+critérios excluídos relevantes
+direções
+normalização
+CRITIC
+pesos
+limitações
+```
+
+
+# 18. Critérios oficiais
+
+Registrar futuramente:
+
+```text
+N_CRITERIA = TO_BE_FILLED
+CRITERIA_VERSION = TO_BE_FILLED
+```
+
+
+# 19. Lista oficial de critérios
+
+```text
+CRITERIA = TO_BE_FILLED
+```
+
+
+# 20. Grupos conceituais
+
+Quando aplicável:
+
+```text
+CRITERIA_GROUPS = TO_BE_FILLED
+```
+
+
+# 21. Direções
+
+Confirmar que Marco compreende quais critérios são:
+
+```text
+BENEFIT
+COST
+TARGET
+RESTRICTION
+DIAGNOSTIC
+```
+
+
+# 22. Conformidade
+
+Registrar:
+
+```text
+CONFORMITY_STATUS = TO_BE_FILLED
+```
+
+
+# 23. Restrições
+
+Registrar, quando existirem:
+
+```text
+HARD_CONSTRAINTS = TO_BE_FILLED
+SOFT_CONSTRAINTS = TO_BE_FILLED
+```
+
+
+# 24. Especificações pendentes
+
+Registrar:
+
+```text
+PENDING_SPECIFICATIONS = TO_BE_FILLED
+```
+
+Uma especificação pendente não deverá ser apresentada como confirmada.
+
+
+# 25. Normalização
+
+Registrar:
+
+```text
+PRIMARY_NORMALIZATION = TO_BE_FILLED
+```
+
+
+# 26. CRITIC
+
+Registrar:
+
+```text
+CRITIC_VERSION = TO_BE_FILLED
+CRITIC_CORRELATION_METHOD = TO_BE_FILLED
+```
+
+
+# 27. Fórmula do CRITIC
+
+A formulação utilizada deverá ser descrita de forma coerente com a execução:
+
+\[
+C_j
+=
+\sigma_j
+\sum_{k=1}^{p}
+(1-r_{jk})
+\]
+
+e:
+
+\[
+w_j
+=
+\frac{C_j}
+{\sum_{j=1}^{p} C_j}
+\]
+
+
+# 28. Pesos oficiais
+
+Registrar:
+
+```text
+CRITIC_WEIGHTS_VERSION = TO_BE_FILLED
+```
+
+
+# 29. Maior peso
+
+Registrar futuramente:
+
+```text
+HIGHEST_CRITIC_WEIGHT_CRITERION = TO_BE_FILLED
+```
+
+
+# 30. Linguagem correta sobre pesos
+
+Utilizar:
+
+> maior peso informacional segundo o CRITIC.
+
+Não utilizar:
+
+> critério tecnicamente mais importante.
+
+salvo se houver evidência externa específica.
+
+
+# 31. Limitações vindas de Benjamin
+
+Registrar:
+
+```text
+BENJAMIN_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 32. Integração da etapa de Vitor
+
+A contribuição de Vitor deverá ser recuperada de:
+
+```text
+report/stages/03_vitor/relatorio_ranking.qmd
+```
+
+e do handoff correspondente.
+
+
+# 33. Elementos de Vitor
+
+Marco deverá recuperar:
+
+```text
+TOPSIS
+ranking
+coeficientes
+gaps
+top 3
+cenários
+Pareto
+sensibilidade
+rank reversal
+robustez
+conclusões autorizadas
+```
+
+
+# 34. TOPSIS
+
+Registrar:
+
+```text
+TOPSIS_VERSION = TO_BE_FILLED
+```
+
+
+# 35. Fórmula do TOPSIS
+
+A apresentação matemática resumida poderá utilizar:
+
+\[
+C_i
+=
+\frac{S_i^-}
+{S_i^+ + S_i^-}
+\]
+
+
+# 36. Interpretação correta
+
+O coeficiente representa:
+
+```text
+proximidade relativa da alternativa ao ideal
+```
+
+e não:
+
+```text
+probabilidade de ser a melhor
+```
+
+
+# 37. Ranking oficial
+
+Registrar:
+
+```text
+RANKING_VERSION = TO_BE_FILLED
+```
+
+
+# 38. Ranking principal
+
+Preencher futuramente:
+
+```text
+1º = TO_BE_FILLED
+2º = TO_BE_FILLED
+3º = TO_BE_FILLED
+...
+```
+
+
+# 39. Top 3
+
+Registrar:
+
+```text
+TOP_1 = TO_BE_FILLED
+TOP_2 = TO_BE_FILLED
+TOP_3 = TO_BE_FILLED
+```
+
+
+# 40. Gap entre primeiro e segundo
+
+Registrar:
+
+```text
+GAP_TOP1_TOP2 = TO_BE_FILLED
+```
+
+
+# 41. Quase empates
+
+Registrar:
+
+```text
+NEAR_TIES = TO_BE_FILLED
+```
+
+
+# 42. Conformidade do top 3
+
+Registrar:
+
+```text
+TOP3_CONFORMITY = TO_BE_FILLED
+```
+
+
+# 43. Cenários
+
+Registrar:
+
+```text
+SCENARIOS_VERSION = TO_BE_FILLED
+OFFICIAL_SCENARIOS = TO_BE_FILLED
+```
+
+
+# 44. Cenário principal
+
+Registrar:
+
+```text
+BASE_SCENARIO = TO_BE_FILLED
+```
+
+
+# 45. Mudança de vencedor
+
+Registrar:
+
+```text
+WINNER_CHANGES_ACROSS_SCENARIOS = TO_BE_FILLED
+```
+
+
+# 46. Estabilidade do top 3 nos cenários
+
+Registrar:
+
+```text
+TOP3_SCENARIO_STABILITY = TO_BE_FILLED
+```
+
+
+# 47. Pareto
+
+Registrar:
+
+```text
+PARETO_VERSION = TO_BE_FILLED
+```
+
+
+# 48. Fronteira de Pareto
+
+Registrar:
+
+```text
+PARETO_FRONT = TO_BE_FILLED
+```
+
+
+# 49. Status Pareto do primeiro colocado
+
+Registrar:
+
+```text
+TOP1_PARETO_STATUS = TO_BE_FILLED
+```
+
+
+# 50. Interpretação de Pareto
+
+Não utilizar:
+
+```text
+Pareto confirmou o melhor
+```
+
+Preferir:
+
+> A alternativa pertence à fronteira de Pareto.
+
+ou interpretação equivalente sustentada pelos resultados.
+
+
+# 51. Sensibilidade
+
+Registrar:
+
+```text
+SENSITIVITY_VERSION = TO_BE_FILLED
+```
+
+
+# 52. Elementos essenciais da sensibilidade
+
+Marco deverá recuperar somente as informações relevantes para comunicação:
+
+```text
+mudança do vencedor
+mudança do top 3
+critérios influentes
+normalização
+rank reversal
+```
+
+
+# 53. Sensibilidade aos pesos
+
+Registrar:
+
+```text
+WEIGHT_SENSITIVITY_MAIN_RESULT = TO_BE_FILLED
+```
+
+
+# 54. Leave-one-criterion-out
+
+Registrar:
+
+```text
+LOCO_MAIN_RESULT = TO_BE_FILLED
+```
+
+
+# 55. Sensibilidade à normalização
+
+Registrar:
+
+```text
+NORMALIZATION_SENSITIVITY_MAIN_RESULT = TO_BE_FILLED
+```
+
+
+# 56. Leave-one-alternative-out
+
+Registrar:
+
+```text
+LOAO_MAIN_RESULT = TO_BE_FILLED
+```
+
+
+# 57. Rank reversal
+
+Registrar:
+
+```text
+RANK_REVERSAL_DETECTED = TO_BE_FILLED
+```
+
+
+# 58. Robustez
+
+Registrar:
+
+```text
+ROBUSTNESS_VERSION = TO_BE_FILLED
+```
+
+
+# 59. Conclusão de robustez local
+
+```text
+LOCAL_ROBUSTNESS_CONCLUSION = TO_BE_FILLED
+```
+
+
+# 60. Conclusão de robustez ampliada
+
+```text
+BROAD_ROBUSTNESS_CONCLUSION = TO_BE_FILLED
+```
+
+
+# 61. Vencedor robusto
+
+Registrar:
+
+```text
+UNIQUE_ROBUST_WINNER = TO_BE_FILLED
+```
+
+
+# 62. Top 3 robusto
+
+Registrar:
+
+```text
+TOP3_ROBUSTNESS = TO_BE_FILLED
+```
+
+
+# 63. Ordem interna do top 3
+
+Registrar:
+
+```text
+TOP3_INTERNAL_ORDER_STABILITY = TO_BE_FILLED
+```
+
+
+# 64. Linguagem correta de robustez
+
+Se uma alternativa ocupar a primeira posição em determinada proporção das
+configurações:
+
+Preferir:
+
+> O fluido ocupou a primeira posição em X% das configurações analisadas.
+
+Não:
+
+> O fluido possui X% de probabilidade de ser o melhor.
+
+
+# 65. Limitações vindas de Vitor
+
+Registrar:
+
+```text
+VITOR_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 66. Conclusões autorizadas
+
+Registrar exatamente as conclusões aprovadas por Vitor:
+
+```text
+AUTHORIZED_CONCLUSION_1 = TO_BE_FILLED
+AUTHORIZED_CONCLUSION_2 = TO_BE_FILLED
+AUTHORIZED_CONCLUSION_3 = TO_BE_FILLED
+```
+
+
+# 67. Marco não deve fortalecer a conclusão
+
+Se Vitor entregar:
+
+> A liderança mostrou sensibilidade.
+
+Marco não deve transformar em:
+
+> O fluido foi claramente superior.
+
+
+# 68. Integração das limitações
+
+As limitações deverão ser consolidadas em uma única visão.
+
+Registrar:
+
+```text
+FINAL_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 69. Categorias possíveis de limitações
+
+Somente quando confirmadas:
+
+```text
+qualidade da base
+missing
+small_n
+precisão experimental
+dados econômicos incompletos
+especificações pendentes
+sensibilidade dos pesos
+sensibilidade da normalização
+rank reversal
+natureza relativa do TOPSIS
+```
+
+
+# 70. Limitações críticas
+
+Registrar separadamente:
+
+```text
+CRITICAL_INTERPRETATION_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 71. Não esconder limitações
+
+O limite de quatro páginas não justifica excluir uma limitação que altere a
+interpretação da recomendação.
+
+
+# 72. Construção da narrativa
+
+A narrativa final deverá responder:
+
+```text
+qual era o problema?
+↓
+como os dados foram tratados?
+↓
+quais critérios foram utilizados?
+↓
+como os pesos foram obtidos?
+↓
+como os fluidos foram classificados?
+↓
+o resultado é robusto?
+↓
+qual é a conclusão?
+```
+
+
+# 73. Estrutura científica recomendada
+
+Para comunicação final:
+
+```text
+dados
+↓
+auditoria
+↓
+critérios
+↓
+CRITIC
+↓
+TOPSIS
+↓
+ranking
+↓
+robustez
+↓
+conclusão
+```
+
+Pareto e sensibilidade deverão ser incorporados na medida em que forem
+essenciais para sustentar a interpretação.
+
+
+# 74. Não transformar o relatório final em documentação técnica completa
+
+O relatório oficial deve ser:
+
+```text
+síntese científica
+```
+
+e não:
+
+```text
+manual da pipeline
+```
+
+
+# 75. Template oficial da professora
+
+O relatório entregue deverá seguir o template fornecido pela docente.
+
+Regras confirmadas:
+
+```text
+máximo 4 páginas
+incluindo referências
+
+A4
+
+margens de 1,5 cm
+
+fonte principal equivalente a Times
+
+texto em 10 pt
+
+espaçamento simples
+
+resumo em português
+até 1200 caracteres com espaço
+
+3 a 5 palavras-chave
+
+texto principal em duas colunas
+
+referências numéricas no texto
+
+referências segundo ABNT
+```
+
+
+# 76. Seções oficiais do relatório final
+
+A estrutura exigida é:
+
+```text
+Introdução
+Material e Método
+Resultados e Discussão
+Conclusões
+Referências
+```
+
+
+# 77. Hierarquia
+
+O template oficial da professora possui prioridade sobre estruturas genéricas
+planejadas anteriormente.
+
+
+# 78. Introdução — objetivo
+
+A introdução deverá ser:
+
+```text
+objetiva
++
+concisa
+```
+
+e conter:
+
+1. contexto;
+2. relevância;
+3. problema;
+4. objetivo do estudo.
+
+
+# 79. Introdução — referências
+
+A própria orientação da professora sugere fundamentação breve com
+aproximadamente:
+
+```text
+1 a 3 referências
+```
+
+quando pertinente.
+
+
+# 80. Objetivo do trabalho
+
+O objetivo deverá aparecer claramente no final da introdução ou em posição
+equivalente.
+
+
+# 81. Material e Método
+
+Deve descrever com precisão suficiente para reprodução:
+
+```text
+dados
+tratamento
+auditoria
+critérios
+normalização
+CRITIC
+TOPSIS
+robustez
+ferramentas computacionais
+```
+
+
+# 82. Ferramenta computacional
+
+O relatório final deverá indicar explicitamente:
+
+```text
+R
+```
+
+como linguagem analítica principal.
+
+
+# 83. Infraestrutura
+
+Ferramentas como:
+
+```text
+renv
+targets
+Docker
+Git
+```
+
+podem ser mencionadas apenas se contribuírem para explicar a
+reprodutibilidade dentro do limite de páginas.
+
+
+# 84. Método de auditoria
+
+A auditoria deverá ser resumida.
+
+Não listar todos os problemas detectados.
+
+Destacar apenas aqueles necessários para justificar a qualidade ou alguma
+decisão posterior.
+
+
+# 85. Método de critérios
+
+Explicar brevemente:
+
+```text
+como foram definidos
+como redundâncias foram tratadas
+como direções foram definidas
+```
+
+
+# 86. Método de conformidade
+
+Se conformidade técnica afetar a recomendação, deve ser mencionada.
+
+
+# 87. Método de normalização
+
+Registrar futuramente a formulação principal aprovada:
+
+```text
+FINAL_REPORT_NORMALIZATION_TEXT = TO_BE_FILLED
+```
+
+
+# 88. Método CRITIC no relatório final
+
+Explicar em poucas linhas que os pesos dependem de:
+
+```text
+variabilidade
++
+conflito/redundância
+```
+
+
+# 89. Fórmulas
+
+Como o limite é de quatro páginas, não é obrigatório apresentar todas as
+fórmulas.
+
+Selecionar apenas as essenciais.
+
+
+# 90. Fórmula candidata do CRITIC
+
+Se houver espaço e relevância:
+
+\[
+C_j=\sigma_j\sum_k(1-r_{jk}),
+\qquad
+w_j=\frac{C_j}{\sum_j C_j}
+\]
+
+
+# 91. Método TOPSIS no relatório final
+
+Explicar a lógica:
+
+```text
+distância ao ideal
++
+distância ao anti-ideal
+```
+
+
+# 92. Fórmula candidata do TOPSIS
+
+Quando útil:
+
+\[
+C_i
+=
+\frac{S_i^-}
+{S_i^+ + S_i^-}
+\]
+
+
+# 93. Método de robustez
+
+Resumir as verificações essenciais.
+
+Evitar enumerar toda perturbação individual se isso comprometer o limite de
+páginas.
+
+
+# 94. Resultados e Discussão
+
+Esta seção deverá combinar:
+
+```text
+resultado
++
+interpretação
+```
+
+e não apenas reproduzir tabelas.
+
+
+# 95. Ordem sugerida dos resultados
+
+Uma possível estrutura condensada:
+
+```text
+auditoria essencial
+↓
+pesos CRITIC
+↓
+ranking TOPSIS
+↓
+Pareto
+↓
+robustez
+↓
+interpretação
+```
+
+
+# 96. Não descrever gráfico sem interpretar
+
+Evitar:
+
+> A Figura 1 mostra o ranking.
+
+Preferir:
+
+> A Figura 1 mostra que X ocupou a primeira posição, porém a pequena diferença
+> para Y motivou a análise de sensibilidade.
+
+Somente se sustentado pelos resultados reais.
+
+
+# 97. Resultados essenciais
+
+Após execução, preencher:
+
+```text
+ESSENTIAL_RESULT_1 = TO_BE_FILLED
+ESSENTIAL_RESULT_2 = TO_BE_FILLED
+ESSENTIAL_RESULT_3 = TO_BE_FILLED
+ESSENTIAL_RESULT_4 = TO_BE_FILLED
+```
+
+
+# 98. Tabela principal candidata
+
+Por causa do limite de páginas, poderá ser útil ter uma tabela compacta com:
+
+```text
+fluido
+TOPSIS
+posição
+conformidade
+```
+
+ou outra estrutura mais informativa depois dos resultados reais.
+
+
+# 99. Figura principal candidata
+
+Pode ser selecionada uma figura de alto valor informativo, por exemplo:
+
+```text
+ranking TOPSIS
+```
+
+ou:
+
+```text
+robustez
+```
+
+A escolha deverá depender dos resultados.
+
+
+# 100. Evitar excesso de elementos
+
+O relatório final de quatro páginas provavelmente não comportará:
+
+```text
+muitas tabelas
++
+muitos gráficos
++
+muitas fórmulas
+```
+
+A seleção deve priorizar informação por espaço.
+
+
+# 101. Conclusão
+
+A conclusão deve responder diretamente:
+
+```text
+qual fluido ou grupo apresentou melhor desempenho?
+↓
+a conclusão é robusta?
+↓
+quais ressalvas são essenciais?
+```
+
+
+# 102. Não introduzir resultado novo na conclusão
+
+Toda afirmação da conclusão deverá ter sido sustentada anteriormente em:
+
+```text
+Resultados e Discussão
+```
+
+
+# 103. Conclusão sem vencedor único
+
+Se não houver vencedor robusto, isso deverá ser explicitamente declarado.
+
+Não forçar uma alternativa única apenas para simplificar o texto.
+
+
+# 104. Recomendações condicionais
+
+Quando sustentadas, poderão ser utilizadas conclusões como:
+
+```text
+melhor desempenho global
+melhor alternativa sob foco econômico
+melhor perfil sob determinado compromisso
+```
+
+
+# 105. Resumo
+
+O resumo oficial deverá possuir:
+
+```text
+até 1200 caracteres com espaço
+```
+
+conforme o template da professora.
+
+
+# 106. Conteúdo do resumo
+
+Idealmente sintetizar:
+
+```text
+problema
++
+método
++
+principal resultado
++
+conclusão
+```
+
+
+# 107. Resumo não deve conter detalhe excessivo
+
+Evitar colocar:
+
+```text
+todas as fórmulas
+todas as etapas
+todos os números
+```
+
+
+# 108. Palavras-chave
+
+Selecionar entre:
+
+```text
+3 e 5
+```
+
+palavras-chave.
+
+Registrar futuramente:
+
+```text
+KEYWORDS = TO_BE_FILLED
+```
+
+
+# 109. Referências
+
+As referências deverão seguir as instruções da professora:
+
+```text
+citações numéricas no texto
++
+lista conforme ABNT
+```
+
+
+# 110. Não inventar referências
+
+Somente utilizar fontes efetivamente consultadas.
+
+
+# 111. Referências metodológicas necessárias
+
+Espera-se que existam referências adequadas para:
+
+```text
+CRITIC
+TOPSIS
+```
+
+e demais métodos centrais que necessitem fundamentação.
+
+
+# 112. Referências técnicas
+
+Normas ou especificações utilizadas deverão ser referenciadas quando aplicável.
+
+
+# 113. Controle de quatro páginas
+
+O limite inclui:
+
+```text
+título
+autores
+afiliação
+resumo
+palavras-chave
+texto
+figuras
+tabelas
+conclusão
+referências
+```
+
+Todo o documento deverá caber em quatro páginas.
+
+
+# 114. Estratégia de redução
+
+Se o documento ultrapassar o limite, reduzir nesta ordem:
+
+```text
+1. redundâncias textuais
+2. detalhes internos de auditoria
+3. detalhes auxiliares da ADA
+4. tabelas secundárias
+5. figuras secundárias
+6. explicações matemáticas não essenciais
+```
+
+
+# 115. Não reduzir primeiro a fonte
+
+Não alterar silenciosamente:
+
+```text
+10 pt
+margens
+estrutura
+```
+
+apenas para caber no limite.
+
+
+# 116. Não alterar template oficial
+
+As regras fornecidas pela professora devem ser preservadas.
+
+
+# 117. Material externo da professora
+
+O template oficial e elementos fornecidos pela docente devem ser tratados como:
+
+```text
+fonte externa oficial
+```
+
+e não como resultados do projeto.
+
+
+# 118. Logos
+
+O template recebido utiliza:
+
+```text
+logos/unesp.jpg
+logos/estat.png
+```
+
+Quando os arquivos oficiais estiverem disponíveis, sua localização no projeto
+deverá ser organizada de forma compatível com o `main.tex`.
+
+
+# 119. Apresentação
+
+A apresentação não possui o mesmo limite de quatro páginas.
+
+Ela deverá comunicar visualmente a cadeia científica de forma mais didática.
+
+
+# 120. Estrutura sugerida da apresentação
+
+A apresentação poderá seguir aproximadamente:
+
+```text
+problema
+objetivo
+dados
+auditoria
+pipeline
+critérios
+CRITIC
+TOPSIS
+ranking
+cenários
+Pareto
+sensibilidade
+robustez
+limitações
+conclusão
+```
+
+
+# 121. Não copiar o relatório para os slides
+
+Os slides devem ser uma adaptação visual.
+
+Não transformar parágrafos do relatório em blocos extensos de texto.
+
+
+# 122. Figura por mensagem
+
+Sempre que possível:
+
+```text
+um slide
+=
+uma mensagem principal
+```
+
+
+# 123. Divisão da apresentação
+
+A divisão preferencial é:
+
+```text
+Pacheco → dados e auditoria
+Benjamin → critérios e CRITIC
+Vitor → TOPSIS, ranking e robustez
+Marco → integração, limitações e conclusão
+```
+
+
+# 124. Consistência relatório × apresentação
+
+Antes do handoff coletivo:
+
+```text
+[ ] mesmo ranking
+[ ] mesmo top 3
+[ ] mesmos pesos
+[ ] mesmo Pareto
+[ ] mesma robustez
+[ ] mesmas limitações
+[ ] mesma conclusão
+```
+
+
+# 125. Arredondamento
+
+É permitido utilizar menos casas decimais na comunicação.
+
+O cálculo oficial permanece com precisão integral.
+
+
+# 126. Não criar empate por arredondamento
+
+Se dois coeficientes aparecerem iguais após arredondamento, a ordem oficial
+continua sendo determinada pelos valores completos.
+
+
+# 127. Figuras
+
+As figuras oficiais devem ser:
+
+```text
+geradas por R
++
+rastreáveis
++
+coerentes com a versão final
+```
+
+
+# 128. Não editar resultado manualmente
+
+Se uma figura apresentar valor incorreto:
+
+```text
+não corrigir no editor gráfico
+```
+
+Deve-se:
+
+```text
+corrigir na origem
+↓
+reexecutar
+↓
+regenerar
+```
+
+
+# 129. Tabelas
+
+Tabelas científicas devem ser geradas ou alimentadas a partir dos resultados
+oficiais.
+
+Não digitar manualmente valores críticos.
+
+
+# 130. Rastreabilidade da integração
+
+Para qualquer afirmação central:
+
+```text
+texto final
+↓
+tabela/figura
+↓
+resultado oficial
+↓
+etapa responsável
+↓
+dados
+```
+
+
+# 131. Rastreabilidade do ranking
+
+Confirmar futuramente:
+
+```text
+[ ] ranking no relatório vem da versão oficial
+[ ] ranking nos slides vem da mesma versão
+```
+
+
+# 132. Rastreabilidade dos pesos
+
+Confirmar:
+
+```text
+[ ] pesos apresentados vêm do CRITIC oficial
+```
+
+
+# 133. Rastreabilidade da robustez
+
+Confirmar:
+
+```text
+[ ] conclusão de robustez vem das análises aprovadas de Vitor
+```
+
+
+# 134. Revisão científica por responsável
+
+Antes da liberação coletiva:
+
+```text
+Pacheco → revisa dados/auditoria
+Benjamin → revisa critérios/CRITIC
+Vitor → revisa ranking/robustez
+Marco → revisa integração/comunicação
+```
+
+
+# 135. Revisão cruzada
+
+Não basta Marco considerar o texto correto.
+
+Cada responsável técnico deverá revisar sua parte.
+
+
+# 136. Alteração científica detectada por Marco
+
+Se Marco identificar problema:
+
+```text
+não corrigir silenciosamente no relatório
+↓
+identificar etapa de origem
+↓
+reabrir etapa
+↓
+corrigir
+↓
+reexecutar downstream
+↓
+atualizar integração
+```
+
+
+# 137. Exemplo de erro upstream
+
+Se um peso estiver errado:
+
+```text
+Benjamin
+↓
+novo CRITIC
+↓
+Vitor
+↓
+novo TOPSIS/robustez
+↓
+Marco
+↓
+novo relatório
+```
+
+
+# 138. Alteração editorial
+
+Mudanças como:
+
+```text
+ortografia
+formatação
+posição de figura
+```
+
+podem ser feitas por Marco sem reexecução científica.
+
+
+# 139. Decisões metodológicas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+quando existirem.
+
+
+# 140. Decisões editoriais importantes
+
+Se houver decisão editorial que afete significativamente a comunicação, poderá
+ser registrada.
+
+Não é necessário criar DEC para cada escolha estética.
+
+
+# 141. Figuras prioritárias
+
+Após a execução:
+
+```text
+PRIORITY_FIGURES = TO_BE_FILLED
+```
+
+
+# 142. Tabelas prioritárias
+
+Registrar:
+
+```text
+PRIORITY_TABLES = TO_BE_FILLED
+```
+
+
+# 143. Conteúdo obrigatório do relatório final
+
+Preencher futuramente:
+
+```text
+MANDATORY_FINAL_REPORT_CONTENT = TO_BE_FILLED
+```
+
+
+# 144. Conteúdo obrigatório da apresentação
+
+Registrar:
+
+```text
+MANDATORY_PRESENTATION_CONTENT = TO_BE_FILLED
+```
+
+
+# 145. Conteúdo interno
+
+Detalhes que não couberem no relatório oficial permanecem preservados nos
+relatórios de etapa.
+
+
+# 146. Importância dos relatórios internos
+
+O limite de quatro páginas não significa eliminar documentação.
+
+A estrutura interna permanece como:
+
+```text
+01_pacheco
+02_benjamin
+03_vitor
+04_marco
+```
+
+para preservar a rastreabilidade completa.
+
+
+# 147. Build do relatório interno
+
+Registrar futuramente:
+
+```text
+INTEGRATION_REPORT_BUILD_STATUS = TO_BE_FILLED
+```
+
+
+# 148. Build do relatório final
+
+Registrar futuramente:
+
+```text
+FINAL_REPORT_BUILD_STATUS = TO_BE_FILLED
+```
+
+
+# 149. Build da apresentação
+
+Registrar:
+
+```text
+PRESENTATION_BUILD_STATUS = TO_BE_FILLED
+```
+
+
+# 150. Warnings
+
+Registrar:
+
+```text
+BUILD_WARNINGS = TO_BE_FILLED
+```
+
+
+# 151. Problemas bloqueantes
+
+Registrar:
+
+```text
+BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+São bloqueantes, por exemplo:
+
+```text
+ranking divergente
+peso divergente
+resultado desatualizado
+figura incorreta
+conclusão incompatível
+PDF que não compila
+```
+
+
+# 152. Problemas não bloqueantes
+
+Registrar:
+
+```text
+NON_BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 153. Estado dos resultados
+
+Nesta fase documental:
+
+```text
+INTEGRATION_STATUS = NOT_EXECUTED
+FINAL_REPORT_STATUS = NOT_CREATED
+PRESENTATION_STATUS = NOT_CREATED
+```
+
+
+# 154. Relatório final candidato
+
+Depois da integração:
+
+```text
+FINAL_REPORT_STATUS = CANDIDATE
+```
+
+Ainda não significa aprovado para entrega.
+
+
+# 155. Apresentação candidata
+
+Depois da integração:
+
+```text
+PRESENTATION_STATUS = CANDIDATE
+```
+
+
+# 156. Congelamento
+
+O congelamento final só ocorrerá após:
+
+```text
+checklist_final.md
++
+ensaio_apresentacao.md
++
+checklist_entrega.md
+```
+
+
+# 157. Handoff coletivo
+
+O arquivo:
+
+```text
+handoffs/04_MARCO_to_TODOS.md
+```
+
+deverá formalizar a entrega de:
+
+```text
+relatório candidato
+apresentação candidata
+tabelas
+figuras
+limitações
+conclusões
+```
+
+
+# 158. Informações críticas do handoff
+
+Preencher futuramente:
+
+```text
+REPORT_VERSION = TO_BE_FILLED
+PRESENTATION_VERSION = TO_BE_FILLED
+RANKING_VERSION = TO_BE_FILLED
+ROBUSTNESS_VERSION = TO_BE_FILLED
+BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 159. Checklist de integração
+
+Antes do handoff:
+
+```text
+[ ] base correta referenciada
+[ ] critérios corretos
+[ ] normalização correta
+[ ] pesos corretos
+[ ] TOPSIS correto
+[ ] ranking correto
+[ ] top 3 correto
+[ ] Pareto correto
+[ ] sensibilidade correta
+[ ] robustez correta
+[ ] limitações consolidadas
+[ ] conclusões autorizadas respeitadas
+[ ] relatório consistente
+[ ] apresentação consistente
+[ ] referências revisadas
+[ ] nenhuma pendência científica crítica
+```
+
+
+# 160. Revisão de Pacheco
+
+```text
+PACHECO_REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 161. Revisão de Benjamin
+
+```text
+BENJAMIN_REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 162. Revisão de Vitor
+
+```text
+VITOR_REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 163. Revisão de Marco
+
+```text
+MARCO_REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 164. Critério de liberação
+
+A etapa coletiva poderá iniciar quando:
+
+```text
+04_MARCO_to_TODOS.md
+=
+APPROVED
+```
+
+
+# 165. Próxima etapa
+
+A sequência será:
+
+```text
+instructions/05_TODOS_REVISAO_ENTREGA/checklist_final.md
+↓
+ensaio_apresentacao.md
+↓
+checklist_entrega.md
+```
+
+
+# 166. Estado atual
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 167. Estados possíveis
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+
+# 168. Aprovação
+
+### Responsável
+
+```text
+Marco
+```
+
+```text
+[ ] INTEGRAÇÃO CONCLUÍDA
+```
+
+Data:
+
+```text
+TO_BE_FILLED
+```
+
+### Pacheco
+
+```text
+[ ] REVISADO
+```
+
+Data:
+
+```text
+TO_BE_FILLED
+```
+
+### Benjamin
+
+```text
+[ ] REVISADO
+```
+
+Data:
+
+```text
+TO_BE_FILLED
+```
+
+### Vitor
+
+```text
+[ ] REVISADO
+```
+
+Data:
+
+```text
+TO_BE_FILLED
+```
+
+
+# 169. Princípio final
+
+> Marco não deve criar uma nova versão científica do projeto. Sua função é
+> transformar os resultados aprovados das etapas anteriores em uma comunicação
+> única, concisa e rigorosa, preservando integralmente a rastreabilidade, as
+> limitações e a força real das evidências.

@@ -1,1 +1,448 @@
-% 03_auditoria
+% ============================================================
+% 03_AUDITORIA.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Apresentar:
+% - por que a auditoria é necessária;
+% - quais verificações serão realizadas;
+% - como inconsistências serão tratadas;
+% - como será construída a base canônica;
+% - quais resultados da auditoria deverão ser apresentados.
+%
+% Este arquivo constitui apenas a BASE da apresentação.
+%
+% Nenhuma inconsistência específica deve ser apresentada como
+% confirmada antes da execução da auditoria em R.
+%
+% ============================================================
+
+
+% ============================================================
+% FRAME 1 — POR QUE AUDITAR?
+% ============================================================
+
+\begin{frame}{Por que auditar os dados?}
+
+    \begin{block}{Princípio}
+        Um ranking multicritério só é confiável se os dados utilizados
+        forem conhecidos, consistentes e rastreáveis.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    Antes de qualquer classificação, a auditoria deverá verificar:
+
+    \begin{itemize}
+        \item estrutura do arquivo;
+        \item identificação das alternativas;
+        \item tipos das variáveis;
+        \item unidades;
+        \item valores ausentes;
+        \item duplicatas;
+        \item fórmulas;
+        \item consistência entre diferentes partes da base.
+    \end{itemize}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Objetivo}
+        Evitar que erros, divergências ou interpretações incorretas
+        sejam propagados para CRITIC, TOPSIS e o ranking final.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 2 — FLUXO DA AUDITORIA
+% ============================================================
+
+\begin{frame}{Fluxo da auditoria}
+
+    \begin{block}{Processo previsto}
+        \centering
+
+        Inventário
+        $\rightarrow$
+        Validação estrutural
+        $\rightarrow$
+        Verificação de valores
+        $\rightarrow$
+        Comparação entre fontes
+        $\rightarrow$
+        Reconciliação
+        $\rightarrow$
+        Base canônica
+    \end{block}
+
+    \vspace{0.4cm}
+
+    Cada problema identificado deverá possuir:
+
+    \begin{itemize}
+        \item localização;
+        \item descrição;
+        \item possível impacto;
+        \item evidências;
+        \item decisão;
+        \item status.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 3 — VERIFICAÇÕES PRINCIPAIS
+% ============================================================
+
+\begin{frame}{Verificações principais}
+
+    \begin{columns}[T]
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Estrutura}
+                \begin{itemize}
+                    \item abas;
+                    \item linhas e colunas;
+                    \item identificadores;
+                    \item tipos;
+                    \item duplicatas;
+                    \item campos ausentes.
+                \end{itemize}
+            \end{block}
+
+            \begin{block}{Unidades}
+                \begin{itemize}
+                    \item unidade original;
+                    \item consistência;
+                    \item escala;
+                    \item necessidade de conversão.
+                \end{itemize}
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Cálculos}
+                \begin{itemize}
+                    \item fórmulas;
+                    \item somas;
+                    \item médias;
+                    \item totais;
+                    \item índices derivados.
+                \end{itemize}
+            \end{block}
+
+            \begin{block}{Consistência}
+                \begin{itemize}
+                    \item valores repetidos entre abas;
+                    \item diferenças entre fontes;
+                    \item erros de transcrição;
+                    \item informações conflitantes.
+                \end{itemize}
+            \end{block}
+
+        \end{column}
+
+    \end{columns}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 4 — VALORES AUSENTES E CASOS ESPECIAIS
+% ============================================================
+
+\begin{frame}{Valores ausentes e casos especiais}
+
+    Nem toda ausência de informação possui o mesmo significado.
+
+    \vspace{0.3cm}
+
+    A auditoria deverá distinguir, quando possível:
+
+    \begin{itemize}
+        \item valor realmente ausente;
+        \item medição pendente;
+        \item informação não aplicável;
+        \item erro de fórmula;
+        \item conteúdo textual em campo numérico;
+        \item informação de significado ainda desconhecido.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Regra}
+        Valores ausentes não serão convertidos automaticamente em zero.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 5 — RECÁLCULO E RECONCILIAÇÃO
+% ============================================================
+
+\begin{frame}{Recálculo e reconciliação}
+
+    \begin{block}{Recálculo independente}
+        Valores derivados relevantes poderão ser recalculados em R para
+        verificar a consistência da planilha original.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    Exemplos de verificações:
+
+    \begin{itemize}
+        \item somas;
+        \item médias;
+        \item percentuais;
+        \item totais;
+        \item índices;
+        \item resultados derivados.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Quando houver divergência:
+
+    \begin{center}
+        detectar
+        $\rightarrow$
+        investigar
+        $\rightarrow$
+        documentar
+        $\rightarrow$
+        decidir
+        $\rightarrow$
+        reconciliar
+    \end{center}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 6 — NÃO CORRIGIR SILENCIOSAMENTE
+% ============================================================
+
+\begin{frame}{Tratamento das inconsistências}
+
+    \begin{alertblock}{Regra central}
+        Nenhum valor será alterado apenas porque parece incorreto.
+    \end{alertblock}
+
+    \vspace{0.3cm}
+
+    Uma inconsistência deverá ser resolvida com base em:
+
+    \begin{itemize}
+        \item origem do dado;
+        \item significado técnico;
+        \item unidade;
+        \item cálculo independente;
+        \item consistência com outras informações;
+        \item documentação disponível.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Caso não seja possível resolver:
+
+    \begin{block}{Status}
+        A pendência permanece explicitamente registrada e seu impacto nas
+        etapas posteriores deverá ser avaliado.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 7 — BASE CANÔNICA
+% ============================================================
+
+\begin{frame}{Construção da base canônica}
+
+    Após a auditoria e a reconciliação será gerada uma base canônica.
+
+    \vspace{0.3cm}
+
+    \begin{block}{Base canônica}
+        Versão dos dados tratada, documentada e aprovada para utilização
+        nas análises estatísticas posteriores.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    Ela deverá possuir:
+
+    \begin{itemize}
+        \item identificadores consistentes;
+        \item variáveis documentadas;
+        \item unidades definidas;
+        \item transformações rastreáveis;
+        \item inconsistências resolvidas ou registradas;
+        \item versão identificável.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 8 — RASTREABILIDADE
+% ============================================================
+
+\begin{frame}{Rastreabilidade dos dados}
+
+    Para cada transformação relevante, deverá ser possível reconstruir:
+
+    \vspace{0.3cm}
+
+    \begin{block}{Linhagem}
+        \centering
+
+        Valor analisado
+        $\rightarrow$
+        transformação
+        $\rightarrow$
+        decisão
+        $\rightarrow$
+        valor original
+    \end{block}
+
+    \vspace{0.4cm}
+
+    Essa rastreabilidade permite:
+
+    \begin{itemize}
+        \item revisar decisões;
+        \item reproduzir a análise;
+        \item corrigir problemas na origem;
+        \item evitar edições manuais não documentadas.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 9 — RESULTADOS DA AUDITORIA
+% ============================================================
+
+\begin{frame}{Resultados da auditoria}
+
+    \begin{block}{A preencher após execução}
+
+        \begin{itemize}
+
+            \item Problemas identificados:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Problemas críticos:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Divergências reconciliadas:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Pendências:
+                  \texttt{TO\_BE\_FILLED}
+
+            \item Status da base canônica:
+                  \texttt{TO\_BE\_FILLED}
+
+        \end{itemize}
+
+    \end{block}
+
+    \vspace{0.3cm}
+
+    \centering
+    \textit{Essas informações deverão ser preenchidas por Pacheco
+    somente após a auditoria em R.}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 10 — ACHADOS MAIS IMPORTANTES
+% ============================================================
+
+\begin{frame}{Principais achados da auditoria}
+
+    \begin{block}{Achado 1}
+        \texttt{TO\_BE\_FILLED}
+    \end{block}
+
+    \begin{block}{Achado 2}
+        \texttt{TO\_BE\_FILLED}
+    \end{block}
+
+    \begin{block}{Achado 3}
+        \texttt{TO\_BE\_FILLED}
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Seleção para apresentação}
+        Apresentar somente inconsistências que afetem de forma relevante
+        os dados, a metodologia ou a interpretação final.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FIGURAS FUTURAS
+% ============================================================
+%
+% Depois da execução, esta seção poderá receber elementos como:
+%
+% - quadro resumo das inconsistências;
+% - fluxograma da reconciliação;
+% - comparação entre valor original e recalculado;
+% - esquema da base canônica.
+%
+% Essas figuras deverão ser produzidas pelos integrantes e,
+% quando científicas, preferencialmente geradas a partir do R.
+%
+% Não é necessário produzi-las agora.
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL EXTERNO DA PROFESSORA
+% ============================================================
+%
+% Caso a professora forneça explicações sobre:
+%
+% - origem de determinada variável;
+% - significado de uma anotação;
+% - unidade correta;
+% - fórmula;
+% - especificação;
+%
+% a informação deverá ser utilizada como evidência na
+% reconciliação.
+%
+% Não substituir a informação oficial por inferência.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% AUDIT_SECTION_STATUS = BASE_PREPARED
+%
+% AUDIT_STATUS = NOT_EXECUTED
+% CANONICAL_DATA_STATUS = NOT_CREATED
+% AUDIT_MAIN_FINDINGS = TO_BE_FILLED
+%
+% ============================================================

@@ -1,1 +1,1109 @@
-% 05_metodologia
+% ============================================================
+% 05_METODOLOGIA.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Apresentar a metodologia multicritério prevista para o
+% projeto:
+%
+% 1. definição dos critérios;
+% 2. construção da matriz de decisão;
+% 3. normalização;
+% 4. ponderação pelo método CRITIC;
+% 5. classificação pelo TOPSIS;
+% 6. cenários;
+% 7. análise de Pareto;
+% 8. sensibilidade;
+% 9. robustez.
+%
+% Este arquivo constitui apenas a BASE da apresentação.
+%
+% Os integrantes deverão posteriormente preencher:
+% - critérios realmente utilizados;
+% - normalização escolhida;
+% - parâmetros;
+% - cenários;
+% - resultados.
+%
+% ============================================================
+
+
+% ============================================================
+% FRAME 1 — VISÃO GERAL
+% ============================================================
+
+\begin{frame}{Metodologia}
+
+    \begin{block}{Pipeline multicritério}
+        \centering
+
+        Base canônica
+        $\rightarrow$
+        Critérios
+        $\rightarrow$
+        Normalização
+        $\rightarrow$
+        CRITIC
+        $\rightarrow$
+        TOPSIS
+        $\rightarrow$
+        Robustez
+    \end{block}
+
+    \vspace{0.4cm}
+
+    O sistema foi estruturado para separar três questões:
+
+    \begin{itemize}
+        \item \textbf{o que será comparado}: critérios;
+        \item \textbf{quanto cada critério informa}: CRITIC;
+        \item \textbf{como as alternativas serão ordenadas}: TOPSIS.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Análises de Pareto, cenários e sensibilidade serão utilizadas
+    posteriormente para avaliar a estabilidade da classificação.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 2 — DEFINIÇÃO DOS CRITÉRIOS
+% ============================================================
+
+\begin{frame}{Definição dos critérios}
+
+    Os critérios não deverão ser escolhidos apenas porque existem
+    na planilha.
+
+    \vspace{0.3cm}
+
+    A seleção deverá considerar:
+
+    \begin{itemize}
+        \item significado técnico;
+        \item qualidade dos dados;
+        \item capacidade discriminatória;
+        \item redundância;
+        \item disponibilidade;
+        \item interpretação;
+        \item direção de preferência.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Resultado esperado}
+        Uma lista de critérios justificável estatística e
+        tecnicamente.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 3 — TIPOS DE CRITÉRIOS
+% ============================================================
+
+\begin{frame}{Direção dos critérios}
+
+    Cada variável deverá possuir uma regra de preferência conhecida.
+
+    \vspace{0.3cm}
+
+    \begin{columns}[T]
+
+        \begin{column}{0.31\textwidth}
+
+            \begin{block}{BENEFIT}
+                Quanto maior o valor, melhor a alternativa.
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.31\textwidth}
+
+            \begin{block}{COST}
+                Quanto menor o valor, melhor a alternativa.
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.31\textwidth}
+
+            \begin{block}{TARGET}
+                O melhor desempenho ocorre próximo de um valor-alvo.
+            \end{block}
+
+        \end{column}
+
+    \end{columns}
+
+    \vspace{0.4cm}
+
+    Além disso, algumas variáveis poderão ser utilizadas apenas como:
+
+    \begin{center}
+        \textbf{restrição}
+        \qquad ou \qquad
+        \textbf{diagnóstico}.
+    \end{center}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 4 — CONFORMIDADE
+% ============================================================
+
+\begin{frame}{Conformidade e desempenho}
+
+    \begin{block}{Separação importante}
+        Conformidade técnica e desempenho multicritério representam
+        conceitos diferentes.
+    \end{block}
+
+    \vspace{0.4cm}
+
+    Uma alternativa poderá:
+
+    \begin{itemize}
+        \item apresentar bom desempenho relativo;
+        \item possuir score elevado;
+        \item e ainda assim apresentar restrição técnica.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Portanto, quando existirem especificações confirmadas, elas
+    deverão ser tratadas explicitamente como:
+
+    \begin{itemize}
+        \item restrições rígidas;
+        \item restrições flexíveis;
+        \item ou informações diagnósticas.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 5 — MATRIZ DE DECISÃO
+% ============================================================
+
+\begin{frame}{Matriz de decisão}
+
+    Após a definição dos critérios será construída a matriz:
+
+    \[
+    X=[x_{ij}]
+    \]
+
+    em que:
+
+    \begin{itemize}
+        \item \(i\) representa cada alternativa de fluido;
+        \item \(j\) representa cada critério;
+        \item \(x_{ij}\) representa o desempenho da alternativa
+              \(i\) no critério \(j\).
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Antes da utilização}
+        A matriz deverá ser verificada quanto a missing, unidades,
+        critérios constantes, direções e consistência das alternativas.
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \begin{center}
+        Número de alternativas:
+        \texttt{TO\_BE\_FILLED}
+
+        \vspace{0.1cm}
+
+        Número de critérios:
+        \texttt{TO\_BE\_FILLED}
+    \end{center}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 6 — NORMALIZAÇÃO
+% ============================================================
+
+\begin{frame}{Normalização}
+
+    Os critérios poderão possuir unidades e escalas diferentes.
+
+    \vspace{0.3cm}
+
+    Por isso será necessária uma transformação para uma escala
+    comparável:
+
+    \[
+    X=[x_{ij}]
+    \quad\longrightarrow\quad
+    R=[r_{ij}]
+    \]
+
+    \vspace{0.3cm}
+
+    \begin{block}{Objetivo}
+        Tornar os critérios comparáveis preservando sua interpretação
+        de preferência.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    O método principal será definido pelos integrantes durante a
+    implementação:
+
+    \begin{center}
+        \texttt{PRIMARY\_NORMALIZATION = TO\_BE\_FILLED}
+    \end{center}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 7 — EXEMPLO DE NORMALIZAÇÃO
+% ============================================================
+
+\begin{frame}{Exemplo de normalização}
+
+    Uma possibilidade para critérios de benefício é a transformação
+    Min--Max:
+
+    \[
+    r_{ij}
+    =
+    \frac{x_{ij}-\min_i(x_{ij})}
+         {\max_i(x_{ij})-\min_i(x_{ij})}.
+    \]
+
+    Para critérios de custo, uma formulação correspondente é:
+
+    \[
+    r_{ij}
+    =
+    \frac{\max_i(x_{ij})-x_{ij}}
+         {\max_i(x_{ij})-\min_i(x_{ij})}.
+    \]
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Importante}
+        Essas equações representam uma possibilidade metodológica.
+        A normalização oficial somente será definida durante a execução.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 8 — CRITIC
+% ============================================================
+
+\begin{frame}{Ponderação objetiva: CRITIC}
+
+    O método CRITIC será utilizado para estimar pesos objetivos dos
+    critérios.
+
+    \vspace{0.3cm}
+
+    Ele considera simultaneamente:
+
+    \begin{columns}[T]
+
+        \begin{column}{0.47\textwidth}
+
+            \begin{block}{Contraste}
+                A variabilidade apresentada por cada critério.
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.47\textwidth}
+
+            \begin{block}{Conflito}
+                A relação do critério com os demais critérios.
+            \end{block}
+
+        \end{column}
+
+    \end{columns}
+
+    \vspace{0.4cm}
+
+    Assim, o peso não é simplesmente definido pela opinião do grupo.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 9 — FÓRMULA CRITIC
+% ============================================================
+
+\begin{frame}{Cálculo do CRITIC}
+
+    Para cada critério \(j\), o conteúdo informacional será calculado por:
+
+    \[
+    C_j
+    =
+    \sigma_j
+    \sum_{k=1}^{p}
+    (1-r_{jk}),
+    \]
+
+    onde:
+
+    \begin{itemize}
+        \item \(\sigma_j\) representa a dispersão do critério;
+        \item \(r_{jk}\) representa a correlação entre os critérios
+              \(j\) e \(k\).
+    \end{itemize}
+
+    Os pesos serão então:
+
+    \[
+    w_j
+    =
+    \frac{C_j}
+         {\sum_{j=1}^{p}C_j}.
+    \]
+
+    \vspace{0.2cm}
+
+    Consequentemente:
+
+    \[
+    \sum_{j=1}^{p}w_j=1.
+    \]
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 10 — INTERPRETAÇÃO DO CRITIC
+% ============================================================
+
+\begin{frame}{Como interpretar os pesos CRITIC?}
+
+    \begin{block}{Maior peso}
+        Representa maior conteúdo informacional relativo dentro da
+        configuração analisada.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    O peso depende da combinação entre:
+
+    \[
+    \text{variabilidade}
+    +
+    \text{conflito com outros critérios}.
+    \]
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Cuidado}
+        Um peso CRITIC elevado não significa automaticamente que o
+        critério seja tecnicamente mais importante.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 11 — CORRELAÇÃO NO CRITIC
+% ============================================================
+
+\begin{frame}{Conflito entre critérios no CRITIC}
+
+    A formulação principal utiliza:
+
+    \[
+    1-r_{jk}.
+    \]
+
+    \vspace{0.3cm}
+
+    Portanto:
+
+    \begin{itemize}
+        \item correlação positiva próxima de \(1\)
+              reduz o termo de conflito;
+
+        \item correlações menores aumentam o conflito;
+
+        \item correlação negativa pode aumentar ainda mais esse termo.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Regra metodológica}
+        A substituição por \(1-|r_{jk}|\) alteraria o método e não
+        deverá ser realizada silenciosamente.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 12 — DO CRITIC AO TOPSIS
+% ============================================================
+
+\begin{frame}{Do peso à classificação}
+
+    Após o CRITIC teremos:
+
+    \[
+    \mathbf{w}
+    =
+    (w_1,w_2,\ldots,w_p).
+    \]
+
+    Esses pesos serão combinados com a matriz normalizada:
+
+    \[
+    v_{ij}
+    =
+    w_j r_{ij}.
+    \]
+
+    \vspace{0.3cm}
+
+    A matriz:
+
+    \[
+    V=[v_{ij}]
+    \]
+
+    será utilizada pelo TOPSIS para comparar cada alternativa com
+    referências ideais.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 13 — TOPSIS
+% ============================================================
+
+\begin{frame}{Classificação: TOPSIS}
+
+    O TOPSIS procura alternativas que estejam:
+
+    \begin{center}
+        \textbf{próximas da solução ideal}
+    \end{center}
+
+    e simultaneamente:
+
+    \begin{center}
+        \textbf{distantes da solução anti-ideal}.
+    \end{center}
+
+    \vspace{0.3cm}
+
+    O processo envolve:
+
+    \begin{enumerate}
+        \item matriz normalizada ponderada;
+        \item solução ideal positiva;
+        \item solução ideal negativa;
+        \item cálculo das distâncias;
+        \item coeficiente de proximidade.
+    \end{enumerate}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 14 — IDEAL E ANTI-IDEAL
+% ============================================================
+
+\begin{frame}{Soluções ideal e anti-ideal}
+
+    Se todos os critérios estiverem orientados de forma que:
+
+    \[
+    \text{maior valor}=\text{melhor desempenho},
+    \]
+
+    teremos:
+
+    \[
+    A^+
+    =
+    \left\{
+    \max_i v_{ij}
+    \right\}
+    \]
+
+    e:
+
+    \[
+    A^-
+    =
+    \left\{
+    \min_i v_{ij}
+    \right\}.
+    \]
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Cuidado}
+        Critérios de custo não devem ser invertidos novamente caso já
+        tenham sido orientados durante a normalização.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 15 — DISTÂNCIAS TOPSIS
+% ============================================================
+
+\begin{frame}{Distâncias às soluções de referência}
+
+    Para cada alternativa \(i\):
+
+    \[
+    S_i^+
+    =
+    \sqrt{
+    \sum_j
+    (v_{ij}-v_j^+)^2
+    }
+    \]
+
+    representa sua distância à solução ideal.
+
+    \vspace{0.3cm}
+
+    E:
+
+    \[
+    S_i^-
+    =
+    \sqrt{
+    \sum_j
+    (v_{ij}-v_j^-)^2
+    }
+    \]
+
+    representa sua distância à solução anti-ideal.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 16 — COEFICIENTE TOPSIS
+% ============================================================
+
+\begin{frame}{Coeficiente de proximidade TOPSIS}
+
+    O coeficiente de proximidade será:
+
+    \[
+    C_i
+    =
+    \frac{S_i^-}
+         {S_i^+ + S_i^-}.
+    \]
+
+    Para uma execução válida:
+
+    \[
+    0\leq C_i\leq1.
+    \]
+
+    \vspace{0.3cm}
+
+    Quanto maior \(C_i\), maior a proximidade relativa da alternativa
+    à solução ideal.
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Interpretação}
+        \(C_i\) não representa a probabilidade de o fluido ser o melhor.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 17 — RANKING
+% ============================================================
+
+\begin{frame}{Construção do ranking}
+
+    O ranking principal será obtido pela ordenação decrescente de:
+
+    \[
+    C_i.
+    \]
+
+    \vspace{0.3cm}
+
+    Além da posição, serão avaliados:
+
+    \begin{itemize}
+        \item diferença entre alternativas;
+        \item proximidade entre primeiro e segundo;
+        \item possíveis quase empates;
+        \item conformidade;
+        \item perfil de forças e fraquezas.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Objetivo}
+        Produzir um ranking explicável e não apenas uma sequência de
+        posições.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 18 — CENÁRIOS
+% ============================================================
+
+\begin{frame}{Análise de cenários}
+
+    O cenário principal utilizará a configuração metodológica aprovada.
+
+    \vspace{0.3cm}
+
+    Cenários alternativos poderão avaliar diferentes hipóteses
+    decisórias, quando justificadas.
+
+    Exemplos possíveis:
+
+    \begin{itemize}
+        \item pesos CRITIC;
+        \item pesos iguais;
+        \item maior ênfase em determinado grupo de critérios;
+        \item diferentes prioridades técnicas.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Regra}
+        Os cenários não deverão ser escolhidos com o objetivo de fazer
+        uma determinada alternativa vencer.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 19 — PARETO
+% ============================================================
+
+\begin{frame}{Análise de Pareto}
+
+    A dominância de Pareto fornecerá uma avaliação complementar que
+    não depende dos pesos CRITIC.
+
+    \vspace{0.3cm}
+
+    Uma alternativa \(A\) domina \(B\) quando:
+
+    \begin{itemize}
+        \item não é pior que \(B\) em nenhum critério;
+        \item é estritamente melhor em pelo menos um critério.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Alternativas não dominadas formarão a:
+
+    \begin{center}
+        \textbf{fronteira de Pareto}.
+    \end{center}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Importante}
+        Pertencer à fronteira de Pareto não significa automaticamente
+        ocupar a primeira posição.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 20 — SENSIBILIDADE
+% ============================================================
+
+\begin{frame}{Análise de sensibilidade}
+
+    Após o ranking principal será avaliado quanto as conclusões
+    dependem das escolhas metodológicas.
+
+    \vspace{0.3cm}
+
+    A análise poderá incluir:
+
+    \begin{itemize}
+        \item perturbação dos pesos;
+        \item retirada de um critério;
+        \item normalizações alternativas;
+        \item retirada de uma alternativa;
+        \item cenários;
+        \item mudança da ordem do ranking.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Pergunta central}
+        Pequenas ou razoáveis mudanças na configuração alteram a
+        conclusão?
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 21 — PERTURBAÇÃO DOS PESOS
+% ============================================================
+
+\begin{frame}{Sensibilidade aos pesos}
+
+    Poderão ser avaliadas perturbações planejadas, por exemplo:
+
+    \begin{center}
+        \(\pm5\%\)
+        \qquad
+        \(\pm10\%\)
+        \qquad
+        \(\pm20\%\)
+    \end{center}
+
+    \vspace{0.3cm}
+
+    Após cada perturbação, os pesos deverão permanecer:
+
+    \[
+    w_j\geq0
+    \]
+
+    e:
+
+    \[
+    \sum_j w_j=1.
+    \]
+
+    \vspace{0.3cm}
+
+    Os integrantes deverão definir a regra definitiva durante a
+    implementação.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 22 — NORMALIZAÇÃO E CRITIC
+% ============================================================
+
+\begin{frame}{Sensibilidade à normalização}
+
+    Alterar a normalização pode modificar:
+
+    \begin{itemize}
+        \item dispersão dos critérios;
+        \item correlações;
+        \item pesos CRITIC;
+        \item distâncias TOPSIS;
+        \item ranking.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Portanto, uma comparação metodologicamente consistente deverá
+    seguir:
+
+    \begin{block}{Reexecução}
+        \centering
+
+        Normalização alternativa
+        $\rightarrow$
+        novo CRITIC
+        $\rightarrow$
+        novo TOPSIS
+        $\rightarrow$
+        comparação
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 23 — REMOÇÃO DE ALTERNATIVA
+% ============================================================
+
+\begin{frame}{Sensibilidade ao conjunto de alternativas}
+
+    Também poderá ser avaliado o efeito de retirar uma alternativa
+    por vez.
+
+    \vspace{0.3cm}
+
+    Para cada remoção:
+
+    \begin{block}{Leave-one-alternative-out}
+        \centering
+
+        Remover
+        $\rightarrow$
+        normalizar novamente
+        $\rightarrow$
+        recalcular CRITIC
+        $\rightarrow$
+        recalcular TOPSIS
+    \end{block}
+
+    \vspace{0.4cm}
+
+    Isso permitirá investigar possíveis alterações na ordem relativa
+    das alternativas restantes.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 24 — RANK REVERSAL
+% ============================================================
+
+\begin{frame}{Rank reversal}
+
+    Uma mudança na composição do conjunto pode provocar mudança na
+    ordem relativa das alternativas.
+
+    \vspace{0.3cm}
+
+    Esse fenômeno será registrado como:
+
+    \begin{center}
+        \textbf{rank reversal}.
+    \end{center}
+
+    \vspace{0.3cm}
+
+    \begin{alertblock}{Interpretação}
+        A ocorrência de rank reversal não deve ser tratada
+        automaticamente como erro. Ela deverá ser analisada dentro da
+        natureza relativa do método.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 25 — ROBUSTEZ
+% ============================================================
+
+\begin{frame}{Avaliação de robustez}
+
+    A robustez sintetizará os resultados das diferentes verificações.
+
+    \vspace{0.3cm}
+
+    Serão observados, conforme a implementação:
+
+    \begin{itemize}
+        \item estabilidade do primeiro colocado;
+        \item estabilidade do top 3;
+        \item mudança de posição;
+        \item influência dos critérios;
+        \item influência das alternativas;
+        \item sensibilidade à normalização;
+        \item comportamento nos cenários;
+        \item consistência com Pareto.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 26 — NÃO CONFUNDIR ROBUSTEZ COM PROBABILIDADE
+% ============================================================
+
+\begin{frame}{Interpretação da robustez}
+
+    Se uma alternativa ocupar a primeira posição em determinada
+    proporção das configurações analisadas, essa medida representa:
+
+    \begin{center}
+        \textbf{frequência de primeira posição}
+    \end{center}
+
+    e não:
+
+    \begin{center}
+        \textbf{probabilidade real de ser a melhor}.
+    \end{center}
+
+    \vspace{0.4cm}
+
+    Da mesma forma:
+
+    \[
+    \text{robustez}
+    \neq
+    \text{significância estatística}.
+    \]
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 27 — SISTEMA ADAPTATIVO
+% ============================================================
+
+\begin{frame}{Por que o sistema é adaptativo?}
+
+    O sistema não será uma tabela fixa de pontuação.
+
+    \vspace{0.3cm}
+
+    Ele deverá responder à estrutura efetivamente observada nos dados:
+
+    \begin{itemize}
+        \item critérios disponíveis;
+        \item variabilidade;
+        \item correlações;
+        \item restrições;
+        \item alternativas presentes;
+        \item condições experimentais.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Adaptação}
+        Alterações justificadas nos dados ou critérios provocam a
+        reexecução das etapas dependentes, mantendo a análise
+        reproduzível.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 28 — METODOLOGIA COMPLETA
+% ============================================================
+
+\begin{frame}{Síntese metodológica}
+
+    \begin{center}
+
+        Dados
+
+        \[
+        \downarrow
+        \]
+
+        Auditoria e base canônica
+
+        \[
+        \downarrow
+        \]
+
+        ADA e seleção dos critérios
+
+        \[
+        \downarrow
+        \]
+
+        Normalização
+
+        \[
+        \downarrow
+        \]
+
+        CRITIC
+
+        \[
+        \downarrow
+        \]
+
+        TOPSIS
+
+        \[
+        \downarrow
+        \]
+
+        Cenários + Pareto + Sensibilidade
+
+        \[
+        \downarrow
+        \]
+
+        Robustez e interpretação
+
+    \end{center}
+
+\end{frame}
+
+
+% ============================================================
+% INFORMAÇÕES A SEREM PREENCHIDAS PELOS INTEGRANTES
+% ============================================================
+%
+% PRIMARY_NORMALIZATION = TO_BE_FILLED
+% N_CRITERIA = TO_BE_FILLED
+% CRITERIA = TO_BE_FILLED
+% CRITIC_CORRELATION_METHOD = TO_BE_FILLED
+% OFFICIAL_SCENARIOS = TO_BE_FILLED
+% WEIGHT_PERTURBATION_RULE = TO_BE_FILLED
+% PARETO_TOLERANCE = TO_BE_FILLED
+% ROBUSTNESS_METRICS = TO_BE_FILLED
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL EXTERNO / REFERÊNCIAS
+% ============================================================
+%
+% Durante a execução, os integrantes deverão pesquisar e
+% confirmar referências metodológicas reais para:
+%
+% - CRITIC;
+% - TOPSIS;
+% - demais métodos que necessitem fundamentação.
+%
+% Não inserir referências inventadas.
+%
+% Caso a professora forneça metodologia, requisito ou orientação
+% adicional, esse material deverá ser incorporado e identificado.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% METHODOLOGY_SECTION_STATUS = BASE_PREPARED
+%
+% CRITERIA_STATUS = NOT_DEFINED
+% NORMALIZATION_STATUS = NOT_DEFINED
+% CRITIC_STATUS = NOT_EXECUTED
+% TOPSIS_STATUS = NOT_EXECUTED
+% PARETO_STATUS = NOT_EXECUTED
+% SENSITIVITY_STATUS = NOT_EXECUTED
+% ROBUSTNESS_STATUS = NOT_EXECUTED
+%
+% ============================================================

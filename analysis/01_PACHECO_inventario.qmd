@@ -1,20 +1,1133 @@
 ---
-title: "01 PACHECO inventario"
-format: html
+title: "01 — Inventário Inicial dos Dados"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Pacheco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+01_PACHECO_INVENTARIO.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Pacheco
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Realizar o inventário inicial da fonte de dados recebida.
 
-## Validações
+Este caderno deverá responder, antes de qualquer tratamento:
 
-## Pendências
+- qual arquivo foi recebido;
+- quais abas existem;
+- quais dimensões cada aba possui;
+- quais variáveis existem;
+- quais tipos de dados aparecem;
+- onde existem fórmulas;
+- quais elementos merecem auditoria posterior.
+
+IMPORTANTE
+
+Este arquivo NÃO deve:
+
+- corrigir dados;
+- reconciliar divergências;
+- criar ranking;
+- selecionar critérios;
+- alterar data/raw/;
+- assumir que valores suspeitos estão errados.
+
+Nesta fase:
+
+INVENTORY_STATUS = NOT_EXECUTED
+DATA_CORRECTIONS = NONE
+RESULTS_STATUS = NOT_GENERATED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 01 — Inventário Inicial
+
+**Responsável:** Pacheco
+
+**Status:** `DRAFT`
+
+**Entrada:** `TO_BE_FILLED`
+
+**Versão da entrada:** `TO_BE_FILLED`
+
+**Saída esperada:** inventário documentado da fonte original.
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é compreender a estrutura da fonte de dados antes de qualquer auditoria ou transformação.
+
+A sequência é:
+
+```text
+arquivo recebido
+↓
+identificação
+↓
+listagem de abas
+↓
+dimensões
+↓
+variáveis
+↓
+tipos
+↓
+fórmulas
+↓
+mapa da fonte
+```
+
+Nenhum valor deverá ser corrigido nesta etapa.
+
+
+# 3. Pré-condição
+
+Antes da execução:
+
+```text
+[ ] arquivo original disponível
+[ ] arquivo armazenado em data/raw/
+[ ] arquivo original preservado
+[ ] nome e caminho conhecidos
+[ ] nenhuma edição manual realizada
+```
+
+
+# 4. Fonte original
+
+Preencher após a execução:
+
+```text
+RAW_FILE_NAME = TO_BE_FILLED
+RAW_FILE_PATH = TO_BE_FILLED
+RAW_FILE_EXTENSION = TO_BE_FILLED
+RAW_FILE_SIZE = TO_BE_FILLED
+RAW_LAST_MODIFIED = TO_BE_FILLED
+```
+
+Quando apropriado, registrar também:
+
+```text
+RAW_FILE_HASH = TO_BE_FILLED
+```
+
+
+# 5. Regra de imutabilidade
+
+O arquivo original deve permanecer inalterado.
+
+Fluxo permitido:
+
+```text
+data/raw/
+↓
+leitura
+↓
+inspeção
+↓
+documentação
+```
+
+Fluxo proibido:
+
+```text
+data/raw/
+↓
+editar células
+↓
+salvar por cima
+```
+
+
+# 6. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+O integrante deverá utilizar apenas os pacotes efetivamente necessários.
+
+
+# 7. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO
+# ============================================================
+#
+# Implementar por Pacheco durante a execução.
+#
+# Responsabilidades esperadas:
+#
+# - carregar pacotes necessários;
+# - definir caminho relativo da fonte;
+# - preparar funções auxiliares, se necessárias.
+#
+# Nenhuma análise foi implementada neste template.
+#
+# ============================================================
+```
+
+
+# 8. Caminho da fonte
+
+Utilizar caminho relativo ao repositório.
+
+```{r}
+# Exemplo conceitual:
+#
+# raw_file <- "data/raw/arquivo.xlsx"
+#
+# Substituir pelo arquivo real durante a execução.
+```
+
+
+# 9. Validação da existência do arquivo
+
+Pacheco deverá implementar verificação explícita de existência da fonte.
+
+```{r}
+# ============================================================
+# VALIDAR ARQUIVO
+# ============================================================
+#
+# Verificar:
+#
+# - arquivo existe;
+# - extensão esperada;
+# - acesso de leitura;
+# - caminho correto.
+#
+# ============================================================
+```
+
+
+# 10. Metadados do arquivo
+
+Registrar, quando possível:
+
+```text
+nome
+extensão
+tamanho
+data de modificação
+hash
+```
+
+```{r}
+# ============================================================
+# METADADOS DA FONTE
+# ============================================================
+#
+# Implementar durante a execução.
+#
+# ============================================================
+```
+
+
+# 11. Tipo de arquivo
+
+Registrar:
+
+```text
+FILE_TYPE = TO_BE_FILLED
+```
+
+Se for uma planilha, identificar o formato real:
+
+```text
+XLSX
+XLS
+ODS
+CSV
+OUTRO
+```
+
+
+# 12. Abas existentes
+
+Para arquivo com múltiplas abas, listar todas.
+
+```text
+N_SHEETS = TO_BE_FILLED
+```
+
+```text
+SHEETS = TO_BE_FILLED
+```
+
+```{r}
+# ============================================================
+# LISTAGEM DE ABAS
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# A saída deverá permitir visualizar todos os nomes exatamente
+# como aparecem na fonte original.
+#
+# ============================================================
+```
+
+
+# 13. Preservação dos nomes originais
+
+Nesta etapa, não renomear silenciosamente as abas.
+
+Registrar exatamente os nomes encontrados.
+
+Se houver problemas como:
+
+```text
+espaços
+acentos
+nomes duplicados
+variações de caixa
+```
+
+eles devem ser documentados, não corrigidos aqui.
+
+
+# 14. Dimensões por aba
+
+Para cada aba, registrar:
+
+```text
+número de linhas
+número de colunas
+```
+
+Estrutura esperada:
+
+| Aba | Linhas | Colunas |
+|---|---:|---:|
+| `TO_BE_FILLED` |  |  |
+
+```{r}
+# ============================================================
+# DIMENSÕES DAS ABAS
+# ============================================================
+#
+# Implementar a leitura necessária para obter dimensões.
+#
+# Não remover linhas ou colunas nesta etapa.
+#
+# ============================================================
+```
+
+
+# 15. Linhas completamente vazias
+
+Registrar se existirem linhas integralmente vazias.
+
+```text
+EMPTY_ROWS_STATUS = TO_BE_FILLED
+```
+
+Nesta etapa:
+
+```text
+detectar
+≠
+remover
+```
+
+
+# 16. Colunas completamente vazias
+
+Registrar:
+
+```text
+EMPTY_COLUMNS_STATUS = TO_BE_FILLED
+```
+
+Também não remover neste momento.
+
+
+# 17. Cabeçalhos
+
+Investigar:
+
+```text
+linha do cabeçalho
+nomes de colunas
+cabeçalhos duplicados
+cabeçalhos em múltiplas linhas
+células mescladas
+```
+
+Registrar:
+
+```text
+HEADER_STATUS = TO_BE_FILLED
+```
+
+
+# 18. Nomes das variáveis
+
+Para cada aba, listar os nomes encontrados.
+
+```{r}
+# ============================================================
+# NOMES DAS VARIÁVEIS
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Preservar os nomes originais nesta fase.
+#
+# ============================================================
+```
+
+
+# 19. Inventário das variáveis
+
+Criar estrutura conceitual contendo:
+
+| Aba | Variável original | Tipo aparente | Unidade aparente | Observação |
+|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+Nenhuma unidade deve ser inventada quando não estiver explícita.
+
+
+# 20. Tipos de dados
+
+Para cada variável, investigar o tipo observado.
+
+Possíveis tipos:
+
+```text
+numeric
+integer
+character
+logical
+date
+formula
+mixed
+unknown
+```
+
+Registrar:
+
+```text
+TYPE_INVENTORY_STATUS = TO_BE_FILLED
+```
+
+
+# 21. Colunas de tipo misto
+
+Uma coluna pode conter, por exemplo:
+
+```text
+números
++
+texto
+```
+
+ou:
+
+```text
+números
++
+unidades
+```
+
+Registrar esses casos:
+
+```text
+MIXED_TYPE_COLUMNS = TO_BE_FILLED
+```
+
+Não convertê-los automaticamente.
+
+
+# 22. Valores textuais especiais
+
+Registrar valores que pareçam possuir significado operacional, como:
+
+```text
+repetir
+OK
+isento
+ausente
+não
+N/A
+```
+
+A lista real deverá vir da fonte.
+
+```text
+SPECIAL_TEXT_VALUES = TO_BE_FILLED
+```
+
+
+# 23. Identificadores de alternativas
+
+Investigar quais campos parecem identificar os fluidos ou alternativas.
+
+Registrar:
+
+```text
+POSSIBLE_FLUID_IDENTIFIER = TO_BE_FILLED
+```
+
+Não assumir definitivamente a chave ainda.
+
+
+# 24. Alternativas observadas
+
+Listar os identificadores encontrados.
+
+```text
+N_OBSERVED_ALTERNATIVES = TO_BE_FILLED
+OBSERVED_ALTERNATIVES = TO_BE_FILLED
+```
+
+A lista definitiva dependerá da auditoria posterior.
+
+
+# 25. Alternativas por aba
+
+Comparar apenas de forma descritiva quais identificadores aparecem em cada aba.
+
+Estrutura futura:
+
+| Aba | Alternativas observadas |
+|---|---|
+| `TO_BE_FILLED` | `TO_BE_FILLED` |
+
+Não resolver ausências ou divergências nesta etapa.
+
+
+# 26. Condições experimentais
+
+Investigar se existem campos que representem:
+
+```text
+condições
+repetições
+ensaios
+tempos
+operações
+```
+
+Registrar:
+
+```text
+POSSIBLE_EXPERIMENTAL_CONDITIONS = TO_BE_FILLED
+```
+
+
+# 27. Repetições
+
+Registrar estrutura aparente:
+
+```text
+POSSIBLE_REPLICATES = TO_BE_FILLED
+```
+
+Não classificar automaticamente repetições legítimas como duplicatas.
+
+
+# 28. Fórmulas
+
+Identificar, quando possível:
+
+```text
+células com fórmula
+abas com fórmula
+colunas derivadas
+totais
+médias
+índices
+```
+
+Registrar:
+
+```text
+FORMULA_STATUS = TO_BE_FILLED
+N_FORMULA_CELLS = TO_BE_FILLED
+```
+
+
+# 29. Inventário de fórmulas
+
+Estrutura conceitual:
+
+| Aba | Célula/Região | Fórmula aparente | Função |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+Não recalcular ainda, salvo o necessário para identificar sua existência.
+
+
+# 30. Erros de fórmula aparentes
+
+Registrar ocorrências como:
+
+```text
+#DIV/0!
+#VALUE!
+#N/A
+#REF!
+```
+
+ou equivalentes encontrados.
+
+```text
+FORMULA_ERROR_STATUS = TO_BE_FILLED
+```
+
+A avaliação detalhada pertence à auditoria.
+
+
+# 31. Células mescladas
+
+Registrar:
+
+```text
+MERGED_CELLS_STATUS = TO_BE_FILLED
+```
+
+Células mescladas podem indicar estrutura visual que precisa ser considerada na leitura.
+
+
+# 32. Formatação como informação
+
+Investigar se a planilha utiliza:
+
+```text
+cor
+negrito
+bordas
+comentários
+notas
+```
+
+para transmitir significado.
+
+Registrar:
+
+```text
+FORMATTING_SEMANTICS = TO_BE_FILLED
+```
+
+Não assumir que formatação é apenas estética.
+
+
+# 33. Comentários e notas
+
+Se existirem:
+
+```text
+COMMENTS_STATUS = TO_BE_FILLED
+```
+
+Registrar apenas sua existência e localização relevante.
+
+
+# 34. Unidades explícitas
+
+Identificar unidades presentes:
+
+```text
+no cabeçalho
+na célula
+em notas
+em legenda
+```
+
+Registrar:
+
+```text
+EXPLICIT_UNITS = TO_BE_FILLED
+```
+
+
+# 35. Unidades não confirmadas
+
+Quando a unidade não estiver clara:
+
+```text
+UNIT_STATUS = UNKNOWN
+```
+
+Não inferir silenciosamente.
+
+
+# 36. Dados primários e derivados
+
+Classificar provisoriamente cada aba, quando possível, como:
+
+```text
+PRIMARY_DATA
+DERIVED_DATA
+SUMMARY
+SPECIFICATION
+ECONOMIC
+AUXILIARY
+UNKNOWN
+```
+
+Essa classificação é provisória até a auditoria.
+
+
+# 37. Função aparente de cada aba
+
+Tabela futura:
+
+| Aba | Função aparente | Confiança | Observação |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 38. Relações entre abas
+
+Investigar se existem indícios de que uma aba depende de outra.
+
+Exemplo conceitual:
+
+```text
+aba A
+↓
+cálculo
+↓
+aba B
+```
+
+Registrar:
+
+```text
+SHEET_DEPENDENCIES = TO_BE_FILLED
+```
+
+
+# 39. Possíveis totais e resumos
+
+Identificar regiões que parecem representar:
+
+```text
+totais
+médias
+comparativos
+resumos
+índices
+```
+
+Registrar:
+
+```text
+SUMMARY_REGIONS = TO_BE_FILLED
+```
+
+A validação numérica ficará para a auditoria.
+
+
+# 40. Potenciais campos econômicos
+
+Registrar apenas se encontrados:
+
+```text
+POSSIBLE_ECONOMIC_FIELDS = TO_BE_FILLED
+```
+
+Não validar cálculos econômicos ainda.
+
+
+# 41. Potenciais especificações
+
+Registrar campos que aparentemente representam:
+
+```text
+limites
+faixas
+alvos
+especificações
+regras técnicas
+```
+
+```text
+POSSIBLE_SPECIFICATIONS = TO_BE_FILLED
+```
+
+Nada deve ser considerado oficial nesta etapa.
+
+
+# 42. Possíveis campos qualitativos
+
+Registrar:
+
+```text
+POSSIBLE_QUALITATIVE_FIELDS = TO_BE_FILLED
+```
+
+Exemplos dependerão do arquivo real.
+
+
+# 43. Missing aparente
+
+Nesta etapa, apenas contar ou localizar valores aparentemente ausentes.
+
+```text
+MISSING_INVENTORY_STATUS = TO_BE_FILLED
+```
+
+A classificação do significado do missing ficará para a auditoria.
+
+
+# 44. Resumo de missing por aba
+
+Tabela futura:
+
+| Aba | Células ausentes | Observação |
+|---|---:|---|
+| `TO_BE_FILLED` |  |  |
+
+
+# 45. Duplicatas aparentes
+
+Nesta etapa pode ser registrada a existência de linhas aparentemente repetidas.
+
+```text
+POSSIBLE_DUPLICATES = TO_BE_FILLED
+```
+
+Não removê-las.
+
+
+# 46. Problemas visuais ou estruturais
+
+Registrar casos como:
+
+```text
+cabeçalhos múltiplos
+linhas de subtotal
+células mescladas
+rodapés
+notas dentro da tabela
+blocos separados na mesma aba
+```
+
+```text
+STRUCTURAL_ISSUES = TO_BE_FILLED
+```
+
+
+# 47. Snapshot estrutural
+
+Ao final do inventário, deverá ser possível resumir a fonte como:
+
+```text
+arquivo
+├── aba 1
+│   ├── dimensões
+│   ├── variáveis
+│   └── função aparente
+├── aba 2
+│   ├── dimensões
+│   ├── variáveis
+│   └── função aparente
+└── ...
+```
+
+
+# 48. Código de inventário
+
+```{r}
+# ============================================================
+# INVENTÁRIO GERAL
+# ============================================================
+#
+# Este bloco deverá ser implementado por Pacheco.
+#
+# Espera-se que produza, de forma reproduzível:
+#
+# - lista de abas;
+# - dimensões;
+# - nomes de colunas;
+# - tipos;
+# - contagens básicas;
+# - presença de fórmulas;
+# - indicadores estruturais.
+#
+# ============================================================
+```
+
+
+# 49. Tabela-resumo do inventário
+
+Após execução:
+
+```text
+INVENTORY_TABLE = TO_BE_FILLED
+```
+
+A tabela deverá ser gerada por código.
+
+
+# 50. Figura estrutural
+
+Se realmente útil, poderá ser produzido um diagrama da estrutura da fonte.
+
+```text
+STRUCTURE_FIGURE = TO_BE_FILLED
+```
+
+Não é obrigatório.
+
+
+# 51. O que NÃO fazer nesta etapa
+
+Não:
+
+```text
+corrigir valores
+substituir missing
+recalcular totais oficiais
+escolher entre valores conflitantes
+converter unidades definitivamente
+excluir fluidos
+excluir variáveis
+definir critérios
+normalizar
+calcular CRITIC
+calcular TOPSIS
+```
+
+
+# 52. Questões para a auditoria
+
+Ao final, listar perguntas que deverão ser investigadas em:
+
+```text
+analysis/02_PACHECO_auditoria.qmd
+```
+
+Estrutura:
+
+```text
+QUESTION_1 = TO_BE_FILLED
+QUESTION_2 = TO_BE_FILLED
+QUESTION_3 = TO_BE_FILLED
+```
+
+
+# 53. Issues iniciais
+
+Registrar apenas problemas observados, sem resolvê-los.
+
+```text
+INITIAL_ISSUES = TO_BE_FILLED
+```
+
+Cada issue poderá futuramente possuir:
+
+```text
+id
+aba
+local
+descrição
+severidade preliminar
+```
+
+
+# 54. Severidade preliminar
+
+Nesta etapa a severidade pode ser apenas provisória.
+
+Possíveis classes:
+
+```text
+TO_REVIEW
+POTENTIALLY_CRITICAL
+INFORMATIONAL
+```
+
+A classificação definitiva poderá ocorrer na auditoria.
+
+
+# 55. Resultados desta etapa
+
+Nesta fase de base:
+
+```text
+INVENTORY_STATUS = NOT_EXECUTED
+```
+
+Depois da execução, registrar:
+
+```text
+N_SHEETS = TO_BE_FILLED
+N_VARIABLES_TOTAL = TO_BE_FILLED
+N_OBSERVED_ALTERNATIVES = TO_BE_FILLED
+N_FORMULA_CELLS = TO_BE_FILLED
+STRUCTURAL_ISSUES_COUNT = TO_BE_FILLED
+```
+
+
+# 56. Interpretação
+
+O inventário deve responder:
+
+```text
+como a fonte está organizada?
+```
+
+e não:
+
+```text
+qual fluido é melhor?
+```
+
+
+# 57. Limitações do inventário
+
+Registrar:
+
+```text
+INVENTORY_LIMITATIONS = TO_BE_FILLED
+```
+
+Exemplos somente quando reais:
+
+```text
+leitura incompleta de fórmulas
+elementos visuais difíceis de extrair
+unidade não explícita
+aba protegida
+```
+
+
+# 58. Artefatos futuros
+
+Quando executado, registrar:
+
+```text
+INVENTORY_ARTIFACT = TO_BE_FILLED
+SHEET_INVENTORY_ARTIFACT = TO_BE_FILLED
+VARIABLE_INVENTORY_ARTIFACT = TO_BE_FILLED
+```
+
+Não é necessário criar esses arquivos agora.
+
+
+# 59. Validação do inventário
+
+Antes de encerrar:
+
+```text
+[ ] todas as abas foram registradas
+[ ] dimensões registradas
+[ ] variáveis registradas
+[ ] tipos observados
+[ ] fórmulas observadas
+[ ] unidades aparentes registradas
+[ ] alternativas observadas registradas
+[ ] problemas estruturais registrados
+[ ] nenhuma correção realizada
+```
+
+
+# 60. Handoff interno para auditoria
+
+A próxima análise é:
+
+```text
+analysis/02_PACHECO_auditoria.qmd
+```
+
+Ela deverá receber:
+
+```text
+estrutura das abas
+variáveis
+tipos
+unidades aparentes
+fórmulas
+alternativas observadas
+issues iniciais
+questões pendentes
+```
+
+
+# 61. Critério de conclusão
+
+O inventário estará concluído quando for possível responder com segurança:
+
+```text
+o que existe no arquivo?
+onde está?
+como está organizado?
+o que precisa ser auditado?
+```
+
+
+# 62. Status final
+
+Estados possíveis:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 63. Estado atual do caderno
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+INVENTORY_STATUS = NOT_EXECUTED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+
+DATA_MODIFICATIONS = NONE
+```
+
+
+# 64. Princípio final
+
+> Antes de avaliar se um valor está correto ou incorreto, é necessário compreender onde ele está, o que representa e como se relaciona com a estrutura original da fonte.

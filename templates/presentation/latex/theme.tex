@@ -1,1 +1,512 @@
-% Definir identidade visual a partir do PDF de referência.
+% ============================================================
+% THEME.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Centralizar a configuração visual da apresentação Beamer.
+%
+% Este arquivo define apenas:
+%
+% - tema-base;
+% - títulos dos frames;
+% - rodapé;
+% - numeração;
+% - blocos;
+% - comportamento visual geral.
+%
+% NÃO deve conter:
+%
+% - resultados científicos;
+% - ranking;
+% - pesos;
+% - conclusões;
+% - valores calculados;
+% - informações institucionais não confirmadas.
+%
+% ============================================================
+
+
+% ============================================================
+% TEMA BASE
+% ============================================================
+%
+% Enquanto não houver template oficial de apresentação
+% fornecido pela professora, utilizar um tema Beamer neutro.
+%
+% Se posteriormente for fornecido um modelo institucional,
+% ele terá prioridade sobre esta configuração.
+%
+% ============================================================
+
+\usetheme{default}
+\usecolortheme{default}
+
+
+% ============================================================
+% FONTE
+% ============================================================
+%
+% Utilizar inicialmente a fonte sans-serif padrão do Beamer.
+%
+% Não impor fonte institucional enquanto não houver
+% especificação oficial.
+%
+% ============================================================
+
+\usefonttheme{professionalfonts}
+
+
+% ============================================================
+% SÍMBOLOS DE NAVEGAÇÃO
+% ============================================================
+%
+% Removidos para manter a apresentação visualmente limpa.
+%
+% ============================================================
+
+\setbeamertemplate{navigation symbols}{}
+
+
+% ============================================================
+% TÍTULO DOS FRAMES
+% ============================================================
+
+\setbeamertemplate{frametitle}{
+    \nointerlineskip
+    \begin{beamercolorbox}[
+        sep=0.25cm,
+        leftskip=0.2cm,
+        rightskip=0.2cm,
+        wd=\paperwidth
+    ]{frametitle}
+        \usebeamerfont{frametitle}
+        \insertframetitle
+    \end{beamercolorbox}
+}
+
+
+% ============================================================
+% FONTE DO TÍTULO DOS FRAMES
+% ============================================================
+
+\setbeamerfont{frametitle}{
+    size=\large,
+    series=\bfseries
+}
+
+
+% ============================================================
+% TÍTULOS E SUBTÍTULOS
+% ============================================================
+
+\setbeamerfont{title}{
+    size=\LARGE,
+    series=\bfseries
+}
+
+\setbeamerfont{subtitle}{
+    size=\large
+}
+
+\setbeamerfont{author}{
+    size=\normalsize
+}
+
+\setbeamerfont{date}{
+    size=\small
+}
+
+
+% ============================================================
+% CORPO DO TEXTO
+% ============================================================
+
+\setbeamerfont{normal text}{
+    size=\normalsize
+}
+
+
+% ============================================================
+% BLOCOS
+% ============================================================
+%
+% Os arquivos de sections/ utilizam:
+%
+% block
+% alertblock
+%
+% A configuração abaixo mantém um estilo simples e legível.
+%
+% ============================================================
+
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+
+% ============================================================
+% TÍTULOS DOS BLOCOS
+% ============================================================
+
+\setbeamerfont{block title}{
+    series=\bfseries
+}
+
+\setbeamerfont{block title alerted}{
+    series=\bfseries
+}
+
+
+% ============================================================
+% LISTAS
+% ============================================================
+
+\setbeamertemplate{itemize item}{
+    \raise0.15ex\hbox{\scriptsize$\blacktriangleright$}
+}
+
+\setbeamertemplate{itemize subitem}{
+    \raise0.1ex\hbox{\tiny$\blacktriangleright$}
+}
+
+
+% ============================================================
+% ENUMERAÇÕES
+% ============================================================
+
+\setbeamertemplate{enumerate item}{
+    \insertenumlabel.
+}
+
+
+% ============================================================
+% RODAPÉ
+% ============================================================
+%
+% Rodapé mínimo:
+%
+% título abreviado do projeto
+% +
+% número do frame
+%
+% Evita adicionar informações institucionais ainda não
+% confirmadas.
+%
+% ============================================================
+
+\setbeamertemplate{footline}{
+    \leavevmode
+    \hbox{
+        \begin{beamercolorbox}[
+            wd=.82\paperwidth,
+            ht=2.7ex,
+            dp=1.1ex,
+            leftskip=0.3cm
+        ]{author in head/foot}
+
+            \usebeamerfont{author in head/foot}
+            Classificação Multicritério de Fluidos de Corte
+
+        \end{beamercolorbox}
+
+        \begin{beamercolorbox}[
+            wd=.18\paperwidth,
+            ht=2.7ex,
+            dp=1.1ex,
+            rightskip=0.3cm plus1fil
+        ]{date in head/foot}
+
+            \usebeamerfont{date in head/foot}
+
+            \insertframenumber
+            \,/\,%
+            \inserttotalframenumber
+
+        \end{beamercolorbox}
+    }
+}
+
+
+% ============================================================
+% CABEÇALHO
+% ============================================================
+%
+% Nenhum cabeçalho adicional é utilizado nesta base.
+%
+% ============================================================
+
+\setbeamertemplate{headline}{}
+
+
+% ============================================================
+% CAPA
+% ============================================================
+%
+% A capa é construída manualmente em:
+%
+% sections/00_capa.tex
+%
+% Portanto, não definimos um template de title page adicional.
+%
+% ============================================================
+
+
+% ============================================================
+% SUMÁRIO AUTOMÁTICO
+% ============================================================
+%
+% Não inserir automaticamente slides de sumário entre as
+% seções.
+%
+% Isso evita aumentar desnecessariamente o número de slides.
+%
+% Caso os integrantes desejem um slide de roteiro futuramente,
+% ele deverá ser inserido conscientemente.
+%
+% ============================================================
+
+
+% ============================================================
+% NUMERAÇÃO DE SEÇÕES
+% ============================================================
+%
+% As \section{} existentes em main.tex servem principalmente
+% para organização interna do documento.
+%
+% Não criaremos divisórias automáticas nesta fase.
+%
+% ============================================================
+
+
+% ============================================================
+% MARGENS INTERNAS
+% ============================================================
+
+\setbeamersize{
+    text margin left=0.6cm,
+    text margin right=0.6cm
+}
+
+
+% ============================================================
+% ESPAÇAMENTO
+% ============================================================
+%
+% Evitar alterações globais agressivas de espaçamento.
+%
+% Cada frame poderá ajustar seu conteúdo localmente quando
+% necessário.
+%
+% ============================================================
+
+
+% ============================================================
+% EQUAÇÕES
+% ============================================================
+%
+% As equações metodológicas devem permanecer legíveis.
+%
+% Evitar:
+%
+% \tiny
+% \scriptsize
+%
+% para fórmulas centrais apenas para fazê-las caber.
+%
+% Se necessário, dividir o conteúdo em mais de um slide.
+%
+% ============================================================
+
+
+% ============================================================
+% TABELAS
+% ============================================================
+%
+% Não definir tamanho de fonte global para tabelas.
+%
+% Os integrantes deverão ajustar cada tabela conforme sua
+% complexidade.
+%
+% Priorizar síntese em vez de redução excessiva da fonte.
+%
+% ============================================================
+
+
+% ============================================================
+% FIGURAS
+% ============================================================
+%
+% Não aplicar molduras ou efeitos automáticos às figuras.
+%
+% Gráficos científicos devem manter a aparência produzida
+% pela análise em R.
+%
+% ============================================================
+
+
+% ============================================================
+% CORES
+% ============================================================
+%
+% Nenhuma paleta personalizada é definida nesta base.
+%
+% Motivos:
+%
+% 1. ainda não há template visual oficial da professora;
+% 2. não queremos inventar identidade institucional;
+% 3. o visual deve poder ser substituído facilmente.
+%
+% Se posteriormente forem fornecidas cores oficiais,
+% elas deverão ser centralizadas neste arquivo.
+%
+% ============================================================
+
+
+% ============================================================
+% LOGOS
+% ============================================================
+%
+% Nenhuma logo é carregada pelo tema.
+%
+% Os arquivos oficiais poderão ser inseridos na capa através de:
+%
+% sections/00_capa.tex
+%
+% usando os recursos armazenados em:
+%
+% assets/
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL OFICIAL DA PROFESSORA
+% ============================================================
+%
+% Caso posteriormente exista:
+%
+% - template Beamer;
+% - arquivo .sty;
+% - apresentação-modelo;
+% - paleta;
+% - fonte;
+% - cabeçalho;
+% - rodapé;
+% - logos;
+%
+% a configuração oficial deverá substituir esta base genérica.
+%
+% A prioridade será:
+%
+% MATERIAL OFICIAL
+% >
+% THEME.TEX GENÉRICO
+%
+% ============================================================
+
+
+% ============================================================
+% ACESSIBILIDADE
+% ============================================================
+%
+% Durante a montagem final, os integrantes deverão priorizar:
+%
+% - contraste suficiente;
+% - fontes legíveis;
+% - gráficos com rótulos claros;
+% - não depender exclusivamente de cores;
+% - poucos elementos por slide;
+% - destaque da mensagem principal.
+%
+% ============================================================
+
+
+% ============================================================
+% RESPONSIVIDADE DA APRESENTAÇÃO
+% ============================================================
+%
+% A apresentação foi configurada em main.tex com:
+%
+% aspectratio=169
+%
+% ou seja, formato widescreen 16:9.
+%
+% Caso a professora exija outro formato, a alteração deverá ser
+% realizada em main.tex.
+%
+% ============================================================
+
+
+% ============================================================
+% SLIDES MUITO CHEIOS
+% ============================================================
+%
+% Se ocorrer:
+%
+% Overfull \vbox
+%
+% ou conteúdo ultrapassando o frame, a primeira solução deve ser:
+%
+% - remover conteúdo redundante;
+% - dividir o frame;
+% - substituir texto por figura;
+%
+% e não simplesmente reduzir toda a fonte.
+%
+% ============================================================
+
+
+% ============================================================
+% PLACEHOLDERS
+% ============================================================
+%
+% Durante a fase de desenvolvimento, vários frames possuem:
+%
+% TO_BE_FILLED
+%
+% Esses placeholders deverão ser substituídos ou removidos antes
+% da apresentação final.
+%
+% ============================================================
+
+
+% ============================================================
+% VERSÃO FINAL
+% ============================================================
+%
+% Antes da apresentação, conferir:
+%
+% - nenhum TO_BE_FILLED visível;
+% - nenhum arquivo ausente;
+% - nenhuma figura quebrada;
+% - nenhum overflow;
+% - nenhum resultado divergente do relatório;
+% - numeração correta;
+% - legibilidade em tela cheia;
+% - logos oficiais corretas;
+% - identidade visual aprovada.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% THEME_STATUS = BASE_PREPARED
+%
+% OFFICIAL_PRESENTATION_THEME = NOT_PROVIDED
+% CUSTOM_COLOR_PALETTE = NOT_DEFINED
+% OFFICIAL_LOGOS = TO_BE_FILLED
+%
+% ============================================================
+
+
+% ============================================================
+% PRINCÍPIO FINAL
+% ============================================================
+%
+% O tema deve apoiar a comunicação científica e nunca competir
+% visualmente com os resultados.
+%
+% ============================================================

@@ -1,20 +1,1136 @@
 ---
-title: "03 PACHECO reconciliacao"
-format: html
+title: "03 — Reconciliação dos Dados"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Pacheco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
 execute:
   echo: true
-  warning: false
+  warning: true
   message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+03_PACHECO_RECONCILIACAO.QMD
+============================================================
 
-## Dados de entrada
+RESPONSÁVEL
+Pacheco
 
-## Metodologia
+FINALIDADE
 
-## Resultados
+Resolver, de forma rastreável e justificável, as inconsistências
+identificadas durante a auditoria.
 
-## Validações
+A reconciliação deverá responder:
 
-## Pendências
+- quais divergências precisam de decisão;
+- quais evidências existem;
+- qual regra será adotada;
+- quais valores serão utilizados posteriormente;
+- quais problemas permanecem sem resolução;
+- quais casos bloqueiam a base canônica.
+
+REGRA CENTRAL
+
+Nunca escolher o valor que "parece melhor".
+
+A decisão deverá utilizar:
+
+evidência
++
+significado técnico
++
+origem
++
+consistência
++
+reprodutibilidade
+
+A base canônica será construída somente no arquivo:
+
+analysis/04_PACHECO_base_canonica.qmd
+
+Nesta fase:
+
+RECONCILIATION_STATUS = NOT_EXECUTED
+CANONICAL_DATA_STATUS = NOT_CREATED
+
+============================================================
+-->
+
+
+# 1. Identificação
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 03 — Reconciliação dos Dados
+
+**Responsável:** Pacheco
+
+**Status:** `DRAFT`
+
+**Entrada principal:** `analysis/02_PACHECO_auditoria.qmd`
+
+**Fonte original:** `TO_BE_FILLED`
+
+**Versão da auditoria:** `TO_BE_FILLED`
+
+
+# 2. Objetivo
+
+O objetivo desta etapa é transformar as inconsistências identificadas na auditoria em decisões explícitas e rastreáveis.
+
+Fluxo:
+
+```text
+issue identificado
+↓
+evidências
+↓
+investigação
+↓
+alternativas de decisão
+↓
+regra escolhida
+↓
+justificativa
+↓
+status
+↓
+entrada para a base canônica
+```
+
+
+# 3. Pré-condição
+
+Antes de iniciar:
+
+```text
+[ ] inventário concluído
+[ ] auditoria concluída
+[ ] issue log disponível
+[ ] divergências entre abas conhecidas
+[ ] recálculos realizados quando necessários
+[ ] unidades auditadas
+[ ] fórmulas auditadas
+[ ] problemas bloqueantes identificados
+```
+
+
+# 4. Entradas da auditoria
+
+Registrar:
+
+```text
+AUDIT_VERSION = TO_BE_FILLED
+ISSUE_LOG = TO_BE_FILLED
+N_ISSUES = TO_BE_FILLED
+BLOCKING_ISSUES = TO_BE_FILLED
+NON_BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 5. Princípio da reconciliação
+
+Reconciliação não significa:
+
+```text
+corrigir manualmente a planilha
+```
+
+Reconciliação significa:
+
+```text
+definir por código
++
+documentar
++
+preservar a fonte original
+```
+
+qual interpretação ou valor será utilizado downstream.
+
+
+# 6. Fonte original permanece imutável
+
+O arquivo em:
+
+```text
+data/raw/
+```
+
+continua preservado.
+
+A reconciliação deve produzir regras derivadas, e não alterações na fonte.
+
+
+# 7. Ambiente
+
+Registrar futuramente:
+
+```text
+R_VERSION = TO_BE_FILLED
+PACKAGES = TO_BE_FILLED
+```
+
+
+# 8. Configuração
+
+```{r}
+# ============================================================
+# CONFIGURAÇÃO DA RECONCILIAÇÃO
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# Poderá incluir:
+#
+# - leitura do issue log;
+# - leitura de artefatos de auditoria;
+# - tolerâncias aprovadas;
+# - regras documentadas em decisions/.
+#
+# ============================================================
+```
+
+
+# 9. Registro das divergências
+
+Cada divergência relevante deverá possuir:
+
+```text
+issue_id
+alternativa
+variável
+fonte_a
+valor_a
+fonte_b
+valor_b
+diferença
+evidência
+status
+```
+
+
+# 10. Tabela de reconciliação
+
+Estrutura esperada:
+
+| Issue ID | Alternativa | Variável | Fonte A | Fonte B | Decisão | Status |
+|---|---|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |  |  |
+
+
+# 11. Evidências disponíveis
+
+Para cada issue, avaliar quais evidências existem.
+
+Possíveis fontes:
+
+```text
+valor original
+fórmula da planilha
+recálculo independente
+outra aba
+unidade
+estrutura experimental
+documentação técnica
+orientação da professora
+```
+
+Registrar apenas as evidências efetivamente existentes.
+
+
+# 12. Hierarquia de evidências
+
+A reconciliação poderá considerar, quando aplicável:
+
+```text
+1. significado técnico
+2. origem primária do valor
+3. cálculo independente
+4. consistência interna
+5. unidade
+6. documentação disponível
+7. precisão numérica
+```
+
+Essa ordem não é obrigatória para todos os casos.
+
+A decisão deve refletir a natureza real de cada divergência.
+
+
+# 13. Fonte primária
+
+Quando houver múltiplas representações do mesmo valor, investigar qual delas é mais próxima da medição ou cálculo original.
+
+Registrar:
+
+```text
+PRIMARY_SOURCE_RULE = TO_BE_FILLED
+```
+
+
+# 14. Valor derivado versus valor primário
+
+Sempre que possível, distinguir:
+
+```text
+dado observado
+```
+
+de:
+
+```text
+dado calculado
+```
+
+Um valor derivado pode ser recalculado a partir dos componentes, desde que sua fórmula seja conhecida.
+
+
+# 15. Recálculo como evidência
+
+Quando existir fórmula verificável:
+
+```text
+componentes
+↓
+recálculo em R
+↓
+valor derivado
+```
+
+o recálculo independente deverá ser considerado como evidência.
+
+
+# 16. Divergência por arredondamento
+
+Se duas fontes diferirem apenas dentro de tolerância numérica justificável:
+
+```text
+CLASSIFICATION = ROUNDING
+```
+
+quando comprovado.
+
+
+# 17. Tolerância
+
+Registrar:
+
+```text
+NUMERICAL_TOLERANCE = TO_BE_FILLED
+```
+
+A tolerância deve possuir justificativa.
+
+Não aumentar a tolerância para fazer um problema desaparecer.
+
+
+# 18. Divergência por unidade
+
+Se a diferença decorrer de unidades distintas:
+
+```text
+CLASSIFICATION = UNIT_DIFFERENCE
+```
+
+A conversão deverá ser explicitamente documentada.
+
+
+# 19. Regra de conversão
+
+Registrar:
+
+```text
+original_value
+original_unit
+conversion_rule
+canonical_value
+canonical_unit
+```
+
+Toda conversão deverá ser reproduzível.
+
+
+# 20. Valor com unidade embutida
+
+Casos como:
+
+```text
+"1 kg"
+```
+
+devem ser reconciliados apenas depois de confirmar:
+
+```text
+valor
+unidade
+escala
+significado
+```
+
+
+# 21. Divergência de fórmula
+
+Se duas abas utilizarem fórmulas diferentes para o mesmo conceito:
+
+```text
+CLASSIFICATION = FORMULA_DIFFERENCE
+```
+
+Registrar:
+
+```text
+FORMULA_A = TO_BE_FILLED
+FORMULA_B = TO_BE_FILLED
+```
+
+
+# 22. Escolha de fórmula
+
+A fórmula adotada deverá ser escolhida com base em:
+
+```text
+definição do indicador
++
+dados de origem
++
+coerência técnica
+```
+
+e não no resultado produzido.
+
+
+# 23. Erro de transcrição
+
+Somente classificar como:
+
+```text
+TRANSCRIPTION_ERROR
+```
+
+quando houver evidência clara.
+
+
+# 24. Divergência de fonte
+
+Quando dois valores representarem fontes efetivamente diferentes:
+
+```text
+SOURCE_DIFFERENCE
+```
+
+deve ser registrado.
+
+Não assumir automaticamente que um deles está errado.
+
+
+# 25. Divergência não resolvida
+
+Quando as evidências forem insuficientes:
+
+```text
+RECONCILIATION_STATUS = UNRESOLVED
+```
+
+É preferível manter uma pendência explícita a inventar uma correção.
+
+
+# 26. Confirmação externa
+
+Se for necessária informação da professora:
+
+```text
+STATUS = PENDING_EXTERNAL_CONFIRMATION
+```
+
+Registrar a pergunta de forma objetiva.
+
+
+# 27. Material fornecido pela professora
+
+Quando houver resposta ou documento externo:
+
+```text
+material recebido
+↓
+fonte registrada
+↓
+issue atualizado
+↓
+decisão revisada
+```
+
+Não apagar o histórico anterior.
+
+
+# 28. Reconciliação de identificadores
+
+Padronizações como:
+
+```text
+espaços
+caixa
+abreviações
+grafias equivalentes
+```
+
+poderão ser aplicadas apenas quando houver certeza de que representam a mesma alternativa.
+
+
+# 29. Mapa de identificadores
+
+Estrutura futura:
+
+| Original | Canônico | Evidência | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+
+# 30. Reconciliação de tipos
+
+Valores que deveriam ser numéricos, mas estão como texto, poderão ser convertidos apenas quando seu significado for inequívoco.
+
+Registrar:
+
+```text
+TYPE_CONVERSIONS = TO_BE_FILLED
+```
+
+
+# 31. Strings especiais
+
+Para cada valor textual relevante:
+
+| Valor | Interpretação | Conversão | Status |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+Não transformar automaticamente em número.
+
+
+# 32. Missing
+
+Para cada tipo de ausência, decidir:
+
+```text
+manter NA
+marcar pendente
+classificar como não aplicável
+recalcular, se possível
+```
+
+Nunca:
+
+```text
+NA → 0
+```
+
+sem justificativa.
+
+
+# 33. Registro do tratamento de missing
+
+```text
+MISSING_RULES = TO_BE_FILLED
+```
+
+
+# 34. Imputação
+
+Nesta etapa:
+
+```text
+IMPUTATION = NOT_AUTOMATIC
+```
+
+Qualquer imputação futura exige decisão metodológica explícita.
+
+
+# 35. Duplicatas
+
+Para cada duplicata aparente, decidir se é:
+
+```text
+erro
+repetição experimental legítima
+registro complementar
+```
+
+Registrar:
+
+```text
+DUPLICATE_RECONCILIATION = TO_BE_FILLED
+```
+
+
+# 36. Exclusões
+
+Nenhuma linha, alternativa ou variável deve ser excluída silenciosamente.
+
+Registrar:
+
+```text
+EXCLUSIONS = TO_BE_FILLED
+```
+
+
+# 37. Motivo de exclusão
+
+Se ocorrer exclusão:
+
+```text
+objeto
+motivo
+evidência
+impacto
+decisão associada
+```
+
+
+# 38. Dados econômicos
+
+Problemas econômicos devem ser reconciliados separadamente.
+
+Verificar:
+
+```text
+denominadores
+custos
+unidades monetárias
+fórmulas
+missing
+divisão por zero
+```
+
+
+# 39. Dados econômicos incompletos
+
+Quando não for possível reconstruir:
+
+```text
+ECONOMIC_STATUS = INCOMPLETE
+```
+
+ou:
+
+```text
+PARTIALLY_VALIDATED
+```
+
+conforme o caso real.
+
+
+# 40. Não preencher dado econômico ausente
+
+Não inferir valor econômico apenas para permitir que o critério entre na análise.
+
+
+# 41. Especificações técnicas
+
+Cada regra técnica deverá possuir:
+
+```text
+variável
+limite/alvo
+fonte
+status
+```
+
+Status possíveis:
+
+```text
+CONFIRMED
+PENDING_CONFIRMATION
+UNKNOWN
+```
+
+
+# 42. Especificação pendente
+
+Uma especificação não confirmada não deverá ser promovida a regra oficial na base canônica.
+
+
+# 43. Variáveis qualitativas
+
+Categorias deverão ser padronizadas apenas depois de confirmar equivalências semânticas.
+
+Exemplo conceitual:
+
+```text
+"OK"
+"Ok"
+```
+
+podem ou não ser equivalentes conforme o contexto.
+
+
+# 44. Regras categóricas
+
+Registrar:
+
+```text
+CATEGORY_MAPPING = TO_BE_FILLED
+```
+
+
+# 45. Variáveis constantes
+
+Variável constante não precisa ser eliminada nesta etapa.
+
+Registrar:
+
+```text
+CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+A decisão sobre seu uso como critério pertence a Benjamin.
+
+
+# 46. Variáveis quase constantes
+
+Registrar:
+
+```text
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+Também não remover automaticamente.
+
+
+# 47. Condições experimentais
+
+Para variáveis observadas em várias condições:
+
+```text
+preservar a estrutura
+```
+
+A agregação será decidida posteriormente.
+
+
+# 48. Reconciliação de condições
+
+Verificar:
+
+```text
+nomes
+ordem
+identificadores
+ausências
+repetições
+```
+
+Registrar:
+
+```text
+CONDITION_MAPPING = TO_BE_FILLED
+```
+
+
+# 49. Precisão numérica
+
+Não substituir valores originais por versões arredondadas na base canônica quando a precisão completa estiver disponível.
+
+
+# 50. Regra de precisão
+
+```text
+CALCULATION_PRECISION = FULL_AVAILABLE_PRECISION
+```
+
+Arredondamento será aplicado apenas na comunicação.
+
+
+# 51. Registro formal de decisão
+
+Decisões metodologicamente relevantes poderão exigir arquivo em:
+
+```text
+decisions/
+```
+
+
+# 52. Decisões relacionadas
+
+Registrar:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+Não inventar IDs antecipadamente.
+
+
+# 53. Quando criar uma DEC
+
+Pode ser necessária quando houver escolha com impacto downstream, por exemplo:
+
+```text
+qual fonte prevalece
+qual fórmula é oficial
+qual unidade canônica será usada
+como interpretar determinado campo
+```
+
+
+# 54. Código de reconciliação
+
+```{r}
+# ============================================================
+# RECONCILIAÇÃO
+# ============================================================
+#
+# Implementar por Pacheco.
+#
+# A lógica deverá:
+#
+# - ler o issue log;
+# - aplicar somente regras aprovadas;
+# - preservar valores originais;
+# - registrar transformações;
+# - produzir uma versão reconciliada intermediária.
+#
+# ============================================================
+```
+
+
+# 55. Nenhuma regra escondida
+
+Evitar estruturas de código como:
+
+```text
+if (fluido == "X") valor <- Y
+```
+
+sem justificativa rastreável.
+
+Toda exceção deve ser documentada.
+
+
+# 56. Log de reconciliação
+
+A execução deverá permitir produzir estrutura como:
+
+| Issue ID | Original | Reconciliado | Regra | Status |
+|---|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 57. Linhagem
+
+Cada valor reconciliado deve permitir reconstruir:
+
+```text
+valor reconciliado
+↓
+regra
+↓
+issue
+↓
+evidência
+↓
+fonte original
+```
+
+
+# 58. Validação das regras
+
+```{r}
+# ============================================================
+# VALIDAÇÃO DA RECONCILIAÇÃO
+# ============================================================
+#
+# Implementar verificações como:
+#
+# - nenhum issue aprovado sem decisão;
+# - nenhum valor alterado sem registro;
+# - unidades coerentes;
+# - identificadores coerentes;
+# - conversões válidas;
+# - problemas bloqueantes detectados.
+#
+# ============================================================
+```
+
+
+# 59. Comparação antes/depois
+
+Gerar, quando útil:
+
+```text
+original
+×
+reconciliado
+```
+
+para valores modificados.
+
+
+# 60. Mudanças realizadas
+
+Registrar:
+
+```text
+N_RECONCILED_VALUES = TO_BE_FILLED
+N_RENAMED_IDENTIFIERS = TO_BE_FILLED
+N_UNIT_CONVERSIONS = TO_BE_FILLED
+N_TYPE_CONVERSIONS = TO_BE_FILLED
+```
+
+
+# 61. Mudanças não realizadas
+
+Registrar também issues que permaneceram:
+
+```text
+UNRESOLVED_ISSUES = TO_BE_FILLED
+```
+
+
+# 62. Problemas bloqueantes
+
+```text
+BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+Se houver issue sem solução que impeça a construção confiável da base:
+
+```text
+RECONCILIATION_STATUS = BLOCKED
+```
+
+
+# 63. Problemas não bloqueantes
+
+```text
+NON_BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 64. Limitações aceitas
+
+Alguns problemas podem não ser corrigíveis, mas ainda permitir avanço.
+
+Registrar:
+
+```text
+ACCEPTED_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 65. Critério para aceitar limitação
+
+A limitação deve ter:
+
+```text
+impacto conhecido
++
+tratamento downstream conhecido
++
+documentação explícita
+```
+
+
+# 66. Artefato intermediário
+
+Se for necessário produzir base reconciliada intermediária:
+
+```text
+RECONCILED_INTERMEDIATE_ARTIFACT = TO_BE_FILLED
+```
+
+Não é necessário criar agora.
+
+
+# 67. Não confundir com base canônica
+
+```text
+base reconciliada intermediária
+≠
+base canônica aprovada
+```
+
+A base canônica será construída e validada no próximo caderno.
+
+
+# 68. Resultados da reconciliação
+
+Após execução:
+
+```text
+RECONCILIATION_STATUS = TO_BE_FILLED
+N_RESOLVED_ISSUES = TO_BE_FILLED
+N_UNRESOLVED_ISSUES = TO_BE_FILLED
+N_BLOCKING_ISSUES = TO_BE_FILLED
+```
+
+
+# 69. Decisões principais
+
+```text
+RECONCILIATION_DECISION_1 = TO_BE_FILLED
+RECONCILIATION_DECISION_2 = TO_BE_FILLED
+RECONCILIATION_DECISION_3 = TO_BE_FILLED
+```
+
+
+# 70. Tabela-resumo
+
+Estrutura candidata:
+
+| Categoria | Identificados | Resolvidos | Pendentes |
+|---|---:|---:|---:|
+| Identificadores |  |  |  |
+| Tipos |  |  |  |
+| Missing |  |  |  |
+| Unidades |  |  |  |
+| Fórmulas |  |  |  |
+| Entre abas |  |  |  |
+
+
+# 71. Interpretação
+
+A reconciliação deve responder:
+
+```text
+quais dados estão prontos para compor a base canônica?
+```
+
+e:
+
+```text
+quais ressalvas precisam acompanhá-los?
+```
+
+
+# 72. Limitações
+
+Registrar:
+
+```text
+RECONCILIATION_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 73. O que esta etapa entrega
+
+Entrega:
+
+```text
+regras de reconciliação
++
+issue log atualizado
++
+valores reconciliados
++
+limitações
++
+pendências
+```
+
+
+# 74. O que esta etapa não entrega
+
+Ainda não entrega:
+
+```text
+base canônica final aprovada
+ADA inicial final
+critérios
+CRITIC
+TOPSIS
+ranking
+```
+
+
+# 75. Próxima etapa
+
+A próxima análise será:
+
+```text
+analysis/04_PACHECO_base_canonica.qmd
+```
+
+
+# 76. Entrada para a base canônica
+
+Deverá fornecer:
+
+```text
+fonte original
+regras aprovadas
+identificadores reconciliados
+unidades reconciliadas
+tipos reconciliados
+missing classificados
+issues pendentes
+limitações
+```
+
+
+# 77. Critério de conclusão
+
+A reconciliação estará pronta para avançar quando:
+
+```text
+todas as divergências relevantes tiverem decisão ou status explícito
++
+nenhuma alteração ocorrer sem rastreabilidade
++
+os problemas bloqueantes estiverem resolvidos ou declarados
+```
+
+
+# 78. Checklist
+
+```text
+[ ] issue log revisado
+[ ] evidências revisadas
+[ ] identificadores reconciliados
+[ ] tipos reconciliados
+[ ] missing classificados
+[ ] unidades reconciliadas
+[ ] fórmulas avaliadas
+[ ] divergências entre abas decididas
+[ ] especificações classificadas
+[ ] dados econômicos classificados
+[ ] decisões registradas
+[ ] alterações rastreáveis
+[ ] pendências registradas
+[ ] bloqueios registrados
+```
+
+
+# 79. Estado atual
+
+```text
+NOTEBOOK_STATUS = BASE_PREPARED
+
+RECONCILIATION_STATUS = NOT_EXECUTED
+
+CANONICAL_DATA_STATUS = NOT_CREATED
+
+CODE_STATUS = NOT_IMPLEMENTED
+
+RESULTS_STATUS = NOT_GENERATED
+```
+
+
+# 80. Princípio final
+
+> A reconciliação deve preservar a história do dado. O objetivo não é produzir uma base aparentemente limpa, mas uma base cuja origem, alteração e justificativa possam ser reconstruídas.

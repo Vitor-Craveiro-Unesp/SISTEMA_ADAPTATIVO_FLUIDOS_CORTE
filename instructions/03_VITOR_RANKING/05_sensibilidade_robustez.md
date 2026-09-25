@@ -1,4 +1,4 @@
-# 05_sensibilidade.md — Análise de Sensibilidade do Ranking Multicritério
+# 05_sensibilidade_robustez.md — Análise de Sensibilidade e Robustez do Ranking Multicritério
 
 ## 1. Responsável
 
@@ -25,9 +25,15 @@ A pergunta central desta etapa é:
 > Pequenas alterações razoáveis na metodologia produzem pequenas alterações
 > no ranking ou modificam completamente a decisão?
 
+Além da sensibilidade, esta etapa deverá integrar os resultados obtidos no
+ranking principal, nos cenários e na análise de Pareto para avaliar a robustez
+das conclusões.
+
 ---
 
-# 3. Princípio fundamental
+# PARTE I — ANÁLISE DE SENSIBILIDADE
+
+## 3. Princípio fundamental
 
 A análise de sensibilidade não deve procurar um ranking diferente.
 

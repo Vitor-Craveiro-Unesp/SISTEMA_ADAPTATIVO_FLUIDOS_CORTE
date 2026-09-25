@@ -1,15 +1,28 @@
-# Handoff Marco → Todos
+# 04_MARCO_to_TODOS.md — Handoff de Relatório, Apresentação e Integração para Revisão Final
 
-## Entregáveis aprovados
+## 1. Responsável que entrega
 
-## Arquivos oficiais
+**Marco**
 
-## Decisões importantes
+---
 
-## Pendências
+## 2. Responsáveis que recebem
 
-## O que não deve ser alterado silenciosamente
+**Todos**
 
-## Próxima etapa
+- Pacheco
+- Benjamin
+- Vitor
+- Marco
 
-## Data / aprovação
+Este handoff encerra a etapa individual de integração e libera a etapa coletiva
+de:
+
+```text
+revisão final
+↓
+ensaio
+↓
+checagem da entrega
+↓
+submissão

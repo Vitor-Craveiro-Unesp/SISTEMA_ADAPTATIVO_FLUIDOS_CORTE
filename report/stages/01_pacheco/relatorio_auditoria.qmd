@@ -1,16 +1,1487 @@
 ---
-title: "Relatório de Auditoria e Preparação dos Dados"
-format: pdf
+title: "Relatório de Auditoria, Reconciliação e Base Canônica"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Pacheco"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
 ---
 
-## Objetivo
+<!--
+============================================================
+RELATORIO_AUDITORIA.QMD
+============================================================
 
-## Metodologia
+Responsável principal: Pacheco
 
-## Resultados
+Este é um RELATÓRIO INTERNO DE ETAPA.
 
-## Validações
+Não corresponde ao relatório técnico final de até 4 páginas
+exigido pela professora.
 
-## Problemas/pendências
+Seu objetivo é documentar detalhadamente:
 
-## Entregáveis
+1. inventário da planilha;
+2. auditoria dos dados;
+3. inconsistências;
+4. reconciliação;
+5. construção da base canônica;
+6. ADA inicial;
+7. decisões;
+8. limitações;
+9. handoff para Benjamin.
+
+Nenhum resultado numérico deve ser inventado neste arquivo.
+
+Quando a etapa for executada, valores, tabelas e figuras
+deverão ser originados do pipeline em R.
+
+============================================================
+-->
+
+
+# 1. Identificação da etapa
+
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
+
+**Etapa:** 01 — Auditoria, Reconciliação, Base Canônica e ADA Inicial
+
+**Responsável:** Pacheco
+
+**Revisor:** `TO_BE_FILLED`
+
+**Status:** `DRAFT`
+
+**Versão do relatório:** `TO_BE_FILLED`
+
+**Versão da base de entrada:** `TO_BE_FILLED`
+
+**Versão da base canônica:** `TO_BE_FILLED`
+
+**Handoff de saída:** `handoffs/01_PACHECO_to_BENJAMIN.md`
+
+
+# 2. Objetivo
+
+Esta etapa tem como objetivo transformar os dados originais fornecidos para o
+projeto em uma base:
+
+- auditada;
+- rastreável;
+- coerente;
+- documentada;
+- adequada às análises estatísticas posteriores.
+
+A sequência conceitual é:
+
+```text
+planilha original
+↓
+inventário
+↓
+auditoria
+↓
+identificação de inconsistências
+↓
+reconciliação
+↓
+base canônica
+↓
+ADA inicial
+↓
+handoff para Benjamin
+```
+
+A etapa não tem como objetivo produzir o ranking final dos fluidos.
+
+
+# 3. Escopo
+
+## 3.1 Incluído
+
+Esta etapa compreende:
+
+1. inventário do arquivo original;
+2. identificação das abas;
+3. identificação das variáveis;
+4. classificação dos tipos;
+5. identificação das unidades;
+6. auditoria de missing;
+7. auditoria de duplicatas;
+8. auditoria de erros de fórmula;
+9. recálculo independente de valores agregados importantes;
+10. identificação de divergências entre abas;
+11. reconciliação das divergências;
+12. definição da base canônica;
+13. registro da linhagem dos dados;
+14. ADA inicial;
+15. documentação das limitações.
+
+## 3.2 Fora do escopo
+
+Não pertence à etapa de Pacheco:
+
+- seleção final dos critérios multicritério;
+- cálculo dos pesos CRITIC;
+- cálculo TOPSIS;
+- ranking final;
+- cenários;
+- Pareto;
+- análise final de sensibilidade;
+- análise final de robustez.
+
+Essas tarefas pertencem às etapas posteriores.
+
+
+# 4. Dados de entrada
+
+Quando a etapa for executada, registrar:
+
+```text
+RAW_FILE = TO_BE_FILLED
+RAW_PATH = TO_BE_FILLED
+RAW_HASH = TO_BE_FILLED
+RAW_FILE_SIZE = TO_BE_FILLED
+RAW_LAST_MODIFIED = TO_BE_FILLED
+```
+
+O arquivo original deverá permanecer imutável.
+
+
+# 5. Regra de imutabilidade
+
+O arquivo localizado em:
+
+```text
+data/raw/
+```
+
+deverá ser tratado como fonte original.
+
+É proibido corrigir diretamente:
+
+- células;
+- fórmulas;
+- unidades;
+- nomes;
+- valores;
+- erros.
+
+A cadeia correta será:
+
+```text
+raw
+↓
+leitura em R
+↓
+diagnóstico
+↓
+decisão documentada
+↓
+base derivada
+```
+
+O dado original deve permanecer preservado.
+
+
+# 6. Ferramentas computacionais
+
+A análise será executada em **R**.
+
+A infraestrutura prevista inclui:
+
+```text
+R
+renv
+targets
+testthat
+Docker
+Git
+```
+
+As versões efetivamente utilizadas serão registradas quando a implementação for
+executada.
+
+```text
+R_VERSION = TO_BE_FILLED
+RENV_STATUS = TO_BE_FILLED
+DOCKER_STATUS = TO_BE_FILLED
+```
+
+
+# 7. Inventário do arquivo
+
+O primeiro passo deverá ser a inspeção estrutural do arquivo.
+
+Registrar futuramente:
+
+```text
+N_SHEETS = TO_BE_FILLED
+```
+
+e a relação de abas:
+
+```text
+SHEETS = TO_BE_FILLED
+```
+
+
+# 8. Inventário por aba
+
+Para cada aba, registrar:
+
+| Aba | Nº linhas | Nº colunas | Fórmulas | Erros | Observações |
+|---|---:|---:|---|---|---|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+A tabela deverá ser gerada a partir da auditoria, e não preenchida com números
+hipotéticos.
+
+
+# 9. Finalidade das abas
+
+Cada aba deverá ser classificada segundo sua função no arquivo.
+
+Exemplo estrutural:
+
+| Aba | Função aparente | Utilização no projeto |
+|---|---|---|
+| `TO_BE_FILLED` | `TO_BE_FILLED` | `TO_BE_FILLED` |
+
+Possíveis funções:
+
+```text
+dados primários
+resultados derivados
+resumo
+comparação
+cálculo econômico
+especificação
+informação auxiliar
+```
+
+
+# 10. Identificação dos fluidos
+
+Quando a auditoria for executada:
+
+```text
+N_FLUIDS = TO_BE_FILLED
+```
+
+e:
+
+```text
+FLUID_IDS = TO_BE_FILLED
+```
+
+Nenhum fluido deve ser excluído silenciosamente.
+
+
+# 11. Inconsistência de identificação dos fluidos
+
+Será verificado se:
+
+- todos os fluidos aparecem nas abas esperadas;
+- existem fluidos presentes em uma aba e ausentes em outra;
+- existem diferenças de nomenclatura;
+- existem espaços, caracteres ou codificações distintas.
+
+Registrar:
+
+```text
+FLUID_IDENTIFICATION_ISSUES = TO_BE_FILLED
+```
+
+
+# 12. Inventário das variáveis
+
+Cada variável relevante deverá possuir, sempre que possível:
+
+| Campo | Descrição |
+|---|---|
+| `variable` | nome utilizado no projeto |
+| `original_name` | nome na fonte original |
+| `description` | significado |
+| `type` | numérica/categórica/etc. |
+| `unit` | unidade |
+| `source_sheet` | aba de origem |
+| `status` | validada/pendente |
+
+O dicionário real será produzido durante a execução.
+
+
+# 13. Tipos de dados
+
+A auditoria deverá identificar:
+
+```text
+numeric
+integer
+character
+categorical
+logical
+date
+formula
+```
+
+ou tipos equivalentes.
+
+Valores que deveriam ser numéricos, mas estiverem armazenados como texto,
+devem ser investigados.
+
+
+# 14. Strings especiais
+
+Valores textuais como:
+
+```text
+"repetir"
+"OK"
+"não"
+"isento"
+"1 kg"
+```
+
+ou quaisquer equivalentes encontrados não devem ser convertidos
+automaticamente em números.
+
+Seu significado deverá ser investigado antes de qualquer transformação.
+
+
+# 15. Auditoria de missing
+
+A etapa deverá distinguir, quando possível:
+
+```text
+TRUE_MISSING
+PENDING_MEASUREMENT
+FORMULA_ERROR
+NOT_APPLICABLE
+UNKNOWN
+```
+
+Registrar futuramente:
+
+| Variável | Missing | Proporção | Tipo | Impacto |
+|---|---:|---:|---|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 16. Regra para missing
+
+Não utilizar automaticamente:
+
+```text
+NA → 0
+```
+
+Missing e zero possuem significados diferentes.
+
+Qualquer imputação futura deverá possuir justificativa específica e ser
+documentada.
+
+
+# 17. Duplicatas
+
+A auditoria deverá verificar:
+
+- linhas integralmente duplicadas;
+- registros duplicados por identificador;
+- repetições experimentais legítimas;
+- cópias acidentais.
+
+Registrar:
+
+```text
+DUPLICATE_STATUS = TO_BE_FILLED
+```
+
+
+# 18. Repetições experimentais
+
+Repetições legítimas não devem ser classificadas como duplicatas apenas porque
+compartilham valores semelhantes.
+
+Quando existirem, registrar:
+
+```text
+REPLICATE_STRUCTURE = TO_BE_FILLED
+```
+
+
+# 19. Auditoria das unidades
+
+Para cada variável numérica relevante deverá ser identificado:
+
+```text
+nome
+valor
+unidade original
+unidade canônica
+```
+
+Registrar qualquer inconsistência.
+
+
+# 20. Conversões de unidade
+
+Se for necessária conversão:
+
+```text
+valor original
++
+unidade original
+↓
+regra documentada
+↓
+valor canônico
++
+unidade canônica
+```
+
+A regra deverá ser registrada em `decisions/` quando metodologicamente
+relevante.
+
+
+# 21. Valores contendo unidade em texto
+
+Casos do tipo:
+
+```text
+"1 kg"
+```
+
+não devem ser interpretados como número `1` sem considerar:
+
+```text
+unidade
+escala
+significado
+```
+
+A transformação deverá ser explicitamente validada.
+
+
+# 22. Auditoria de fórmulas
+
+Quando existirem fórmulas na planilha, deverão ser identificados:
+
+- localização;
+- fórmula;
+- dependências;
+- resultado;
+- erro, se houver.
+
+Registrar:
+
+```text
+N_FORMULAS = TO_BE_FILLED
+N_FORMULA_ERRORS = TO_BE_FILLED
+```
+
+
+# 23. Recálculo independente
+
+Valores analíticos importantes derivados da planilha deverão ser recalculados
+em R quando apropriado.
+
+Exemplos:
+
+```text
+soma
+média
+percentual
+total
+índice econômico
+```
+
+A planilha original não deve ser considerada automaticamente correta apenas
+porque possui uma fórmula.
+
+
+# 24. Auditoria de somas
+
+Registrar futuramente:
+
+| Métrica | Valor na planilha | Valor recalculado | Diferença | Status |
+|---|---:|---:|---:|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 25. Auditoria de médias
+
+Registrar:
+
+| Métrica | Valor na planilha | Valor recalculado | Diferença | Status |
+|---|---:|---:|---:|---|
+| `TO_BE_FILLED` |  |  |  |  |
+
+
+# 26. Tolerância numérica
+
+Pequenas diferenças podem decorrer de:
+
+- arredondamento;
+- precisão de armazenamento;
+- representação numérica.
+
+A tolerância adotada deverá ser definida posteriormente e, se metodologicamente
+importante, registrada em `decisions/`.
+
+
+# 27. Auditoria entre abas
+
+Quando o mesmo conceito aparecer em mais de uma aba, os valores deverão ser
+comparados.
+
+Para cada conflito:
+
+| Issue ID | Fluido | Variável | Fonte A | Fonte B | Diferença |
+|---|---|---|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |  |
+
+
+# 28. Diferença absoluta
+
+Quando aplicável:
+
+\[
+d_{\mathrm{abs}} = |x_A-x_B|
+\]
+
+deverá ser calculada.
+
+
+# 29. Diferença relativa
+
+Quando aplicável:
+
+\[
+d_{\mathrm{rel}}
+=
+\frac{|x_A-x_B|}
+{|x_{\mathrm{ref}}|}
+\]
+
+A definição de referência deverá ser documentada.
+
+
+# 30. Classificação das divergências
+
+As divergências poderão ser classificadas como:
+
+```text
+ROUNDING
+FORMULA_DIFFERENCE
+SOURCE_DIFFERENCE
+UNIT_DIFFERENCE
+TRANSCRIPTION_ERROR
+UNRESOLVED
+OTHER
+```
+
+somente depois da investigação.
+
+
+# 31. Não corrigir silenciosamente
+
+Fluxo obrigatório:
+
+```text
+divergência detectada
+↓
+investigação
+↓
+evidências
+↓
+decisão
+↓
+registro
+↓
+base canônica
+```
+
+Nunca:
+
+```text
+divergência
+↓
+escolher o valor que parece melhor
+```
+
+
+# 32. Registro central de problemas
+
+Quando esta etapa for executada, deverá existir um registro conceitual contendo:
+
+```text
+issue_id
+sheet
+fluid
+variable
+description
+severity
+status
+decision
+```
+
+Não é necessário criar esse artefato agora.
+
+
+# 33. Severidade dos problemas
+
+Utilizar, quando adequado:
+
+```text
+CRITICAL
+MAJOR
+MINOR
+INFORMATIONAL
+```
+
+Um problema crítico poderá bloquear a criação da base canônica.
+
+
+# 34. Reconciliação
+
+A reconciliação deverá determinar quais valores serão utilizados nas análises
+posteriores quando houver múltiplas fontes possíveis.
+
+
+# 35. Hierarquia de evidências
+
+Uma decisão de reconciliação poderá considerar:
+
+1. significado técnico;
+2. origem primária;
+3. fórmula independente;
+4. consistência interna;
+5. unidade;
+6. precisão;
+7. documentação disponível.
+
+A hierarquia efetiva deverá ser documentada quando necessária.
+
+
+# 36. Decisões de reconciliação
+
+Registrar:
+
+| Issue ID | Decisão | Justificativa | DEC relacionado |
+|---|---|---|---|
+| `TO_BE_FILLED` |  |  |  |
+
+Não inventar IDs de `DEC` antes que existam decisões reais.
+
+
+# 37. Valores não reconciliados
+
+Se algum problema permanecer aberto:
+
+```text
+UNRESOLVED_ISSUES = TO_BE_FILLED
+```
+
+Cada caso deverá indicar se:
+
+```text
+BLOCKING
+NON_BLOCKING
+INFORMATIONAL
+```
+
+
+# 38. Dados econômicos
+
+Os dados econômicos deverão ser auditados antes de serem utilizados em uma
+etapa multicritério.
+
+Será verificado:
+
+- completude;
+- fórmulas;
+- divisão por zero;
+- unidades monetárias;
+- denominadores;
+- consistência entre fluidos.
+
+Registrar:
+
+```text
+ECONOMIC_DATA_STATUS = TO_BE_FILLED
+```
+
+
+# 39. Estados possíveis dos dados econômicos
+
+```text
+VALIDATED
+PARTIALLY_VALIDATED
+INCOMPLETE
+BLOCKED
+```
+
+
+# 40. Dados econômicos incompletos
+
+Uma variável econômica incompleta não deve entrar automaticamente na matriz de
+decisão.
+
+A etapa de Benjamin receberá explicitamente seu status.
+
+
+# 41. Informações qualitativas
+
+Informações como:
+
+```text
+corrosão
+espuma
+bactérias
+composição
+classificações técnicas
+```
+
+quando presentes, deverão ser preservadas de acordo com seu significado real.
+
+
+# 42. Variáveis constantes
+
+A auditoria e a ADA inicial deverão identificar variáveis com:
+
+\[
+\operatorname{Var}(X)=0
+\]
+
+Registrar:
+
+```text
+CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+
+# 43. Variáveis quase constantes
+
+Também deverão ser registradas variáveis com pouca capacidade discriminatória:
+
+```text
+NEAR_CONSTANT_VARIABLES = TO_BE_FILLED
+```
+
+A decisão de exclusão como critério pertence à etapa de Benjamin.
+
+
+# 44. Especificações técnicas
+
+Especificações encontradas na fonte devem ser classificadas como:
+
+```text
+CONFIRMED
+PENDING_CONFIRMATION
+UNKNOWN
+```
+
+Não assumir como oficial uma especificação apenas porque aparece em anotação
+isolada.
+
+
+# 45. Base canônica
+
+Após auditoria e reconciliação, será construída uma base canônica.
+
+Ela deverá representar:
+
+```text
+fonte oficial dos dados tratados
+para as análises posteriores
+```
+
+
+# 46. Regra da base canônica
+
+A base canônica deverá ser gerada por código.
+
+Não será criada manualmente por:
+
+```text
+copiar
+colar
+editar planilha
+```
+
+
+# 47. Versão da base canônica
+
+Registrar futuramente:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+CANONICAL_DATA_DATE = TO_BE_FILLED
+```
+
+
+# 48. Estrutura da base canônica
+
+Registrar:
+
+```text
+N_ROWS = TO_BE_FILLED
+N_COLUMNS = TO_BE_FILLED
+N_FLUIDS = TO_BE_FILLED
+```
+
+
+# 49. Chaves da base
+
+Quando aplicável:
+
+```text
+FLUID_ID = TO_BE_FILLED
+CONDITION_ID = TO_BE_FILLED
+REPLICATE_ID = TO_BE_FILLED
+```
+
+
+# 50. Linhagem dos dados
+
+Cada valor relevante deverá ser rastreável conceitualmente por:
+
+```text
+valor na base canônica
+↓
+transformação
+↓
+decisão
+↓
+fonte original
+```
+
+
+# 51. Dicionário da base
+
+O dicionário deverá conter, quando aplicável:
+
+```text
+variable
+description
+type
+unit
+source
+transformation
+status
+```
+
+
+# 52. Variáveis derivadas
+
+Variáveis derivadas devem possuir fórmula explícita.
+
+Exemplo conceitual:
+
+\[
+Z = f(X_1,X_2,\ldots,X_p)
+\]
+
+Nunca depender de cálculo manual não documentado.
+
+
+# 53. Imputação
+
+Nesta etapa, não realizar imputação automática de missing sem decisão
+metodológica explícita.
+
+Registrar:
+
+```text
+IMPUTATION_STATUS = TO_BE_FILLED
+```
+
+
+# 54. Exclusões
+
+Toda exclusão de:
+
+```text
+linha
+fluido
+variável
+medição
+```
+
+deve possuir justificativa.
+
+Registrar:
+
+```text
+EXCLUSIONS = TO_BE_FILLED
+```
+
+
+# 55. ADA inicial
+
+Após o congelamento da base canônica, será realizada análise descritiva inicial.
+
+
+# 56. Objetivos da ADA inicial
+
+A ADA deverá investigar:
+
+- localização;
+- dispersão;
+- amplitude;
+- missing;
+- estabilidade;
+- valores extremos;
+- diferenças entre fluidos;
+- diferenças entre condições;
+- variáveis constantes;
+- padrões que merecem aprofundamento.
+
+
+# 57. Estatísticas descritivas
+
+Quando aplicável, calcular:
+
+\[
+\bar{x}
+=
+\frac{1}{n}
+\sum_{i=1}^{n}x_i
+\]
+
+além de:
+
+- mediana;
+- mínimo;
+- máximo;
+- desvio-padrão;
+- amplitude;
+- quartis.
+
+A escolha das medidas deverá considerar a natureza de cada variável.
+
+
+# 58. Resumo numérico
+
+Uma tabela futura poderá conter:
+
+| Variável | n | Média | Mediana | DP | Mín. | Máx. |
+|---|---:|---:|---:|---:|---:|---:|
+| `TO_BE_FILLED` |  |  |  |  |  |  |
+
+
+# 59. Comparação entre fluidos
+
+A ADA inicial deverá avaliar como cada variável se comporta entre os fluidos.
+
+Não utilizar essa análise isoladamente para produzir um ranking oficial.
+
+
+# 60. Comparação entre condições
+
+Quando existirem múltiplas condições experimentais, elas deverão ser
+preservadas inicialmente.
+
+Evitar média prematura que esconda:
+
+```text
+instabilidade
+efeito de condição
+trade-off
+```
+
+
+# 61. Estabilidade
+
+Quando apropriado, será avaliada a variação do mesmo fluido entre condições.
+
+A definição formal de um eventual critério de estabilidade será realizada na
+etapa seguinte.
+
+
+# 62. Valores extremos na ADA
+
+Valores extremos deverão ser destacados para investigação, não excluídos
+automaticamente.
+
+
+# 63. Correlação exploratória
+
+Pacheco poderá realizar correlação apenas como diagnóstico exploratório.
+
+A análise formal de:
+
+```text
+redundância
+estrutura bivariada
+estrutura multivariada
+```
+
+pertence a Benjamin.
+
+
+# 64. Figuras da ADA inicial
+
+Quando executada, poderão ser geradas figuras como:
+
+```text
+boxplots
+dotplots
+gráficos por fluido
+gráficos por condição
+distribuições
+```
+
+A seleção definitiva dependerá dos dados.
+
+
+# 65. Pasta de figuras
+
+As figuras específicas desta etapa poderão ser organizadas em:
+
+```text
+report/stages/01_pacheco/figures/
+```
+
+quando forem efetivamente produzidas.
+
+Não é necessário criar nenhuma figura agora.
+
+
+# 66. Pasta de tabelas
+
+As tabelas específicas desta etapa poderão ser organizadas em:
+
+```text
+report/stages/01_pacheco/tables/
+```
+
+quando forem efetivamente produzidas.
+
+Não é necessário criar arquivos adicionais agora.
+
+
+# 67. Resultados da ADA
+
+Nesta fase documental:
+
+```text
+ADA_STATUS = NOT_EXECUTED
+```
+
+Não registrar conclusões numéricas antes da execução.
+
+
+# 68. Achados exploratórios
+
+Quando existirem, classificar como:
+
+```text
+EXPLORATORY
+```
+
+até validação posterior.
+
+
+# 69. Resultados confirmados
+
+Somente após auditoria e validação poderão ser classificados como:
+
+```text
+CONFIRMED
+```
+
+
+# 70. Não produzir ranking
+
+A etapa de Pacheco não deve concluir:
+
+```text
+FLUIDO X = MELHOR
+```
+
+Mesmo que algumas métricas individuais pareçam favoráveis.
+
+
+# 71. Não produzir pesos
+
+Nenhum peso CRITIC oficial deve ser calculado nesta etapa.
+
+
+# 72. Não produzir TOPSIS
+
+Nenhum coeficiente TOPSIS deverá ser produzido nesta etapa.
+
+
+# 73. Validação da base
+
+Antes do handoff, verificar:
+
+```text
+[ ] número de linhas coerente
+[ ] número de colunas coerente
+[ ] identificadores válidos
+[ ] unidades válidas
+[ ] missing conhecidos
+[ ] nenhuma correção silenciosa
+[ ] divergências documentadas
+[ ] valores derivados rastreáveis
+```
+
+
+# 74. Testes
+
+Quando a implementação estiver pronta:
+
+```text
+TEST_STATUS = TO_BE_FILLED
+```
+
+Os testes poderão verificar, por exemplo:
+
+- presença das abas;
+- nomes esperados;
+- chaves;
+- tipos;
+- intervalos;
+- ausência de duplicatas indevidas;
+- consistência dos cálculos;
+- integridade da base canônica.
+
+
+# 75. Reprodutibilidade
+
+A etapa deverá ser reexecutável por código.
+
+A cadeia esperada será:
+
+```text
+raw
+↓
+funções R
+↓
+auditoria
+↓
+reconciliação
+↓
+base canônica
+↓
+ADA inicial
+```
+
+
+# 76. Determinismo
+
+Operações determinísticas deverão produzir os mesmos resultados quando
+executadas novamente sobre as mesmas entradas.
+
+
+# 77. Warnings
+
+Registrar futuramente:
+
+```text
+WARNINGS = TO_BE_FILLED
+```
+
+Warnings relevantes deverão ser investigados.
+
+
+# 78. Issues encontrados
+
+Registrar:
+
+```text
+KNOWN_ISSUES = TO_BE_FILLED
+```
+
+Cada issue deverá conter:
+
+```text
+id
+descrição
+severidade
+status
+impacto
+```
+
+
+# 79. Decisões metodológicas
+
+Se houver decisão relevante:
+
+```text
+RELATED_DECISIONS = TO_BE_FILLED
+```
+
+Os detalhes deverão ficar em:
+
+```text
+decisions/
+```
+
+
+# 80. Limitações
+
+Registrar apenas limitações efetivamente observadas.
+
+Possíveis categorias:
+
+```text
+missing
+baixa amostra
+inconsistência entre fontes
+precisão de medição
+unidade incerta
+especificação pendente
+dados econômicos incompletos
+```
+
+
+# 81. Impacto das limitações
+
+Para cada limitação importante, responder:
+
+```text
+qual análise posterior ela pode afetar?
+```
+
+e:
+
+```text
+qual cuidado Benjamin deverá tomar?
+```
+
+
+# 82. Conclusões da etapa
+
+Após execução, esta seção deverá resumir:
+
+1. integridade geral dos dados;
+2. principais inconsistências encontradas;
+3. decisões de reconciliação;
+4. estado da base canônica;
+5. principais achados descritivos;
+6. limitações;
+7. condições para avanço.
+
+
+# 83. Não inventar conclusão
+
+Nesta fase:
+
+```text
+STAGE_CONCLUSION = TO_BE_FILLED_AFTER_EXECUTION
+```
+
+
+# 84. Artefatos produzidos
+
+Quando a etapa for executada, registrar os artefatos reais:
+
+```text
+AUDIT_ARTIFACT = TO_BE_FILLED
+CANONICAL_DATA_ARTIFACT = TO_BE_FILLED
+DATA_DICTIONARY_ARTIFACT = TO_BE_FILLED
+ADA_ARTIFACT = TO_BE_FILLED
+```
+
+Não é necessário criar esses arquivos agora.
+
+
+# 85. Conteúdo obrigatório do handoff
+
+O arquivo:
+
+```text
+handoffs/01_PACHECO_to_BENJAMIN.md
+```
+
+deverá receber informações sobre:
+
+- versão da base;
+- fluidos;
+- variáveis;
+- unidades;
+- missing;
+- reconciliações;
+- problemas pendentes;
+- limitações;
+- ADA inicial.
+
+
+# 86. Critério de liberação
+
+Benjamin somente deverá iniciar sua etapa quando:
+
+```text
+BASE_CANONICA = APPROVED
+```
+
+e o handoff estiver aprovado.
+
+
+# 87. Informações essenciais para Benjamin
+
+Ao final, Pacheco deverá indicar:
+
+```text
+CANONICAL_DATA_VERSION = TO_BE_FILLED
+BLOCKING_ISSUES = TO_BE_FILLED
+NON_BLOCKING_ISSUES = TO_BE_FILLED
+IMPORTANT_VARIABLES = TO_BE_FILLED
+IMPORTANT_LIMITATIONS = TO_BE_FILLED
+```
+
+
+# 88. Conteúdo candidato ao relatório oficial
+
+O relatório técnico final da professora possui limite de quatro páginas.
+
+Portanto, somente os principais resultados desta etapa deverão ser levados ao
+documento final.
+
+Possíveis conteúdos essenciais:
+
+```text
+fonte dos dados
+procedimento de auditoria
+principais inconsistências relevantes
+regra de reconciliação
+base utilizada nas análises
+```
+
+A seleção final será feita depois dos resultados reais.
+
+
+# 89. Conteúdo que provavelmente permanecerá interno
+
+Detalhes como:
+
+```text
+lista completa de issues
+todas as comparações entre abas
+todas as validações intermediárias
+todas as estatísticas descritivas
+```
+
+podem permanecer neste relatório interno e não necessariamente aparecer nas
+quatro páginas oficiais.
+
+
+# 90. Conteúdo candidato à apresentação
+
+Após a execução, identificar:
+
+```text
+ESSENTIAL_PRESENTATION_CONTENT = TO_BE_FILLED
+```
+
+Provavelmente serão priorizados apenas achados de auditoria que realmente
+afetem a interpretação final.
+
+
+# 91. Revisão de Pacheco
+
+Antes do handoff:
+
+```text
+[ ] inventário revisado
+[ ] auditoria revisada
+[ ] unidades revisadas
+[ ] fórmulas revisadas
+[ ] reconciliação revisada
+[ ] base canônica revisada
+[ ] ADA inicial revisada
+[ ] limitações registradas
+[ ] decisões registradas
+[ ] handoff preenchido
+```
+
+
+# 92. Revisão cruzada
+
+Preencher futuramente:
+
+```text
+REVIEWED_BY = TO_BE_FILLED
+REVIEW_DATE = TO_BE_FILLED
+REVIEW_STATUS = TO_BE_FILLED
+```
+
+
+# 93. Status da etapa
+
+Estados possíveis:
+
+```text
+DRAFT
+UNDER_REVIEW
+APPROVED
+BLOCKED
+SUPERSEDED
+```
+
+Estado atual:
+
+```text
+STAGE_STATUS = DRAFT
+```
+
+
+# 94. Aprovação
+
+### Responsável
+
+```text
+Pacheco
+```
+
+```text
+[ ] ETAPA CONCLUÍDA
+```
+
+Data:
+
+```text
+TO_BE_FILLED
+```
+
+### Revisor
+
+```text
+TO_BE_FILLED
+```
+
+```text
+[ ] ETAPA REVISADA
+```
+
+Data:
+
+```text
+TO_BE_FILLED
+```
+
+
+# 95. Princípio final
+
+> Nenhuma análise multicritério deve ser construída sobre uma base cuja origem,
+> unidade, consistência e reconciliação não possam ser auditadas. A função desta
+> etapa é garantir que Benjamin receba uma base conhecida, documentada e
+> rastreável, e não apenas uma planilha aparentemente pronta.

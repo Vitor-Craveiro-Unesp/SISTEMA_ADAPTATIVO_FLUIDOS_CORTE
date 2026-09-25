@@ -1,419 +1,1442 @@
-validation:
-
-  general:
+# ============================================================
+# REGRAS_VALIDACAO.YML
+# Sistema Adaptativo de Classificação Multicritério
+# de Fluidos de Corte
+#
+# FINALIDADE
+#
+# Centralizar as regras de validação que deverão ser
+# implementadas posteriormente pelos integrantes.
+#
+# Este arquivo define:
+#
+# - o que deve ser validado;
+# - em qual etapa;
+# - qual comportamento é esperado;
+# - quando uma falha deve bloquear o pipeline.
+#
+# IMPORTANTE
+#
+# Este arquivo NÃO executa testes.
+#
+# A implementação poderá ocorrer futuramente em:
+#
+# tests/testthat/
+# R/shared/
+# R/<responsavel>/
+# _targets.R
+#
+# conforme a arquitetura realmente implementada.
+#
+# ============================================================
 
-    raw_data:
-      immutable: true
-      allow_manual_edit: false
-      allow_overwrite: false
 
-    corrections:
-      allow_silent_correction: false
-      require_decision_record: true
-      require_original_value_preservation: true
-      require_justification: true
-
-    missing_data:
-      allow_unclassified_missing: false
-      allow_unjustified_imputation: false
-
-    outliers:
-      allow_automatic_removal: false
-      require_investigation: true
-      require_documentation: true
+# ------------------------------------------------------------
+# 1. METADADOS
+# ------------------------------------------------------------
 
-    ranking:
-      allow_before_canonical_data_approval: false
-      allow_before_criteria_approval: false
-      allow_silent_weight_change: false
+metadata:
 
----
-
-severity_levels:
+  project:
+    name: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
 
-  critical:
-    description: >
-      Problema que impede a continuidade da análise ou pode invalidar
-      diretamente o resultado final.
-    blocks_pipeline: true
+  config_name: "regras_validacao"
 
-  high:
-    description: >
-      Problema com potencial de alterar significativamente análises,
-      critérios, pesos ou ranking.
-    blocks_handoff: true
+  config_version: "0.1.0"
 
-  medium:
-    description: >
-      Problema que deve ser investigado e documentado, mas não
-      necessariamente impede a continuidade.
-    blocks_handoff: false
-
-  low:
-    description: >
-      Problema de menor impacto, normalmente relacionado a formatação,
-      arredondamento ou documentação.
-    blocks_handoff: false
-
-  info:
-    description: >
-      Informação diagnóstica sem caráter de erro.
-    blocks_handoff: false
+  status: "BASE_PREPARED"
 
----
+  validation_implementation_status: "NOT_IMPLEMENTED"
 
-audit_rules:
-
-  file_integrity:
+  last_reviewed_by: null
 
-    raw_file_exists:
-      severity: critical
-      description: "O arquivo bruto esperado deve existir em data/raw/."
+  last_review_date: null
 
-    raw_file_unchanged:
-      severity: critical
-      description: >
-        O arquivo bruto deve permanecer inalterado durante todo o projeto.
-
-    raw_file_hash_required:
-      severity: high
-      description: >
-        Registrar hash SHA-256 do arquivo bruto para garantir integridade.
-
----
-
-  sheets:
-
-    expected_sheets_present:
-      severity: high
-      description: >
-        Todas as abas esperadas devem ser identificadas e registradas.
-
-    unexpected_sheet:
-      severity: info
-      description: >
-        Abas não previstas devem ser registradas para inspeção.
-
-    empty_sheet:
-      severity: medium
-      description: >
-        Abas vazias ou praticamente vazias devem ser documentadas.
-
----
 
-  keys:
+# ------------------------------------------------------------
+# 2. PRINCÍPIOS GERAIS
+# ------------------------------------------------------------
 
-    duplicate_record:
-      severity: high
-      description: >
-        Registros duplicados para a mesma combinação de fluido,
-        variável e condição devem ser investigados.
-
-    missing_fluid:
-      severity: high
-      description: >
-        Fluido ausente em uma aba relevante deve ser registrado.
+general:
 
-    unexpected_fluid:
-      severity: medium
-      description: >
-        Fluido inesperado deve ser investigado.
+  fail_on_critical_error: true
 
----
+  silent_correction:
+    allowed: false
 
-  data_types:
+  silent_warning_suppression:
+    allowed: false
 
-    mixed_numeric_text:
-      severity: high
-      description: >
-        Coluna que deveria ser numérica contendo texto deve ser
-        sinalizada.
+  continue_with_invalid_input:
+    allowed: false
 
-    unexpected_type:
-      severity: medium
-      description: >
-        Tipo incompatível com o dicionário de dados deve ser registrado.
+  manual_scientific_value_fix:
+    allowed: false
 
----
-
-  units:
-
-    missing_unit:
-      severity: medium
-      description: >
-        Variáveis quantitativas sem unidade conhecida devem ser
-        identificadas.
+  absolute_paths:
+    allowed: false
 
-    mixed_units:
-      severity: high
-      description: >
-        A mesma variável não deve misturar unidades sem conversão
-        documentada.
+  hidden_manual_steps:
+    allowed: false
 
-    suspicious_unit:
-      severity: medium
-      description: >
-        Unidade textual ou formato inesperado deve ser investigado.
+  require_reproducibility: true
 
----
+  require_traceability: true
 
-  missing:
 
-    unknown_missing:
-      severity: high
-      description: >
-        Missing sem classificação deve ser investigado.
-
-    pending_measurement:
-      severity: medium
-      description: >
-        Medição pendente deve ser registrada como pendente e não como zero.
-
-    formula_error:
-      severity: critical
-      description: >
-        Erros de fórmula como #DIV/0!, #VALUE! ou equivalentes
-        devem ser tratados antes do uso da variável.
+# ------------------------------------------------------------
+# 3. SEVERIDADES
+# ------------------------------------------------------------
 
-    not_measured:
-      severity: medium
-      description: >
-        Valor não medido deve permanecer explicitamente identificado.
+severity:
 
-    not_applicable:
-      severity: info
-      description: >
-        Valor não aplicável deve ser diferenciado de ausência real.
+  allowed:
 
----
+    - "CRITICAL"
+    - "MAJOR"
+    - "MINOR"
+    - "INFORMATIONAL"
 
-  numeric_consistency:
+  blocking_levels:
 
-    impossible_negative:
-      severity: high
-      description: >
-        Valores negativos em variáveis que não admitem valores
-        negativos devem ser investigados.
+    - "CRITICAL"
 
-    percentage_below_zero:
-      severity: high
-      description: "Percentual não pode ser menor que zero."
+  major_requires_review: true
 
-    percentage_above_100:
-      severity: high
-      description: "Percentual não pode ultrapassar 100 sem justificativa."
+  minor_requires_record: true
 
-    zero_when_not_allowed:
-      severity: high
-      description: >
-        Zero em variável que teoricamente deve ser positiva deve ser
-        investigado.
 
----
+# ------------------------------------------------------------
+# 4. STATUS DE VALIDAÇÃO
+# ------------------------------------------------------------
 
-  calculations:
+validation_status:
 
-    sum_mismatch:
-      severity: high
-      description: >
-        Soma informada deve ser comparada com soma recalculada em R.
+  allowed:
 
-    mean_mismatch:
-      severity: high
-      description: >
-        Média informada deve ser comparada com média recalculada em R.
+    - "NOT_EXECUTED"
+    - "PASS"
+    - "PASS_WITH_WARNINGS"
+    - "FAIL"
+    - "BLOCKED"
+    - "NOT_APPLICABLE"
 
-    percentage_mismatch:
-      severity: high
-      description: >
-        Percentuais derivados devem ser recalculados e comparados.
 
-    total_cost_mismatch:
-      severity: high
-      description: >
-        Custos totais devem ser recalculados independentemente.
+# ------------------------------------------------------------
+# 5. ARQUIVOS DE ENTRADA
+# ------------------------------------------------------------
 
-    derived_indicator_mismatch:
-      severity: high
-      description: >
-        Indicadores derivados devem ser recalculados em R.
+input_files:
 
----
+  require_exists: true
 
-  cross_sheet_consistency:
+  require_readable: true
 
-    exact_match:
-      severity: info
-      description: "Valores coincidem entre abas."
+  require_known_extension: true
 
-    rounding_difference:
-      severity: low
-      description: >
-        Diferença compatível com arredondamento.
+  require_relative_path: true
 
-    small_difference:
-      severity: medium
-      description: >
-        Pequena diferença que necessita registro e interpretação.
+  require_nonzero_size: true
 
-    relevant_difference:
-      severity: high
-      description: >
-        Diferença numericamente relevante entre abas.
+  preserve_original_source: true
 
-    critical_difference:
-      severity: critical
-      description: >
-        Divergência entre abas capaz de alterar diretamente
-        conclusões ou ranking.
+  overwrite_raw:
+    allowed: false
 
----
 
-  repeated_values:
+# ------------------------------------------------------------
+# 6. DATA/RAW
+# ------------------------------------------------------------
 
-    exact_repetition_across_conditions:
-      severity: low
-      description: >
-        Valor exatamente repetido em condições distintas deve ser
-        sinalizado para inspeção, sem ser tratado automaticamente como erro.
+raw_data:
 
----
+  immutable: true
 
-  variability:
+  manual_editing:
+    allowed: false
 
-    zero_variance:
-      severity: info
-      description: >
-        Variável sem variabilidade não possui poder discriminante.
+  overwrite:
+    allowed: false
 
-    near_zero_variance:
-      severity: medium
-      description: >
-        Variável quase constante deve ser avaliada antes de entrar
-        no ranking.
+  require_source_documentation: true
 
----
+  hash:
+    recommended: true
 
-  domain_rules:
+  validate_before_processing: true
 
-    specification_violation:
-      severity: medium
-      description: >
-        Violação de especificação técnica deve ser registrada como
-        não conformidade, não automaticamente como erro de dado.
 
-    impossible_domain_value:
-      severity: high
-      description: >
-        Valor incompatível com o domínio físico ou técnico deve ser
-        investigado.
+# ------------------------------------------------------------
+# 7. INVENTÁRIO
+# ------------------------------------------------------------
 
----
+inventory:
 
-canonical_data:
+  require_all_sheets_listed: true
 
-  requirements:
+  require_sheet_dimensions: true
 
-    critical_errors_open:
-      allowed: 0
+  require_original_column_names: true
 
-    unresolved_high_severity:
-      allowed: 0
+  require_observed_types: true
 
-    unclassified_missing:
-      allowed: 0
+  require_formula_inventory_when_applicable: true
 
-    undocumented_corrections:
-      allowed: 0
+  require_unit_inventory_when_available: true
 
-    cross_sheet_divergences_without_decision:
-      allowed: 0
+  require_alternative_inventory: true
 
-    required_tests_pass:
-      required: true
+  require_structural_issue_log: true
 
-    decision_log_updated:
-      required: true
+  allow_data_correction:
+    value: false
 
-    audit_report_updated:
-      required: true
 
-  approval:
-    require_collective_checkpoint: true
+# ------------------------------------------------------------
+# 8. AUDITORIA
+# ------------------------------------------------------------
 
----
+audit:
 
-handoff_rules:
+  require_identifier_check: true
 
-  pacheco_to_benjamin:
+  require_type_check: true
 
-    requirements:
-      - "Base canônica v1 criada"
-      - "Inventário concluído"
-      - "Dicionário de dados concluído"
-      - "Missing classificados"
-      - "Unidades auditadas"
-      - "Somas e médias auditadas"
-      - "Diferenças entre abas reconciliadas"
-      - "Inconsistências registradas"
-      - "Testes relacionados aprovados"
-      - "Relatório de auditoria atualizado"
+  require_missing_check: true
 
-  benjamin_to_vitor:
+  require_duplicate_check: true
 
-    requirements:
-      - "ADA bivariada concluída"
-      - "ADA multivariada concluída ou justificada"
-      - "Conformidade analisada"
-      - "Critérios classificados"
-      - "Redundância avaliada"
-      - "Matriz de decisão aprovada"
-      - "Normalização validada"
-      - "Pesos CRITIC calculados"
-      - "Relatório metodológico atualizado"
+  require_unit_check: true
 
-  vitor_to_marco:
+  require_formula_check_when_applicable: true
 
-    requirements:
-      - "TOPSIS validado"
-      - "Ranking principal calculado"
-      - "Cenários calculados"
-      - "Pareto analisado"
-      - "Sensibilidade executada"
-      - "Robustez avaliada"
-      - "Resultados congelados"
-      - "Relatório da etapa atualizado"
+  require_cross_sheet_check_when_applicable: true
 
-  marco_to_todos:
+  require_recalculation_of_important_derived_values: true
 
-    requirements:
-      - "Relatório final completo"
-      - "Apresentação completa"
-      - "Tabelas conferidas"
-      - "Figuras conferidas"
-      - "Números reconciliados com results/"
-      - "Limitações documentadas"
+  require_issue_log: true
 
----
+  require_issue_status: true
 
-pipeline_gates:
+  require_evidence_for_major_issue: true
 
-  before_ada:
-    require_canonical_data: true
+  unresolved_critical_issue:
+    action: "BLOCK"
 
-  before_critic:
-    require_criteria_approval: true
-    require_conformity_analysis: true
 
-  before_topsis:
-    require_decision_matrix_approval: true
-    require_weights_approval: true
+# ------------------------------------------------------------
+# 9. IDENTIFICADORES
+# ------------------------------------------------------------
 
-  before_final_report:
-    require_ranking_frozen: true
-    require_robustness_analysis: true
+identifiers:
 
-  before_delivery:
-    require_full_pipeline_rerun: true
-    require_all_tests_pass: true
-    require_collective_review: true
+  require_non_missing_when_key: true
+
+  require_consistent_representation: true
+
+  require_unique_when_expected: true
+
+  allow_silent_normalization:
+    value: false
+
+  mapping_requires_documentation: true
+
+
+# ------------------------------------------------------------
+# 10. CHAVES
+# ------------------------------------------------------------
+
+keys:
+
+  require_defined_primary_key: true
+
+  require_no_unexpected_duplicates: true
+
+  require_no_missing_key_components: true
+
+  duplicate_key:
+    action: "BLOCK_AND_REVIEW"
+
+  legitimate_replicates:
+    require_explicit_replication_identifier: true
+
+
+# ------------------------------------------------------------
+# 11. TIPOS
+# ------------------------------------------------------------
+
+types:
+
+  require_expected_type: true
+
+  mixed_type_columns:
+    require_review: true
+
+  numeric_with_text:
+    require_review: true
+
+  automatic_type_coercion:
+    allowed: false
+
+  type_conversion:
+    require_documentation: true
+
+
+# ------------------------------------------------------------
+# 12. MISSING
+# ------------------------------------------------------------
+
+missing:
+
+  detect: true
+
+  summarize: true
+
+  require_interpretation_when_relevant: true
+
+  convert_na_to_zero:
+    allowed: false
+
+  automatic_imputation:
+    allowed: false
+
+  unexpected_missing:
+    action: "REVIEW"
+
+  missing_in_required_key:
+    action: "BLOCK"
+
+  missing_in_required_mcdm_criterion:
+    action: "BLOCK_AND_REVIEW"
+
+
+# ------------------------------------------------------------
+# 13. DUPLICATAS
+# ------------------------------------------------------------
+
+duplicates:
+
+  detect_exact_rows: true
+
+  detect_duplicate_keys: true
+
+  distinguish_replicates_from_duplicates: true
+
+  automatic_removal:
+    allowed: false
+
+  unexpected_duplicate:
+    action: "REVIEW"
+
+
+# ------------------------------------------------------------
+# 14. UNIDADES
+# ------------------------------------------------------------
+
+units:
+
+  require_known_unit_when_applicable: true
+
+  mixed_units:
+    allowed: false
+
+  unit_conversion:
+    require_documentation: true
+
+  require_compatible_units_before_comparison: true
+
+  unit_mismatch:
+    action: "BLOCK_AND_REVIEW"
+
+
+# ------------------------------------------------------------
+# 15. VALORES NUMÉRICOS
+# ------------------------------------------------------------
+
+numeric_values:
+
+  detect_na: true
+
+  detect_nan: true
+
+  detect_positive_infinity: true
+
+  detect_negative_infinity: true
+
+  unexpected_nan:
+    action: "BLOCK"
+
+  unexpected_infinity:
+    action: "BLOCK"
+
+  impossible_value:
+    action: "REVIEW"
+
+
+# ------------------------------------------------------------
+# 16. PRECISÃO
+# ------------------------------------------------------------
+
+precision:
+
+  preserve_full_precision_for_calculation: true
+
+  intermediate_rounding:
+    allowed: false
+
+  ranking_from_rounded_values:
+    allowed: false
+
+  rounded_values_only_for_presentation: true
+
+
+# ------------------------------------------------------------
+# 17. FÓRMULAS
+# ------------------------------------------------------------
+
+formulas:
+
+  detect_formula_errors: true
+
+  important_formula_requires_independent_recalculation: true
+
+  compare_original_vs_recalculated: true
+
+  formula_error:
+    action: "REVIEW"
+
+  division_by_zero:
+    action: "BLOCK_AND_REVIEW"
+
+  silent_formula_replacement:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 18. RECONCILIAÇÃO
+# ------------------------------------------------------------
+
+reconciliation:
+
+  every_changed_value_requires_rule: true
+
+  every_changed_value_requires_traceability: true
+
+  preserve_original_value_reference: true
+
+  unresolved_issue_requires_status: true
+
+  silent_value_replacement:
+    allowed: false
+
+  unresolved_critical_issue:
+    action: "BLOCK"
+
+  external_confirmation:
+    preserve_source: true
+
+
+# ------------------------------------------------------------
+# 19. BASE CANÔNICA
+# ------------------------------------------------------------
+
+canonical_dataset:
+
+  require_reproducible_generation: true
+
+  require_version: true
+
+  require_unique_column_names: true
+
+  require_valid_key: true
+
+  require_expected_types: true
+
+  require_known_units: true
+
+  require_missing_summary: true
+
+  require_no_unexpected_duplicates: true
+
+  require_no_unexpected_nan: true
+
+  require_no_unexpected_infinity: true
+
+  require_data_dictionary: true
+
+  require_lineage_when_applicable: true
+
+  manual_creation:
+    allowed: false
+
+  approval_required_before_downstream: true
+
+
+# ------------------------------------------------------------
+# 20. DICIONÁRIO DE DADOS
+# ------------------------------------------------------------
+
+data_dictionary:
+
+  require_entry_for_each_analytical_variable: true
+
+  require_description: true
+
+  require_type: true
+
+  require_unit_when_applicable: true
+
+  require_source: true
+
+  require_transformation_description_when_derived: true
+
+
+# ------------------------------------------------------------
+# 21. VARIÁVEIS DERIVADAS
+# ------------------------------------------------------------
+
+derived_variables:
+
+  require_formula: true
+
+  require_source_variables: true
+
+  require_unit: true
+
+  require_validation: true
+
+  silent_manual_creation:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 22. ADA
+# ------------------------------------------------------------
+
+ada:
+
+  require_canonical_dataset: true
+
+  require_missing_review: true
+
+  require_constant_variable_detection: true
+
+  require_outlier_review: true
+
+  causal_claim_from_association:
+    allowed: false
+
+  ranking_conclusion_from_eda:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 23. OUTLIERS
+# ------------------------------------------------------------
+
+outliers:
+
+  automatic_removal:
+    allowed: false
+
+  require_source_confirmation_when_possible: true
+
+  require_influence_review: true
+
+  exclusion_requires_documentation: true
+
+
+# ------------------------------------------------------------
+# 24. CORRELAÇÃO
+# ------------------------------------------------------------
+
+correlation:
+
+  require_method_documentation: true
+
+  require_missing_strategy: true
+
+  require_effective_n_review_when_relevant: true
+
+  causal_interpretation:
+    allowed: false
+
+  automatic_redundancy_exclusion:
+    allowed: false
+
+  constant_variable:
+    action: "REMOVE_FROM_CORRELATION_AND_REVIEW"
+
+  require_symmetric_matrix_when_applicable: true
+
+  require_diagonal_one_when_applicable: true
+
+
+# ------------------------------------------------------------
+# 25. PCA
+# ------------------------------------------------------------
+
+pca:
+
+  optional: true
+
+  require_justification: true
+
+  require_scaling_documentation: true
+
+  require_no_unhandled_constant_variables: true
+
+  require_no_unhandled_missing: true
+
+  require_nonnegative_eigenvalues_within_tolerance: true
+
+  require_explained_variance_between_zero_and_one: true
+
+  require_explained_variance_sum_one_within_tolerance: true
+
+  automatic_criterion_exclusion_from_pca:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 26. CONFORMIDADE
+# ------------------------------------------------------------
+
+conformity:
+
+  require_confirmed_specification: true
+
+  require_specification_source: true
+
+  require_unit_compatibility: true
+
+  invent_specification:
+    allowed: false
+
+  missing_value_means_noncompliant:
+    value: false
+
+  allowed_result_status:
+
+    - "COMPLIANT"
+    - "NON_COMPLIANT"
+    - "NOT_EVALUABLE"
+    - "NOT_APPLICABLE"
+    - "PENDING_CONFIRMATION"
+
+  pending_specification_as_official_rule:
+    allowed: false
+
+  keep_separate_from_performance: true
+
+
+# ------------------------------------------------------------
+# 27. CRITÉRIOS
+# ------------------------------------------------------------
+
+criteria:
+
+  require_technical_interpretability: true
+
+  require_explicit_role: true
+
+  require_explicit_direction_for_performance: true
+
+  require_unit_when_applicable: true
+
+  require_inclusion_or_exclusion_status: true
+
+  require_justification_for_exclusion: true
+
+  automatic_selection_by_final_ranking:
+    allowed: false
+
+  automatic_exclusion_by_correlation:
+    allowed: false
+
+  silent_change_after_ranking:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 28. TARGET
+# ------------------------------------------------------------
+
+target_criteria:
+
+  require_confirmed_target: true
+
+  require_target_source: true
+
+  require_target_unit: true
+
+  require_transformation_rule: true
+
+  unknown_target:
+    action: "BLOCK_CRITERION"
+
+
+# ------------------------------------------------------------
+# 29. MATRIZ DE DECISÃO
+# ------------------------------------------------------------
+
+decision_matrix:
+
+  require_alternatives_as_rows: true
+
+  require_criteria_as_columns: true
+
+  require_unique_alternative_names: true
+
+  require_unique_criterion_names: true
+
+  require_numeric_values: true
+
+  require_no_unexpected_na: true
+
+  require_no_nan: true
+
+  require_no_infinity: true
+
+  require_expected_number_of_criteria: true
+
+  require_expected_number_of_alternatives: true
+
+  require_criterion_order_traceability: true
+
+
+# ------------------------------------------------------------
+# 30. NORMALIZAÇÃO
+# ------------------------------------------------------------
+
+normalization:
+
+  require_documented_method: true
+
+  require_known_orientation: true
+
+  require_names_preserved: true
+
+  require_dimensions_preserved: true
+
+  require_no_nan: true
+
+  require_no_infinity: true
+
+  require_no_unexpected_na: true
+
+  zero_denominator:
+    action: "BLOCK_AND_REVIEW"
+
+  constant_criterion:
+    action: "BLOCK_AND_REVIEW"
+
+  double_cost_inversion:
+    allowed: false
+
+  require_full_precision: true
+
+
+# ------------------------------------------------------------
+# 31. ORIENTAÇÃO DOS CRITÉRIOS
+# ------------------------------------------------------------
+
+orientation:
+
+  require_stage_documentation: true
+
+  require_final_orientation_documentation: true
+
+  require_higher_is_better_flag_before_topsis: true
+
+  double_inversion:
+    action: "BLOCK"
+
+
+# ------------------------------------------------------------
+# 32. CRITIC
+# ------------------------------------------------------------
+
+critic:
+
+  require_valid_decision_matrix: true
+
+  require_valid_normalized_matrix: true
+
+  require_documented_correlation_method: true
+
+  require_standard_deviation_defined: true
+
+  require_correlation_matrix_valid: true
+
+  conflict_formula:
+    expected: "1 - r_jk"
+
+  absolute_correlation_without_decision:
+    allowed: false
+
+  require_nonnegative_information_values: true
+
+  require_no_na_information: true
+
+  require_no_nan_information: true
+
+  require_no_infinity_information: true
+
+  require_nonnegative_weights: true
+
+  require_no_na_weights: true
+
+  require_no_nan_weights: true
+
+  require_no_infinity_weights: true
+
+  require_weight_sum_one: true
+
+  require_weight_criterion_name_mapping: true
+
+  zero_information_sum:
+    action: "BLOCK_AND_REVIEW"
+
+  equal_weight_fallback:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 33. MATRIZ DE CORRELAÇÃO DO CRITIC
+# ------------------------------------------------------------
+
+critic_correlation_matrix:
+
+  require_square: true
+
+  require_dimension_equal_to_number_of_criteria: true
+
+  require_symmetric_within_tolerance: true
+
+  require_diagonal_one_within_tolerance: true
+
+  require_values_between_minus_one_and_one: true
+
+  require_no_unexpected_na: true
+
+
+# ------------------------------------------------------------
+# 34. PESOS
+# ------------------------------------------------------------
+
+weights:
+
+  require_names: true
+
+  require_unique_names: true
+
+  require_criterion_match: true
+
+  require_nonnegative: true
+
+  require_finite: true
+
+  require_sum_one: true
+
+  positional_mapping_only:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 35. TOPSIS
+# ------------------------------------------------------------
+
+topsis:
+
+  require_valid_normalized_matrix: true
+
+  require_valid_weights: true
+
+  require_orientation_confirmed: true
+
+  require_weighted_matrix_dimensions_preserved: true
+
+  require_criterion_names_preserved: true
+
+  require_alternative_names_preserved: true
+
+  require_nonnegative_distances: true
+
+  require_finite_distances: true
+
+  require_positive_closeness_denominator: true
+
+  require_closeness_between_zero_and_one: true
+
+  require_no_na_closeness: true
+
+  require_no_nan_closeness: true
+
+  require_no_infinite_closeness: true
+
+  ranking_order: "DESCENDING_CLOSENESS"
+
+  ranking_from_full_precision: true
+
+
+# ------------------------------------------------------------
+# 36. TOPSIS — SOLUÇÕES IDEAIS
+# ------------------------------------------------------------
+
+topsis_ideals:
+
+  require_orientation_before_calculation: true
+
+  require_positive_ideal_defined_for_all_criteria: true
+
+  require_negative_ideal_defined_for_all_criteria: true
+
+  double_cost_handling:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 37. RANKING
+# ------------------------------------------------------------
+
+ranking:
+
+  require_all_alternatives_present: true
+
+  require_unique_rank_when_no_ties: true
+
+  exact_tie_requires_explicit_handling: true
+
+  arbitrary_tie_break:
+    allowed: false
+
+  require_gap_analysis: true
+
+  require_conformity_information_when_available: true
+
+  call_primary_ranking_final_before_robustness:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 38. CENÁRIOS
+# ------------------------------------------------------------
+
+scenarios:
+
+  require_definition_before_result_interpretation: true
+
+  require_justification: true
+
+  require_nonnegative_weights: true
+
+  require_weight_sum_one: true
+
+  require_same_alternatives: true
+
+  require_same_criteria_unless_explicitly_defined: true
+
+  base_scenario_must_reproduce_primary_ranking: true
+
+  frequency_is_probability:
+    value: false
+
+  winner_driven_scenario_selection:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 39. PARETO
+# ------------------------------------------------------------
+
+pareto:
+
+  require_oriented_criteria: true
+
+  use_weights:
+    value: false
+
+  self_dominance:
+    allowed: false
+
+  require_weak_superiority_all_criteria: true
+
+  require_strict_superiority_at_least_one: true
+
+  identical_alternatives_dominate_each_other:
+    value: false
+
+  require_every_alternative_classified: true
+
+  require_front_validation: true
+
+
+# ------------------------------------------------------------
+# 40. SENSIBILIDADE DOS PESOS
+# ------------------------------------------------------------
+
+weight_sensitivity:
+
+  require_base_configuration: true
+
+  require_nonnegative_weights: true
+
+  require_weight_sum_one: true
+
+  require_zero_perturbation_reproduce_base: true
+
+  require_top1_tracking: true
+
+  require_top3_tracking: true
+
+  require_rank_range_tracking: true
+
+  frequency_is_probability:
+    value: false
+
+
+# ------------------------------------------------------------
+# 41. LOCO
+# ------------------------------------------------------------
+
+loco:
+
+  require_exactly_one_criterion_removed: true
+
+  require_removed_criterion_absent: true
+
+  require_remaining_criteria_valid: true
+
+  recalculate_critic_when_structural_analysis:
+    required: true
+
+  require_topsis_recalculation: true
+
+  require_comparison_with_base: true
+
+
+# ------------------------------------------------------------
+# 42. NORMALIZAÇÃO ALTERNATIVA
+# ------------------------------------------------------------
+
+alternative_normalization:
+
+  require_valid_method: true
+
+  require_same_alternatives: true
+
+  require_same_criteria: true
+
+  require_same_directions: true
+
+  require_critic_recalculation_when_methodology_requires: true
+
+  require_topsis_recalculation: true
+
+  require_comparison_with_base: true
+
+
+# ------------------------------------------------------------
+# 43. LOAO
+# ------------------------------------------------------------
+
+loao:
+
+  require_exactly_one_alternative_removed: true
+
+  require_removed_alternative_absent: true
+
+  require_remaining_alternatives_valid: true
+
+  require_normalization_recalculation: true
+
+  require_critic_recalculation: true
+
+  require_topsis_recalculation: true
+
+  require_rank_reversal_evaluation: true
+
+
+# ------------------------------------------------------------
+# 44. RANK REVERSAL
+# ------------------------------------------------------------
+
+rank_reversal:
+
+  require_pairwise_order_comparison: true
+
+  ignore_removed_alternative_in_pairwise_comparison: true
+
+  simple_rank_number_shift_is_reversal:
+    value: false
+
+  require_top1_reversal_flag: true
+
+  require_top3_impact_review: true
+
+
+# ------------------------------------------------------------
+# 45. SIMULAÇÕES
+# ------------------------------------------------------------
+
+simulation:
+
+  optional: true
+
+  if_random:
+    require_seed: true
+
+  require_number_of_simulations: true
+
+  require_valid_generated_weights: true
+
+  invalid_configuration:
+    action: "REJECT"
+
+  frequency_is_probability:
+    value: false
+
+
+# ------------------------------------------------------------
+# 46. ROBUSTEZ
+# ------------------------------------------------------------
+
+robustness:
+
+  require_primary_ranking: true
+
+  require_scenario_results_when_planned: true
+
+  require_weight_sensitivity_when_planned: true
+
+  require_loco_when_planned: true
+
+  require_alternative_normalization_when_planned: true
+
+  require_loao_when_planned: true
+
+  require_rank_reversal_review_when_planned: true
+
+  require_top1_stability_summary: true
+
+  require_top3_stability_summary: true
+
+  require_limitations: true
+
+  qualitative_classification_requires_rule: true
+
+  silent_robustness_label:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 47. CONFORMIDADE + RANKING
+# ------------------------------------------------------------
+
+ranking_conformity_integration:
+
+  keep_separate: true
+
+  hide_noncompliance:
+    allowed: false
+
+  robust_ranking_overrides_noncompliance:
+    value: false
+
+  require_not_evaluable_status_preserved: true
+
+
+# ------------------------------------------------------------
+# 48. TABELAS
+# ------------------------------------------------------------
+
+tables:
+
+  require_generated_from_validated_results: true
+
+  manual_scientific_number_entry:
+    allowed: false
+
+  require_title: true
+
+  require_units_when_applicable: true
+
+  require_missing_representation: true
+
+  use_full_precision_for_computation: true
+
+
+# ------------------------------------------------------------
+# 49. FIGURAS
+# ------------------------------------------------------------
+
+figures:
+
+  require_generated_from_validated_results: true
+
+  require_axis_labels_when_applicable: true
+
+  require_units_when_applicable: true
+
+  require_legibility: true
+
+  manual_scientific_value_editing:
+    allowed: false
+
+  rely_only_on_color:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 50. REPORT/STAGES
+# ------------------------------------------------------------
+
+stage_reports:
+
+  require_stage_status: true
+
+  require_input_version: true
+
+  require_methods: true
+
+  require_results_only_after_execution: true
+
+  require_limitations: true
+
+  require_handoff_information: true
+
+
+# ------------------------------------------------------------
+# 51. RELATÓRIO FINAL
+# ------------------------------------------------------------
+
+final_report:
+
+  require_approved_results_only: true
+
+  require_consistency_with_stage_results: true
+
+  require_consistency_with_final_ranking: true
+
+  require_consistency_with_conformity: true
+
+  require_consistency_with_robustness: true
+
+  require_maximum_pages: true
+
+  maximum_pages: 4
+
+  require_no_unvalidated_claims: true
+
+  manually_change_scientific_numbers:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 52. APRESENTAÇÃO
+# ------------------------------------------------------------
+
+presentation:
+
+  require_approved_results_only: true
+
+  require_consistency_with_final_report: true
+
+  require_consistency_with_final_ranking: true
+
+  require_consistency_with_conformity: true
+
+  require_consistency_with_robustness: true
+
+  use_unvalidated_preliminary_result:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 53. HANDOFFS
+# ------------------------------------------------------------
+
+handoffs:
+
+  require_input_version: true
+
+  require_output_version: true
+
+  require_status: true
+
+  require_open_issues: true
+
+  require_limitations: true
+
+  require_blocking_issues: true
+
+  require_frozen_items: true
+
+  approved_before_downstream:
+    required: true
+
+
+# ------------------------------------------------------------
+# 54. DECISÕES
+# ------------------------------------------------------------
+
+decisions:
+
+  major_methodological_choice_requires_record: true
+
+  silent_method_change:
+    allowed: false
+
+  winner_driven_method_change:
+    allowed: false
+
+  require_downstream_impact_review: true
+
+
+# ------------------------------------------------------------
+# 55. VERSIONAMENTO
+# ------------------------------------------------------------
+
+versioning:
+
+  require_version_for_canonical_dataset: true
+
+  require_version_for_decision_matrix: true
+
+  require_version_for_normalized_matrix: true
+
+  require_version_for_weights: true
+
+  require_version_for_final_ranking: true
+
+  silent_overwrite_of_approved_version:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 56. REPRODUTIBILIDADE
+# ------------------------------------------------------------
+
+reproducibility:
+
+  require_relative_paths: true
+
+  require_same_input_same_output_when_deterministic: true
+
+  require_seed_when_random: true
+
+  require_dependencies_documented: true
+
+  hidden_manual_step:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 57. TESTES
+# ------------------------------------------------------------
+
+tests:
+
+  framework: "testthat"
+
+  status: "NOT_IMPLEMENTED"
+
+  planned_categories:
+
+    - "data_structure"
+    - "identifiers"
+    - "missing"
+    - "canonical_dataset"
+    - "normalization"
+    - "critic"
+    - "topsis"
+    - "pareto"
+    - "scenarios"
+    - "loco"
+    - "loao"
+    - "rank_reversal"
+    - "robustness"
+
+
+# ------------------------------------------------------------
+# 58. PIPELINE
+# ------------------------------------------------------------
+
+pipeline:
+
+  manager: "targets"
+
+  status: "NOT_IMPLEMENTED"
+
+  invalid_upstream_target:
+    allow_downstream_execution: false
+
+  upstream_change:
+    require_downstream_invalidation: true
+
+
+# ------------------------------------------------------------
+# 59. CI
+# ------------------------------------------------------------
+
+ci:
+
+  current_scope: "BASE_STRUCTURE_ONLY"
+
+  scientific_validation:
+    enabled: false
+
+  future_requirements:
+
+    - "restore_r_environment"
+    - "run_testthat"
+    - "run_targets"
+    - "validate_outputs"
+
+
+# ------------------------------------------------------------
+# 60. RESULTADO FINAL
+# ------------------------------------------------------------
+
+final_result:
+
+  require_audit_complete: true
+
+  require_canonical_dataset_approved: true
+
+  require_criteria_approved: true
+
+  require_critic_validated: true
+
+  require_topsis_validated: true
+
+  require_scenarios_reviewed: true
+
+  require_pareto_reviewed: true
+
+  require_robustness_reviewed: true
+
+  require_conformity_reported: true
+
+  require_cross_review: true
+
+  final_ranking_before_all_required_checks:
+    allowed: false
+
+
+# ------------------------------------------------------------
+# 61. ESTADO ATUAL
+# ------------------------------------------------------------
+
+current_state:
+
+  validation_rules_status: "BASE_PREPARED"
+
+  automated_validation_status: "NOT_IMPLEMENTED"
+
+  tests_status: "NOT_IMPLEMENTED"
+
+  scientific_pipeline_validation: "NOT_EXECUTED"
+
+  ready_for_enforcement: false

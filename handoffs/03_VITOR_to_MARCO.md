@@ -1,15 +1,18 @@
-# Handoff Vitor → Marco
+# 03_VITOR_to_MARCO.md — Handoff de Ranking, Cenários, Pareto e Robustez para Integração Final
 
-## Entregáveis aprovados
+## 1. Responsável que entrega
 
-## Arquivos oficiais
+**Vitor**
 
-## Decisões importantes
+---
 
-## Pendências
+## 2. Responsável que recebe
 
-## O que não deve ser alterado silenciosamente
+**Marco**
 
-## Próxima etapa
+---
 
-## Data / aprovação
+## 3. Status do handoff
+
+```text
+STATUS = DRAFT

@@ -1,26 +1,89 @@
 ---
-title: "Relatório da etapa"
-format: pdf
+title: "Relatório de Etapa — Modelo"
+subtitle: "Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte"
+author: "Responsável pela etapa"
+date: last-modified
+lang: pt-BR
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    embed-resources: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
 ---
 
-## 1. Objetivo
+<!--
+============================================================
+EXEMPLO_RELATORIO_ETAPA.qmd
+============================================================
 
-## 2. Dados de entrada
+OBJETIVO
 
-## 3. Metodologia
+Este arquivo serve como MODELO para os relatórios internos
+das etapas do projeto.
 
-## 4. Validações realizadas
+Ele NÃO corresponde ao relatório técnico final exigido pela
+professora.
 
-## 5. Resultados
+O relatório oficial da disciplina deverá futuramente seguir
+o template fornecido pela docente e respeitar o limite de
+4 páginas incluindo referências.
 
-## 6. Figuras e tabelas principais
+Os relatórios de etapa podem ser mais detalhados porque
+funcionam como documentação técnica, científica e
+reprodutível do projeto.
 
-## 7. Problemas encontrados
+============================================================
+-->
 
-## 8. Decisões metodológicas
 
-## 9. Limitações
+# Identificação da etapa
 
-## 10. Entregáveis gerados
+**Projeto:** Sistema Adaptativo de Classificação Multicritério de Fluidos de Corte
 
-## 11. O que a próxima etapa precisa saber
+**Etapa:** `TO_BE_FILLED`
+
+**Responsável:** `TO_BE_FILLED`
+
+**Revisor:** `TO_BE_FILLED`
+
+**Status:** `DRAFT`
+
+**Versão:** `TO_BE_FILLED`
+
+**Data:** `TO_BE_FILLED`
+
+
+# 1. Objetivo da etapa
+
+Descrever de forma objetiva o propósito desta etapa.
+
+O texto deve responder:
+
+- qual problema esta etapa resolve;
+- quais entradas recebe;
+- quais análises executa;
+- quais resultados produz;
+- qual etapa seguinte depende desses resultados.
+
+Estrutura conceitual:
+
+```text
+entrada
+↓
+processamento/análise
+↓
+validação
+↓
+resultado
+↓
+handoff

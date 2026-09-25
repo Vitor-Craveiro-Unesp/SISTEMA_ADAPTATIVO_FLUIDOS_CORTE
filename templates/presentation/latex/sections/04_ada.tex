@@ -1,1 +1,606 @@
-% 04_ada
+% ============================================================
+% 04_ADA.TEX
+% Sistema Adaptativo de Classificação Multicritério
+% de Fluidos de Corte
+%
+% FINALIDADE
+%
+% Apresentar a Análise Descritiva/Exploratória dos Dados:
+%
+% - comportamento individual das variáveis;
+% - comparação entre fluidos;
+% - comparação entre condições;
+% - associações entre variáveis;
+% - estrutura multivariada;
+% - identificação de redundâncias;
+% - preparação para a seleção dos critérios.
+%
+% Este arquivo constitui apenas a BASE da apresentação.
+%
+% Estatísticas, figuras e conclusões deverão ser inseridas
+% pelos integrantes somente após a execução das análises em R.
+%
+% ============================================================
+
+
+% ============================================================
+% FRAME 1 — OBJETIVO DA ADA
+% ============================================================
+
+\begin{frame}{Análise exploratória dos dados}
+
+    \begin{block}{Objetivo}
+        Compreender a estrutura dos dados antes da definição da
+        matriz multicritério.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    A análise exploratória deverá investigar:
+
+    \begin{itemize}
+        \item distribuição das variáveis;
+        \item diferenças entre fluidos;
+        \item comportamento entre condições experimentais;
+        \item variabilidade;
+        \item valores extremos;
+        \item associações entre variáveis;
+        \item redundância potencial;
+        \item estrutura multivariada.
+    \end{itemize}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Importante}
+        A ADA serve para compreender os dados e fundamentar decisões
+        posteriores. Ela não produz, isoladamente, o ranking final.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 2 — ANÁLISE UNIVARIADA
+% ============================================================
+
+\begin{frame}{Análise univariada}
+
+    Cada variável será inicialmente examinada de forma individual.
+
+    \vspace{0.3cm}
+
+    Quando adequadas à natureza da variável, poderão ser utilizadas:
+
+    \begin{itemize}
+        \item média;
+        \item mediana;
+        \item mínimo e máximo;
+        \item quartis;
+        \item desvio-padrão;
+        \item amplitude;
+        \item frequência de valores ausentes;
+        \item distribuição gráfica.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Objetivo}
+        Identificar escala, dispersão, assimetria, baixa variabilidade
+        e valores que mereçam investigação adicional.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 3 — COMPARAÇÃO ENTRE FLUIDOS
+% ============================================================
+
+\begin{frame}{Comparação entre fluidos}
+
+    A ADA deverá comparar o comportamento das alternativas em cada
+    característica relevante.
+
+    \vspace{0.3cm}
+
+    Poderão ser utilizados, conforme os dados:
+
+    \begin{itemize}
+        \item boxplots;
+        \item dotplots;
+        \item gráficos de pontos;
+        \item gráficos por condição;
+        \item tabelas descritivas compactas.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Pergunta exploratória}
+        Quais características diferenciam efetivamente os fluidos?
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Cuidado}
+        Uma alternativa favorável em uma variável não deve ser
+        classificada como a melhor alternativa global.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 4 — CONDIÇÕES EXPERIMENTAIS
+% ============================================================
+
+\begin{frame}{Comportamento entre condições}
+
+    Quando uma variável estiver disponível em diferentes condições,
+    será necessário avaliar sua estabilidade.
+
+    \vspace{0.3cm}
+
+    A análise deverá investigar:
+
+    \begin{itemize}
+        \item mudança de magnitude;
+        \item mudança de posição relativa;
+        \item estabilidade;
+        \item possíveis interações;
+        \item inversão de desempenho;
+        \item necessidade ou não de agregação.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Implicação}
+        Um valor médio pode ocultar comportamentos distintos entre
+        condições experimentais.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 5 — VALORES EXTREMOS
+% ============================================================
+
+\begin{frame}{Valores extremos}
+
+    Valores extremos deverão ser tratados inicialmente como:
+
+    \begin{center}
+        \textbf{informação a investigar}
+    \end{center}
+
+    e não como:
+
+    \begin{center}
+        \textbf{erro a remover automaticamente}.
+    \end{center}
+
+    \vspace{0.3cm}
+
+    Para cada caso relevante será necessário avaliar:
+
+    \begin{itemize}
+        \item origem do valor;
+        \item consistência com a fonte;
+        \item plausibilidade técnica;
+        \item influência nas estatísticas;
+        \item impacto sobre as etapas posteriores.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 6 — ASSOCIAÇÃO ENTRE VARIÁVEIS
+% ============================================================
+
+\begin{frame}{Associação entre variáveis}
+
+    A ADA bivariada deverá investigar relações entre critérios
+    candidatos.
+
+    \vspace{0.3cm}
+
+    Poderão ser utilizadas:
+
+    \begin{itemize}
+        \item matriz de dispersão;
+        \item correlação de Pearson;
+        \item correlação de Spearman, quando pertinente;
+        \item visualização por pares;
+        \item análise técnica das variáveis.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Objetivos}
+        Identificar possíveis redundâncias e trade-offs antes da
+        definição da matriz de decisão.
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Interpretação}
+        Correlação indica associação e não implica causalidade.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 7 — REDUNDÂNCIA
+% ============================================================
+
+\begin{frame}{Redundância entre critérios}
+
+    Duas variáveis muito semelhantes podem representar praticamente
+    a mesma informação.
+
+    \vspace{0.3cm}
+
+    \begin{block}{Risco}
+        Utilizar simultaneamente critérios redundantes pode provocar
+        super-representação de uma mesma dimensão no sistema
+        multicritério.
+    \end{block}
+
+    \vspace{0.3cm}
+
+    A investigação deverá considerar:
+
+    \begin{itemize}
+        \item intensidade da associação;
+        \item significado técnico;
+        \item forma de cálculo;
+        \item dependência matemática;
+        \item origem das variáveis.
+    \end{itemize}
+
+    \vspace{0.2cm}
+
+    \centering
+    \textit{Correlação elevada, isoladamente, não determina exclusão.}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 8 — CORRELAÇÃO POSITIVA E NEGATIVA
+% ============================================================
+
+\begin{frame}{Interpretação das correlações}
+
+    \begin{columns}[T]
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Correlação positiva}
+                Pode indicar que duas características variam em
+                direções semelhantes e potencialmente compartilham
+                informação.
+            \end{block}
+
+        \end{column}
+
+
+        \begin{column}{0.48\textwidth}
+
+            \begin{block}{Correlação negativa}
+                Pode representar conflito ou trade-off entre
+                características e não necessariamente redundância.
+            \end{block}
+
+        \end{column}
+
+    \end{columns}
+
+    \vspace{0.5cm}
+
+    Essa distinção será particularmente importante posteriormente no
+    método CRITIC, que utiliza as relações entre os critérios para
+    quantificar conteúdo informacional.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 9 — ANÁLISE MULTIVARIADA
+% ============================================================
+
+\begin{frame}{Estrutura multivariada}
+
+    Quando pertinente, técnicas multivariadas poderão auxiliar na
+    compreensão da estrutura conjunta dos dados.
+
+    \vspace{0.3cm}
+
+    Exemplos possíveis:
+
+    \begin{itemize}
+        \item análise de componentes principais;
+        \item mapas de calor;
+        \item análise de agrupamentos;
+        \item representações em espaço reduzido.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Finalidade}
+        Investigar padrões conjuntos, proximidade entre alternativas e
+        relações entre variáveis.
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \begin{alertblock}{Limite}
+        Essas técnicas terão caráter exploratório e não substituirão
+        o método multicritério utilizado para o ranking.
+    \end{alertblock}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 10 — PCA
+% ============================================================
+
+\begin{frame}{Análise de Componentes Principais}
+
+    Caso a PCA seja utilizada, ela poderá ajudar a visualizar:
+
+    \begin{itemize}
+        \item estrutura de correlação;
+        \item grupos de variáveis;
+        \item proximidade entre fluidos;
+        \item variáveis associadas às principais direções de variação.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{A preencher após execução}
+        \begin{itemize}
+            \item Variância explicada pela PC1:
+                  \texttt{TO\_BE\_FILLED}
+            \item Variância explicada pela PC2:
+                  \texttt{TO\_BE\_FILLED}
+            \item Principais padrões:
+                  \texttt{TO\_BE\_FILLED}
+        \end{itemize}
+    \end{block}
+
+    \vspace{0.2cm}
+
+    \centering
+    \textit{Somente incluir este slide se a PCA for efetivamente utilizada.}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 11 — PCA NÃO É RANKING
+% ============================================================
+
+\begin{frame}{PCA não define o melhor fluido}
+
+    \begin{alertblock}{Cuidado de interpretação}
+        A posição de uma alternativa em uma componente principal não
+        representa automaticamente sua qualidade global.
+    \end{alertblock}
+
+    \vspace{0.4cm}
+
+    A PCA busca representar:
+
+    \begin{center}
+        \textbf{variabilidade dos dados}
+    \end{center}
+
+    e não:
+
+    \begin{center}
+        \textbf{preferência multicritério}.
+    \end{center}
+
+    \vspace{0.3cm}
+
+    Portanto:
+
+    \[
+    \text{PCA}
+    \neq
+    \text{ranking TOPSIS}
+    \]
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 12 — VARIÁVEIS CONSTANTES
+% ============================================================
+
+\begin{frame}{Capacidade discriminatória}
+
+    Uma característica utilizada como critério precisa contribuir para
+    distinguir as alternativas.
+
+    \vspace{0.3cm}
+
+    Variáveis poderão ser classificadas como:
+
+    \begin{itemize}
+        \item discriminatórias;
+        \item pouco variáveis;
+        \item constantes;
+        \item diagnósticas;
+        \item redundantes;
+        \item inadequadas como critério.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    Para uma variável constante:
+
+    \[
+    \operatorname{Var}(X)=0
+    \]
+
+    ela não possui capacidade de discriminar os fluidos naquele conjunto
+    analisado.
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 13 — DA ADA AOS CRITÉRIOS
+% ============================================================
+
+\begin{frame}{Da exploração à definição dos critérios}
+
+    \begin{block}{Fluxo}
+        \centering
+
+        Variáveis disponíveis
+        $\rightarrow$
+        ADA
+        $\rightarrow$
+        Redundância
+        $\rightarrow$
+        Conformidade
+        $\rightarrow$
+        Critérios candidatos
+        $\rightarrow$
+        Critérios aprovados
+    \end{block}
+
+    \vspace{0.4cm}
+
+    A definição final dos critérios deverá considerar conjuntamente:
+
+    \begin{itemize}
+        \item informação estatística;
+        \item significado técnico;
+        \item disponibilidade dos dados;
+        \item variabilidade;
+        \item redundância;
+        \item direção de preferência;
+        \item possibilidade de interpretação.
+    \end{itemize}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 14 — RESULTADOS FUTUROS DA ADA
+% ============================================================
+
+\begin{frame}{Principais achados exploratórios}
+
+    \begin{block}{Achado 1}
+        \texttt{TO\_BE\_FILLED}
+    \end{block}
+
+    \begin{block}{Achado 2}
+        \texttt{TO\_BE\_FILLED}
+    \end{block}
+
+    \begin{block}{Achado 3}
+        \texttt{TO\_BE\_FILLED}
+    \end{block}
+
+    \vspace{0.3cm}
+
+    \centering
+
+    \textit{Preencher somente após a execução e interpretação das análises
+    pelos integrantes.}
+
+\end{frame}
+
+
+% ============================================================
+% FRAME 15 — RESULTADOS QUE DEVEM SER LEVADOS ADIANTE
+% ============================================================
+
+\begin{frame}{Síntese para a etapa multicritério}
+
+    Após a ADA, deverão estar definidos ou documentados:
+
+    \begin{itemize}
+        \item variáveis com capacidade discriminatória;
+        \item associações importantes;
+        \item redundâncias potenciais;
+        \item variáveis constantes ou quase constantes;
+        \item comportamento entre condições;
+        \item valores extremos relevantes;
+        \item limitações;
+        \item critérios candidatos.
+    \end{itemize}
+
+    \vspace{0.3cm}
+
+    \begin{block}{Próxima etapa}
+        Transformar essas evidências em uma matriz de decisão
+        tecnicamente justificável.
+    \end{block}
+
+\end{frame}
+
+
+% ============================================================
+% FIGURAS FUTURAS
+% ============================================================
+%
+% Os integrantes poderão substituir slides mais textuais por
+% figuras produzidas em R, por exemplo:
+%
+% - boxplot de variável relevante;
+% - gráfico por condição;
+% - matriz de correlação;
+% - heatmap;
+% - biplot da PCA;
+% - gráfico de dispersão;
+%
+% Priorizar poucas figuras com alto valor explicativo.
+%
+% Não é necessário produzir nenhuma agora.
+%
+% ============================================================
+
+
+% ============================================================
+% MATERIAL EXTERNO
+% ============================================================
+%
+% Caso a professora forneça:
+%
+% - interpretação oficial de variável;
+% - significado técnico;
+% - referência;
+% - critério obrigatório;
+%
+% esse material deverá ser incorporado antes de tomar decisões
+% sobre exclusão ou uso de critérios.
+%
+% ============================================================
+
+
+% ============================================================
+% ESTADO ATUAL
+% ============================================================
+%
+% ADA_SECTION_STATUS = BASE_PREPARED
+%
+% UNIVARIATE_ADA_STATUS = NOT_EXECUTED
+% BIVARIATE_ADA_STATUS = NOT_EXECUTED
+% MULTIVARIATE_ADA_STATUS = NOT_EXECUTED
+% PCA_STATUS = TO_BE_DECIDED
+%
+% ADA_MAIN_FINDINGS = TO_BE_FILLED
+% POTENTIAL_REDUNDANCIES = TO_BE_FILLED
+% CANDIDATE_CRITERIA = TO_BE_FILLED
+%
+% ============================================================
