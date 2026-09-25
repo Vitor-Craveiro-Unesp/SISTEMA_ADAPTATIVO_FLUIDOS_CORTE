@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Sensitivity and robustness
+IDIOMA: EN
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Nenhum vídeo institucional que cobrisse robustez de MCDA e seus protocolos específicos foi validado. A revisão sistemática de 2023 é a fonte recomendada.

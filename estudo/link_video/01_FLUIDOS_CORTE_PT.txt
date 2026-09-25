@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Fluidos de corte
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: A busca não retornou aula técnica em português, com autoria institucional verificável, que cobrisse usinagem e fluidos de corte com qualidade suficiente. Consultar o material escrito PT e a aula universitária EN.

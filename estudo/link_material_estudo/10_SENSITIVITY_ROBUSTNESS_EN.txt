@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Sensitivity and robustness in MCDA
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Sensitivity analysis approaches in multi-criteria decision analysis: A systematic review
+AUTOR / INSTITUIÇÃO: Jakub Wieckowski and Wojciech Salabun
+FONTE: Applied Soft Computing / ScienceDirect
+LINK: https://www.sciencedirect.com/science/article/pii/S156849462300933X
+ANO: 2023
+MOTIVO: Revisão sistemática das abordagens de sensibilidade para testar estabilidade e vulnerabilidade dos resultados MCDA.
+PARA QUEM: VITOR
+TÓPICOS COBERTOS:
+- weight perturbation
+- ranking stability
+- sensitivity frameworks
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

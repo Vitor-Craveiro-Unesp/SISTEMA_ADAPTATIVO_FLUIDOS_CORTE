@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: R e reprodutibilidade
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi validado vídeo institucional em português que combinasse R, gestão de dependências e pipelines reproduzíveis. A lacuna evita recomendar conteúdo não verificável.

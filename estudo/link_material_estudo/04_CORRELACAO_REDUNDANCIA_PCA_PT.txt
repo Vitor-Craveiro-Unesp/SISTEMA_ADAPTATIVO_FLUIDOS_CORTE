@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Correlação, redundância e ACP
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Quimiometria III: Revisitando a análise exploratória dos dados multivariados
+AUTOR / INSTITUIÇÃO: Química Nova / SciELO Brasil
+FONTE: SciELO
+LINK: https://www.scielo.br/j/qn/a/kX6dqYqzWgMV3JfCswqTFnb/?lang=pt
+ANO: N/A
+MOTIVO: Explica componentes principais, escores, variância explicada e os efeitos de padronização.
+PARA QUEM: BENJAMIN
+TÓPICOS COBERTOS:
+- PCA/ACP
+- scores e loadings
+- variância explicada e escalonamento
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Correlação não estabelece causalidade; MATERIAL_TRANSVERSAL = YES.

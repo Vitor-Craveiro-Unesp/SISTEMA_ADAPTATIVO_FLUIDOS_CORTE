@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Cutting fluids
+IDIOMA: EN
+TIPO: VIDEO
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Lec 13: Machining Fluids / Cutting Fluids and its Additives Part 1
+AUTOR / INSTITUIÇÃO: NPTEL MOOC IITG
+FONTE: YouTube
+LINK: https://www.youtube.com/watch?v=owDNvZj4VYw
+ANO: 2018
+MOTIVO: Aula de curso universitário especificamente dedicada a fluidos e aditivos de usinagem.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- machining fluids
+- cutting-fluid additives
+- machining context
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

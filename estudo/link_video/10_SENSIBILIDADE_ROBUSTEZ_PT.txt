@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Sensibilidade e robustez
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi validado vídeo em português que cobrisse sensibilidade, robustez, LOCO, LOAO e rank reversal em MCDA. Usar a fonte escrita PT e a revisão EN.

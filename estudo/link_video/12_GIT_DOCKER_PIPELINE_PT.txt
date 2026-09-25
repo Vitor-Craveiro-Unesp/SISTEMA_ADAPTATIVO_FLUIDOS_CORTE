@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Git e GitHub
+IDIOMA: PT
+TIPO: VIDEO
+NÍVEL: RECOMENDADO
+TÍTULO: Criando o primeiro Repositório - Curso de Git e GitHub
+AUTOR / INSTITUIÇÃO: Curso em Vídeo
+FONTE: YouTube
+LINK: https://www.youtube.com/watch?v=5BYm7UdCrX0
+ANO: 2020
+MOTIVO: Vídeo didático de canal educacional verificado sobre criação e organização de repositório.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- Git repository
+- GitHub
+- project organization
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Complementar à documentação oficial Pro Git; não cobre Docker ou targets.

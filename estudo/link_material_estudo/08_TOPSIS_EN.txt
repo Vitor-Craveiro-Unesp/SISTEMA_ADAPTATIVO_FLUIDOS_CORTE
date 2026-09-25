@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: TOPSIS
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Multiple Attribute Decision Making: Methods and Applications
+AUTOR / INSTITUIÇÃO: Ching-Lai Hwang and Kwangsun Yoon
+FONTE: Springer
+LINK: https://link.springer.com/book/10.1007/978-3-642-48318-9
+ANO: 1981
+MOTIVO: Obra fundacional que apresenta o contexto metodológico no qual TOPSIS foi proposto.
+PARA QUEM: VITOR, BENJAMIN
+TÓPICOS COBERTOS:
+- multiple-attribute decision making
+- normalization
+- preference ranking
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES; a matriz já orientada como maior=melhor não deve sofrer nova inversão.

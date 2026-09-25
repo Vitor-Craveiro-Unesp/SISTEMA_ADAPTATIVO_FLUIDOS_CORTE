@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Technical conformity and criteria
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Multiple Attribute Decision Making: Methods and Applications
+AUTOR / INSTITUIÇÃO: Ching-Lai Hwang and Kwangsun Yoon
+FONTE: Springer
+LINK: https://link.springer.com/book/10.1007/978-3-642-48318-9
+ANO: 1981
+MOTIVO: Referência fundacional para alternativas, atributos, transformação e avaliação de pesos.
+PARA QUEM: BENJAMIN, VITOR
+TÓPICOS COBERTOS:
+- criteria and attributes
+- decision matrices
+- weighting and transformations
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Obra com acesso institucional; não substitui especificações técnicas da professora.

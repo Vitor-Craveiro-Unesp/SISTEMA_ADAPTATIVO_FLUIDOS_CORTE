@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Quarto publishing
+IDIOMA: EN
+TIPO: VIDEO
+NÍVEL: RECOMENDADO
+TÍTULO: Build and deploy a Quarto blog in under two minutes
+AUTOR / INSTITUIÇÃO: Thomas Mock, Posit PBC
+FONTE: YouTube
+LINK: https://www.youtube.com/watch?v=t8qtcDyCRFA
+ANO: 2022
+MOTIVO: Demonstração oficial do fluxo de criação e publicação em Quarto.
+PARA QUEM: MARCO, TODOS
+TÓPICOS COBERTOS:
+- Quarto workflow
+- executable documents
+- publishing
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Vídeo complementar; seguir a documentação oficial para LaTeX e Beamer.

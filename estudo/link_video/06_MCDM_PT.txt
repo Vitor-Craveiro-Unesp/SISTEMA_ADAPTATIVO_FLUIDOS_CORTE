@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Tomada de decisão multicritério
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi validado vídeo acadêmico em português que tratasse MCDM/MCDA de modo abrangente. O artigo SciELO em português permanece recomendado.

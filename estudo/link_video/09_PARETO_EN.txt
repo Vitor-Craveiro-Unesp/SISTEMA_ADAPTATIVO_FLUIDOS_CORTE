@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Pareto optimality
+IDIOMA: EN
+TIPO: VIDEO
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Pareto optimality in multi-objective optimization | 3/8
+AUTOR / INSTITUIÇÃO: Universitat Politècnica de València (UPV)
+FONTE: YouTube
+LINK: https://www.youtube.com/watch?v=2tT3QftC03Y
+ANO: 2012
+MOTIVO: Aula universitária que introduz ótimo de Pareto e trade-offs em otimização multiobjetivo.
+PARA QUEM: VITOR, BENJAMIN
+TÓPICOS COBERTOS:
+- Pareto optimality
+- multi-objective optimization
+- trade-offs
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Pareto não usa pesos e não produz vencedor automático.

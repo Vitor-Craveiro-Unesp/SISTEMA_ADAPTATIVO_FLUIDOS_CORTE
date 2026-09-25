@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: TOPSIS
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Uma comparação entre os métodos TOPSIS e Fuzzy-TOPSIS no apoio à tomada de decisão multicritério para seleção de fornecedores
+AUTOR / INSTITUIÇÃO: Gestão & Produção / SciELO Brasil
+FONTE: SciELO
+LINK: https://www.scielo.br/j/gp/a/YYQS49M7kYZGVG8sgcKxJHC/?lang=pt
+ANO: 2015
+MOTIVO: Explica os passos, as soluções ideais e o coeficiente de aproximação do TOPSIS em português.
+PARA QUEM: VITOR, BENJAMIN
+TÓPICOS COBERTOS:
+- matriz normalizada e pesos
+- ideal positivo e negativo
+- coeficiente de aproximação
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Estudar a formulação clássica, não a extensão fuzzy, como referência do projeto.

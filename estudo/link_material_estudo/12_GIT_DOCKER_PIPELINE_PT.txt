@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Git, Docker e pipeline
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Fundamentos do Git - Obtendo um Repositório Git
+AUTOR / INSTITUIÇÃO: Scott Chacon and Ben Straub
+FONTE: Pro Git / git-scm.com
+LINK: https://git-scm.com/book/pt-br/v2/Fundamentos-do-Git-Obtendo-um-Reposit%C3%B3rio-Git
+ANO: N/A
+MOTIVO: Documentação oficial em português sobre inicialização, clone, commits e histórico.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- repositórios
+- versionamento
+- histórico e trabalho remoto
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

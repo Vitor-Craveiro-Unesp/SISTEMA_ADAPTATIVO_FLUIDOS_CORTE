@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Análise exploratória de dados
+IDIOMA: PT
+TIPO: VIDEO
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Lesson 02 - Introduction to Exploratory Data Analysis
+AUTOR / INSTITUIÇÃO: Data ICMC, Instituto de Ciências Matemáticas e de Computação da USP
+FONTE: YouTube
+LINK: https://www.youtube.com/watch?v=uLPqgLexTTg
+ANO: 2021
+MOTIVO: Aula do ICMC-USP que introduz objetivos e etapas da análise exploratória.
+PARA QUEM: PACHECO, BENJAMIN
+TÓPICOS COBERTOS:
+- exploratory data analysis
+- objectives and workflow
+- data understanding
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: O título da aula está em inglês, mas a fonte institucional é brasileira; confirmar a adequação linguística antes do estudo em grupo.

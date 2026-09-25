@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Método CRITIC
+IDIOMA: PT
+TIPO: MATERIAL
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: A busca não identificou fonte primária ou material didático em português com autoria e cobertura metodológica verificáveis. Usar a fonte primária em inglês deste diretório; não tratar uma tradução não verificada como fonte.

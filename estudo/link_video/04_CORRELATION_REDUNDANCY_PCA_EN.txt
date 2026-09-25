@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Correlation, redundancy and PCA
+IDIOMA: EN
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: A busca não validou vídeo único de instituição que cobrisse todas as dimensões do tema. A lição STAT 505 da Penn State, registrada em material escrito, é a referência recomendada.

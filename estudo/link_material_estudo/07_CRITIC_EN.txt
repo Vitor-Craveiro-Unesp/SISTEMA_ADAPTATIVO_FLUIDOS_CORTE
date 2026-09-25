@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: CRITIC objective weighting
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Determining objective weights in multiple criteria problems: The CRITIC method
+AUTOR / INSTITUIÇÃO: Danae Diakoulaki, George Mavrotas and Lefteris Papayannakis
+FONTE: Computers & Operations Research / ScienceDirect
+LINK: https://www.sciencedirect.com/science/article/pii/030505489400059H
+ANO: 1995
+MOTIVO: Artigo original que define o peso objetivo por intensidade de contraste e conflito entre critérios.
+PARA QUEM: BENJAMIN, VITOR
+TÓPICOS COBERTOS:
+- contrast intensity
+- intercriteria correlation
+- objective weights
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: O projeto usa Cj = sigma_j * sum_k(1-r_jk). Registrar explicitamente qualquer variação encontrada.

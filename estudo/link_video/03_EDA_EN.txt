@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Exploratory data analysis
+IDIOMA: EN
+TIPO: VIDEO
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Lecture 09: Introduction to Exploratory Data Analysis - Objectives, Steps and Basic Definitions
+AUTOR / INSTITUIÇÃO: IIT Kanpur - NPTEL
+FONTE: YouTube
+LINK: https://www.youtube.com/watch?v=bDxYwkq6CrQ
+ANO: 2026
+MOTIVO: Aula universitária recente focada na definição, objetivos e etapas de EDA.
+PARA QUEM: PACHECO, BENJAMIN
+TÓPICOS COBERTOS:
+- EDA objectives
+- EDA steps
+- basic definitions
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

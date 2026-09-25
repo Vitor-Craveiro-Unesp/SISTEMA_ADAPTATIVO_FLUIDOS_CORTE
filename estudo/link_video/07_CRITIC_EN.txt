@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: CRITIC objective weighting
+IDIOMA: EN
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: A busca não validou vídeo institucional diretamente dedicado ao método. O artigo original de Diakoulaki, Mavrotas e Papayannakis é a fonte obrigatória.

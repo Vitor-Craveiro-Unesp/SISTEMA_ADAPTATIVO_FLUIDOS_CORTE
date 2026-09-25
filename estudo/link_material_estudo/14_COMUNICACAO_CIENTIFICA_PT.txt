@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Comunicação científica
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Redação científica e a qualidade dos artigos: em busca de maior impacto
+AUTOR / INSTITUIÇÃO: Jornal da Sociedade Brasileira de Fonoaudiologia / SciELO Brasil
+FONTE: SciELO
+LINK: https://www.scielo.br/j/jsbf/a/YcNp4q8ky9QYZ8syNSMrRLN/?lang=pt
+ANO: 2011
+MOTIVO: Discute estrutura, clareza e qualidade da redação de artigos revisados por pares.
+PARA QUEM: MARCO, TODOS
+TÓPICOS COBERTOS:
+- estrutura de artigo
+- redação clara
+- comunicação de resultados
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Não extrapolar resultados nem ocultar limitações.

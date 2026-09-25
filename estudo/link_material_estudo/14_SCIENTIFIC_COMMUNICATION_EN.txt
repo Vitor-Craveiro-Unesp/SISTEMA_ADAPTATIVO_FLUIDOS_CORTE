@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Scientific communication
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: How to write a great research paper using reporting guidelines
+AUTOR / INSTITUIÇÃO: EQUATOR Network
+FONTE: EQUATOR Network
+LINK: https://www.equator-network.org/toolkits/writing-research/
+ANO: N/A
+MOTIVO: Guia institucional para relato transparente, reproduzível e verificável de pesquisa.
+PARA QUEM: MARCO, TODOS
+TÓPICOS COBERTOS:
+- transparent reporting
+- reproducibility
+- manuscript structure
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Diretrizes de relato complementam, mas não substituem, o modelo da professora.

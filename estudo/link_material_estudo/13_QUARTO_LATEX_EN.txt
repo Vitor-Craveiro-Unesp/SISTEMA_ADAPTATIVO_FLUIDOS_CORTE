@@ -1,0 +1,43 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Quarto
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Quarto Guide
+AUTOR / INSTITUIÇÃO: Posit PBC / Quarto Project
+FONTE: Quarto Documentation
+LINK: https://quarto.org/docs/guide/
+ANO: N/A
+MOTIVO: Guia oficial para autoria, execução de código, citações, documentos e apresentações.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- executable documents
+- citations and cross-references
+- PDF and Beamer output
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES
+
+------------------------------------------------------------
+MATERIAL 02
+------------------------------------------------------------
+TEMA: LaTeX
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: RECOMENDADO
+TÍTULO: Starting out with TeX, LaTeX, and friends
+AUTOR / INSTITUIÇÃO: Comprehensive TeX Archive Network
+FONTE: CTAN
+LINK: https://www.ctan.org/starter/
+ANO: N/A
+MOTIVO: Portal técnico mantido pela comunidade TeX, com documentação inicial e distribuições oficiais.
+PARA QUEM: MARCO, TODOS
+TÓPICOS COBERTOS:
+- LaTeX setup
+- beginner documentation
+- typesetting workflow
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Requisitos de margens, fonte e páginas seguem o modelo da professora.

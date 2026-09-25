@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Git, Docker and pipeline
+IDIOMA: EN
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi selecionado um vídeo único que cobrisse as três ferramentas com qualidade institucional. Priorizar as documentações oficiais registradas no material escrito.

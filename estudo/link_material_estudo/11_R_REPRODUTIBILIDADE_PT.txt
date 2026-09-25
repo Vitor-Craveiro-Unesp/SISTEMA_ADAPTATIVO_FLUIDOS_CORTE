@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: R e reprodutibilidade
+IDIOMA: PT
+TIPO: MATERIAL
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi identificado manual oficial do R em português com versão e autoria verificáveis. A documentação oficial em inglês permanece a recomendação técnica; o uso deve respeitar os caminhos relativos e o ambiente reproduzível do projeto.

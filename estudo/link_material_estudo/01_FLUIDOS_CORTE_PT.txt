@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Fluidos de corte e lubrirrefrigeração
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Retificação cilíndrica do aço VP50 utilizando a técnica de MQL
+AUTOR / INSTITUIÇÃO: Revista Matéria / SciELO Brasil
+FONTE: SciELO
+LINK: https://www.scielo.br/j/rmat/a/RmQ87GmmfGbxgqsG8q5nfWS/?format=html&lang=pt
+ANO: 2015
+MOTIVO: Discute lubrificação, refrigeração, MQL, impactos ambientais e segurança em usinagem.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- funções dos fluidos de corte
+- MQL e dissipação térmica
+- saúde e ambiente
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

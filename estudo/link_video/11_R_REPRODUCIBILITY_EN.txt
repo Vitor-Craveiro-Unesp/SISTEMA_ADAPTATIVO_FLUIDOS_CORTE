@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: R and reproducibility
+IDIOMA: EN
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi selecionado vídeo para não substituir a documentação oficial do R e do targets por tutorial de procedência insuficiente.

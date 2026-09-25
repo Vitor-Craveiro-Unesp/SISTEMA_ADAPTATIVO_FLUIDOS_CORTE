@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Quarto e LaTeX
+IDIOMA: PT
+TIPO: MATERIAL
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: A documentação oficial do Quarto consultada não oferece guia técnico integral em português. Utilizar os materiais oficiais em inglês e os requisitos formais da professora como fontes prioritárias.

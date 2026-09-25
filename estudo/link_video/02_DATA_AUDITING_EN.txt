@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Data auditing and quality
+IDIOMA: EN
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi localizado vídeo universitário específico de auditoria de dados que atendesse simultaneamente qualidade, proveniência e reconciliação. O curso MIT indicado no material escrito é a referência educacional recomendada.

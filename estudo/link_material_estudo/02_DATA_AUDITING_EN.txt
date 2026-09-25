@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Data auditing and data quality
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: How to Process, Analyze and Visualize Data
+AUTOR / INSTITUIÇÃO: Adam Marcus and Eugene Wu, MIT
+FONTE: MIT OpenCourseWare
+LINK: https://ocw.mit.edu/courses/res-6-009-how-to-process-analyze-and-visualize-data-january-iap-2012/
+ANO: 2012
+MOTIVO: Curso aberto que liga dados brutos, limpeza, análise e visualização de forma reproduzível.
+PARA QUEM: PACHECO, TODOS
+TÓPICOS COBERTOS:
+- raw data and cleaning
+- analysis workflow
+- visualization
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Exploratory data analysis
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Data Analysis for Social Scientists
+AUTOR / INSTITUIÇÃO: MIT Department of Economics
+FONTE: MIT OpenCourseWare
+LINK: https://ocw.mit.edu/courses/14-310x-data-analysis-for-social-scientists-spring-2023/
+ANO: 2023
+MOTIVO: Material universitário com estatística descritiva, visualizações e interpretação de dados.
+PARA QUEM: PACHECO, BENJAMIN
+TÓPICOS COBERTOS:
+- descriptive statistics
+- exploratory visualizations
+- data interpretation
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Pareto optimality
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Multiple Objectives, Pareto Optimality
+AUTOR / INSTITUIÇÃO: MIT OpenCourseWare
+FONTE: MIT OpenCourseWare
+LINK: https://ocw.mit.edu/courses/1-020-ecology-ii-engineering-for-sustainability-spring-2008/resources/lec20/
+ANO: 2008
+MOTIVO: Notas universitárias claras sobre trade-offs e eficiência de Pareto.
+PARA QUEM: VITOR, BENJAMIN
+TÓPICOS COBERTOS:
+- multiobjective trade-offs
+- Pareto optimality
+- decision alternatives
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Pareto é evidência complementar, não um ranking ponderado.

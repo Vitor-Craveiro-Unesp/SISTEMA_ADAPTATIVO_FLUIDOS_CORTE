@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Multiple-criteria decision making
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Multiple Attribute Decision Making: Methods and Applications
+AUTOR / INSTITUIÇÃO: Ching-Lai Hwang and Kwangsun Yoon
+FONTE: Springer
+LINK: https://link.springer.com/book/10.1007/978-3-642-48318-9
+ANO: 1981
+MOTIVO: Referência clássica que sistematiza conceitos, pesos, normalização e métodos MADM.
+PARA QUEM: BENJAMIN, VITOR
+TÓPICOS COBERTOS:
+- MCDM foundations
+- weighting
+- normalization and alternatives
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

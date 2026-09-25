@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Sensibilidade e robustez em decisão multicritério
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Proposta de um método multicritério para escolha múltipla
+AUTOR / INSTITUIÇÃO: Production / SciELO Brasil
+FONTE: SciELO
+LINK: https://www.scielo.br/j/prod/a/qLHWPt9dczY3ptY8X83SryS/?lang=pt
+ANO: 2015
+MOTIVO: Discute análise de sensibilidade de ordenações a mudanças em critérios, pesos e regras de decisão.
+PARA QUEM: VITOR, BENJAMIN
+TÓPICOS COBERTOS:
+- sensitivity analysis
+- ranking robustness
+- changes in criteria and weights
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Frequência em cenários não é probabilidade real.

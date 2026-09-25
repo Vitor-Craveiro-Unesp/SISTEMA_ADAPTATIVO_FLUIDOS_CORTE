@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Conformidade técnica e critérios
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Métodos de Análise de Decisão Multicritério para Seleção de Padrões de Corte
+AUTOR / INSTITUIÇÃO: SciELO Brasil
+FONTE: Tendências em Matemática Aplicada e Computacional
+LINK: https://www.scielo.br/j/tcam/a/ptJqJqQRfPH6Tcs46Tgzr6w/?format=html&lang=pt
+ANO: N/A
+MOTIVO: Apresenta critérios, alternativas, matriz de decisão e métodos compensatórios no contexto de seleção.
+PARA QUEM: BENJAMIN
+TÓPICOS COBERTOS:
+- critérios e alternativas
+- matriz de decisão
+- apoio multicritério
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Conformidade é uma verificação técnica separada do ranking.

@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Dominância e fronteira de Pareto
+IDIOMA: PT
+TIPO: MATERIAL
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi localizado material em português, com autoria institucional verificável, focado em dominância de Pareto aplicável a MCDA discreta. Usar a aula e as notas universitárias em inglês; Pareto não utiliza pesos e não produz vencedor automático.

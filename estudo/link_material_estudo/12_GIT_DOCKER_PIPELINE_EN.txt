@@ -1,0 +1,43 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Git, Docker and pipeline
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Pro Git
+AUTOR / INSTITUIÇÃO: Scott Chacon and Ben Straub
+FONTE: git-scm.com
+LINK: https://git-scm.com/book/en/v2
+ANO: N/A
+MOTIVO: Livro oficial e aberto para controle de versão colaborativo.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- version control
+- branches and merges
+- collaboration
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES
+
+------------------------------------------------------------
+MATERIAL 02
+------------------------------------------------------------
+TEMA: Containerization
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: RECOMENDADO
+TÍTULO: Get Started with Docker
+AUTOR / INSTITUIÇÃO: Docker, Inc.
+FONTE: Docker Documentation
+LINK: https://www.docker.com/get-started/
+ANO: N/A
+MOTIVO: Introdução oficial à criação e ao uso de containers.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- containers
+- images
+- reproducible environments
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Docker é infraestrutura planejada, não evidência científica.

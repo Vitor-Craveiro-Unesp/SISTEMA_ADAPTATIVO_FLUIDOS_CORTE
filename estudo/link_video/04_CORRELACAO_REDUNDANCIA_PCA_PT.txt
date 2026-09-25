@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Correlação, redundância e ACP
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi validada aula universitária em português que cobrisse conjuntamente correlação, redundância, padronização e ACP. Usar o artigo escrito PT e a lição universitária EN.

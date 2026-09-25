@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Auditoria e qualidade de dados
+IDIOMA: PT
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: Gerenciamento de metadados e da qualidade de dados
+AUTOR / INSTITUIÇÃO: Escola Nacional de Administração Pública (Enap)
+FONTE: Repositório Enap
+LINK: https://repositorio.enap.gov.br/bitstream/1/5008/4/M%C3%B3dulo%204%20-%20Gerenciamento%20de%20Metadados%20e%20da%20qualidade%20de%20Dados.pdf
+ANO: N/A
+MOTIVO: Apresenta completude, conformidade, precisão, consistência e integridade como dimensões de qualidade.
+PARA QUEM: PACHECO, TODOS
+TÓPICOS COBERTOS:
+- metadados e proveniência
+- qualidade e consistência
+- rastreabilidade
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: Aplicar os princípios ao dado experimental; não confundir ausência com zero.

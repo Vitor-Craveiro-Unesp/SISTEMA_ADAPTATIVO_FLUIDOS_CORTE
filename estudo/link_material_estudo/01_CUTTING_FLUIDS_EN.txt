@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Cutting fluids and machining
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: NOC: Introduction to Machining and Machining Fluids
+AUTOR / INSTITUIÇÃO: Prof. Mamilla Ravi Sankar, IIT Guwahati
+FONTE: NPTEL
+LINK: https://nptel.ac.in/courses/112103245
+ANO: N/A
+MOTIVO: Curso universitário cujo programa cobre usinagem, desgaste, vida da ferramenta, fluidos, emissões e aplicação.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- machining and tool life
+- cutting-fluid properties and application
+- health and sustainability
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

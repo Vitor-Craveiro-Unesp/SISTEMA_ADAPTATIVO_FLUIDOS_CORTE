@@ -1,0 +1,21 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: Multiple-criteria decision making
+IDIOMA: EN
+TIPO: VIDEO
+NÍVEL: OBRIGATÓRIO
+TÍTULO: MCDM Techniques Using R
+AUTOR / INSTITUIÇÃO: Indian Institute of Technology Roorkee / NPTEL
+FONTE: NPTEL
+LINK: https://onlinecourses-archive.nptel.ac.in/noc19_mg16/preview
+ANO: 2019
+MOTIVO: Curso universitário que introduz conceitos, ferramentas e técnicas MCDM com R e MATLAB.
+PARA QUEM: BENJAMIN, VITOR
+TÓPICOS COBERTOS:
+- multiple criteria decision making
+- decision techniques
+- R implementation context
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES

@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: Quarto e LaTeX
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi validado vídeo técnico em português com autoria institucional que integrasse Quarto e LaTeX. Utilizar as documentações oficiais em inglês.

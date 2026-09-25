@@ -1,0 +1,43 @@
+------------------------------------------------------------
+MATERIAL 01
+------------------------------------------------------------
+TEMA: R and reproducibility
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: OBRIGATÓRIO
+TÍTULO: An Introduction to R
+AUTOR / INSTITUIÇÃO: R Core Team
+FONTE: CRAN
+LINK: https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+ANO: 2026
+MOTIVO: Manual oficial sobre dados, gráficos, modelos, scripts e o ambiente R.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- data frames and missing values
+- statistical computing and graphics
+- scripts and file-based work
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: MATERIAL_TRANSVERSAL = YES
+
+------------------------------------------------------------
+MATERIAL 02
+------------------------------------------------------------
+TEMA: Reproducible R pipelines
+IDIOMA: EN
+TIPO: MATERIAL
+NÍVEL: RECOMENDADO
+TÍTULO: The targets R package user manual
+AUTOR / INSTITUIÇÃO: Will Landau and contributors
+FONTE: rOpenSci Books
+LINK: https://books.ropensci.org/targets/
+ANO: N/A
+MOTIVO: Documentação do gerenciador de pipeline planejado para o projeto.
+PARA QUEM: TODOS
+TÓPICOS COBERTOS:
+- dependency graphs
+- reproducible pipelines
+- target metadata
+VERIFICADO_EM: 2026-09-25
+STATUS: ACTIVE
+OBSERVAÇÕES: A pipeline ainda não deve ser implementada nesta fase BASE_PREPARED.

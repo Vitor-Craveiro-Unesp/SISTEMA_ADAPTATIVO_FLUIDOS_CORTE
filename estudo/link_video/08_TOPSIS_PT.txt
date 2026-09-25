@@ -1,0 +1,7 @@
+CURADORIA SEM RECOMENDAÇÃO
+TEMA: TOPSIS
+IDIOMA: PT
+TIPO: VIDEO
+STATUS: MATERIAL_ADEQUADO_NAO_ENCONTRADO
+VERIFICADO_EM: 2026-09-25
+OBSERVAÇÕES: Não foi validado vídeo acadêmico em português que apresentasse integralmente TOPSIS clássico. O artigo SciELO em português é a fonte de estudo indicada.
