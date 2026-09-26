@@ -27,6 +27,11 @@ relative_project_path <- function(path, project_root) {
   root_norm <- paste0(normalizePath(project_root, winslash = "/", mustWork = TRUE), "/")
   if (startsWith(path_norm, root_norm)) {
     substring(path_norm, nchar(root_norm) + 1L)
+  } else if (grepl("/data/", path_norm, fixed = TRUE)) {
+    # Alguns builds do R no Windows codificam componentes acentuados de forma
+    # diferente em caminhos relativos. O marcador ASCII /data/ preserva a
+    # linhagem relativa sem depender dessa comparação de codificação.
+    substring(path_norm, regexpr("/data/", path_norm, fixed = TRUE) + 1L)
   } else {
     path_norm
   }
