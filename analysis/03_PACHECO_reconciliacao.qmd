@@ -1134,3 +1134,7 @@ RESULTS_STATUS = NOT_GENERATED
 # 80. Princípio final
 
 > A reconciliação deve preservar a história do dado. O objetivo não é produzir uma base aparentemente limpa, mas uma base cuja origem, alteração e justificativa possam ser reconstruídas.
+
+# Addendum de execução v1
+
+`RECONCILIATION_STATUS = READY_FOR_BOSS_REVIEW`. A soma das quatro condições de vida de ferramenta foi confrontada com o somatório da aba COMPARATIVO; B e J exigem revisão, enquanto diferenças de arredondamento computacional foram explicitamente distinguidas. A identidade de custo anual fecha para os fluidos com dados completos e permanece indisponível para J/K. Ver `results/audit/reconciliation_checks_v1.csv`.

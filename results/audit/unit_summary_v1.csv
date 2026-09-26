@@ -1,0 +1,41 @@
+"data_domain","metric","unit","observations"
+"comparativo","bacterias","sem_unidade",11
+"comparativo","concentracao_media","%",11
+"comparativo","espuma","sem_unidade",11
+"comparativo","fungos","sem_unidade",11
+"comparativo","indice_refracao","sem_unidade",11
+"comparativo","item_restritivo_composicao","sem_unidade",11
+"comparativo","nevoa","sem_unidade",11
+"comparativo","oxidacao_maquina","sem_unidade",11
+"comparativo","ph_5_porcento","sem_unidade",11
+"comparativo","potencia","kW",44
+"comparativo","presenca_rebarba","sem_unidade",11
+"comparativo","resistencia_degradacao","sem_unidade",11
+"comparativo","solidos_suspensos","sem_unidade",11
+"comparativo","tensao_superficial","sem_unidade",11
+"comparativo","teste_corrosao","sem_unidade",11
+"comparativo","vida_ferramenta_volume_removido","cm3",55
+"emulsao","ACIDEZ","mg KOH/g",11
+"emulsao","ALCALINIDADE","mg KOH/g",11
+"emulsao","AM<U+00D4>NIA","ppm",11
+"emulsao","CLORETOS","ppm",11
+"emulsao","CONCENTRA<U+00C7><U+00C3>O M<U+00C9>DIA","%",11
+"emulsao","CONDUTIVIDADE","<U+03BC>S/cm",11
+"emulsao","CONTAGEM ANTES MISTURA","UFC/mL",11
+"emulsao","CONTAGEM FINAL ENSAIO","UFC/mL",11
+"emulsao","CONTAGEM IN<U+00CD>CIO ENSAIO","UFC/mL",11
+"emulsao","CORROS<U+00C3>O NO FOFO","-",11
+"emulsao","DEGRADA<U+00C7><U+00C3>O","-",11
+"emulsao","DUREZA TOTAL","ppm",11
+"emulsao","ESPUMA","120o/5 ml",11
+"emulsao","ESTABILIDADE","-",11
+"emulsao","F<U+00D3>SFORO","ppm",11
+"emulsao","MANCHAMENTO NO FOFO","sim/n<U+00E3>o",11
+"emulsao","N<U+00C9>VOA","sim/n<U+00E3>o",11
+"emulsao","S<U+00D3>LIDOS TOTAIS","ppm",11
+"emulsao","TURBIDEZ","NTU",11
+"emulsao","pH","-",11
+"usinabilidade","forma_cavaco","-",33
+"usinabilidade","potencia_corte","kW",44
+"usinabilidade","rugosidade_superficial","<U+03BC>m",44
+"usinabilidade","vida_ferramenta_volume_removido","cm<U+00B3>",44

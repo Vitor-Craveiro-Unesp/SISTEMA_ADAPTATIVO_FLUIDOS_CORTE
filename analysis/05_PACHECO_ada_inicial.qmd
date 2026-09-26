@@ -1077,3 +1077,7 @@ RANKING_STATUS = NOT_EXECUTED
 # 83. Princípio final
 
 > A ADA inicial deve revelar a estrutura dos dados sem transformá-la prematuramente em uma decisão. Seu papel é mostrar o que merece investigação e preparar Benjamin para analisar relações, redundâncias e critérios com maior profundidade.
+
+# Addendum de execução v1
+
+`ADA_INITIAL_STATUS = READY_FOR_BOSS_REVIEW`. A descrição exploratória está em `results/eda/eda_numeric_summary_v1.csv`, `results/eda/eda_missingness_v1.csv` e `results/eda/fig_missingness_v1.png`. Ela não seleciona critérios, não avalia conformidade final e não produz pesos ou ranking.

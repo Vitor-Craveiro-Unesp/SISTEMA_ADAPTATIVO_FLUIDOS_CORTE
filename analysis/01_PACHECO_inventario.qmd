@@ -1131,3 +1131,7 @@ DATA_MODIFICATIONS = NONE
 # 64. Princípio final
 
 > Antes de avaliar se um valor está correto ou incorreto, é necessário compreender onde ele está, o que representa e como se relaciona com a estrutura original da fonte.
+
+# Addendum de execução v1
+
+`INVENTORY_STATUS = READY_FOR_BOSS_REVIEW`. Executado em 2026-09-25 pelo script `scripts/run_audit.R` sobre `data/raw/ensaio_bancada_alunos (2).xlsx`, sem alteração da fonte. Foram inventariadas sete abas; os metadados, dimensões, tipos aparentes e células de fórmula estão em `results/audit/raw_file_inventory_v1.csv`, `sheet_inventory_v1.csv`, `variable_inventory_v1.csv` e `formula_inventory_v1.csv`. A cópia de trabalho tem SHA-256 idêntico ao original.

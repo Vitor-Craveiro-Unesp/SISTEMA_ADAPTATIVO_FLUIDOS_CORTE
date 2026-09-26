@@ -1319,3 +1319,7 @@ DATA_MODIFICATIONS = NONE
 # 85. Princípio final
 
 > A auditoria deve transformar suspeitas em evidências documentadas. Nenhum valor deve ser corrigido porque “parece errado”; a correção só poderá ocorrer depois que a origem do problema e a decisão de reconciliação estiverem justificadas.
+
+# Addendum de execução v1
+
+`AUDIT_STATUS = READY_FOR_BOSS_REVIEW`. Ausências, zeros e valores textuais foram separados na base canônica. Foram emitidos `missing_summary_v1.csv`, `unit_summary_v1.csv`, `duplicate_source_cell_audit_v1.csv`, `outlier_assessment_v1.csv` e `issue_log_v1.csv`. Nenhum outlier foi removido: as tolerâncias não estão definidas. Pendências abertas: fórmula não rastreável no OOXML, aba CAVACOS incompleta, três registros de acidez `repetir` e lacunas econômicas em J/K.

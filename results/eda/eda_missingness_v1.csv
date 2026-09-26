@@ -1,0 +1,70 @@
+"data_domain","metric","observations","missing_values","explicit_zeroes","textual_values","missing_rate"
+"comparativo","bacterias",11,0,0,11,0
+"comparativo","circularidade",44,0,0,44,0
+"comparativo","concentracao_media",11,0,0,11,0
+"comparativo","concentricidade",44,0,0,44,0
+"comparativo","espuma",11,0,0,11,0
+"comparativo","fungos",11,0,0,11,0
+"comparativo","indice_refracao",11,0,0,11,0
+"comparativo","item_restritivo_composicao",11,0,0,11,0
+"comparativo","nevoa",11,0,0,11,0
+"comparativo","oxidacao_maquina",11,0,0,11,0
+"comparativo","ph_5_porcento",11,0,0,11,0
+"comparativo","potencia",44,0,0,44,0
+"comparativo","presenca_rebarba",11,0,0,11,0
+"comparativo","resistencia_degradacao",11,0,0,11,0
+"comparativo","solidos_suspensos",11,0,0,11,0
+"comparativo","tensao_superficial",11,0,0,11,0
+"comparativo","teste_corrosao",11,0,0,11,0
+"comparativo","vida_ferramenta_volume_removido",55,0,0,55,0
+"economico","CUSTO TOTAL ANUAL  (R$)",11,2,0,9,0.181818181818182
+"economico","Capacidade do sistema  (litros)",11,0,0,11,0
+"economico","Concentra<U+00E7><U+00E3>o  (%)",11,2,0,9,0.181818181818182
+"economico","Consumo anual pela troca (litros)",11,0,2,11,0
+"economico","Custo anual da troca  (R$)",11,0,2,11,0
+"economico","Custo anual do fluido (R$)",11,0,1,11,0
+"economico","Custo da ferramenta  (R$)",11,0,0,11,0
+"economico","Custo da ferramenta para o lote  (R$)",11,2,0,9,0.181818181818182
+"economico","Custo da hora de opera<U+00E7><U+00E3>o (R$)",11,0,0,11,0
+"economico","Custo da reposi<U+00E7><U+00E3>o anual  (R$)",11,0,5,11,0
+"economico","Custo da reposi<U+00E7><U+00E3>o mensal  (R$)",11,0,5,11,0
+"economico","Custo do enchimento",11,0,2,11,0
+"economico","Custo total anual opera<U+00E7><U+00E3>o/ferramenta (R$)***",11,2,0,9,0.181818181818182
+"economico","Custo total da opera<U+00E7><U+00E3>o  (R$)",11,0,0,11,0
+"economico","Enchimento do sistema  (litros)",11,2,0,9,0.181818181818182
+"economico","Fator de corre<U+00E7><U+00E3>o",11,2,0,9,0.181818181818182
+"economico","Ferramenta",11,0,0,11,0
+"economico","Lead Time da opera<U+00E7><U+00E3>o  (minutos)",11,0,0,11,0
+"economico","N<U+00FA>mero de trocas por ano",11,0,0,11,0
+"economico","Pre<U+00E7>o do produto  (R$/L)",11,1,0,10,0.0909090909090909
+"economico","Produto em uso",11,0,0,11,0
+"economico","Reposi<U+00E7><U+00E3>o anual   (litros)",11,0,4,11,0
+"economico","Reposi<U+00E7><U+00E3>o mensal (litros)",11,0,4,11,0
+"economico","Tamanho do lote (p<U+00E7>s/m<U+00EA>s)",11,0,0,11,0
+"economico","Vida <U+00FA>til do produto (dias)",11,0,0,11,0
+"economico","Vida da ferramenta**",11,2,0,9,0.181818181818182
+"emulsao","ACIDEZ",11,0,0,11,0
+"emulsao","ALCALINIDADE",11,0,0,11,0
+"emulsao","AM<U+00D4>NIA",11,0,0,11,0
+"emulsao","CLORETOS",11,0,0,11,0
+"emulsao","CONCENTRA<U+00C7><U+00C3>O M<U+00C9>DIA",11,0,0,11,0
+"emulsao","CONDUTIVIDADE",11,0,0,11,0
+"emulsao","CONTAGEM ANTES MISTURA",11,0,0,11,0
+"emulsao","CONTAGEM FINAL ENSAIO",11,0,0,11,0
+"emulsao","CONTAGEM IN<U+00CD>CIO ENSAIO",11,0,0,11,0
+"emulsao","CORROS<U+00C3>O NO FOFO",11,0,11,11,0
+"emulsao","DEGRADA<U+00C7><U+00C3>O",11,0,0,11,0
+"emulsao","DUREZA TOTAL",11,0,0,11,0
+"emulsao","ESPUMA",11,0,0,11,0
+"emulsao","ESTABILIDADE",11,0,0,11,0
+"emulsao","F<U+00D3>SFORO",11,0,0,11,0
+"emulsao","MANCHAMENTO NO FOFO",11,0,0,11,0
+"emulsao","N<U+00C9>VOA",11,0,0,11,0
+"emulsao","ODOR NA OPERA<U+00C7><U+00C3>O",11,0,0,11,0
+"emulsao","S<U+00D3>LIDOS TOTAIS",11,0,0,11,0
+"emulsao","TURBIDEZ",11,0,0,11,0
+"emulsao","pH",11,0,0,11,0
+"usinabilidade","forma_cavaco",44,0,0,44,0
+"usinabilidade","potencia_corte",44,0,0,44,0
+"usinabilidade","rugosidade_superficial",44,0,0,44,0
+"usinabilidade","vida_ferramenta_volume_removido",44,0,0,44,0

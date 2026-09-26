@@ -1305,3 +1305,7 @@ RESULTS_STATUS = NOT_GENERATED
 # 98. Princípio final
 
 > A base canônica deve ser reconstruível a partir da fonte original e das decisões documentadas. Sua confiabilidade não depende de parecer “limpa”, mas de ser coerente, rastreável e reproduzível.
+
+# Addendum de execução v1
+
+`CANONICAL_DATA_STATUS = READY_FOR_BOSS_REVIEW`. Foram gerados `data/processed/base_canonica_v1.rds`, `data/processed/base_canonica_v1.csv` e `data/processed/dicionario_variaveis_v1.csv`. A estrutura é longa e preserva domínio, fluido, métrica, condição, unidade, requisito, valor original, valor numérico/textual e origem célula a célula. Não há imputação ou correção silenciosa.

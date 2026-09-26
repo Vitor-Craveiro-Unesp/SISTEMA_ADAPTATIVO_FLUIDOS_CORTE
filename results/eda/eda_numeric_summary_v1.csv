@@ -1,0 +1,49 @@
+"data_domain","metric","unit","n","min","median","mean","max"
+"comparativo","circularidade",,44,0.0137,0.02465,0.0370136363636364,0.223
+"comparativo","concentracao_media","%",11,6.3,8.3,8.45454545454546,10
+"comparativo","concentricidade",,44,0.0335,0.058,0.0769318181818182,0.545
+"comparativo","indice_refracao","sem_unidade",11,1,1,1.13636363636364,1.7
+"comparativo","ph_5_porcento","sem_unidade",11,8.93,9.21,9.26545454545455,9.63
+"comparativo","potencia","kW",44,2.26,3.23,3.26295454545455,5
+"comparativo","solidos_suspensos","sem_unidade",10,650,765,761.3,900
+"comparativo","tensao_superficial","sem_unidade",11,24.03,29.49,29.2772727272727,31.78
+"comparativo","vida_ferramenta_volume_removido","cm3",55,158.256,452.16,771.509189818182,2450.7072
+"economico","CUSTO TOTAL ANUAL  (R$)",,9,2030.84893219988,3218.39689922481,3853.49939295939,7275.10153443431
+"economico","Capacidade do sistema  (litros)",,11,300,300,300,300
+"economico","Concentra<U+00E7><U+00E3>o  (%)",,9,0.063,0.079,0.0827777777777778,0.1
+"economico","Consumo anual pela troca (litros)",,11,0,240,201.818181818182,300
+"economico","Custo anual da troca  (R$)",,11,0,2740.8,2552.72727272727,5505.6
+"economico","Custo anual do fluido (R$)",,11,0,2983.2,3164.25818181818,7157.28
+"economico","Custo da ferramenta  (R$)",,11,100,100,100,100
+"economico","Custo da ferramenta para o lote  (R$)",,9,0.910954224550216,1.11694404110354,1.11272629272201,1.38226553320893
+"economico","Custo da hora de opera<U+00E7><U+00E3>o (R$)",,11,70,70,70,70
+"economico","Custo da reposi<U+00E7><U+00E3>o anual  (R$)",,11,0,846.72,611.530909090909,1651.68
+"economico","Custo da reposi<U+00E7><U+00E3>o mensal  (R$)",,11,0,70.56,50.9609090909091,137.64
+"economico","Custo do enchimento",,11,0,228.4,212.727272727273,458.8
+"economico","Custo total anual opera<U+00E7><U+00E3>o/ferramenta (R$)***",,9,117.577620891217,117.78361070777,117.779392959389,118.048932199876
+"economico","Custo total da opera<U+00E7><U+00E3>o  (R$)",,11,116.666666666667,116.666666666667,116.666666666667,116.666666666667
+"economico","Enchimento do sistema  (litros)",,9,20,20,20.5555555555556,25
+"economico","Fator de corre<U+00E7><U+00E3>o",,9,1,1,1.15555555555556,1.7
+"economico","Lead Time da opera<U+00E7><U+00E3>o  (minutos)",,11,5,5,5,5
+"economico","N<U+00FA>mero de trocas por ano",,11,12,12,12,12
+"economico","Pre<U+00E7>o do produto  (R$/L)",,10,7.97,11.135,12.346,22.94
+"economico","Reposi<U+00E7><U+00E3>o anual   (litros)",,11,0,72,61.0909090909091,132
+"economico","Reposi<U+00E7><U+00E3>o mensal (litros)",,11,0,6,5.09090909090909,11
+"economico","Tamanho do lote (p<U+00E7>s/m<U+00EA>s)",,11,20,20,20,20
+"economico","Vida <U+00FA>til do produto (dias)",,11,30,30,30,30
+"economico","Vida da ferramenta**",,9,1446.9,1790.6,1835.9,2195.5
+"emulsao","ACIDEZ","mg KOH/g",7,32,34.9,35.1985714285714,40.4
+"emulsao","ALCALINIDADE","mg KOH/g",11,20.05,20.6,20.7990909090909,22
+"emulsao","AM<U+00D4>NIA","ppm",11,0.22,0.3,0.363636363636364,0.56
+"emulsao","CLORETOS","ppm",11,15.9,17.8,17.6872727272727,20
+"emulsao","CONCENTRA<U+00C7><U+00C3>O M<U+00C9>DIA","%",11,6.3,8.3,8.36363636363636,10
+"emulsao","CONDUTIVIDADE","<U+03BC>S/cm",11,56.7,78,75.5418181818182,88
+"emulsao","CORROS<U+00C3>O NO FOFO","-",11,0,0,0,0
+"emulsao","DUREZA TOTAL","ppm",11,15.92,62,51.6290909090909,70
+"emulsao","F<U+00D3>SFORO","ppm",11,0.1,0.14,0.161818181818182,0.25
+"emulsao","S<U+00D3>LIDOS TOTAIS","ppm",11,0.06,0.2,0.180909090909091,0.44
+"emulsao","TURBIDEZ","NTU",11,1.35,1.7,1.61454545454545,1.76
+"emulsao","pH","-",11,6.5,6.6,6.63636363636364,6.8
+"usinabilidade","potencia_corte","kW",44,2.26,3.23,3.26295454545455,5
+"usinabilidade","rugosidade_superficial","<U+03BC>m",44,1.4,2.29,2.4725,5
+"usinabilidade","vida_ferramenta_volume_removido","cm<U+00B3>",44,158.256,406.944,483.836475,895.2768
