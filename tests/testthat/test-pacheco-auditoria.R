@@ -22,3 +22,17 @@ testthat::test_that("zero não é reclassificado como ausência", {
   testthat::expect_gt(nrow(zeroes), 0L)
   testthat::expect_false(any(zeroes$is_missing))
 })
+
+testthat::test_that("a matriz candidata conserva alternativas, NA e marcadores de duplicidade", {
+  matrix <- utils::read.csv("data/processed/matriz_candidata_completa_v1.csv", check.names = FALSE,
+    na.strings = "NA", stringsAsFactors = FALSE)
+  metadata <- utils::read.csv("data/processed/matriz_candidata_completa_metadados_v1.csv", check.names = FALSE,
+    na.strings = "NA", stringsAsFactors = FALSE)
+  flags <- utils::read.csv("data/processed/matriz_candidata_completa_flags_v1.csv", check.names = FALSE,
+    na.strings = "NA", stringsAsFactors = FALSE)
+  testthat::expect_equal(nrow(matrix), 11L)
+  testthat::expect_true(any(metadata$possible_duplicate))
+  testthat::expect_true(any(grepl("POSSIVEL_DUPLICATA", names(matrix), fixed = TRUE)))
+  testthat::expect_true(any(flags$na_flag))
+  testthat::expect_true(any(is.na(matrix)))
+})

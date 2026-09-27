@@ -5,6 +5,7 @@ source("R/pacheco/missing.R")
 source("R/pacheco/unidades.R")
 source("R/pacheco/reconciliacao.R")
 source("R/pacheco/base_canonica.R")
+source("R/pacheco/matriz_candidata.R")
 source("R/pacheco/ada_inicial.R")
 
 project_root <- find_project_root()
@@ -49,6 +50,22 @@ canonical <- build_canonical_data(workbook, file_label)
 dir.create(file.path("data", "processed"), recursive = TRUE, showWarnings = FALSE)
 saveRDS(canonical, file.path("data", "processed", "base_canonica_v1.rds"))
 utils::write.csv(canonical, file.path("data", "processed", "base_canonica_v1.csv"), row.names = FALSE, na = "")
+
+# Matriz ampla para inspeção: todos os valores dos quatro domínios usados na base v1.
+# Não é a matriz de decisão aprovada e não define critérios, pesos ou ranking.
+candidate_matrix <- build_candidate_matrix(canonical)
+utils::write.csv(candidate_matrix$wide,
+  file.path("data", "processed", "matriz_candidata_completa_v1.csv"),
+  row.names = FALSE, na = "NA"
+)
+utils::write.csv(candidate_matrix$metadata,
+  file.path("data", "processed", "matriz_candidata_completa_metadados_v1.csv"),
+  row.names = FALSE, na = "NA"
+)
+utils::write.csv(candidate_matrix$flags,
+  file.path("data", "processed", "matriz_candidata_completa_flags_v1.csv"),
+  row.names = FALSE, na = "NA"
+)
 
 dictionary <- unique(canonical[, c("data_domain", "metric", "condition", "unit", "requirement"), drop = FALSE])
 dictionary$observations <- vapply(seq_len(nrow(dictionary)), function(index) {
