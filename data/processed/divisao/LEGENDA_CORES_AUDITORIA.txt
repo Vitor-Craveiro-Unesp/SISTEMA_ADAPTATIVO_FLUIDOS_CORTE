@@ -1,11 +1,41 @@
 LEGENDA DAS CORES — PLANILHAS DA DIVISÃO / AUDITORIA PACHECO
 Versão: 2026-09-29
 
-Aplica-se aos quatro arquivos XLSX desta pasta:
+Aplica-se aos quatro arquivos XLSX de projeção desta pasta:
 - desempenho_usinagem_v1.xlsx
 - qualidade_peca_processo_v1.xlsx
 - propriedades_estabilidade_fluido_v1.xlsx
 - economico_v1.xlsx
+
+Há também ensaio_bancada_alunos_copia_auditada.xlsx: é uma CÓPIA COLORIDA
+da planilha de data/raw/, com as sete abas originais preservadas e mais
+LEGENDA AUDITORIA e CORREÇÕES AUDITADAS. As cores dessa cópia têm legenda
+dentro do próprio arquivo. Os seis números reconstruídos aparecem como
+números normais com fundo AZUL-CLARO (#A9DCEB), sem rótulo na célula.
+Eles foram separados numa aba própria para não alterar as fórmulas da
+AVALIAÇÃO ECONÔMICA nem produzir um custo total anual aparentemente válido
+com insumos ainda faltantes. A cópia está UNDER_REVIEW.
+
+caracteristicas_unificadas_v1.xlsx reúne as quatro projeções em quatro abas
+de características, adiciona Origem das colunas e agora também a aba
+Legenda das cores. Nessa planilha, LARANJA, VERDE e ROSA mantêm os
+significados abaixo. Os seis números reconstruídos
+do econômico aparecem com fundo AZUL-CLARO (#A9DCEB), como números comuns.
+A coluna "Marcações na aba" da rastreabilidade identifica as células
+sinalizadas; cor sozinha não deve ser usada como indicador em código.
+Os resumos pendentes continuam vazios e em creme.
+
+LILÁS (#DCC8F2), SOMENTE NA PLANILHA UNIFICADA
+Significa: valor de variável categórica/textual ainda não convertido para
+análise numérica. São 23 colunas e 253 células nos dados das abas Qualidade,
+Propriedades e Econômico. A aba Legenda das cores identifica as colunas,
+as categorias observadas e os cuidados de codificação de cada uma.
+Não é uma conversão já feita nem decisão de usar o campo como critério.
+Fluido (coluna A) é identificador; Produto em uso também é identificador
+e não deve receber um código numérico como se fosse critério.
+Em Propriedades fluido!U4 e U6, a borda LARANJA conserva o alerta original
+de '*fungos' enquanto o fundo LILÁS indica categoria textual.
+Campos 'repetir', '1 kg' e 'NA' em medidas numéricas NÃO são categorias.
 
 CORES QUE INDICAM SITUAÇÃO DE AUDITORIA
 
