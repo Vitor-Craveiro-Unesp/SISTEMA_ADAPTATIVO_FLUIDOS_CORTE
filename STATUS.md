@@ -37,6 +37,8 @@ SCIENTIFIC_EXECUTION_STATUS = PACHECO_EXECUTED_UNDER_REVIEW
 
 SCIENTIFIC_RESULTS_STATUS = PACHECO_RESULTS_UNDER_REVIEW
 
+DIVISAO_DEDUPLICATION_STATUS = UNDER_REVIEW
+
 FINAL_RANKING_STATUS = NOT_GENERATED
 
 FINAL_REPORT_STATUS = NOT_READY
@@ -47,6 +49,13 @@ FINAL_REVIEW_STATUS = NOT_READY
 
 DELIVERY_STATUS = NOT_READY
 ```
+
+As quatro projeções em `data/processed/divisao/` foram verificadas para
+colunas idênticas. Cinco cópias exatas de desempenho e uma de névoa em
+propriedades foram retiradas somente das projeções, com backup e validação
+independente em `docs/deduplicacao_divisao_pacheco.md`. Divergências e
+problemas de linhagem permanecem abertos; isto não aprova a base canônica
+nem libera o handoff para Benjamin.
 
 ---
 
@@ -653,6 +662,22 @@ CANONICAL_DATA_STATUS = READY_FOR_BOSS_REVIEW
 CANDIDATE_DIVISION_STATUS = GENERATED_UNDER_REVIEW
 
 CANDIDATE_DIVISION_PATH = data/processed/divisao/
+
+CANDIDATE_DIVISION_NA_AUDIT = PARTIAL_RECONSTRUCTION_UNDER_REVIEW
+
+CANDIDATE_DIVISION_NA_AUDIT_REPORT = docs/auditoria_na_pacheco.md
+
+CANDIDATE_DIVISION_NA_AUDIT_BACKUP = data/processed/divisao/backup_pre_auditoria_na/
+
+CANDIDATE_DIVISION_FULL_AUDIT = UNDER_REVIEW
+
+CANDIDATE_DIVISION_FULL_AUDIT_REPORT = docs/auditoria_divisao_pacheco.md
+
+CANDIDATE_DIVISION_FULL_AUDIT_BACKUP = data/processed/divisao/backup_pre_auditoria_todos/
+
+COMPARATIVO_SOURCE_CELL_OFFSET = OPEN_UPSTREAM_CORRECTION_REQUIRED
+
+RAW_FORMULA_ERROR_CLASSIFICATION = OPEN_UPSTREAM_CORRECTION_REQUIRED
 ```
 
 ---

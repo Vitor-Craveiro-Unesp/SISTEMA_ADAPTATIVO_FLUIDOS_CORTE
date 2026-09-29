@@ -1,0 +1,82 @@
+LEGENDA DAS CORES — PLANILHAS DA DIVISÃO / AUDITORIA PACHECO
+Versão: 2026-09-29
+
+Aplica-se aos quatro arquivos XLSX desta pasta:
+- desempenho_usinagem_v1.xlsx
+- qualidade_peca_processo_v1.xlsx
+- propriedades_estabilidade_fluido_v1.xlsx
+- economico_v1.xlsx
+
+CORES QUE INDICAM SITUAÇÃO DE AUDITORIA
+
+AMARELO-ALARANJADO FORTE (#FFC000)
+Significa: valor original preservado, mas há algo que precisa ser investigado.
+Não significa que o valor esteja corrigido ou que deva ser excluído.
+Onde aparece: 12 células de desempenho (seis pares de vida da ferramenta
+divergentes entre fontes) e 11 células de propriedades (quatro "repetir",
+um "1 kg", quatro concentrações conflitantes de J/K e dois "*fungos").
+Exemplos atuais: desempenho/Dados!C3 e L3; propriedades/Dados!K3 e N5.
+Ação: consultar o relatório de auditoria e a fonte experimental antes de decidir.
+
+VERMELHO (#FF0000)
+Significa: valor reconstruído por relação determinística, com origem e cálculo
+documentados. Não é uma medição nova nem uma imputação estatística.
+Onde aparece: seis células do arquivo economico_v1.xlsx, para J e K:
+Dados!AA10, I10, N10, AA11, I11 e N11.
+Ação: conferir a memória de cálculo e manter a rastreabilidade da reconstrução.
+
+VERDE (#00B050)
+Significa: zero original suspeito de esconder uma ausência, porque há entradas
+necessárias faltantes. O zero NÃO foi trocado por NA.
+Onde aparece: nove células de economico_v1.xlsx:
+J: Dados!E10, F10, G10, K10, L10, M10.
+K: Dados!E11, F11, M11.
+Ação: verificar os insumos e decidir com evidência se é zero real ou ausência.
+
+ROSA (#FFB6C1)
+Significa: NA registrado na matriz candidata que permanece sem solução segura.
+Onde aparece: nove células de economico_v1.xlsx:
+J: Dados!B10, D10, P10, Q10, U10.
+K: Dados!B11, D11, P11, Q11.
+Ação: obter os dados faltantes ou registrar que não foi possível recuperá-los.
+ATENÇÃO: em B10/B11, a fonte bruta guarda resultado de fórmula #DIV/0!,
+embora a matriz candidata tenha mapeado esse resultado para NA.
+
+CORES DE ORGANIZAÇÃO — NÃO SÃO SINAIS DE ERRO NOS DADOS
+
+AMARELO MUITO CLARO / CREME (#FFF5DE)
+Significa: área de RESUMO PENDENTE. Em Dados, essas células estão
+intencionalmente vazias, aguardando definição de regra de cálculo/seleção.
+Também aparece nas linhas correspondentes do Dicionário.
+Não significa dado faltante na fonte nem autoriza preencher com média.
+Há 726 células de resumo vazias nos quatro arquivos (11 fluidos x 66 campos).
+
+OCRE ESCURO (#9A6400)
+Significa: cabeçalho das colunas RESUMO PENDENTE na aba Dados.
+É apenas identificação de uma área ainda não calculada.
+
+MOSTARDA / MARROM-ALARANJADO (#B78019)
+Significa: cabeçalho de variável original marcada como POSSÍVEL DUPLICATA.
+Não confirma duplicidade e não autoriza excluir a coluna.
+Depois da deduplicação exata, aparece apenas nos pares de vida da ferramenta
+das condições 2 a 4 em desempenho e nas duas concentrações em propriedades.
+Os pares idênticos de potência, vida condição 1 e névoa foram reduzidos a
+uma coluna por medida nesta projeção; a fonte bruta continua intacta.
+
+AZUL-ESCURO (#23517C)
+Significa: cabeçalho ou título de seção. É formatação de navegação,
+sem julgamento sobre a qualidade do valor.
+
+SEM FUNDO COLORIDO / BRANCO
+Significa apenas que a célula não recebeu uma marcação visual específica.
+Não é aprovação científica, garantia de valor correto nem prova de ausência
+de problema.
+
+IMPORTANTE
+- As cores se referem à versão ATUAL dos quatro XLSX, não aos backups.
+- A cor não substitui o valor, a aba Leia-me ou o relatório detalhado.
+- As planilhas seguem SOB REVISÃO; não estão liberadas para Benjamin.
+- Cinco colunas redundantes foram retiradas de desempenho e uma de
+  propriedades. As cópias anteriores estão em backup_pre_deduplicacao/.
+- Leia também: docs/auditoria_divisao_pacheco.md e
+  docs/deduplicacao_divisao_pacheco.md, na raiz do projeto.
